@@ -1,8 +1,16 @@
 package modele.persistence;
 
+/**
+ * Sport class
+ */
 public class Sport {
-    String code;
-    String nom;
+
+    /**
+     * Informations du sport : code et nom.
+     */
+    String code; // Code du sport
+    String nom;  // Nom du sport
+
 
     /**
      * Getter of Code
@@ -13,19 +21,21 @@ public class Sport {
     }
 
     /**
-     * Getter of Nom
-     * @return the name of the sport
-     */
-    public String getNom() {
-        return this.nom;
-    }
-
-    /**
      * Setter of Code
      * @param code the code of the sport to set
      */
     public void setCode(String code) {
         this.code = code;
+    }
+
+
+
+    /**
+     * Getter of Nom
+     * @return the name of the sport
+     */
+    public String getNom() {
+        return this.nom;
     }
 
     /**
@@ -37,10 +47,7 @@ public class Sport {
     }
 
 
-    //////////////// Setter 
 
-    /**
-     * Setter of Code
-     * @param code the code of the sport to set
-     */
+
+
 }
