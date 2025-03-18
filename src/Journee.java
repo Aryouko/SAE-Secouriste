@@ -5,23 +5,23 @@ public class Journee {
     private int mois;
     private int annee;
 
-    public getJour() {
+    public int getJour() {
         return this.jour;
     }
 
-    public setJour(int jour) {
+    public void setJour(int jour) {
         this.jour = jour;
     }
 
-    public getMois() {
+    public int getMois() {
         return this.mois;
     }
 
-    public setMois(int mois) {
+    public void setMois(int mois) {
         this.mois = mois;
     }
 
-    public getAnnee() {
+    public int getAnnee() {
         return this.annee;
     }
 
