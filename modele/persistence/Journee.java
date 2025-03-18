@@ -1,30 +1,66 @@
 package modele.persistence;
 
 public class Journee {
+
+    /**
+     * Day
+     */
     private int jour;
+
+    /**
+     * Month
+     */
     private int mois;
+
+    /**
+     * Year
+     */
     private int annee;
 
+    /**
+     * Get the day
+     * @return the day
+     */
     public int getJour() {
         return this.jour;
     }
 
+    /**
+     * Set the day
+     * @param jour the day
+     */
     public void setJour(int jour) {
         this.jour = jour;
     }
 
+    /**
+     * Get the month
+     * @return the month
+     */
     public int getMois() {
         return this.mois;
     }
 
+    /**
+     * Set the month
+     * @param mois the month
+     */
     public void setMois(int mois) {
         this.mois = mois;
     }
 
+    /**
+     * Get the year
+     * @return the year
+     */
     public int getAnnee() {
         return this.annee;
     }
 
+    /**
+     * Set the year
+     * @param annee the year
+     */
     public void setAnnee(int annee) {
         this.annee = annee;
     }

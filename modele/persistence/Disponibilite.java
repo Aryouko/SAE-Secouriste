@@ -1,57 +1,45 @@
 package modele.persistence;
 
 public class Disponibilite {
-    private long idSecouristeDisp;
-    private int jourJour;
-    private int moisJour;
-    private int anneeJour;
+
+    /**
+     * Secourist available
+     */
     private Secouriste secouristeDisp;
+
+    /**
+     * Day available
+     */
     private Journee jourDisp;
 
-    public long getIdSecouristeDisp() {
-        return this.idSecouristeDisp;
-    }
-
-    public void setIdSecouristeDisp(long idSecouristeDisp) {
-        this.idSecouristeDisp = idSecouristeDisp;
-    }
-
-    public int getJourJour() {
-        return this.jourJour;
-    }
-
-    public void setJourJour(int jourJour) {
-        this.jourJour = jourJour;
-    }
-
-    public int getMoisJour() {
-        return this.moisJour;
-    }
-
-    public void setMoisJour(int moisJour) {
-        this.moisJour = moisJour;
-    }
-
-    public int getAnneeJour() {
-        return this.anneeJour;
-    }
-
-    public void setAnneeJour(int anneeJour) {
-        this.anneeJour = anneeJour;
-    }
-
+    /**
+     * Get the secourist available
+     * @return the secourist available
+     */
     public Secouriste getSecouristeDisp() {
         return this.secouristeDisp;
     }
 
+    /**
+     * Set the secourist available
+     * @param secouristeDisp the secourist available
+     */
     public void setSecouristeDisp(Secouriste secouristeDisp) {
         this.secouristeDisp = secouristeDisp;
     }
 
+    /**
+     * Get the day available
+     * @return the day available
+     */
     public Journee getJourDisp() {
         return this.jourDisp;
     }
 
+    /**
+     * Set the day available
+     * @param jourDisp the day available
+     */
     public void setJourDisp(Journee jourDisp) {
         this.jourDisp = jourDisp;
     }
