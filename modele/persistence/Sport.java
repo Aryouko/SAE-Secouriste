@@ -35,4 +35,12 @@ public class Sport {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+
+    //////////////// Setter 
+
+    /**
+     * Setter of Code
+     * @param code the code of the sport to set
+     */
 }
