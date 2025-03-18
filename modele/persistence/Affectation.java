@@ -9,6 +9,11 @@ public class Affectation {
     private Competence comptetenceAffect;
 
 
+    /**
+     *
+     * @param idDPS
+     * @return
+     */
     public long getIdDPS() {
         return this.idDPS;
     }
