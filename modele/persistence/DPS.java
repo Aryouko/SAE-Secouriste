@@ -89,7 +89,7 @@ public class DPS {
      * Get the place of the DPS
      * @return the place of the DPS
      */
-    public String getSite() {
+    public Site getSite() {
         return this.site;
     }
 
@@ -105,7 +105,7 @@ public class DPS {
      * Get the sport of the DPS
      * @return the sport of the DPS
      */
-    public String getSport() {
+    public Sport getSport() {
         return this.sport;
     }
 
