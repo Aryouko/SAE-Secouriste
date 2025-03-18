@@ -1,21 +1,27 @@
 package modele.persistence;
-
+/**
+ * This class stores the number of someone that we need for DPS
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+*/
 public class Besoin {
+
+    /**
+     * Private variable containing the number
+     */
     int nombre; 
 
-    /*
-     * getter for the attribute 'nombre'
-     * 
-     * @return the value of the attribute 'nombre'
+    /**
+     * Get the attribute "nombre"
+     * @return the value in "nombre"
      */
     public int getNombre() {
         return this.nombre;
     }
 
-    /*
-     * setter for the attribute 'nombre'
-     * 
-     * @param nombre the value of the attribute 'nombre' to set
+    /**
+     * Set the attribute "nombre"
+     * @param nombre the new value to "nombre"
      */
     public void setNombre(int nombre) {
         this.nombre = nombre;

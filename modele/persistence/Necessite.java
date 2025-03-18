@@ -1,9 +1,6 @@
 package modele.persistence;
 
-public class Necessite {
-    private String intituleComp;
-
-    public String getIntituleComp(){
-        return this.intituleComp;
-    }
-}
+/**
+ * This class represents a necessity.
+ */
+public class Necessite {}
