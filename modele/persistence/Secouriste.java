@@ -26,7 +26,6 @@ public class Secouriste {
      */
     public String getNom(){
         return this.nom;
-        //ok
     }
     
     /**
