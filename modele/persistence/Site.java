@@ -1,4 +1,4 @@
-package src;
+package modele.persistence;
 
 public class Site {
     String code;

@@ -1,4 +1,4 @@
-package src;
+package modele.persistence;
 
 public class Competence {
     private String intitule;
