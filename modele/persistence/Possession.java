@@ -5,6 +5,7 @@ package modele.persistence;
  */
 public class Possession {
 
+<<<<<<< HEAD
     /**
      * The possession's identifier.
      */
@@ -42,4 +43,7 @@ public class Possession {
     public void setSecouristeDisp(Secouriste secouristeDisp) {
         this.secouristeDisp = secouristeDisp;
     }
+=======
+
+>>>>>>> 86bcb9de943f6b0bca888376f1d0045ea0a93d26
 }
