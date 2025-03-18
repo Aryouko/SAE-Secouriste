@@ -22,4 +22,21 @@ public class Necessite {
     public void setComp1(Competence comp1) {
         this.comp1 = comp1;
     }
+
+
+    /**
+     * Getter for comp2.
+     * @return comp2
+     */
+    public Competence getComp2() {
+        return comp2;
+    }
+
+    /**
+     * Setter for comp2.
+     * @param comp2
+     */
+    public void setComp2(Competence comp2) {
+        this.comp2 = comp2;
+    }
 }
