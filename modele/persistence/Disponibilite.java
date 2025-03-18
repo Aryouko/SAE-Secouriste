@@ -1,5 +1,10 @@
 package modele.persistence;
 
+/**
+ * Availability of a secourist
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class Disponibilite {
 
     /**

@@ -1,5 +1,10 @@
 package modele.persistence;
 
+/**
+ * DPS (Emergency Preparedness System)
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class DPS {
 
     /**
@@ -84,7 +89,7 @@ public class DPS {
      * Get the place of the DPS
      * @return the place of the DPS
      */
-    public String getSite() {
+    public Site getSite() {
         return this.site;
     }
 
@@ -92,7 +97,7 @@ public class DPS {
      * Set the place of the DPS
      * @param site the place of the DPS
      */
-    public void setSite(String site) {
+    public void setSite(Site site) {
         this.site = site;
     }
 
@@ -100,7 +105,7 @@ public class DPS {
      * Get the sport of the DPS
      * @return the sport of the DPS
      */
-    public String getSport() {
+    public Sport getSport() {
         return this.sport;
     }
 
@@ -108,7 +113,7 @@ public class DPS {
      * Set the sport of the DPS
      * @param sport the sport of the DPS
      */
-    public void setSport(String sport) {
+    public void setSport(Sport sport) {
         this.sport = sport;
     }
 
