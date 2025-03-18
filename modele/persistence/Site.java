@@ -20,5 +20,6 @@ public class Site {
 
     public float getLatitude() {
         return this.latitude;
+        //ok
     }
 }
