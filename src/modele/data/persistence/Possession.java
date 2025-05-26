@@ -1,4 +1,4 @@
-package src.modele.persistence;
+package modele.data.persistence;
 
 /**
  * This class represents a possession.

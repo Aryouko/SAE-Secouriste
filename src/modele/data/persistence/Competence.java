@@ -1,4 +1,4 @@
-package src.modele.persistence;
+package modele.data.persistence;
 /**
  * This class stores name of competence which exists
  * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
