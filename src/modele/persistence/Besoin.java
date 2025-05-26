@@ -1,4 +1,4 @@
-package modele.persistence;
+package src.modele.persistence;
 /**
  * This class stores the number of someone that we need for DPS
  * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual

@@ -1,4 +1,4 @@
-package modele.persistence;
+package src.modele.persistence;
 /**
  * This class link class Secouriste, DPS and Competence.
  * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual

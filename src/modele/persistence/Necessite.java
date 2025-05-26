@@ -1,4 +1,4 @@
-package modele.persistence;
+package src.modele.persistence;
 
 /**
  * This class represents a necessity.

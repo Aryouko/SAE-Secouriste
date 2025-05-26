@@ -1,4 +1,4 @@
-package modele.service;
+package src.modele.service;
 
 public class DPSManagement {
 }
