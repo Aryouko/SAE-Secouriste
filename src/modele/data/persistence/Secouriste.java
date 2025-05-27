@@ -28,7 +28,7 @@ public class Secouriste {
 
     /**
      * Setter of IdSecouriste
-     * @return the id of the secouriste
+     * @param id the id of the secouriste
      */
     public void setIdSecouriste(long id){
         this.id = id;
@@ -47,7 +47,7 @@ public class Secouriste {
 
     /**
      * Setter of Nom
-     * @return the name of the secouriste
+     * @param nom the name of the secouriste
      */
     public void setNom(String nom){
         this.nom = nom;
@@ -67,7 +67,7 @@ public class Secouriste {
 
     /**
      * Setter of Prenom
-     * @return the first name of the secouriste
+     * @param prenom the first name of the secouriste
      */
     public void setPrenom(String prenom){
         this.prenom = prenom;
@@ -87,7 +87,7 @@ public class Secouriste {
 
     /**
      * Setter of DateNaissace
-     * @return the birth date of the secouriste
+     * @param dateNaissance the birth date of the secouriste
      */
     public void setDateNaissace(String dateNaissance){
         this.dateNaissance = dateNaissance;
