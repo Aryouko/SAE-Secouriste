@@ -7,7 +7,7 @@ public class SecouristeManagement {
     List<Secouriste> secouristes;
 
 
-    public void ajouterSecouriste(String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
-        Secouriste secouriste = new Secouriste(String nom, String prenom, String dateNaissance, String email, String tel, String adresse);
+    public void ajouterSecouriste(long id, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
+        Secouriste secouriste = new Secouristelong(long id, String nom, String prenom, String dateNaissance, String email, String tel, String adresse);
     }
 }
