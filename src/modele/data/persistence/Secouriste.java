@@ -15,8 +15,6 @@ public class Secouriste {
     private String tel;     // Numéro de téléphone
     private String adresse; // Adresse postale
 
-
-
     /**
      * Getter of IdSecouriste
      * 
@@ -151,9 +149,5 @@ public class Secouriste {
     public void setAdresse(String adresse){
         this.adresse = adresse;
     }
-
-    
-
-
 
 }
