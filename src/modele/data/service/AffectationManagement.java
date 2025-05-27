@@ -8,13 +8,19 @@ public class AffectationManagement {
     private long idDPS;
     private String competence;
 
-    public AffectationManagement(long secouriste,long dps, String competence) {
-        this.idSecouriste = secouriste;
-        this.idDPS = dps;
-        this.competence = competence;
+    /**
+     * Constructor for AffectationManagement
+     * @param secouriste the id of the rescuer
+     * @param dps the id of the DPS
+     * @param competence the competence selected of rescuer
+     */
+    public AffectationManagement(Secouriste secouriste,DPS dps, Competence competence) {
+        this.idSecouriste = secouriste.getIdSecouriste();
+        this.idDPS = dps.getId();
+        this.competence = competence.getIntitule();
     }
 
-    /*
+    /**
      * Getter to get idSecouriste
      * @return the id of rescuer
      */
@@ -22,7 +28,7 @@ public class AffectationManagement {
         return idSecouriste;
     }
 
-    /*
+    /**
      * Getter to get idDPS
      * @return the id of DPS
      */
@@ -30,7 +36,7 @@ public class AffectationManagement {
         return idDPS;
     }
 
-    /*
+    /**
      * Getter to get competence
      * @return the competence selected of rescuer
      */

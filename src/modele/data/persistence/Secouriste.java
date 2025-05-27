@@ -16,6 +16,27 @@ public class Secouriste {
     private String adresse; // Adresse postale
 
     /**
+     * Constructor of Secouriste
+     *
+     * @param id the id of the secouriste
+     * @param nom the name of the secouriste
+     * @param prenom the first name of the secouriste
+     * @param dateNaissance the birth date of the secouriste
+     * @param email the email of the secouriste
+     * @param tel the phone number of the secouriste
+     * @param adresse the address of the secouriste
+     */
+    public Secouriste(long id, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.email = email;
+        this.tel = tel;
+        this.adresse = adresse;
+    }
+
+    /**
      * Getter of IdSecouriste
      * 
      * @return the id of the secouriste
