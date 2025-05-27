@@ -8,7 +8,7 @@ public class Possession {
     /**
      * The possession's identifier.
      */
-    public Journee journeeDisp; // journeeDisp
+    public modele.data.persistence.Journee journeeDisp; // journeeDisp
     private Secouriste secouristeDisp; // secouristeDisp
 
     /**
