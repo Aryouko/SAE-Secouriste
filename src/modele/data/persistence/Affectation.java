@@ -21,6 +21,17 @@ public class Affectation {
      */
     private Competence competenceAffect;
 
+    /**
+     * Constructor of Affectation
+     * @param secouristeAffect the rescuer to affect
+     * @param DPSAffect the DPS to affect
+     * @param competenceAffect the competence to affect
+     */
+    public Affectation(Secouriste secouristeAffect, DPS DPSAffect, Competence competenceAffect) {
+        this.secouristeAffect = secouristeAffect;
+        this.DPSAffect = DPSAffect;
+        this.competenceAffect = competenceAffect;
+    }
 
     /**
      * Get the affectation rescuer

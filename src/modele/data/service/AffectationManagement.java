@@ -3,8 +3,7 @@ import modele.data.persistence.DPS;
 import modele.data.persistence.Secouriste;
 import modele.data.persistence.Competence;
 
-public class AffectationManagement {
-    private long idSecouriste;
+public class AffectationManagement {    private long idSecouriste;
     private long idDPS;
     private String competence;
 
@@ -43,4 +42,4 @@ public class AffectationManagement {
     public String getCompetence() {
         return competence;
     }
-}
+    }

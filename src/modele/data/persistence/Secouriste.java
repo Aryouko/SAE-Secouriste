@@ -45,15 +45,6 @@ public class Secouriste {
         return this.id;
     }
 
-    /**
-     * Setter of IdSecouriste
-     * @param id the id of the secouriste
-     */
-    public void setIdSecouriste(long id){
-        this.id = id;
-    }
-
-
 
     /**
      * Getter of Nom
