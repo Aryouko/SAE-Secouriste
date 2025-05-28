@@ -4,7 +4,7 @@ package modele.data.persistence;
  * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
  * @version 1.0
 */
-public class Competence {
+public class 0Competence {
 
     /**
      * Private variable containing the name of competence

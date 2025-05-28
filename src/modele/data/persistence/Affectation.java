@@ -42,14 +42,6 @@ public class Affectation {
     }
 
     /**
-     * Set the affectation rescuer
-     * @param secouristeAffect
-     */
-    public void setSecouristeAffect(Secouriste secouristeAffect) {
-        this.secouristeAffect = secouristeAffect;
-    }
-
-    /**
      * Get the affectation DPS
      * @return the instance of DPS
      */
@@ -58,26 +50,10 @@ public class Affectation {
     }
 
     /**
-     * Set the affectation DPS
-     * @param DPSAffect
-     */
-    public void setDPSAffect(DPS DPSAffect) {
-        this.DPSAffect = DPSAffect;
-    }
-
-    /**
      * Get the affectation competence
      * @return the instance of Competence
      */
     public Competence getCompetenceAffect() {
         return this.competenceAffect;
-    }
-
-    /**
-     * Set the affectation competence
-     * @param competenceAffect
-     */
-    public void setComptetenceAffect(Competence competenceAffect) {
-        this.competenceAffect = competenceAffect;
     }
 }

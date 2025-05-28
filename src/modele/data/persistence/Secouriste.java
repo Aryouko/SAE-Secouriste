@@ -8,6 +8,7 @@ public class Secouriste {
      * Informations personnelles du secouriste.
      */
     private long id;       // Identifiant unique
+    private String pseudo;     // Nom du secouriste
     private String nom;     // Nom du secouriste
     private String prenom;  // Prénom du secouriste
     private String dateNaissance; // Date de naissance (corrigé)
@@ -45,6 +46,22 @@ public class Secouriste {
         return this.id;
     }
 
+    /**
+     * Getter of pseudo
+     *
+     * @return the first name of the secouriste
+     */
+    public String getPseudo(){
+        return this.pseudo;
+    }
+
+    /**
+     * Setter of pseudo
+     * @param pseudo the first name of the secouriste
+     */
+    public void setPseudo(String pseudo){
+        this.pseudo = pseudo;
+    }
 
     /**
      * Getter of Nom
@@ -55,17 +72,7 @@ public class Secouriste {
         return this.nom;
     }
 
-    /**
-     * Setter of Nom
-     * @param nom the name of the secouriste
-     */
-    public void setNom(String nom){
-        this.nom = nom;
-    }
 
-
-
-    
     /**
      * Getter of Prenom
      * 
@@ -74,16 +81,6 @@ public class Secouriste {
     public String getPrenom(){
         return this.prenom;
     }
-
-    /**
-     * Setter of Prenom
-     * @param prenom the first name of the secouriste
-     */
-    public void setPrenom(String prenom){
-        this.prenom = prenom;
-    }
-
-
 
 
     /**
