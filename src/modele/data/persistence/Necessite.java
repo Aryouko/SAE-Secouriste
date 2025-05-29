@@ -8,6 +8,15 @@ public class Necessite {
     private Competence comp2;
 
     /**
+     * Constructor
+     * @param comp1 - first competence
+     * @param comp2 - second competence
+     */
+    public Necessite(Competence comp1, Competence comp2) {
+        this.comp1 = comp1;
+        this.comp2 = comp2;
+    }
+    /**
      * Getter for comp1.
      * @return comp1
      */

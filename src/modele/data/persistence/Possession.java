@@ -1,6 +1,7 @@
 package modele.data.persistence;
 import modele.data.persistence.Secouriste;
-import modele.data.persistence.Journee;
+import modele.data.persistence.Competence;
+import java.util.ArrayList;
 
 /**
  * This class represents a possession.
@@ -10,39 +11,52 @@ public class Possession {
     /**
      * The possession's identifier.
      */
-    public modele.data.persistence.Journee journeeDisp; // journeeDisp
-    private Secouriste secouristeDisp; // secouristeDisp
+    public ArrayList<Competence> competencesSec ; // journeeDisp
+    private Secouriste secouriste; // secouristeDisp
 
     /**
-     * Getter for the possession's identifier.
-     * @return The possession's identifier.
+     * Constructor of Possession
+     * @param competencesSec - list of competences
+     * @param secouriste - a rescuer
      */
-    public Journee getJourneeDisp() {
-        return journeeDisp;
-    }
-
-    /**
-     * Setter for the possession's identifier.
-     * @param journeeDisp The possession's identifier.
-     */
-    public void setJourneeDisp(Journee journeeDisp) {
-        this.journeeDisp = journeeDisp;
+    public Possession(ArrayList<Competence> competencesSec, Secouriste secouriste) {
+        this.competencesSec = competencesSec;
+        this.secouriste = secouriste;
     }
 
     /**
      * Getter for the possession's identifier.
      * @return The possession's identifier.
      */
-    public Secouriste getSecouristeDisp() {
-        return secouristeDisp;
+    public ArrayList<Competence> getCompetencesSec() {
+        return this.competencesSec;
     }
 
     /**
-     * Setter for the possession's identifier.
-     * @param secouristeDisp The possession's identifier.
+     * Getter for the possession's identifier.
+     * @return The possession's identifier.
      */
-    public void setSecouristeDisp(Secouriste secouristeDisp) {
-        this.secouristeDisp = secouristeDisp;
+    public Secouriste getSecouriste() {
+        return secouriste;
     }
 
+    /**
+     * Method allow to add competence
+     * @param competence - new competence for the rescuer
+     * @throws RuntimeException - if competence necessity is absent
+     */
+    public void addCompetence(Competence competence) throws RuntimeException {
+        Competence compnecessite = competence.necessite();
+        boolean verif = false;
+        for (Competence comp : this.competencesSec) {
+            if (comp.equals(compnecessite)) {
+                verif = true;
+            }
+        }
+        if (verif) {
+            this.competencesSec.add(competence);
+        } else {
+            throw new RuntimeException("Competence necessite absente");
+        }
+    }
 }

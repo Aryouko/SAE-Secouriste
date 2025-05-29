@@ -2,14 +2,14 @@ package modele.data.persistence;
 import modele.data.persistence.Secouriste;
 import modele.data.persistence.Journee;
 /**
- * Availability of a secourist
+ * Availability of a rescuer
  * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
  * @version 1.0
  */
 public class Disponibilite {
 
     /**
-     * Secourist available
+     * Rescuer available
      */
     private Secouriste secouristeDisp;
 
@@ -19,16 +19,26 @@ public class Disponibilite {
     private Journee jourDisp;
 
     /**
-     * Get the secourist available
-     * @return the secourist available
+     * Constructor of Disponibilite
+     * @param secouriste - a rescuer
+     * @param jour - her disponibility
+     */
+    public Disponibilite(Secouriste secouriste, Journee jour) {
+        this.secouristeDisp = secouriste;
+        this.jourDisp = jour;
+    }
+
+    /**
+     * Get the rescuer available
+     * @return the rescuer available
      */
     public Secouriste getSecouristeDisp() {
         return this.secouristeDisp;
     }
 
     /**
-     * Set the secourist available
-     * @param secouristeDisp the secourist available
+     * Set the rescuer available
+     * @param secouristeDisp the rescuer available
      */
     public void setSecouristeDisp(Secouriste secouristeDisp) {
         this.secouristeDisp = secouristeDisp;
