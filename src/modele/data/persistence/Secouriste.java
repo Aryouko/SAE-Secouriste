@@ -27,8 +27,9 @@ public class Secouriste {
      * @param tel the phone number of the secouriste
      * @param adresse the address of the secouriste
      */
-    public Secouriste(long id, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
+    public Secouriste(long id, String pseudo, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
         this.id = id;
+        this.pseudo = pseudo;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
@@ -117,9 +118,6 @@ public class Secouriste {
     public void setEmail(String email){
         this.email = email;
     }
-
-
-
 
     /**
      * Getter of Tel

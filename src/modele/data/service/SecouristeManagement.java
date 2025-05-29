@@ -1,5 +1,8 @@
 package modele.data.service;
+import modele.dao.DAOFactory;
 import modele.data.persistence.Secouriste;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class SecouristeManagement {
@@ -19,6 +22,22 @@ public class SecouristeManagement {
      */
     public List<Secouriste> getSecouristes() {
         return secouristes;
+    }
+
+
+    public List<Secouriste> getAllSecouristes() {
+        return DAOFactory.getSecouristeDAO().findAll();
+    }
+
+    public List<Secouriste> chercherParNom(String nomRech) {
+        List<Secouriste> tous = getAllSecouristes();
+        List<Secouriste> resultat = new ArrayList<>();
+        for (Secouriste s : tous) {
+            if (s.getNom().equalsIgnoreCase(nomRech)) {
+                resultat.add(s);
+            }
+        }
+        return resultat;
     }
 
 
