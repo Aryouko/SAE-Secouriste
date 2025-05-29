@@ -1,4 +1,6 @@
 package modele.data.persistence;
+import modele.data.persistence.Secouriste;
+import modele.data.persistence.Journee;
 
 /**
  * This class represents a possession.

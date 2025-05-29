@@ -1,4 +1,7 @@
 package modele.data.persistence;
+import modele.data.persistence.Secouriste;
+import modele.data.persistence.DPS;
+import modele.data.persistence.Competence;
 /**
  * This class link class Secouriste, DPS and Competence.
  * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual

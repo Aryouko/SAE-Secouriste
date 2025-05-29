@@ -1,5 +1,7 @@
 package modele.data.persistence;
-
+import modele.data.persistence.Site;
+import modele.data.persistence.Sport;
+import modele.data.persistence.Journee;
 /**
  * DPS (Emergency Preparedness System)
  * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual

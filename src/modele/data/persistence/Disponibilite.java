@@ -1,5 +1,6 @@
 package modele.data.persistence;
-
+import modele.data.persistence.Secouriste;
+import modele.data.persistence.Journee;
 /**
  * Availability of a secourist
  * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual

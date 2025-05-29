@@ -1,5 +1,5 @@
 package modele.data.persistence;
-
+import modele.data.persistence.Competence;
 /**
  * This class represents a necessity.
  */
