@@ -1,45 +1,36 @@
 package modele.data.service;
-import modele.data.persistence.DPS;
-import modele.data.persistence.Secouriste;
-import modele.data.persistence.Competence;
+import modele.data.persistence.Affectation;
+import java.util.ArrayList;
 
-public class AffectationManagement {    private long idSecouriste;
-    private long idDPS;
-    private String competence;
+/**
+ * Class allow to collect all affectation
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
+public class AffectationManagement {
+    private ArrayList<Affectation> listAffectation;
 
     /**
      * Constructor for AffectationManagement
-     * @param secouriste the id of the rescuer
-     * @param dps the id of the DPS
-     * @param competence the competence selected of rescuer
+     * @param affectations - an affectation list
      */
-    public AffectationManagement(Secouriste secouriste,DPS dps, Competence competence) {
-        this.idSecouriste = secouriste.getIdSecouriste();
-        this.idDPS = dps.getId();
-        this.competence = competence.getIntitule();
+    public AffectationManagement(ArrayList<Affectation> affectations) {
+        this.listAffectation = affectations;
     }
 
     /**
-     * Getter to get idSecouriste
-     * @return the id of rescuer
+     * Method allow to add an affectation
+     * @param affectation - affectation to add
      */
-    public long getIdSecouriste() {
-        return idSecouriste;
+    public void addAffectation(Affectation affectation) {
+        this.listAffectation.add(affectation);
     }
 
     /**
-     * Getter to get idDPS
-     * @return the id of DPS
+     * Method allow to remove an affectation
+     * @param affectation - affectation to remove
      */
-    public long getIdDPS() {
-        return idDPS;
+    public void removeAffectation(Affectation affectation) {
+        this.listAffectation.remove(affectation);
     }
-
-    /**
-     * Getter to get competence
-     * @return the competence selected of rescuer
-     */
-    public String getCompetence() {
-        return competence;
-    }
-    }
+}
