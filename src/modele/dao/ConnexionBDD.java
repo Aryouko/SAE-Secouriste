@@ -9,7 +9,7 @@ public class ConnexionBDD {
 
     public static Connection getConnexion() throws SQLException {
         if (connexion == null || connexion.isClosed()) {
-            connexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/ta_base", "utilisateur", "mdp");
+            connexion = DriverManager.getConnection("jdbc:mysql://server.sauveteur:3306/SAE", "admin", "admin");
         }
         return connexion;
     }
