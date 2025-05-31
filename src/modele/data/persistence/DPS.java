@@ -40,6 +40,24 @@ public class DPS {
     private Journee journee;
 
     /**
+     * Constructor of DPS
+     * @param id - id of DPS
+     * @param horaireDepart - start hour
+     * @param horaireFin - finish hour
+     * @param site - site of DPS
+     * @param sport - sport of DPS
+     * @param journee - day of DPS
+     */
+    public DPS(long id, int horaireDepart, int horaireFin, Site site, Sport sport, Journee journee) {
+        this.id = id;
+        this.horaireDepart = horaireDepart;
+        this.horaireFin = horaireFin;
+        this.site = site;
+        this.sport = sport;
+        this.journee = journee;
+    }
+
+    /**
      * Get the DPS id
      * @return the DPS id
      */

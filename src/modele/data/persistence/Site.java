@@ -13,6 +13,19 @@ public class Site {
     float longitude;   // Longitude du site
     float latitude;    // Latitude du site
 
+    /**
+     * Constructor of Site
+     * @param code - id of Site
+     * @param nom - name of Site
+     * @param longitude - longitude of Site
+     * @param latitude - latitude of Site
+     */
+    public Site(String code, String nom, float longitude, float latitude) {
+        this.code = code;
+        this.nom = nom;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
 
     /**
      * Getter of Code

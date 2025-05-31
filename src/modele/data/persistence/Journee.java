@@ -23,6 +23,17 @@ public class Journee {
     private int annee;
 
     /**
+     * Constructor of Journee
+     * @param jour - the day
+     * @param mois - the month
+     * @param annee - the year
+     */
+    public Journee(int jour, int mois, int annee) {
+        this.jour = jour;
+        this.mois = mois;
+        this.annee = annee;
+    }
+    /**
      * Get the day
      * @return the day
      */

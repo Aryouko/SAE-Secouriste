@@ -11,6 +11,15 @@ public class Sport {
     String code; // Code du sport
     String nom;  // Nom du sport
 
+    /**
+     * Constructor of Sport
+     * @param code - code of Sport
+     * @param nom - name of the sport
+     */
+    public Sport(String code, String nom) {
+        this.code = code;
+        this.nom = nom;
+    }
 
     /**
      * Getter of Code
