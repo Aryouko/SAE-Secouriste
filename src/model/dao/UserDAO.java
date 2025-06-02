@@ -6,18 +6,49 @@ import java.sql.*;
 
 public class UserDAO {
 
-    public User getUserByLogin(String login) {
-        User user = null;
-        String query = "SELECT id, login, password FROM user WHERE login = ?";
+    /**
+     * Checks if a login already exists in the database.
+     * @param login the login to check for existence.
+     * @return true if the login exists, false otherwise.
+     */
+    public boolean doesLoginExist(String login) {
+        boolean ret = false;
+        String query = "SELECT login FROM user WHERE login = ?";
 
         try (Connection con = ConnexionBDD.getConnexion();
-            PreparedStatement stmt = con.prepareStatement(query)) {
+             PreparedStatement stmt = con.prepareStatement(query)) {
 
             stmt.setString(1, login);  // on remplace le ? par la valeur du login
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                user = new User(rs.getString("login"), rs.getString("password"));
+                ret = true;  // le login a été trouvé
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+
+    /**
+     * Retrieves a User object from the database based on the provided login.
+     * @param login the login of the user to retrieve.
+     * @return a User object if found, or null if no user with that login exists.
+     */
+    public User getUserByLogin(String login) {
+        User user = null;
+        String query = "SELECT id, login, password FROM user WHERE login = ?";
+
+        try (Connection con = ConnexionBDD.getConnexion();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setString(1, login);  // on remplace le ? par la valeur du login
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                user = new User(rs.getLong("idUser"), rs.getString("login"), rs.getString("password"));
             }
 
 
@@ -26,6 +57,75 @@ public class UserDAO {
         }
 
         return user;
+    }
+
+
+
+    /**
+     * Changes the password of a user identified by their login.
+     * @param login the login of the user whose password is to be changed.
+     * @param newPassword the new password to set for the user.
+     */
+    public void changePasswordByLogin(String login, String newPassword) {
+        // Récupère l'utilisateur à partir du login
+        User user = getUserByLogin(login);
+
+        if (user == null) {
+            System.out.println("Utilisateur non trouvé avec le login : " + login);
+            return;
+        }
+
+        String updateQuery = "UPDATE user SET password = ? WHERE id = ?";
+
+        try (Connection con = ConnexionBDD.getConnexion();
+             PreparedStatement stmt = con.prepareStatement(updateQuery)) {
+
+            stmt.setString(1, newPassword);       // nouveau mot de passe
+            stmt.setLong(2, user.getIdUser());        // identifiant unique du user
+
+            int updated = stmt.executeUpdate();
+
+            if (updated > 0) {
+                System.out.println("Mot de passe mis à jour pour l'utilisateur avec l'ID : " + user.getIdUser());
+            } else {
+                System.out.println("Échec de la mise à jour du mot de passe.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Adds a new user to the database.
+     * @param user the User object containing the login and password of the new user.
+     * @return the generated ID of the new user, or -1 if the insertion failed.
+     */
+    public int addUser(User user) {
+        String query = "INSERT INTO user (login, password) VALUES (?, ?)";
+        int generatedId = -1;
+
+        try (Connection con = ConnexionBDD.getConnexion();
+             PreparedStatement stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setString(1, user.getLogin());
+            stmt.setString(2, user.getPassword());
+
+            int affectedRows = stmt.executeUpdate();
+
+            if (affectedRows > 0) {
+                ResultSet rs = stmt.getGeneratedKeys();
+                if (rs.next()) {
+                    generatedId = rs.getInt(1); // récupère l'ID auto-généré
+                    user.setIdUser(generatedId);    // met à jour l'objet User si besoin
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return generatedId; // retourne l’ID ou -1 en cas d’échec
     }
 }
 
