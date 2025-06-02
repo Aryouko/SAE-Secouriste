@@ -8,22 +8,16 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
-    /**
-     * Start methode of the APP
-     *
-     * @param primaryStage
-     * @throws Exception
-     */
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = new FXMLLoader(this.getClass().getResource("view.fxml")).load();
-        primaryStage.setTitle("Dice Roller");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/ressources/MainView.fxml"));
+        stage.setTitle("JavaFX + SceneBuilder");
+        stage.setScene(new Scene(root, 400, 300));
+        stage.show();
     }
 
     public static void main(String[] args) {
-        Application.launch(args);
+        launch(args);
     }
-
 }
+
