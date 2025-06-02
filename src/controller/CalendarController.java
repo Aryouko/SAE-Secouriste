@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
@@ -11,17 +12,54 @@ public class CalendarController {
     @FXML
     private GridPane calendarGrid;
     @FXML
-    private Label dayLabel;
+    private Label jourLabel;
+
+    private int mois;
+    private int annee;
 
     @FXML
     public void initialize() {
-        String[] months = { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
         LocalDate today = LocalDate.now();
-        populateCalendar(today.getYear(), today.getMonthValue());
-        dayLabel.setText(today.getDayOfMonth() + " " + months[today.getMonthValue() - 1]);
+        this.mois = today.getMonthValue();
+        this.annee = today.getYear();
+        populateCalendar(this.annee, mois);
+    }
+
+    @FXML
+    private void moisSuivant() {
+        LocalDate today = LocalDate.now();
+        if (this.mois == 12) {
+            this.annee++;
+            this.mois = 1;
+            calendarGrid.getChildren().clear();
+            populateCalendar(this.annee, this.mois);
+        } else {
+            calendarGrid.getChildren().clear();
+            this.mois++;
+            populateCalendar(this.annee, this.mois);
+        }
+    }
+
+    @FXML
+    private void moisPrecedent() {
+        LocalDate today = LocalDate.now();
+        if (this.mois == 1) {
+            calendarGrid.getChildren().clear();
+            this.mois = 12;
+            this.annee--;
+            populateCalendar(this.annee, this.mois);
+        } else {
+            calendarGrid.getChildren().clear();
+            this.mois--;
+            populateCalendar(this.annee, this.mois);
+        }
     }
 
     public void populateCalendar(int year, int month) {
+
+        String[] months = { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
+        jourLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 24px");
+        jourLabel.setText(months[this.mois - 1] + " " + this.annee);
 
         // Jours de la semaine, en commençant par lundi
         String[] days = { "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim" };
@@ -29,7 +67,7 @@ public class CalendarController {
         // Ajout des noms des jours en première ligne (row 0)
         for (int i = 0; i < days.length; i++) {
             Label dayLabel = new Label(days[i]);
-            dayLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: white;");
+            dayLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 16px");
             calendarGrid.add(dayLabel, i, 0);
         }
 
@@ -47,7 +85,14 @@ public class CalendarController {
         // Ajout des jours du mois dans la grille
         for (int day = 1; day <= daysInMonth; day++) {
             Label dayLabel = new Label(String.valueOf(day));
-            dayLabel.setStyle("-fx-text-fill: #ffffff;");
+            if (day == LocalDate.now().getDayOfMonth() && this.mois == LocalDate.now().getMonthValue()) {
+                dayLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: white; -fx-background-radius: 100; -fx-background-color: #4A4AE4; -fx-font-size: 16px");
+            } else {
+                dayLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 16px");
+            }
+            dayLabel.setMinSize(40, 40);
+            dayLabel.setMaxSize(40, 40);
+            dayLabel.setAlignment(Pos.CENTER);
             calendarGrid.add(dayLabel, col, row);
 
             col++;
