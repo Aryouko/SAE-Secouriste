@@ -85,7 +85,7 @@ public class CalendarController {
         // Ajout des jours du mois dans la grille
         for (int day = 1; day <= daysInMonth; day++) {
             Label dayLabel = new Label(String.valueOf(day));
-            if (day == LocalDate.now().getDayOfMonth() && this.mois == LocalDate.now().getMonthValue()) {
+            if (day == LocalDate.now().getDayOfMonth() && this.mois == LocalDate.now().getMonthValue() && this.annee == LocalDate.now().getYear()) {
                 dayLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: white; -fx-background-radius: 100; -fx-background-color: #4A4AE4; -fx-font-size: 16px");
             } else {
                 dayLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 16px");
