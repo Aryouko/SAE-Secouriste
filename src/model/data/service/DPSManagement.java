@@ -1,5 +1,29 @@
 package model.data.service;
 
-public class DPSManagement {
+import java.util.ArrayList;
 
+import model.data.persistence.DPS;
+
+public class DPSManagement {
+    private ArrayList<DPS> listDPS;
+
+    public DPSManagement() {
+        listDPS = new ArrayList<>();
+    }
+
+    public DPSManagement(ArrayList<DPS> listDPS) {
+        this.listDPS = listDPS;
+    }
+
+    public ArrayList<DPS> getListDPS() {
+        return listDPS;
+    }
+
+    public void addDPS(DPS dps) {
+        listDPS.add(dps);
+    }
+
+    public void removeDPS(DPS dps) {
+        listDPS.remove(dps);
+    }
 }
