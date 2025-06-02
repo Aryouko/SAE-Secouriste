@@ -11,6 +11,7 @@ import model.data.persistence.Journee;
 public class DPSDAO {
     public int insert(DPS dps) {
         String query = "INSERT INTO DPS VALUES (" + dps.getId() + "," + dps.getHoraireDepart() + "," + dps.getHoraireFin() + "," + dps.getSite().getCode() + "," + dps.getSport().getCode() + "," + dps.getJournee().getJour() + "," + dps.getJournee().getMois() + "," + dps.getJournee().getAnnee() + ")";
+        /*
         try (ConnexionBDD con = new ConnexionBDD();
              Statement st = con.getConnexion().createStatement()) {
             return st.executeUpdate(query);
@@ -18,9 +19,12 @@ public class DPSDAO {
             ex.printStackTrace ();
             return -1;
         }
+        */
+        return 0;
     }
 
     public void findAll () {
+        /*
         try (ConnexionBDD con = new ConnexionBDD();
              Statement st = con.getConnexion().createStatement();
              ResultSet rs = st.executeQuery("SELECT d.ID, d.HORAIRE_DEPART, d.HORAIRE_FIN, d.JOUR, d.MOIS, d.ANNEE, s.CODE AS SITE_CODE, s.NOM AS SITE_NOM, s.LONGITUDE AS SITE_LON, s.LATITUDE AS SITE_LAT, sp.CODE AS SPORT_CODE, sp.NOM AS SPORT_NOM FROM DPS d JOIN Site s ON d.CODE_SITE = s.CODE JOIN Sport sp ON d.CODE_SPORT = sp.CODE")) {
@@ -54,5 +58,6 @@ public class DPSDAO {
         } catch (SQLException ex) {
             ex.printStackTrace ();
         }
+        */
     }
 }

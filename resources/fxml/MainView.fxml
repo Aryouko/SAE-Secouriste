@@ -133,7 +133,7 @@
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <image>
-                                <Image url="@../../Downloads/settings.png" />
+                                <Image url="/svg/parametre.svg" />
                             </image>
                         </ImageView>
                         <Label text="Paramètres" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT">

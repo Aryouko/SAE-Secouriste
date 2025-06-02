@@ -44,6 +44,7 @@ public class Possession {
      * @throws RuntimeException - if competence necessity is absent
      */
     public void addCompetence(Competence competence) throws RuntimeException {
+        /*
         Competence compnecessite = competence.necessite();
         boolean verif = false;
         for (Competence comp : this.competencesSec) {
@@ -56,5 +57,6 @@ public class Possession {
         } else {
             throw new RuntimeException("Competence necessite absente");
         }
+        */
     }
 }
