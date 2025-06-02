@@ -10,9 +10,9 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/ressources/MainView.fxml"));
-        stage.setTitle("JavaFX + SceneBuilder");
-        stage.setScene(new Scene(root, 400, 300));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainView.fxml"));
+        stage.setTitle("SAE Secouriste");
+        stage.setScene(new Scene(root, 1200, 720));
         stage.show();
     }
 
