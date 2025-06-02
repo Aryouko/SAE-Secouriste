@@ -10,7 +10,8 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Chargement.fxml"));
+        System.out.println("FXML URL = " + getClass().getResource("/fxml/Calendar.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Calendar.fxml"));
 
 
         javafx.scene.text.Font.loadFont(
