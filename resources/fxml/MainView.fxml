@@ -54,7 +54,7 @@
                         </GridPane>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                             <image>
-                                <Image url="@../../Downloads/notifications-circle.png" />
+                                <Image url="@/images/notif.png" />
                             </image>
                             <GridPane.margin>
                                 <Insets right="10.0" />
@@ -133,7 +133,7 @@
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <image>
-                                <Image url="/images/parametre.png" />
+                                <Image url="@/images/parametre.png" />
                             </image>
                         </ImageView>
                         <Label text="Paramètres" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT">
