@@ -8,7 +8,6 @@ public class Secouriste {
      * Informations personnelles du secouriste.
      */
     private long id;       // Identifiant unique
-    private String pseudo;     // Nom du secouriste
     private String nom;     // Nom du secouriste
     private String prenom;  // Prénom du secouriste
     private String dateNaissance; // Date de naissance (corrigé)
@@ -27,9 +26,8 @@ public class Secouriste {
      * @param tel the phone number of the secouriste
      * @param adresse the address of the secouriste
      */
-    public Secouriste(long id, String pseudo, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
+    public Secouriste(long id, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
         this.id = id;
-        this.pseudo = pseudo;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
@@ -45,23 +43,6 @@ public class Secouriste {
      */
     public long getIdSecouriste(){
         return this.id;
-    }
-
-    /**
-     * Getter of pseudo
-     *
-     * @return the first name of the secouriste
-     */
-    public String getPseudo(){
-        return this.pseudo;
-    }
-
-    /**
-     * Setter of pseudo
-     * @param pseudo the first name of the secouriste
-     */
-    public void setPseudo(String pseudo){
-        this.pseudo = pseudo;
     }
 
     /**

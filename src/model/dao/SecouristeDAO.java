@@ -15,7 +15,6 @@ public class SecouristeDAO {
             while (rs.next()) {
                 Secouriste s = new Secouriste(
                         rs.getLong("id"),
-                        rs.getString("pseudo"),
                         rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getString("dateNaissance"),
