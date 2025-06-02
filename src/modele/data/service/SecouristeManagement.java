@@ -12,8 +12,8 @@ public class SecouristeManagement {
     /**
      * Constructor of SecouristeManagement
      */
-    public void ajouterSecouriste(long id, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
-        Secouriste secouriste = new Secouriste(id, nom, prenom, dateNaissance, email, tel, adresse);
+    public void ajouterSecouriste(long id, String pseudo, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
+        Secouriste secouriste = new Secouriste(id, pseudo, nom, prenom, dateNaissance, email, tel, adresse);
     }
 
     /**
@@ -29,6 +29,12 @@ public class SecouristeManagement {
         return DAOFactory.getSecouristeDAO().findAll();
     }
 
+    /**
+     * Cherche un Sauveteur en particulier
+     *
+     * @param nomRech name of the sauveteur to find
+     * @return a liste of sauveteur
+     */
     public List<Secouriste> chercherParNom(String nomRech) {
         List<Secouriste> tous = getAllSecouristes();
         List<Secouriste> resultat = new ArrayList<>();
@@ -39,6 +45,4 @@ public class SecouristeManagement {
         }
         return resultat;
     }
-
-
 }
