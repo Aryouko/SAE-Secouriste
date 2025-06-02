@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -113,6 +114,35 @@
                                         </ImageView>
                                     </left>
                                 </BorderPane>
+                        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 15;">
+                           <effect>
+                              <DropShadow radius="12.925" width="32.7">
+                                 <color>
+                                    <Color opacity="0.17705167829990387" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                           <left>
+                              <ImageView fitHeight="53.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../images/mdp.png" />
+                                 </image>
+                                 <BorderPane.margin>
+                                    <Insets left="20.0" />
+                                 </BorderPane.margin>
+                              </ImageView>
+                           </left>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                           <center>
+                              <PasswordField maxWidth="400.0" promptText="Mot de passe" style="-fx-background-color: none; -fx-prompt-text-fill: black;" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Poppins Light" size="18.0" />
+                                 </font>
+                              </PasswordField>
+                           </center>
+                        </BorderPane>
                                 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 15;">
                                     <effect>
                                         <DropShadow radius="12.925" width="32.7">
@@ -121,16 +151,6 @@
                                             </color>
                                         </DropShadow>
                                     </effect>
-                                    <center>
-                                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Identifiant" style="-fx-background-color: none; -fx-prompt-text-fill: black;" text="Mot de passe" BorderPane.alignment="CENTER">
-                                            <font>
-                                                <Font name="Poppins Light" size="18.0" />
-                                            </font>
-                                            <BorderPane.margin>
-                                                <Insets />
-                                            </BorderPane.margin>
-                                        </TextField>
-                                    </center>
                                     <VBox.margin>
                                         <Insets bottom="40.0" />
                                     </VBox.margin>
@@ -144,6 +164,13 @@
                                             </BorderPane.margin>
                                         </ImageView>
                                     </left>
+                           <center>
+                              <PasswordField maxWidth="400.0" promptText="Confirmation mot de passe" style="-fx-background-color: none; -fx-prompt-text-fill: black;" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Poppins Light" size="18.0" />
+                                 </font>
+                              </PasswordField>
+                           </center>
                                 </BorderPane>
                                 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #EFEFEF; -fx-background-radius: 15;">
                                     <effect>
@@ -164,14 +191,6 @@
                               <Insets bottom="30.0" />
                            </VBox.margin>
                                 </BorderPane>
-                        <Hyperlink text="Inscription">
-                           <font>
-                              <Font name="Poppins Medium" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="20.0" />
-                           </VBox.margin>
-                        </Hyperlink>
                         <Hyperlink text="Mot de passe oublié ?">
                            <font>
                               <Font name="Poppins Medium" size="20.0" />
