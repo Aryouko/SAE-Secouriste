@@ -1,4 +1,4 @@
-package src.controller;
+package controller;
 import java.time.LocalDate;
 import java.time.YearMonth;
 
@@ -10,15 +10,18 @@ public class CalendarController {
 
     @FXML
     private GridPane calendarGrid;
+    @FXML
+    private Label dayLabel;
 
     @FXML
     public void initialize() {
+        String[] months = { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
         LocalDate today = LocalDate.now();
         populateCalendar(today.getYear(), today.getMonthValue());
+        dayLabel.setText(today.getDayOfMonth() + " " + months[today.getMonthValue() - 1]);
     }
 
     public void populateCalendar(int year, int month) {
-        calendarGrid.getChildren().clear();
 
         // Jours de la semaine, en commençant par lundi
         String[] days = { "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim" };
@@ -44,7 +47,7 @@ public class CalendarController {
         // Ajout des jours du mois dans la grille
         for (int day = 1; day <= daysInMonth; day++) {
             Label dayLabel = new Label(String.valueOf(day));
-            dayLabel.setStyle("-fx-text-fill: white;");
+            dayLabel.setStyle("-fx-text-fill: #ffffff;");
             calendarGrid.add(dayLabel, col, row);
 
             col++;
