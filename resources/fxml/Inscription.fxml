@@ -22,9 +22,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InscriptionController">
+<AnchorPane fx:id="pageRegister" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InscriptionController">
     <children>
-        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" mouseTransparent="true" prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: #F5F5F5;" styleClass="windowed" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: #F5F5F5;" styleClass="windowed" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox alignment="CENTER" depthTest="DISABLE" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
                     <children>
@@ -173,7 +173,7 @@
                               </PasswordField>
                            </center>
                                 </BorderPane>
-                        <Button fx:id="buttonRegistery" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" minWidth="500.0" mnemonicParsing="false" onAction="#ButtonRegisteryClicked" style="-fx-background-radius: 15; -fx-background-color: #EFEFEF;" text="Inscription" VBox.vgrow="ALWAYS">
+                        <Button fx:id="buttonRegister" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" minWidth="500.0" mnemonicParsing="false" onAction="#ButtonRegisteryClicked" style="-fx-background-radius: 15; -fx-background-color: #EFEFEF;" text="Inscription" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="Poppins Medium" size="20.0" />
                            </font>
@@ -188,7 +188,7 @@
                               </DropShadow>
                            </effect>
                         </Button>
-                        <Hyperlink text="Mot de passe oublié ?" VBox.vgrow="ALWAYS">
+                        <Hyperlink onAction="#linkToConnexion" text="Connextion">
                            <font>
                               <Font name="Poppins Medium" size="20.0" />
                            </font>

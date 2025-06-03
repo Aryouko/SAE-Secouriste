@@ -22,9 +22,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MotDePasseOublieController">
+<AnchorPane fx:id="pageForgotPassword" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MotDePasseOublieController">
     <children>
-        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" layoutX="-10.0" layoutY="2.0" mouseTransparent="true" prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: #F5F5F5;">
+        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" layoutX="-10.0" layoutY="2.0" prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="9.599999999999909" AnchorPane.topAnchor="2.0">
             <children>
                 <HBox depthTest="DISABLE" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
                     <children>
@@ -159,7 +159,7 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </Button>
-                        <Hyperlink text="Inscription">
+                        <Hyperlink onAction="#linkToConnexion" text="Connexion">
                            <font>
                               <Font name="Poppins Medium" size="20.0" />
                            </font>
