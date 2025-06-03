@@ -163,22 +163,4 @@ public class Affectation {
             return estOriente(matriceAdj) && !arcsRetours(matriceAdj);
         }
     }
-
-    public int[][] approcheGloutonne() {
-        int[][] ret;
-
-        return ret;
-    }
-
-    public int[][] approcheExhaustive() {
-        int[][] ret;
-
-        return ret;
-    }
-
-    public boolean affectationValide(int[][] matriceAffect) {
-        boolean ret = true;
-
-        return ret;
-    }
 }
