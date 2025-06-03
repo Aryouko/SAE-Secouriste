@@ -98,7 +98,7 @@
                                         </DropShadow>
                                     </effect>
                                     <center>
-                                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Identifiant" style="-fx-background-color: none; -fx-prompt-text-fill: black;" text="Adresse mail" BorderPane.alignment="CENTER">
+                                        <TextField fx:id="connexionLoginLabel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Identifiant" style="-fx-background-color: none; -fx-prompt-text-fill: black;" text="Adresse mail" BorderPane.alignment="CENTER">
                                             <font>
                                                 <Font name="Poppins Light" size="18.0" />
                                             </font>
@@ -137,7 +137,7 @@
                                         </ImageView>
                                     </left>
                            <center>
-                              <PasswordField maxWidth="400.0" promptText="Mot de passe" style="-fx-background-color: none; -fx-prompt-text-fill: black;" BorderPane.alignment="CENTER">
+                              <PasswordField fx:id="connexionPasswordLabel" maxWidth="400.0" promptText="Mot de passe" style="-fx-background-color: none; -fx-prompt-text-fill: black;" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Poppins Light" size="18.0" />
                                  </font>
