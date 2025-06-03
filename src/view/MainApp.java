@@ -18,7 +18,7 @@ public class MainApp extends Application {
         );
 
         stage.setTitle("SAE Secouriste");
-        stage.setScene(new Scene(root, 400, 423));
+        stage.setScene(new Scene(root, 400, 400));
         stage.show();
     }
 

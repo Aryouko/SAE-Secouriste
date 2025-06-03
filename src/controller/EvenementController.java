@@ -35,8 +35,8 @@ public class EvenementController {
         Site site1 = new Site("S001", "Stade A", 2.35f, 48.85f);
         Site site2 = new Site("S002", "Gymnase B", 2.38f, 48.87f);
 
-        Sport sport1 = new Sport("FB", "Football");
-        Sport sport2 = new Sport("BB", "Basketball");
+        Sport sport1 = new Sport(1, "Football");
+        Sport sport2 = new Sport(2, "Basketball");
 
         Journee jour1 = new Journee(1, 6, 2025);
         Journee jour2 = new Journee(13, 6, 2025);
