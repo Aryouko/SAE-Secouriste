@@ -10,7 +10,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/Calendar.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/Evenement.fxml"));
 
 
         javafx.scene.text.Font.loadFont(
@@ -18,7 +18,7 @@ public class MainApp extends Application {
         );
 
         stage.setTitle("SAE Secouriste");
-        stage.setScene(new Scene(root, 400, 400));
+        stage.setScene(new Scene(root, 400, 423));
         stage.show();
     }
 

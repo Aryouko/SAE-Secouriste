@@ -1,5 +1,8 @@
 package model.data.persistence;
 
+import model.data.persistence.Site;
+import model.data.persistence.Sport;
+import model.data.persistence.Journee;
 /**
  * DPS (Emergency Preparedness System)
  * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
@@ -11,6 +14,11 @@ public class DPS {
      * DPS id
      */
     private long id;
+
+    /**
+     * Name DPS
+     */
+    private String name;
 
     /**
      * Start time
@@ -46,8 +54,9 @@ public class DPS {
      * @param sport - sport of DPS
      * @param journee - day of DPS
      */
-    public DPS(long id, int horaireDepart, int horaireFin, Site site, Sport sport, Journee journee) {
+    public DPS(long id, String name, int horaireDepart, int horaireFin, Site site, Sport sport, Journee journee) {
         this.id = id;
+        this.name = name;
         this.horaireDepart = horaireDepart;
         this.horaireFin = horaireFin;
         this.site = site;
@@ -69,6 +78,22 @@ public class DPS {
      */
     public void setId(long id) {
         this.id = id;
+    }
+
+    /**
+     * Get the DPS name
+     * @return the DPS name
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Set the DPS name
+     * @param name the DPS name
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
