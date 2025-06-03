@@ -164,6 +164,7 @@ public class Affectation {
         }
     }
 
+    /*
     public int[][] approcheGloutonne() {
         int[][] ret;
 
@@ -175,6 +176,8 @@ public class Affectation {
 
         return ret;
     }
+
+     */
 
     public boolean affectationValide(int[][] matriceAffect) {
         boolean ret = true;
