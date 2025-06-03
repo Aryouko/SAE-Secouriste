@@ -1,4 +1,4 @@
-package src.model.graph;
+package model.graph;
 
 /**
  * Tests of Affectation's methods
