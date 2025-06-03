@@ -29,3 +29,13 @@
     -fx-max-height: 0;
     visibility: hidden;
 }
+
+
+.windowed {
+    -fx-background-color: #f4f4f4;
+    -fx-width: 100%;
+    -fx-height: 100%;
+    -fx-padding: 10;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
