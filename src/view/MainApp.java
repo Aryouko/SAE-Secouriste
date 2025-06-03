@@ -11,17 +11,18 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/MenuParallele.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Chargement.fxml"));
 
         
         javafx.scene.text.Font.loadFont(
                 getClass().getResourceAsStream("/fonts/JetBrainsMono-Regular.ttf"), 19
         );
 
-        stage.getIcons().add(new Image("/resources/images/logo.png"));
+        stage.getIcons().add(new Image("/images/logo.png"));
         stage.setTitle("SAE Secouriste");
-        // stage.setMaximized(true);
-        stage.setScene(new Scene(root, 436, 900));
+        stage.setMaximized(true);
+
+        stage.setScene(new Scene(root, 1200, 720));
         stage.show();
     }
 
