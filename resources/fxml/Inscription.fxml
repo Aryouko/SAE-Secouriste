@@ -22,20 +22,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InscriptionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InscriptionController">
     <children>
-        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" layoutX="-10.0" layoutY="2.0" mouseTransparent="true" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #F5F5F5;" styleClass="windowed" stylesheets="@../css/style.css">
+        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" mouseTransparent="true" style="-fx-background-color: #F5F5F5;" styleClass="windowed" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox depthTest="DISABLE" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
+                <HBox alignment="CENTER" depthTest="DISABLE" prefWidth="1604.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
                     <children>
-                        <VBox alignment="CENTER" fillWidth="false" prefHeight="1000.0" prefWidth="800.0" stylesheets="@../css/style.css">
+                        <VBox alignment="CENTER" fillWidth="false" stylesheets="@../css/style.css" HBox.hgrow="ALWAYS">
                             <children>
-                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                                     <image>
                                         <Image url="@../images/logo.png" />
                                     </image>
                                 </ImageView>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Secouriste.fr">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Secouriste.fr" VBox.vgrow="ALWAYS">
                                     <font>
                                         <Font name="Poppins SemiBold" size="80.0" />
                                     </font>
@@ -43,7 +43,7 @@
                                         <Insets bottom="20.0" />
                                     </VBox.margin>
                                 </Text>
-                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #1E1E1E; -fx-background-radius: 15;">
+                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #1E1E1E; -fx-background-radius: 15;" VBox.vgrow="ALWAYS">
                                     <effect>
                                         <DropShadow height="60.25" radius="35.18" width="82.47">
                                             <color>
@@ -64,7 +64,7 @@
                                         </Text>
                                     </children>
                                 </Pane>
-                                <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="500.0">
+                                <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
@@ -86,7 +86,7 @@
                                         <Insets bottom="20.0" top="20.0" />
                                     </VBox.margin>
                                 </GridPane>
-                                <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 15;">
+                                <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 15;" VBox.vgrow="ALWAYS">
                                     <VBox.margin>
                                         <Insets bottom="20.0" />
                                     </VBox.margin>
@@ -115,7 +115,7 @@
                                         </ImageView>
                                     </left>
                                 </BorderPane>
-                        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 15;">
+                        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 15;" VBox.vgrow="ALWAYS">
                            <effect>
                               <DropShadow radius="12.925" width="32.7">
                                  <color>
@@ -144,7 +144,7 @@
                               </PasswordField>
                            </center>
                         </BorderPane>
-                                <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 15;">
+                                <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 15;" VBox.vgrow="ALWAYS">
                                     <effect>
                                         <DropShadow radius="12.925" width="32.7">
                                             <color>
@@ -173,7 +173,7 @@
                               </PasswordField>
                            </center>
                                 </BorderPane>
-                        <Button fx:id="buttonRegistery" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" minWidth="500.0" mnemonicParsing="false" onAction="#ButtonRegisteryClicked" style="-fx-background-radius: 15; -fx-background-color: #EFEFEF;" text="Inscription">
+                        <Button fx:id="buttonRegistery" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" minWidth="500.0" mnemonicParsing="false" onAction="#ButtonRegisteryClicked" style="-fx-background-radius: 15; -fx-background-color: #EFEFEF;" text="Inscription" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="Poppins Medium" size="20.0" />
                            </font>
@@ -188,14 +188,14 @@
                               </DropShadow>
                            </effect>
                         </Button>
-                        <Hyperlink text="Mot de passe oublié ?">
+                        <Hyperlink text="Mot de passe oublié ?" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="Poppins Medium" size="20.0" />
                            </font>
                         </Hyperlink>
                             </children>
                         </VBox>
-                        <GridPane prefHeight="1000.0" prefWidth="800.0" styleClass="root" stylesheets="@../css/style.css">
+                        <GridPane prefHeight="979.0" prefWidth="802.0" styleClass="root" stylesheets="@../css/style.css">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
