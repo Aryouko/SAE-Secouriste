@@ -11,7 +11,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Inscription.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/Calendar.fxml"));
 
         
         javafx.scene.text.Font.loadFont(
