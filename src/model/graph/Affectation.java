@@ -1,4 +1,4 @@
-package src.model.graph;
+package model.graph;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -162,5 +162,26 @@ public class Affectation {
         } else {
             return estOriente(matriceAdj) && !arcsRetours(matriceAdj);
         }
+    }
+
+    /*
+    public int[][] approcheGloutonne() {
+        int[][] ret;
+
+        return ret;
+    }
+
+    public int[][] approcheExhaustive() {
+        int[][] ret;
+
+        return ret;
+    }
+
+     */
+
+    public boolean affectationValide(int[][] matriceAffect) {
+        boolean ret = true;
+
+        return ret;
     }
 }
