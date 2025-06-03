@@ -1,4 +1,4 @@
-package src.model.graph;
+package model.graph;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -164,6 +164,7 @@ public class Affectation {
         }
     }
 
+    /*
     public int[][] approcheGloutonne() {
         int[][] ret;
 
@@ -175,6 +176,8 @@ public class Affectation {
 
         return ret;
     }
+
+     */
 
     public boolean affectationValide(int[][] matriceAffect) {
         boolean ret = true;
