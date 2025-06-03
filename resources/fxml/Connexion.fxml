@@ -22,13 +22,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane focusTraversable="true" prefHeight="1007.0" prefWidth="1838.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConnexionController">
+<AnchorPane fx:id="pageConnexion" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConnexionController">
     <children>
-        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" layoutY="2.0" maxWidth="1.7976931348623157E308" prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: #F5F5F5;" styleClass="windowed" AnchorPane.leftAnchor="0.0">
+        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" layoutX="-1.6" prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: #F5F5F5;" styleClass="windowed" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="-0.40000000000009095" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox depthTest="DISABLE" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
+                <HBox alignment="CENTER" depthTest="DISABLE" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
                     <children>
-                        <VBox alignment="CENTER" prefHeight="950.0" prefWidth="800.0">
+                        <VBox alignment="CENTER" prefHeight="950.0" prefWidth="800.0" stylesheets="@../css/style.css">
                             <children>
                                 <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -37,7 +37,7 @@
                                 </ImageView>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Secouriste.fr" VBox.vgrow="ALWAYS">
                                     <font>
-                                        <Font name="Poppins SemiBold" size="75.0" />
+                                        <Font name="Poppins SemiBold" size="80.0" />
                                     </font>
                                     <VBox.margin>
                                         <Insets bottom="20.0" />
@@ -144,7 +144,7 @@
                               </PasswordField>
                            </center>
                                 </BorderPane>
-                        <Button fx:id="buttonConnexion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" minWidth="500.0" mnemonicParsing="false" onAction="#ButtonConnexionClicked" style="-fx-background-radius: 15; -fx-background-color: #EFEFEF;" text="Se connecter">
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" minWidth="500.0" mnemonicParsing="false" onAction="#ButtonConnexionClicked" style="-fx-background-radius: 15; -fx-background-color: #EFEFEF;" text="Se connecter">
                            <font>
                               <Font name="Poppins Medium" size="20.0" />
                            </font>
@@ -159,7 +159,7 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </Button>
-                        <Hyperlink text="Inscription">
+                        <Hyperlink onAction="#linkToRegister" text="Inscription">
                            <font>
                               <Font name="Poppins Medium" size="20.0" />
                            </font>
@@ -167,7 +167,7 @@
                               <Insets bottom="15.0" />
                            </VBox.margin>
                         </Hyperlink>
-                        <Hyperlink text="Mot de passe oublié ?">
+                        <Hyperlink onAction="#linkToReceiveCode" text="Mot de passe oublié ?">
                            <font>
                               <Font name="Poppins Medium" size="20.0" />
                            </font>
