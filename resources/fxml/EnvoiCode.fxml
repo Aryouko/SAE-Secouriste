@@ -19,13 +19,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ressources.fxml.MotDePasseOublie">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MotDePasseOublieController">
     <children>
         <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" layoutX="-10.0" layoutY="2.0" mouseTransparent="true" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #F5F5F5;">
             <children>
                 <HBox depthTest="DISABLE" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
                     <children>
-                  <VBox alignment="CENTER" prefHeight="1000.0" prefWidth="800.0" stylesheets="@../../src/view/style.css">
+                  <VBox alignment="CENTER" prefHeight="1000.0" prefWidth="800.0" stylesheets="@../css/style.css">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -130,7 +130,7 @@
                         </BorderPane>
                      </children>
                   </VBox>
-                  <GridPane prefHeight="1000.0" prefWidth="800.0" styleClass="root" stylesheets="@../../src/view/style.css">
+                  <GridPane prefHeight="1000.0" prefWidth="800.0" styleClass="root" stylesheets="@../css/style.css">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

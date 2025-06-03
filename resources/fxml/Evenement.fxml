@@ -13,7 +13,7 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <ScrollPane stylesheets="@../../src/view/style.css" fitToWidth="true" layoutX="40.0" layoutY="102.0" prefHeight="286.0" prefWidth="327.0" style="-fx-background-color: transparent; -fx-background: transparent;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="117.0">
+      <ScrollPane stylesheets="@../css/style.css" fitToWidth="true" layoutX="40.0" layoutY="102.0" prefHeight="286.0" prefWidth="327.0" style="-fx-background-color: transparent; -fx-background: transparent;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="117.0">
          <content>
             <VBox fx:id="listEvent" style="-fx-background-color: #121215;" />
          </content></ScrollPane>

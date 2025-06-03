@@ -29,9 +29,10 @@ public class ConnexionController {
 
     @FXML
     public void initialize() {
-        // Initialisation de la vue de connexion
-        connexionLoginLabel.setAlignment(Pos.CENTER);
-        connexionPasswordLabel.setAlignment(Pos.CENTER);
+
+
+        // connexionLoginLabel.setAlignment(Pos.CENTER);
+        // connexionPasswordLabel.setAlignment(Pos.CENTER);
         System.out.println("ConnexionController initialized");
     }
 

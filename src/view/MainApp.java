@@ -10,7 +10,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/Evenement.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MotDePasseOublie.fxml"));
 
 
         javafx.scene.text.Font.loadFont(
