@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<?import javafx.scene.layout.HBox?>
+<AnchorPane prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" style="-fx-background-color: #000000;" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane prefHeight="1026.0" prefWidth="1824.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints maxWidth="Infinity" minWidth="10.0" prefWidth="436.0" />
+          <ColumnConstraints maxWidth="Infinity" minWidth="10.0" prefWidth="1388.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+        </rowConstraints>
+         <children>
+             <fx:include source="/resources/fxml/MenuParallele.fxml" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
+             <HBox GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" alignment="CENTER_LEFT">
+                 <GridPane.margin>
+                      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                 </GridPane.margin>
+                 <fx:include source="/fxml/GestionEvenement.fxml" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
+            </HBox>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

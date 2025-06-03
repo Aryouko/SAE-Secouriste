@@ -11,7 +11,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MenuParallele.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/FenetreEvenement.fxml"));
 
         
         javafx.scene.text.Font.loadFont(
@@ -22,7 +22,7 @@ public class MainApp extends Application {
         stage.setTitle("SAE Secouriste");
         stage.setMaximized(true);
 
-        stage.setScene(new Scene(root, 1824, 1026));
+        stage.setScene(new Scene(root, 1444, 990));
         stage.show();
     }
 
