@@ -18,7 +18,7 @@ public class MainApp extends Application {
                 getClass().getResourceAsStream("/fonts/JetBrainsMono-Regular.ttf"), 19
         );
 
-        stage.getIcons().add(new Image("/images/logo.png"));
+        stage.getIcons().add(new Image("/resources/images/logo.png"));
         stage.setTitle("SAE Secouriste");
         // stage.setMaximized(true);
         stage.setScene(new Scene(root, 1200, 700));
