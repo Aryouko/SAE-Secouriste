@@ -22,11 +22,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InscriptionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InscriptionController">
     <children>
-        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" mouseTransparent="true" style="-fx-background-color: #F5F5F5;" styleClass="windowed" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" mouseTransparent="true" prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: #F5F5F5;" styleClass="windowed" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox alignment="CENTER" depthTest="DISABLE" prefWidth="1604.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
+                <HBox alignment="CENTER" depthTest="DISABLE" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
                     <children>
                         <VBox alignment="CENTER" fillWidth="false" stylesheets="@../css/style.css" HBox.hgrow="ALWAYS">
                             <children>
@@ -225,6 +225,13 @@
                             </children>
                         </GridPane>
                     </children>
+               <effect>
+                  <DropShadow height="60.5" radius="47.125" width="130.0">
+                     <color>
+                        <Color opacity="0.30000001192092896" />
+                     </color>
+                  </DropShadow>
+               </effect>
                 </HBox>
             </children>
             <opaqueInsets>

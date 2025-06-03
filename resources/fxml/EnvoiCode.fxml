@@ -21,9 +21,9 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EnvoiCodeController">
     <children>
-        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" layoutX="-10.0" layoutY="2.0" mouseTransparent="true" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #F5F5F5;">
+        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" layoutX="-10.0" layoutY="2.0" mouseTransparent="true" prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: #F5F5F5;">
             <children>
-                <HBox depthTest="DISABLE" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
+                <HBox depthTest="DISABLE" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
                     <children>
                   <VBox alignment="CENTER" prefHeight="1000.0" prefWidth="800.0" stylesheets="@../css/style.css">
                      <children>
@@ -160,6 +160,13 @@
                      </children>
                   </GridPane>
                     </children>
+               <effect>
+                  <DropShadow radius="37.25" width="130.0">
+                     <color>
+                        <Color opacity="0.30000001192092896" />
+                     </color>
+                  </DropShadow>
+               </effect>
                 </HBox>
             </children>
             <opaqueInsets>

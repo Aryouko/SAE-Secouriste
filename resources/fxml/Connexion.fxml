@@ -22,22 +22,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConnexionController">
+<AnchorPane focusTraversable="true" prefHeight="1007.0" prefWidth="1838.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConnexionController">
     <children>
-        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" layoutX="-10.0" layoutY="2.0" maxWidth="1.7976931348623157E308" mouseTransparent="true" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #F5F5F5;" styleClass="windowed" stylesheets="@../css/style.css">
+        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" layoutY="2.0" maxWidth="1.7976931348623157E308" prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: #F5F5F5;" styleClass="windowed" AnchorPane.leftAnchor="0.0">
             <children>
-                <HBox depthTest="DISABLE" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
+                <HBox depthTest="DISABLE" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
                     <children>
-                        <VBox alignment="CENTER" prefHeight="1000.0" prefWidth="800.0" stylesheets="@../css/style.css">
+                        <VBox alignment="CENTER" prefHeight="950.0" prefWidth="800.0">
                             <children>
                                 <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../images/logo.png" />
                                     </image>
                                 </ImageView>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Secouriste.fr">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Secouriste.fr" VBox.vgrow="ALWAYS">
                                     <font>
-                                        <Font name="Poppins SemiBold" size="80.0" />
+                                        <Font name="Poppins SemiBold" size="75.0" />
                                     </font>
                                     <VBox.margin>
                                         <Insets bottom="20.0" />
@@ -64,7 +64,7 @@
                                         </Text>
                                     </children>
                                 </Pane>
-                                <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="500.0">
+                                <GridPane maxHeight="-Infinity" maxWidth="-Infinity" mouseTransparent="true" prefHeight="30.0" prefWidth="500.0">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
@@ -98,7 +98,7 @@
                                         </DropShadow>
                                     </effect>
                                     <center>
-                                        <TextField fx:id="connexionLoginLabel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Identifiant" style="-fx-background-color: none; -fx-prompt-text-fill: black;" text="Adresse mail" BorderPane.alignment="CENTER">
+                                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Adresse mail" style="-fx-background-color: none; -fx-prompt-text-fill: black;" BorderPane.alignment="CENTER">
                                             <font>
                                                 <Font name="Poppins Light" size="18.0" />
                                             </font>
@@ -164,7 +164,7 @@
                               <Font name="Poppins Medium" size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="20.0" />
+                              <Insets bottom="15.0" />
                            </VBox.margin>
                         </Hyperlink>
                         <Hyperlink text="Mot de passe oublié ?">
@@ -174,7 +174,7 @@
                         </Hyperlink>
                             </children>
                         </VBox>
-                        <GridPane prefHeight="1000.0" prefWidth="800.0" styleClass="root" stylesheets="@../css/style.css">
+                        <GridPane mouseTransparent="true" prefHeight="950.0" prefWidth="800.0" styleClass="root" stylesheets="@../css/style.css">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -204,6 +204,13 @@
                             </children>
                         </GridPane>
                     </children>
+               <effect>
+                  <DropShadow height="104.75" radius="58.1875" width="130.0">
+                     <color>
+                        <Color opacity="0.30000001192092896" />
+                     </color>
+                  </DropShadow>
+               </effect>
                 </HBox>
             </children>
             <opaqueInsets>
