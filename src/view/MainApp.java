@@ -11,7 +11,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/Inscription.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/Profil.fxml"));
 
         
         javafx.scene.text.Font.loadFont(
@@ -21,7 +21,7 @@ public class MainApp extends Application {
         stage.getIcons().add(new Image("/resources/images/logo.png"));
         stage.setTitle("SAE Secouriste");
         // stage.setMaximized(true);
-        stage.setScene(new Scene(root, 1920, 1080));
+        stage.setScene(new Scene(root, 400, 86));
         stage.show();
     }
 
