@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="990.0" prefWidth="1444.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.fxml.Menu">
+<AnchorPane prefHeight="990.0" prefWidth="1444.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
    <children>
       <GridPane alignment="CENTER" prefHeight="996.0" prefWidth="1438.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -111,7 +111,7 @@
             </GridPane>
             <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F9FCFF;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <content>
-                  <TilePane prefColumns="3" prefHeight="742.0" prefWidth="1442.0" />
+                  <TilePane fx:id="evenementTile" alignment="CENTER" prefColumns="3" prefHeight="742.0" prefWidth="1442.0" />
                </content>
             </ScrollPane>
          </children>
