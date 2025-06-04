@@ -23,7 +23,7 @@ public class FetchDatabaseCredentials {
         return properties.getProperty("db.url");
     }
 
-    public static String getUser() {
+    public static String getUsername() {
         return properties.getProperty("db.username");
     }
 
