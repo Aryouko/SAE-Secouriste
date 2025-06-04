@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="990.0" prefWidth="1444.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
+<AnchorPane prefHeight="990.0" prefWidth="1444.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GestionEvenementController">
    <children>
       <GridPane alignment="CENTER" prefHeight="996.0" prefWidth="1438.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -95,12 +95,12 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ComboBox prefHeight="30.0" prefWidth="180.0" promptText="Site" style="-fx-background-color: #EBF0F6; -fx-background-radius: 5;" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <ComboBox fx:id="sitesComboBox" onAction="#filtreUpdate" prefHeight="30.0" prefWidth="180.0" promptText="Site" style="-fx-background-color: #EBF0F6; -fx-background-radius: 5;" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                            <GridPane.margin>
                               <Insets right="10.0" />
                            </GridPane.margin>
                         </ComboBox>
-                        <ComboBox prefHeight="30.0" prefWidth="180.0" promptText="Sport" style="-fx-background-color: #EBF0F6; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <ComboBox fx:id="sportsComboBox" onAction="#filtreUpdate" prefHeight="30.0" prefWidth="180.0" promptText="Sport" style="-fx-background-color: #EBF0F6; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
@@ -109,7 +109,7 @@
                   </GridPane>
                </children>
             </GridPane>
-            <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F9FCFF;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F9FCFF;" stylesheets="@../css/style.css" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <content>
                   <TilePane fx:id="evenementTile" alignment="CENTER" prefColumns="3" prefHeight="742.0" prefWidth="1442.0" />
                </content>

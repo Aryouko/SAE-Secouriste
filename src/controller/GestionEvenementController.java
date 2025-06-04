@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
@@ -14,23 +15,37 @@ import model.data.service.DPSManagement;
 
 import java.util.ArrayList;
 
-public class MenuController {
+public class GestionEvenementController {
 
     @FXML
     private TilePane evenementTile;
 
     @FXML
+    private ComboBox<String> sitesComboBox;
+
+    @FXML
+    private ComboBox<String> sportsComboBox;
+
+    private ArrayList<String> sports;
+
+    private ArrayList<String> sites;
+
+    private ArrayList<DPS> dpsList;
+
+    @FXML
     public void initialize() {
 
-        evenementTile.setHgap(50);
-        evenementTile.setVgap(50);
-        evenementTile.setStyle("-fx-padding: 50;");
-        evenementTile.setMaxWidth(1350);
+        this.sports = new ArrayList<>();
+        this.sites = new ArrayList<>();
+        this.dpsList = new ArrayList<>();
 
-        String[] months = { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
+        this.evenementTile.setHgap(50);
+        this.evenementTile.setVgap(50);
+        this.evenementTile.setStyle("-fx-padding: 50;");
+        this.evenementTile.setMaxWidth(1350);
 
         DPSManagement dpsManagement = new DPSManagement();
-        ArrayList<DPS> listDPS = dpsManagement.getListDPS();
+        this.dpsList = dpsManagement.getListDPS();
 
         Site site1 = new Site("S001", "Stade A", 2.35f, 48.85f);
         Site site2 = new Site("S002", "Gymnase B", 2.38f, 48.87f);
@@ -41,13 +56,29 @@ public class MenuController {
         Journee jour1 = new Journee(1, 6, 2025);
         Journee jour2 = new Journee(13, 6, 2025);
 
-        listDPS.add(new DPS(1, "DPS 1", 9, 12, site1, sport1, jour1));
-        listDPS.add(new DPS(2, "DPS 2", 13, 16, site2, sport2, jour1));
-        listDPS.add(new DPS(3, "DPS 3", 10, 15, site1, sport2, jour2));
-        listDPS.add(new DPS(4, "DPS 4", 8, 11, site2, sport1, jour2));
-        listDPS.add(new DPS(5, "DPS 5", 8, 11, site2, sport1, jour2));
+        this.dpsList.add(new DPS(1, "DPS 1", 9, 12, site1, sport1, jour1));
+        this.dpsList.add(new DPS(2, "DPS 2", 13, 16, site2, sport2, jour1));
+        this.dpsList.add(new DPS(3, "DPS 3", 10, 15, site1, sport2, jour2));
+        this.dpsList.add(new DPS(4, "DPS 4", 8, 11, site2, sport1, jour2));
+        this.dpsList.add(new DPS(5, "DPS 5", 8, 11, site2, sport1, jour2));
+
+        tileInitialize(this.dpsList);
+        comboBoxInitialize();
+    }
+
+    private void tileInitialize(ArrayList<DPS> listDPS) {
+
+        String[] months = {"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"};
 
         for (DPS dps : listDPS) {
+            if (!this.sports.contains(dps.getSport().getNom())) {
+                this.sports.add(dps.getSport().getNom());
+            }
+
+            if (!this.sites.contains(dps.getSite().getNom())) {
+                this.sites.add(dps.getSite().getNom());
+            }
+
             GridPane gridPane = new GridPane();
             gridPane.setPrefSize(369, 376);
             gridPane.setMaxSize(369, 376);
@@ -95,7 +126,7 @@ public class MenuController {
             gridPane.add(subGridPane1, 0, 0);
             gridPane.add(subGridPane2, 0, 1);
 
-            evenementTile.getChildren().add(gridPane);
+            this.evenementTile.getChildren().add(gridPane);
         }
 
         for (int i = 0; i < (3 - listDPS.size() % 3); i++) {
@@ -103,7 +134,29 @@ public class MenuController {
             emptyPane.setPrefSize(369, 367);
             emptyPane.setMaxSize(369, 376);
             emptyPane.setStyle("-fx-background-color: #EBF0F6; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10;");
-            evenementTile.getChildren().add(emptyPane);
+            this.evenementTile.getChildren().add(emptyPane);
         }
+    }
+
+    private void comboBoxInitialize() {
+        this.sitesComboBox.getItems().add("Site");
+        this.sportsComboBox.getItems().add("Sport");
+        this.sitesComboBox.getItems().addAll(this.sites);
+        this.sportsComboBox.getItems().addAll(this.sports);
+    }
+
+    @FXML
+    public void filtreUpdate() {
+        this.evenementTile.getChildren().clear();
+        ArrayList<DPS> listDPS = new ArrayList<>();
+        for (DPS dps : dpsList)  {
+            if ((dps.getSite().getNom().equals(this.sitesComboBox.getSelectionModel().getSelectedItem())
+                    || this.sitesComboBox.getSelectionModel().getSelectedItem().equals("Site"))
+                    && (dps.getSport().getNom().equals(this.sportsComboBox.getSelectionModel().getSelectedItem())
+                    || this.sportsComboBox.getSelectionModel().getSelectedItem().equals("Sport"))) {
+                listDPS.add(dps);
+            }
+        }
+        tileInitialize(listDPS);
     }
 }
