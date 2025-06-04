@@ -8,7 +8,13 @@
 
 .scroll-bar:vertical {
     -fx-background-color: transparent;
-    -fx-pref-width: 16px;
+    -fx-pref-width: 18px;
+}
+
+.scroll-pane .scroll-bar:horizontal {
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+    -fx-opacity: 0;
 }
 
 .scroll-bar:vertical .thumb {
@@ -21,12 +27,12 @@
 .scroll-bar .increment-button,
 .scroll-bar .decrement-button {
     -fx-background-color: transparent;
-    -fx-min-width: 0;
-    -fx-min-height: 0;
-    -fx-pref-width: 0;
-    -fx-pref-height: 0;
-    -fx-max-width: 0;
-    -fx-max-height: 0;
+    -fx-min-width: 5;
+    -fx-min-height: 5;
+    -fx-pref-width: 5;
+    -fx-pref-height: 5;
+    -fx-max-width: 5;
+    -fx-max-height: 5;
     visibility: hidden;
 }
 
