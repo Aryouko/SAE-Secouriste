@@ -173,7 +173,7 @@
                               </PasswordField>
                            </center>
                                 </BorderPane>
-                        <Button fx:id="buttonRegister" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" minWidth="500.0" mnemonicParsing="false" onAction="#ButtonRegisteryClicked" style="-fx-background-radius: 15; -fx-background-color: #EFEFEF;" text="Inscription" VBox.vgrow="ALWAYS">
+                        <Button fx:id="buttonRegister" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" minWidth="500.0" mnemonicParsing="false" onAction="#ButtonRegisterClicked" style="-fx-background-radius: 15; -fx-background-color: #EFEFEF;" text="Inscription" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="Poppins Medium" size="20.0" />
                            </font>
