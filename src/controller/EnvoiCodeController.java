@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -13,13 +15,19 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import model.data.service.AuthentificationManagement;
 
 import java.io.IOException;
+
+import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
 
 public class EnvoiCodeController {
     @FXML
     private AnchorPane pageCode;
+
+    @FXML
+    private TextField mailTextField;
 
     @FXML
     private void linkToConnexion() {
@@ -45,23 +53,37 @@ public class EnvoiCodeController {
 
     @FXML
     private void ButtonGetCode() {
-        try {
-            // Charger la page Inscription.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MotDePasseOublie.fxml"));
-            AnchorPane pageInscription = loader.load();
+        if ( getInstanceAuthentificationManagement().ReceiveCode(mailTextField.getText()) ) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Code envoyé");
+            alert.setHeaderText(null);
+            alert.setContentText("Verifier votre boite mail");
+            alert.showAndWait();
 
-            // Remplacer le contenu actuel par la nouvelle page
-            pageCode.getChildren().setAll(pageInscription);
+            try {
+                // Charger la page Inscription.fxml
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MotDePasseOublie.fxml"));
+                AnchorPane pageInscription = loader.load();
 
-            // Optionnel : si tu veux adapter la taille ou ancrer la nouvelle page
-            AnchorPane.setTopAnchor(pageInscription, 0.0);
-            AnchorPane.setBottomAnchor(pageInscription, 0.0);
-            AnchorPane.setLeftAnchor(pageInscription, 0.0);
-            AnchorPane.setRightAnchor(pageInscription, 0.0);
+                // Remplacer le contenu actuel par la nouvelle page
+                pageCode.getChildren().setAll(pageInscription);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Erreur lors du chargement de la page Inscription.fxml");
+                // Optionnel : si tu veux adapter la taille ou ancrer la nouvelle page
+                AnchorPane.setTopAnchor(pageInscription, 0.0);
+                AnchorPane.setBottomAnchor(pageInscription, 0.0);
+                AnchorPane.setLeftAnchor(pageInscription, 0.0);
+                AnchorPane.setRightAnchor(pageInscription, 0.0);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.err.println("Erreur lors du chargement de la page Inscription.fxml");
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Mail inexistant");
+            alert.setHeaderText(null);
+            alert.setContentText("Mail inexistant !");
+            alert.showAndWait();
         }
     }
 }

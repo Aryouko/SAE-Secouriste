@@ -97,7 +97,7 @@
                               </DropShadow>
                            </effect>
                            <center>
-                              <TextField alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="381.0" promptText="Adresse mail" style="-fx-background-color: none; -fx-prompt-text-fill: black;" BorderPane.alignment="CENTER">
+                              <TextField fx:id="mailTextField" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="381.0" promptText="Adresse mail" style="-fx-background-color: none; -fx-prompt-text-fill: black;" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Poppins Light" size="18.0" />
                                  </font>
