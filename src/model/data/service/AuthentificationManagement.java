@@ -6,6 +6,7 @@ import model.data.persistence.User;
 
 import java.util.Objects;
 
+import static model.utils.PasswordHashing.hashPassword;
 import static model.utils.PasswordHashing.verifyPassword;
 
 public class AuthentificationManagement {
@@ -56,7 +57,7 @@ public class AuthentificationManagement {
         System.out.println("Registration attempt for login: " + mail);
         if (mail != null && !mail.isEmpty() && !userDAO.doesLoginExist(mail) ) {
             if (newPassword != null && !newPassword.isEmpty() && newPassword.equals(newPasswordConfirmation)) {
-                User user = new User(-1, mail, newPassword);
+                User user = new User(-1, mail, hashPassword(newPassword));
                 userDAO.addUser(user);
                 System.out.println("User registered successfully.");
                 didRegistrationWorked = true;
@@ -120,8 +121,9 @@ public class AuthentificationManagement {
         System.out.print(this.code);
         if (code == this.code) {
             if (!Objects.equals(npw1, "") && npw1 != null) {
-                userDAO.changePasswordByLogin(user.getLogin(), npw1);
-                user.setPassword(npw1);
+                String hashedPassword = hashPassword(npw1); // Hash du nouveau mot de passe
+                userDAO.changePasswordByLogin(user.getLogin(), hashedPassword);
+                user.setPassword(hashedPassword);
                 System.out.println("Password changed successfully.");
                 return true;
             }
