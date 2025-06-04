@@ -72,11 +72,12 @@ public class ConnexionController {
     @FXML
     public void ButtonConnexionClicked() {
         // Logique de connexion ici
+        System.out.println("Connexion button clicked");
         AuthentificationManagement authentificationManagement = new AuthentificationManagement();
-        if ( authentificationManagement.authenticate(mailTextField.toString(), passwordPasswordField.toString())) {
-            System.out.println("Tentative de connexion reussi");
+        if ( authentificationManagement.authenticate(mailTextField.getText(), passwordPasswordField.getText())) {
+            System.out.println("login et mdp bons");
             try {
-                // Charger la page Inscription.fxml
+                // Load Evenement
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/FenetreEvenement.fxml"));
                 AnchorPane pageEvenement = loader.load();
 
@@ -93,11 +94,6 @@ public class ConnexionController {
                 System.err.println("Erreur lors du chargement de la page Inscription.fxml");
             }
         }
-        System.out.println("Connexion button clicked");
-        System.out.println("Mail: " + mailTextField.getText());
-        System.out.println("Password: " + passwordPasswordField.getText());
-
-
     }
 
 

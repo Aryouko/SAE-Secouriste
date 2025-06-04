@@ -46,7 +46,7 @@ public class UserDAO {
      */
     public User getUserByLogin(String login) {
         User user = null;
-        String query = "SELECT id, login, password FROM user WHERE login = ?";
+        String query = "SELECT idUser, login, password FROM user WHERE login = ?";
 
         try (Connection con = ConnexionBDD.getConnexion();
              PreparedStatement stmt = con.prepareStatement(query)) {
@@ -58,11 +58,9 @@ public class UserDAO {
                 user = new User(rs.getLong("idUser"), rs.getString("login"), rs.getString("password"));
             }
 
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return user;
     }
 
