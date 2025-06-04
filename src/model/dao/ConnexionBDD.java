@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnexionBDD {
     private static final String user = "root";
     private static final String password = "azerty";
-    private static final String url = "jdbc:mysql://localhost:3306/sae_db";
+    private static final String url = "";
     private static Connection connexion;
 
 
