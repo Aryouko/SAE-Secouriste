@@ -2,6 +2,8 @@
 CREATE DATABASE sae_db;
 USE sae_db;
 
+
+
 -- Suppression des tables si elles existent déjà
 DROP TABLE IF EXISTS Site;
 DROP TABLE IF EXISTS User;

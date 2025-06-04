@@ -76,10 +76,8 @@ public class AuthentificationManagement {
      */
     public boolean login(String mail, String password) {
         User user = userDAO.getUserByLogin(mail);
-        if (user == null) {
-            System.out.println("Authentication failed: user not found for login " + mail);
-            return false;
-        }
+        System.out.println(user.getPassword());
+        System.out.println(hashPassword(password));
 
         if (verifyPassword(password, user.getPassword())) {
             System.out.println("Authentication successful for user: " + mail);
