@@ -11,6 +11,10 @@ public class Competence {
      */
     private String intitule;
 
+    public Competence(String intitule) {
+        this.intitule = intitule;
+    }
+
     /**
      * Get the name of competence
      * @return the name of competence
