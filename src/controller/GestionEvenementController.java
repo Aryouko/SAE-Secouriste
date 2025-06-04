@@ -4,9 +4,11 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 
+import javafx.scene.shape.Rectangle;
 import model.data.persistence.DPS;
 import model.data.persistence.Journee;
 import model.data.persistence.Site;
@@ -96,14 +98,17 @@ public class GestionEvenementController {
 
             Label jour = new Label(dps.getJournee().getJour() + " " + months[dps.getJournee().getMois() - 1] + " : ");
             Label dep = new Label(dps.getHoraireDepart() + "h");
-            Label entre = new Label(" au ");
+            Label entre = new Label("au");
             Label fin = new Label(dps.getHoraireFin() + "h");
-            dep.setMinWidth(40);
-            fin.setMinWidth(40);
+            jour.setMinWidth(50);
+            dep.setMinWidth(50);
+            entre.setMinWidth(25);
+            fin.setMinWidth(50);
             dep.setAlignment(Pos.CENTER);
+            entre.setAlignment(Pos.CENTER);
             fin.setAlignment(Pos.CENTER);
-            dep.setStyle("-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2px; -fx-padding: 4;");
-            fin.setStyle("-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2px; -fx-padding: 4;");
+            dep.setStyle("-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2px; -fx-padding: 6;");
+            fin.setStyle("-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2px; -fx-padding: 6;");
 
             subSubGridPane1.add(jour,0,0);
             subSubGridPane1.add(dep,1,0);
