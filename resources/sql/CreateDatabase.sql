@@ -3,16 +3,17 @@ CREATE DATABASE sae_db;
 USE sae_db;
 
 -- Suppression des tables si elles existent déjà
-DROP TABLE IF EXISTS site;
-DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS secouriste;
+DROP TABLE IF EXISTS Site;
+DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS Secouriste;
 
 -- Table des sites
-CREATE TABLE site (
-    code VARCHAR(20) PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL,
+CREATE TABLE Site (
+    code INTEGER PRIMARY KEY,
+    nom VARCHAR(64) NOT NULL,
     longitude FLOAT,
-    latitude FLOAT
+    latitude FLOAT,
+    CONSTRAINT PRIMARY KEY(code)
 );
 
 -- Creation User pour
@@ -23,52 +24,58 @@ CREATE TABLE user (
 );
 
 -- Table des secouristes
-CREATE TABLE secouriste (
-    idS BIGINT PRIMARY KEY, FOREIGN KEY (idS) REFERENCES user(idUser),
-    nom VARCHAR(100) NOT NULL,
-    prenom VARCHAR(100) NOT NULL,
-    date_naissance VARCHAR(20),
-    email VARCHAR(100),
-    tel VARCHAR(20)
+CREATE TABLE Secouriste (
+    id INTEGER PRIMARY KEY,
+    nom VARCHAR(32) NOT NULL,
+    prenom VARCHAR(32) NOT NULL,
+    date_naissance VARCHAR(32),
+    email VARCHAR(64),
+    tel VARCHAR(10),
+    adresse VARCHAR(64),
+    CONSTRAINT PRIMARY KEY(id),
+    CONSTRAINT FOREIGN KEY (id) REFERENCES user(idUser),
 );
 
 -- Table des sports
-CREATE TABLE sport (
-    code BIGINT PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL
+CREATE TABLE Sport (
+    code INTEGER,
+    nom VARCHAR(64) NOT NULL,
+    CONSTRAINT PRIMARY KEY(code)
 );
 
 -- Table des journées
-CREATE TABLE journee (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE Journee (
     jour INT NOT NULL,
     mois INT NOT NULL,
-    annee INT NOT NULL
+    annee INT NOT NULL,
+    CONSTRAINT PRIMARY KEY(jour, mois, annee)
 );
 
 
 
 -- Table des compétences
-CREATE TABLE competence (
-    intitule VARCHAR(100) PRIMARY KEY
+CREATE TABLE Competence (
+    intitule VARCHAR(64),
+    CONSTRAINT PRIMARY KEY
 );
 
 -- Table des DPS
-CREATE TABLE dps (
-    id BIGINT PRIMARY KEY,
+CREATE TABLE DPS (
+    id INTEGER,
     name VARCHAR(100) NOT NULL,
-    horaire_depart INT,
-    horaire_fin INT,
-    site_code VARCHAR(20),
-    sport_code BIGINT,
-    journee_id INT,
-    FOREIGN KEY (site_code) REFERENCES site(code),
-    FOREIGN KEY (sport_code) REFERENCES sport(code),
-    FOREIGN KEY (journee_id) REFERENCES journee(id)
+    horaire_depart INTEGER,
+    horaire_fin INTEGER,
+    site_code INTEGER,
+    sport_code INTEGER,
+    journee_id INTEGER,
+    CONSTRAINT PRIMARY KEY(id),
+    CONSTRAINT FOREIGN KEY (site_code) REFERENCES site(code),
+    CONSTRAINT FOREIGN KEY (sport_code) REFERENCES sport(code),
+    CONSTRAINT FOREIGN KEY (journee_id) REFERENCES journee(id)
 );
 
 -- Table des besoins (liée à DPS)
-CREATE TABLE besoin (
+CREATE TABLE Besoin (
     id INT AUTO_INCREMENT PRIMARY KEY,
     dps_id BIGINT,
     nombre INT,
@@ -76,16 +83,16 @@ CREATE TABLE besoin (
 );
 
 -- Table des disponibilités
-CREATE TABLE disponibilite (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    secouriste_id BIGINT,
-    journee_id INT,
-    FOREIGN KEY (secouriste_id) REFERENCES secouriste(idS),
-    FOREIGN KEY (journee_id) REFERENCES journee(id)
+CREATE TABLE Disponibilite (
+    secouristeDisp INTEGER,
+    journeeDisp INTEGER,
+    CONSTRAINT PRIMARY KEY(secouristeDisp, journeeDisp)
+    FOREIGN KEY (secouristeDisp) REFERENCES Secouriste(id),
+    FOREIGN KEY (journeeDisp) REFERENCES Journee(id)
 );
 
 -- Table des possessions (compétences d'un secouriste)
-CREATE TABLE possession (
+CREATE TABLE Possession (
     secouriste_id BIGINT,
     competence_intitule VARCHAR(100),
     PRIMARY KEY (secouriste_id, competence_intitule),
@@ -94,7 +101,7 @@ CREATE TABLE possession (
 );
 
 -- Table des nécessités (compétence nécessite une autre)
-CREATE TABLE necessite (
+CREATE TABLE Necessite (
     comp1 VARCHAR(100),
     comp2 VARCHAR(100),
     PRIMARY KEY (comp1, comp2),
