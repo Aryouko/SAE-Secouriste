@@ -1,40 +1,33 @@
 package model.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 public class FetchDatabaseCredentials {
-    private static String username;
-    private static String password;
-    private static String url;
+    private static final Properties properties = new Properties();
 
-    public FetchDatabaseCredentials() {
-        String configPath = "login.json";
-        String json = "";
-        try (java.io.InputStream is = new java.io.FileInputStream(configPath)) {
-            json = new String(is.readAllBytes());
-            JSONObject obj = new org.json.JSONObject(json);
-            username = obj.getString("username");
-            password = obj.getString("password");
-            url = obj.getString("url");
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to load DB config from " + configPath, e);
+    static {
+        try (InputStream input = FetchDatabaseCredentials.class.getClassLoader()
+                .getResourceAsStream("database.properties")) {
+            if (input == null) {
+                throw new RuntimeException("Unable to find database.properties");
+            }
+            properties.load(input);
+        } catch (IOException ex) {
+            throw new RuntimeException("Error loading database credentials", ex);
         }
-
-
-        this.username = username;
-        this.password = password;
-        this.url = url;
-    }
-
-
-
-    public static String getUsername() {
-        return username;
-    }
-
-    public static String getPassword() {
-        return password;
     }
 
     public static String getUrl() {
-        return url;
+        return properties.getProperty("db.url");
+    }
+
+    public static String getUser() {
+        return properties.getProperty("db.user");
+    }
+
+    public static String getPassword() {
+        return properties.getProperty("db.password");
     }
 }
