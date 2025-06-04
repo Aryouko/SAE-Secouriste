@@ -3,4 +3,4 @@
 SAE-Secouriste.iml
 
 /class
-/resources/database.properties
+*.properties
