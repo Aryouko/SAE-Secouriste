@@ -156,7 +156,7 @@ public class GestionEvenementController {
     public void filtreUpdate() {
         this.evenementTile.getChildren().clear();
         ArrayList<DPS> listDPS = new ArrayList<>();
-        for (DPS dps : dpsList)  {
+        for (DPS dps : this.dpsList)  {
             if ((dps.getSite().getNom().equals(this.sitesComboBox.getSelectionModel().getSelectedItem())
                     || this.sitesComboBox.getSelectionModel().getSelectedItem().equals("Site"))
                     && (dps.getSport().getNom().equals(this.sportsComboBox.getSelectionModel().getSelectedItem())
