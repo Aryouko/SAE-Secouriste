@@ -21,7 +21,7 @@ CREATE TABLE Site (
 -- Creation User pour
 CREATE TABLE User (
     idUser INTEGER AUTO_INCREMENT,
-    login VARCHAR(255) NOT NULL UNIQUE,
+    login VARCHAR(255) NOT  NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     CONSTRAINT PRIMARY KEY (idUser),
     CONSTRAINT ck_user CHECK (login LIKE '%@%.%')
