@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import static model.utils.FetchDatabaseCredentials.*;
 
 public class ConnexionBDD {
-    private static final String username = getUser();
+    private static final String username = getUsername();
     private static final String password = getPassword();
     private static final String url = getUrl();
     private static Connection connexion;
