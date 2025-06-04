@@ -13,11 +13,11 @@ CREATE TABLE Site (
     nom VARCHAR(64) NOT NULL,
     longitude FLOAT,
     latitude FLOAT,
-    CONSTRAINT PRIMARY KEY(code)
+    CONSTRAINT PRIMARY KEY (code)
 );
 
 -- Creation User pour
-CREATE TABLE user (
+CREATE TABLE User (
     idUser INT AUTO_INCREMENT PRIMARY KEY,
     login VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
@@ -32,7 +32,7 @@ CREATE TABLE Secouriste (
     email VARCHAR(64),
     tel VARCHAR(10),
     adresse VARCHAR(64),
-    CONSTRAINT PRIMARY KEY(id),
+    CONSTRAINT PRIMARY KEY (id),
     CONSTRAINT FOREIGN KEY (id) REFERENCES user(idUser),
 );
 
@@ -40,7 +40,7 @@ CREATE TABLE Secouriste (
 CREATE TABLE Sport (
     code INTEGER,
     nom VARCHAR(64) NOT NULL,
-    CONSTRAINT PRIMARY KEY(code)
+    CONSTRAINT PRIMARY KEY (code)
 );
 
 -- Table des journées
@@ -48,7 +48,7 @@ CREATE TABLE Journee (
     jour INT NOT NULL,
     mois INT NOT NULL,
     annee INT NOT NULL,
-    CONSTRAINT PRIMARY KEY(jour, mois, annee)
+    CONSTRAINT PRIMARY KEY (jour, mois, annee)
 );
 
 
@@ -65,13 +65,13 @@ CREATE TABLE DPS (
     name VARCHAR(100) NOT NULL,
     horaire_depart INTEGER,
     horaire_fin INTEGER,
-    site_code INTEGER,
-    sport_code INTEGER,
-    journee_id INTEGER,
-    CONSTRAINT PRIMARY KEY(id),
-    CONSTRAINT FOREIGN KEY (site_code) REFERENCES site(code),
-    CONSTRAINT FOREIGN KEY (sport_code) REFERENCES sport(code),
-    CONSTRAINT FOREIGN KEY (journee_id) REFERENCES journee(id)
+    site INTEGER,
+    sport INTEGER,
+    journee INTEGER,
+    CONSTRAINT PRIMARY KEY (id),
+    CONSTRAINT FOREIGN KEY (site) REFERENCES Site(code),
+    CONSTRAINT FOREIGN KEY (sport) REFERENCES Sport(code),
+    CONSTRAINT FOREIGN KEY (journee) REFERENCES Journee(id)
 );
 
 -- Table des besoins (liée à DPS)
@@ -86,26 +86,35 @@ CREATE TABLE Besoin (
 CREATE TABLE Disponibilite (
     secouristeDisp INTEGER,
     journeeDisp INTEGER,
-    CONSTRAINT PRIMARY KEY(secouristeDisp, journeeDisp)
-    FOREIGN KEY (secouristeDisp) REFERENCES Secouriste(id),
-    FOREIGN KEY (journeeDisp) REFERENCES Journee(id)
+    CONSTRAINT PRIMARY KEY (secouristeDisp, journeeDisp)
+    CONSTRAINT FOREIGN KEY (secouristeDisp) REFERENCES Secouriste(id),
+    CONSTRAINT FOREIGN KEY (journeeDisp) REFERENCES Journee(id)
 );
 
 -- Table des possessions (compétences d'un secouriste)
 CREATE TABLE Possession (
-    secouriste_id BIGINT,
-    competence_intitule VARCHAR(100),
-    PRIMARY KEY (secouriste_id, competence_intitule),
-    FOREIGN KEY (secouriste_id) REFERENCES secouriste(idS),
-    FOREIGN KEY (competence_intitule) REFERENCES competence(intitule)
+    secouriste INTEGER,
+    competence VARCHAR(64),
+    CONSTRAINT PRIMARY KEY (secouriste, competence),
+    CONSTRAINT FOREIGN KEY (secouriste) REFERENCES Secouriste(id),
+    CONSTRAINT FOREIGN KEY (competence) REFERENCES Competence(intitule)
 );
 
 -- Table des nécessités (compétence nécessite une autre)
 CREATE TABLE Necessite (
-    comp1 VARCHAR(100),
-    comp2 VARCHAR(100),
-    PRIMARY KEY (comp1, comp2),
-    FOREIGN KEY (comp1) REFERENCES competence(intitule),
-    FOREIGN KEY (comp2) REFERENCES competence(intitule)
+    comp1 VARCHAR(64),
+    comp2 VARCHAR(64),
+    CONSTRAINT PRIMARY KEY (comp1, comp2),
+    CONSTRAINT FOREIGN KEY (comp1) REFERENCES Competence(intitule),
+    CONSTRAINT FOREIGN KEY (comp2) REFERENCES Competence(intitule)
 );
 
+CREATE TABLE Affectation (
+    secouristeAffect INTEGER,
+    DPSAffect INTEGER,
+    competenceAffect,
+    CONSTRAINT PRIMARY KEY (secouristeAffect, DPSAffect, competenceAffect),
+    CONSTRAINT FOREIGN KEY (secouristeAffect) REFERENCES Secouriste(id),
+    CONSTRAINT FOREIGN KEY (DPSAffect) REFERENCES DPS(id),
+    CONSTRAINT FOREIGN KEY (CompetenceAffect) REFERENCES Competence(id),
+)
