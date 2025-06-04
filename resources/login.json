@@ -1,5 +1,0 @@
-{
-    "username": "root",
-    "password": "password",
-    "url": "jdbc:mysql://localhost:3306/sae_db"
-}
