@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -18,11 +18,20 @@ import java.io.IOException;
 public class ConnexionController {
 
     @FXML
-    private Label connexionLoginLabel;
+    private TextField mailTextField;
     @FXML
-    private PasswordField connexionPasswordLabel;
+    private PasswordField passwordPassswordField;
     @FXML
     private AnchorPane pageConnexion;
+
+    @FXML
+    public void initialize() {
+
+
+        // connexionLoginLabel.setAlignment(Pos.CENTER);
+        // connexionPasswordLabel.setAlignment(Pos.CENTER);
+        System.out.println("ConnexionController initialized");
+    }
 
     @FXML
     public void linkToRegister() {
@@ -74,17 +83,16 @@ public class ConnexionController {
         // Logique de connexion ici
 
         System.out.println("Connexion button clicked");
+
+        System.out.println("Mail: " + mailTextField.getText());
+        System.out.println("Password: " + passwordPassswordField.getText());
+
+
+
     }
 
 
-    @FXML
-    public void initialize() {
 
-
-        // connexionLoginLabel.setAlignment(Pos.CENTER);
-        // connexionPasswordLabel.setAlignment(Pos.CENTER);
-        System.out.println("ConnexionController initialized");
-    }
 
     @FXML
     public void ButtonMotDePasseOublieClicked(Event event) {
