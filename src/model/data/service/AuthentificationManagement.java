@@ -57,7 +57,7 @@ public class AuthentificationManagement {
         System.out.println("Registration attempt for login: " + mail);
         if (mail != null && !mail.isEmpty() && !userDAO.doesLoginExist(mail) ) {
             if (newPassword != null && !newPassword.isEmpty() && newPassword.equals(newPasswordConfirmation)) {
-                User user = new User(-1, mail, hashPassword(newPassword));
+                User user = new User(-1, mail, newPassword);
                 userDAO.addUser(user);
                 System.out.println("User registered successfully.");
                 didRegistrationWorked = true;
@@ -78,7 +78,6 @@ public class AuthentificationManagement {
         User user = userDAO.getUserByLogin(mail);
         System.out.println(user.getPassword());
         System.out.println(hashPassword(password));
-
         if (verifyPassword(password, user.getPassword())) {
             System.out.println("Authentication successful for user: " + mail);
             this.user = user;
