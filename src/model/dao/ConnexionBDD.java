@@ -17,6 +17,8 @@ public class ConnexionBDD {
         System.out.println("Connexion en cours");
         if (connexion == null || connexion.isClosed()) {
             connexion = DriverManager.getConnection( url, username, password);
+            System.out.println(url + " " + username);
+            System.out.println("Connexion réussie");
         }
         return connexion;
     }

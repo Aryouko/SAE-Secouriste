@@ -40,10 +40,12 @@ public class AuthentificationManagement {
      */
     public boolean authenticate(String login, String password) {
         User user = userDAO.getUserByLogin(login);
+        System.out.println("authentification login bon");
         if (user == null) {
             return false; // login inexistant
         }
         if (user.getPassword().equals(password)) {
+            System.out.println("authentification mdp bon");
             this.user = user;
             return true;
         }
