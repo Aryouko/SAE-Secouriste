@@ -141,6 +141,8 @@ public class GestionEvenementController {
     private void comboBoxInitialize() {
         this.sitesComboBox.getItems().add("Site");
         this.sportsComboBox.getItems().add("Sport");
+        this.sitesComboBox.getSelectionModel().select("Site");
+        this.sportsComboBox.getSelectionModel().select("Sport");
         this.sitesComboBox.getItems().addAll(this.sites);
         this.sportsComboBox.getItems().addAll(this.sports);
     }
