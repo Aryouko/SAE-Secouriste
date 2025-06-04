@@ -33,7 +33,7 @@ public class ProfilController {
         metierLabel.setText("Rien");
 
         myCircle.setStroke(Color.BLACK);
-        Image image = new Image("/resources/images/pdp.png", false);
+        Image image = new Image("/images/pdp.png", false);
         myCircle.setFill(new ImagePattern(image));
 
     }

@@ -19,7 +19,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-             <fx:include source="/resources/fxml/MenuParallele.fxml" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
+             <fx:include source="/fxml/MenuParallele.fxml" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
              <HBox GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" alignment="CENTER_LEFT">
                  <GridPane.margin>
                       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

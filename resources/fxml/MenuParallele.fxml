@@ -23,9 +23,9 @@
             <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="105.0" valignment="BOTTOM" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-             <fx:include source="/resources/fxml/Profil.fxml" GridPane.rowIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
-             <fx:include source="/resources/fxml/Calendar.fxml" GridPane.rowIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
-             <fx:include source="/resources/fxml/Evenement.fxml" GridPane.rowIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
+             <fx:include source="/fxml/Profil.fxml" GridPane.rowIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
+             <fx:include source="/fxml/Calendar.fxml" GridPane.rowIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
+             <fx:include source="/fxml/Evenement.fxml" GridPane.rowIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
              <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="377.0" style="-fx-background-color: #000000;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <graphic>
                   <GridPane>
