@@ -49,8 +49,8 @@ public class GestionEvenementController {
         DPSManagement dpsManagement = new DPSManagement();
         this.dpsList = dpsManagement.getListDPS();
 
-        Site site1 = new Site("S001", "Stade A", 2.35f, 48.85f);
-        Site site2 = new Site("S002", "Gymnase B", 2.38f, 48.87f);
+        Site site1 = new Site(1, "Stade A", 2.35f, 48.85f);
+        Site site2 = new Site(2, "Gymnase B", 2.38f, 48.87f);
 
         Sport sport1 = new Sport(1, "Football");
         Sport sport2 = new Sport(2, "Basketball");
