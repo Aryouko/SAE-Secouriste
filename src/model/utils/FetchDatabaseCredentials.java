@@ -24,7 +24,7 @@ public class FetchDatabaseCredentials {
     }
 
     public static String getUser() {
-        return properties.getProperty("db.user");
+        return properties.getProperty("db.username");
     }
 
     public static String getPassword() {
