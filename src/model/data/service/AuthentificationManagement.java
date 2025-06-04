@@ -6,6 +6,8 @@ import model.data.persistence.User;
 
 import java.util.Objects;
 
+import static model.utils.PasswordHashing.verifyPassword;
+
 public class AuthentificationManagement {
 
     /**
@@ -36,18 +38,18 @@ public class AuthentificationManagement {
      * Registers a new user with the provided login and password.
      * The username must not be empty and must not already exist in the database.
      *
-     * @param username The username of the new user.
+     * @param mail The username of the new user.
      * @param newPassword  The password for the new user.
      * @param newPasswordConfirmation Confirmation of the new password.
      * @return boolean indicating success or failure of the login.
      */
-    public boolean register(String username, String newPassword, String newPasswordConfirmation) {
+    public boolean register(String mail, String newPassword, String newPasswordConfirmation) {
         boolean didRegistrationWorked = false;
 
-        System.out.println("Registration attempt for login: " + username);
-        if (username != null && !username.isEmpty() && !userDAO.doesLoginExist(username) ) {
+        System.out.println("Registration attempt for login: " + mail);
+        if (mail != null && !mail.isEmpty() && !userDAO.doesLoginExist(mail) ) {
             if (newPassword != null && !newPassword.isEmpty() && newPassword.equals(newPasswordConfirmation)) {
-                User user = new User(-1, username, newPassword);
+                User user = new User(-1, mail, newPassword);
                 userDAO.addUser(user);
                 System.out.println("User registered successfully.");
                 didRegistrationWorked = true;
@@ -66,18 +68,22 @@ public class AuthentificationManagement {
      */
     public boolean login(String mail, String password) {
         User user = userDAO.getUserByLogin(mail);
-        System.out.println("authentification login bon");
         if (user == null) {
-            return false; // login inexistant
+            System.out.println("Authentication failed: user not found for login " + mail);
+            return false;
         }
 
-        if (user.getPassword().equals(password)) {
-            System.out.println("authentification mdp bon");
+        if (verifyPassword(password, user.getPassword())) {
+            System.out.println("Authentication successful for user: " + mail);
             this.user = user;
             return true;
         }
+
+        System.out.println("Authentication failed: incorrect password for user " + mail);
         return false;
     }
+
+
 
     /**
      * Receives a code for password recovery based on the user's login.
