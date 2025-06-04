@@ -5,10 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnexionBDD {
-    private static final String user = "admin";
-    private static final String password = "admin";
-    private static final String url = "jdbc:mysql://server.sauveteur:3306/SAE";
-
+    private static final String user = "root";
+    private static final String password = "azerty";
+    private static final String url = "jdbc:mysql://localhost:3306/sae_db";
     private static Connection connexion;
 
 

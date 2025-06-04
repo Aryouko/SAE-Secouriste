@@ -7,6 +7,13 @@ import java.sql.*;
 public class UserDAO {
 
     /**
+     * Default constructor for UserDAO.
+     */
+    public UserDAO() {
+        // Constructor can be used for initialization if needed
+    }
+
+    /**
      * Checks if a login already exists in the database.
      * @param login the login to check for existence.
      * @return true if the login exists, false otherwise.

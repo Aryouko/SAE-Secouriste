@@ -11,7 +11,7 @@ public class AuthentificationManagement {
     /**
      * This class manages the authentication of users.
      */
-    private final UserDAO userDAO;
+    private UserDAO userDAO;
 
     /**
      * Code for password recovery.
@@ -87,10 +87,10 @@ public class AuthentificationManagement {
      * @param login The login of the new user.
      * @param npw1  The password for the new user.
      */
-    public void registration(String login, String npw1 ) {
-
-        if (login != null && !login.isEmpty() && !userDAO.doesLoginExist(login)) {
-            if (!Objects.equals(npw1, "") && npw1 != null) {
+    public void registration(String login, String npw1, String npw2 ) {
+        System.out.println("Registration attempt for login: " + login);
+        if (login != null && !login.isEmpty() && !userDAO.doesLoginExist(login) ) {
+            if (!Objects.equals(npw1, "") && npw1 != null && npw1.equals(npw2)) {
                 User user = new User(-1, login, npw1);
                 userDAO.addUser(user);
                 System.out.println("User registered successfully.");
