@@ -31,25 +31,52 @@ public class AuthentificationManagement {
         this.userDAO = DAOFactory.getUserDAO();
     }
 
+
+    /**
+     * Registers a new user with the provided login and password.
+     * The username must not be empty and must not already exist in the database.
+     *
+     * @param username The username of the new user.
+     * @param newPassword  The password for the new user.
+     * @param newPasswordConfirmation Confirmation of the new password.
+     * @return boolean indicating success or failure of the login.
+     */
+    public boolean register(String username, String newPassword, String newPasswordConfirmation) {
+        boolean didRegistrationWorked = false;
+
+        System.out.println("Registration attempt for login: " + username);
+        if (username != null && !username.isEmpty() && !userDAO.doesLoginExist(username) ) {
+            if (newPassword != null && !newPassword.isEmpty() && newPassword.equals(newPasswordConfirmation)) {
+                User user = new User(-1, username, newPassword);
+                userDAO.addUser(user);
+                System.out.println("User registered successfully.");
+                didRegistrationWorked = true;
+            }
+        }
+
+        return didRegistrationWorked;
+    }
+
     /**
      * Authenticates a user based on their login and password.
      *
-     * @param login    The login of the user.
+     * @param mail    The login of the user.
      * @param password The password of the user.
      * @return true if the authentication is successful, false otherwise.
      */
-    public boolean authenticate(String login, String password) {
-        User user = userDAO.getUserByLogin(login);
+    public boolean login(String mail, String password) {
+        User user = userDAO.getUserByLogin(mail);
         System.out.println("authentification login bon");
         if (user == null) {
             return false; // login inexistant
         }
+
         if (user.getPassword().equals(password)) {
             System.out.println("authentification mdp bon");
             this.user = user;
             return true;
         }
-        return false ;
+        return false;
     }
 
     /**
@@ -86,30 +113,7 @@ public class AuthentificationManagement {
         }
     }
 
-    /**
-     * Registers a new user with the provided login and password.
-     * The login must not be empty and must not already exist in the database.
-     *
-     * @param login The login of the new user.
-     * @param newPassword  The password for the new user.
-     * @param newPasswordConfirmation Confirmation of the new password.
-     * @return boolean indicating success or failure of the registration.
-     */
-    public boolean registration(String login, String newPassword, String newPasswordConfirmation) {
-        boolean didRegistrationWorked = false;
 
-        System.out.println("Registration attempt for login: " + login);
-        if (login != null && !login.isEmpty() && !userDAO.doesLoginExist(login) ) {
-            if (newPassword != null && !newPassword.isEmpty() && newPassword.equals(newPasswordConfirmation)) {
-                User user = new User(-1, login, newPassword);
-                userDAO.addUser(user);
-                System.out.println("User registered successfully.");
-                didRegistrationWorked = true;
-            }
-        }
-
-        return didRegistrationWorked;
-    }
 
     /**
      * Get the current user loaded
