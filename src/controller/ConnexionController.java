@@ -20,14 +20,12 @@ public class ConnexionController {
     @FXML
     private TextField mailTextField;
     @FXML
-    private PasswordField passwordPassswordField;
+    private PasswordField passwordPasswordField;
     @FXML
     private AnchorPane pageConnexion;
 
     @FXML
     public void initialize() {
-
-
         // connexionLoginLabel.setAlignment(Pos.CENTER);
         // connexionPasswordLabel.setAlignment(Pos.CENTER);
         System.out.println("ConnexionController initialized");
@@ -83,32 +81,11 @@ public class ConnexionController {
         // Logique de connexion ici
 
         System.out.println("Connexion button clicked");
-
         System.out.println("Mail: " + mailTextField.getText());
-        System.out.println("Password: " + passwordPassswordField.getText());
-
+        System.out.println("Password: " + passwordPasswordField.getText());
 
 
     }
 
 
-
-
-    @FXML
-    public void ButtonMotDePasseOublieClicked(Event event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inscription.fxml"));
-            Parent root = loader.load();
-
-            // Récupère la scène actuelle à partir de l’événement
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
