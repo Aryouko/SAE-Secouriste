@@ -11,6 +11,8 @@ import model.data.service.AuthentificationManagement;
 
 import java.io.IOException;
 
+import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
+
 public class InscriptionController {
 
     @FXML
@@ -32,9 +34,8 @@ public class InscriptionController {
     public void ButtonRegisterClicked() {
         // Logique d'inscription ici
         System.out.println("Inscription button clicked");
-        AuthentificationManagement authentificationManagement = new AuthentificationManagement();
         System.out.println("Email: " + labelMail.getText());
-        if (authentificationManagement.register(labelMail.getText(), labelPassword.getText(), newPasswordConfirmation.getText())) {
+        if (getInstanceAuthentificationManagement().register(labelMail.getText(), labelPassword.getText(), newPasswordConfirmation.getText())) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Succès");
             alert.setHeaderText(null);
@@ -50,11 +51,6 @@ public class InscriptionController {
 
         linkToConnexion();
     }
-
-
-
-
-
 
     @FXML
     private void linkToConnexion() {

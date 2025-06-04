@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -13,13 +15,20 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import model.data.service.AuthentificationManagement;
 
 import java.io.IOException;
+
+import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
 
 public class MotDePasseOublieController {
     @FXML
     private AnchorPane pageForgotPassword;
+    @FXML
+    private TextField codeTextField;
+    @FXML
+    private TextField passwordTextField;
 
     @FXML
     private void linkToConnexion() {
@@ -40,6 +49,25 @@ public class MotDePasseOublieController {
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Erreur lors du chargement de la page Inscription.fxml");
+        }
+    }
+
+    @FXML
+    private void validateChange() {
+        if (getInstanceAuthentificationManagement().changePassword(Long.parseLong(codeTextField.getText()), passwordTextField.getText())) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Le mot de passe a été changé");
+            alert.setHeaderText(null);
+            alert.setContentText("Le mot de passe a été changé !");
+            alert.showAndWait();
+
+            linkToConnexion();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Le mot de passe n'a pas été changé");
+            alert.setHeaderText(null);
+            alert.setContentText("Le code n'est pas bon !");
+            alert.showAndWait();
         }
     }
 }
