@@ -33,7 +33,7 @@ public class DPSDAO {
                  int horaireFin = rs.getInt("HORAIRE_FIN");
 
                  // Site
-                 String siteCode = rs.getString("SITE_CODE");
+                 long siteCode = rs.getLong("SITE_CODE");
                  String siteNom = rs.getString("SITE_NOM");
                  Float siteLongitude = rs.getFloat("SITE_LON");
                  Float siteLatitude = rs.getFloat("SITE_LAT");

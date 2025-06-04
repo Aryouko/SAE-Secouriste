@@ -8,7 +8,7 @@ public class Site {
     /**
      * Informations du site : code, nom et coordonnées géographiques.
      */
-    String code;       // Code du site
+    long code;       // Code du site
     String nom;        // Nom du site
     float longitude;   // Longitude du site
     float latitude;    // Latitude du site
@@ -20,7 +20,7 @@ public class Site {
      * @param longitude - longitude of Site
      * @param latitude - latitude of Site
      */
-    public Site(String code, String nom, float longitude, float latitude) {
+    public Site(long code, String nom, float longitude, float latitude) {
         this.code = code;
         this.nom = nom;
         this.longitude = longitude;
@@ -31,7 +31,7 @@ public class Site {
      * Getter of Code
      * @return the code of the site
      */
-    public String getCode() {
+    public long getCode() {
         return this.code;
     }
 
@@ -39,7 +39,7 @@ public class Site {
      * Setter of Code
      * @param code the code of the site to set
      */
-    public void setCode(String code) {
+    public void setCode(long code) {
         this.code = code;
     }
 
