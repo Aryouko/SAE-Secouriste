@@ -22,7 +22,7 @@ public class MainApp extends Application {
         stage.setTitle("SAE Secouriste");
         stage.setMaximized(true);
 
-        stage.setScene(new Scene(root, 1444, 990));
+        stage.setScene(new Scene(root, 1824, 1026));
         stage.show();
     }
 
