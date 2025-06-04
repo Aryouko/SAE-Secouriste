@@ -4,6 +4,8 @@ import model.data.persistence.User;
 
 import java.sql.*;
 
+import static model.utils.PasswordHashing.*;
+
 public class UserDAO {
 
     /**
@@ -85,7 +87,7 @@ public class UserDAO {
         try (Connection con = ConnexionBDD.getConnexion();
              PreparedStatement stmt = con.prepareStatement(updateQuery)) {
 
-            stmt.setString(1, newPassword);       // nouveau mot de passe
+            stmt.setString(1, hashPassword(newPassword));       // nouveau mot de passe
             stmt.setLong(2, user.getIdUser());        // identifiant unique du user
 
             int updated = stmt.executeUpdate();
@@ -113,8 +115,9 @@ public class UserDAO {
         try (Connection con = ConnexionBDD.getConnexion();
              PreparedStatement stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
+
             stmt.setString(1, user.getLogin());
-            stmt.setString(2, user.getPassword());
+            stmt.setString(2, hashPassword(user.getPassword()));
 
             int affectedRows = stmt.executeUpdate();
 

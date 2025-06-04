@@ -34,7 +34,7 @@ public class InscriptionController {
         System.out.println("Inscription button clicked");
         AuthentificationManagement authentificationManagement = new AuthentificationManagement();
         System.out.println("Email: " + labelMail.getText());
-        if (authentificationManagement.registration(labelMail.getText(), labelPassword.getText(), newPasswordConfirmation.getText())) {
+        if (authentificationManagement.register(labelMail.getText(), labelPassword.getText(), newPasswordConfirmation.getText())) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Succès");
             alert.setHeaderText(null);
