@@ -10,7 +10,10 @@ import javafx.scene.layout.AnchorPane;
 import model.data.service.AuthentificationManagement;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
+import static controller.Alerte.showError;
+import static controller.Alerte.showInfo;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
 public class InscriptionController {
@@ -26,30 +29,23 @@ public class InscriptionController {
 
     @FXML
     private AnchorPane pageRegister;
-
-
-
-
+    
     @FXML
     public void ButtonRegisterClicked() {
         // Logique d'inscription ici
-        System.out.println("Inscription button clicked");
-        System.out.println("Email: " + labelMail.getText());
-        if (getInstanceAuthentificationManagement().register(labelMail.getText(), labelPassword.getText(), newPasswordConfirmation.getText())) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Succès");
-            alert.setHeaderText(null);
-            alert.setContentText("Inscription réussie !");
-            alert.showAndWait();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText(null);
-            alert.setContentText("L'inscription a échoué. Veuillez vérifier vos informations.");
-            alert.showAndWait();
+        try {
+            System.out.println("Inscription button clicked");
+            System.out.println("Email: " + labelMail.getText());
+            if (getInstanceAuthentificationManagement().register(labelMail.getText(), labelPassword.getText(), newPasswordConfirmation.getText())) {
+                showInfo("L'inscription a réussi. Vous pouvez maintenant vous connecter.");
+                linkToConnexion();
+            } else {
+                showError("L'inscription a échoué. Veuillez vérifier vos informations.");
+            }
         }
-
-        linkToConnexion();
+        catch (SQLException e) {
+            showError("Une erreur est survenue lors de l'inscription. Veuillez réessayer plus tard.");
+        }
     }
 
     @FXML

@@ -4,6 +4,7 @@ import model.dao.DAOFactory;
 import model.dao.UserDAO;
 import model.data.persistence.User;
 
+import java.sql.SQLException;
 import java.util.Objects;
 
 import static model.utils.PasswordHashing.hashPassword;
@@ -51,7 +52,7 @@ public class AuthentificationManagement {
      * @param newPasswordConfirmation Confirmation of the new password.
      * @return boolean indicating success or failure of the login.
      */
-    public boolean register(String mail, String newPassword, String newPasswordConfirmation) {
+    public boolean register(String mail, String newPassword, String newPasswordConfirmation) throws SQLException {
         boolean didRegistrationWorked = false;
 
         System.out.println("Registration attempt for login: " + mail);
@@ -75,16 +76,17 @@ public class AuthentificationManagement {
      * @return true if the authentication is successful, false otherwise.
      */
     public boolean login(String mail, String password) {
-        User user = userDAO.getUserByLogin(mail);
-        System.out.println(user.getPassword());
-        System.out.println(hashPassword(password));
-        if (verifyPassword(password, user.getPassword())) {
-            System.out.println("Authentication successful for user: " + mail);
-            this.user = user;
-            return true;
+        try {
+            User user = userDAO.getUserByLogin(mail);
+            if (user != null && verifyPassword(password, user.getPassword())) {
+                this.user = user;
+                return true;
+            } else {
+                throw new Exception("Invalid login or password.");
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la connexion : " + e.getMessage());
         }
-
-        System.out.println("Authentication failed: incorrect password for user " + mail);
         return false;
     }
 

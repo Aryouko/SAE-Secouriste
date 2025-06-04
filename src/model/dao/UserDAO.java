@@ -108,7 +108,7 @@ public class UserDAO {
      * @param user the User object containing the login and password of the new user.
      * @return the generated ID of the new user, or -1 if the insertion failed.
      */
-    public int addUser(User user) {
+    public int addUser(User user) throws SQLException {
         String query = "INSERT INTO user (login, password) VALUES (?, ?)";
         int generatedId = -1;
 
@@ -130,7 +130,7 @@ public class UserDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new SQLException("Erreur lors de l'ajout de l'utilisateur : " + e.getMessage(), e);
         }
 
         return generatedId; // retourne l’ID ou -1 en cas d’échec
