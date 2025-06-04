@@ -20,7 +20,7 @@ public class InscriptionController {
     private PasswordField labelPassword;
 
     @FXML
-    private PasswordField labelPasswordVerification;
+    private PasswordField newPasswordConfirmation;
 
     @FXML
     private AnchorPane pageRegister;
@@ -34,16 +34,20 @@ public class InscriptionController {
         System.out.println("Inscription button clicked");
         AuthentificationManagement authentificationManagement = new AuthentificationManagement();
         System.out.println("Email: " + labelMail.getText());
-        authentificationManagement.registration(labelMail.getText(), labelPassword.getText(), labelPasswordVerification.getText());
+        if (authentificationManagement.registration(labelMail.getText(), labelPassword.getText(), newPasswordConfirmation.getText())) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Succès");
+            alert.setHeaderText(null);
+            alert.setContentText("Inscription réussie !");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("L'inscription a échoué. Veuillez vérifier vos informations.");
+            alert.showAndWait();
+        }
 
-        // Afficher le pop-up d'inscription réussie
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Succès");
-        alert.setHeaderText(null);
-        alert.setContentText("Inscription réussie !");
-        alert.showAndWait();
-
-        // Rediriger vers la page de connexion
         linkToConnexion();
     }
 

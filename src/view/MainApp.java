@@ -11,7 +11,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/GestionSecouriste.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Connexion.fxml"));
 
         
         javafx.scene.text.Font.loadFont(
