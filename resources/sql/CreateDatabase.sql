@@ -18,9 +18,10 @@ CREATE TABLE Site (
 
 -- Creation User pour
 CREATE TABLE User (
-    idUser INT AUTO_INCREMENT PRIMARY KEY,
     login VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    CONSTRAINT PRIMARY KEY (login),
+    CONSTRAINT ck_user CHECK (login LIKE '%@%.%')
 );
 
 -- Table des secouristes
