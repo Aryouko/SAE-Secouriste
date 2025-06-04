@@ -4,19 +4,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static model.utils.FetchDatabaseCredentials.*;
-
 public class ConnexionBDD {
-    private static final String user = getUsername();
-    private static final String password = getPassword();
-    private static final String url = getUrl();
+    private static final String username = "root";
+    private static final String password = "azerty";
+    private static final String url = "";
     private static Connection connexion;
 
 
     public static Connection getConnexion() throws SQLException {
         System.out.println("Connexion en cours");
         if (connexion == null || connexion.isClosed()) {
-            connexion = DriverManager.getConnection( url, user, password);
+            connexion = DriverManager.getConnection( url, username, password);
         }
         return connexion;
     }
