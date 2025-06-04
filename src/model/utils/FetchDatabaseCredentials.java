@@ -1,4 +1,5 @@
 package model.utils;
+import org.json.JSONObject;
 
 public class FetchDatabaseCredentials {
     private static String username;
