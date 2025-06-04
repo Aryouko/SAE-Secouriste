@@ -166,7 +166,7 @@
                                         </ImageView>
                                     </left>
                            <center>
-                              <PasswordField fx:id="labelPasswordVerification" maxWidth="400.0" promptText="Confirmation mot de passe" style="-fx-background-color: none; -fx-prompt-text-fill: black;" BorderPane.alignment="CENTER">
+                              <PasswordField fx:id="newPasswordConfirmation" maxWidth="400.0" promptText="Confirmation mot de passe" style="-fx-background-color: none; -fx-prompt-text-fill: black;" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Poppins Light" size="18.0" />
                                  </font>

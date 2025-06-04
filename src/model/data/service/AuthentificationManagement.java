@@ -89,17 +89,24 @@ public class AuthentificationManagement {
      * The login must not be empty and must not already exist in the database.
      *
      * @param login The login of the new user.
-     * @param npw1  The password for the new user.
+     * @param newPassword  The password for the new user.
+     * @param newPasswordConfirmation Confirmation of the new password.
+     * @return boolean indicating success or failure of the registration.
      */
-    public void registration(String login, String npw1, String npw2 ) {
+    public boolean registration(String login, String newPassword, String newPasswordConfirmation) {
+        boolean didRegistrationWorked = false;
+
         System.out.println("Registration attempt for login: " + login);
         if (login != null && !login.isEmpty() && !userDAO.doesLoginExist(login) ) {
-            if (!Objects.equals(npw1, "") && npw1 != null && npw1.equals(npw2)) {
-                User user = new User(-1, login, npw1);
+            if (newPassword != null && !newPassword.isEmpty() && newPassword.equals(newPasswordConfirmation)) {
+                User user = new User(-1, login, newPassword);
                 userDAO.addUser(user);
                 System.out.println("User registered successfully.");
+                didRegistrationWorked = true;
             }
         }
+
+        return didRegistrationWorked;
     }
 
     /**
