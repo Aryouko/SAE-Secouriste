@@ -1,24 +1,19 @@
 package model.dao;
 
-import model.utils.FetchDatabaseCredentials;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static model.utils.FetchDatabaseCredentials.*;
-
 public class ConnexionBDD {
-    private static final String user = FetchDatabaseCredentials.getUser();
-    private static final String password = FetchDatabaseCredentials.getPassword();
-    private static final String url = FetchDatabaseCredentials.getUrl();
+    private static final String user = "root";
+    private static final String password = "azerty";
+    private static final String url = "";
     private static Connection connexion;
 
 
     public static Connection getConnexion() throws SQLException {
         System.out.println("Connexion en cours");
         if (connexion == null || connexion.isClosed()) {
-
             connexion = DriverManager.getConnection( url, user, password);
         }
         return connexion;
