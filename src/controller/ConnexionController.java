@@ -74,7 +74,7 @@ public class ConnexionController {
         // Logique de connexion ici
         System.out.println("Connexion button clicked");
         AuthentificationManagement authentificationManagement = new AuthentificationManagement();
-        if ( authentificationManagement.authenticate(mailTextField.getText(), passwordPasswordField.getText())) {
+        if (authentificationManagement.login(mailTextField.getText(), passwordPasswordField.getText())) {
             System.out.println("login et mdp bons");
             try {
                 // Load Evenement
