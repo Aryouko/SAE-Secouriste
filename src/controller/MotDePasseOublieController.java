@@ -19,6 +19,8 @@ import model.data.service.AuthentificationManagement;
 
 import java.io.IOException;
 
+import static controller.Alerte.showError;
+import static controller.Alerte.showInfo;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
 
@@ -55,19 +57,10 @@ public class MotDePasseOublieController {
     @FXML
     private void validateChange() {
         if (getInstanceAuthentificationManagement().changePassword(Long.parseLong(codeTextField.getText()), passwordTextField.getText())) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Le mot de passe a été changé");
-            alert.setHeaderText(null);
-            alert.setContentText("Le mot de passe a été changé !");
-            alert.showAndWait();
-
+            showInfo("Le mot de passe a été changé avec succès !");
             linkToConnexion();
         } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Le mot de passe n'a pas été changé");
-            alert.setHeaderText(null);
-            alert.setContentText("Le code n'est pas bon !");
-            alert.showAndWait();
+            showError("Le mot de passe n'a pas été changé, Le code n'est pas bon !");
         }
     }
 }

@@ -19,6 +19,7 @@ import model.data.service.AuthentificationManagement;
 
 import java.io.IOException;
 
+import static controller.Alerte.showError;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
 
@@ -79,11 +80,7 @@ public class EnvoiCodeController {
                 System.err.println("Erreur lors du chargement de la page Inscription.fxml");
             }
         } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Mail inexistant");
-            alert.setHeaderText(null);
-            alert.setContentText("Mail inexistant !");
-            alert.showAndWait();
+            showError("Mail inexistant");
         }
     }
 }

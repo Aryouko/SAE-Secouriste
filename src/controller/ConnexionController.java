@@ -93,10 +93,11 @@ public class ConnexionController {
             } catch (IOException e) {
                 e.printStackTrace();
                 System.err.println("Erreur lors du chargement de la page Inscription.fxml");
+
             }
         } else {
             // Afficher le pop-up d'inscription réussie
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Mauvais identifiant");
             alert.setHeaderText(null);
             alert.setContentText("Mauvais identifiant ! \n Vérifier les identifier ");
