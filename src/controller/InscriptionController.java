@@ -25,9 +25,6 @@ public class InscriptionController {
     @FXML
     private AnchorPane pageRegister;
 
-    @FXML
-    private Button buttonRegister;
-
 
 
 
