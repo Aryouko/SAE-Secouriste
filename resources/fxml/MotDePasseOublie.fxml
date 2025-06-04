@@ -98,7 +98,7 @@
                               </DropShadow>
                            </effect>
                            <center>
-                              <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Identifiant" style="-fx-background-color: none; -fx-prompt-text-fill: black;" text="Code reçu" BorderPane.alignment="CENTER">
+                              <TextField fx:id="codeTextField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Code reçu" style="-fx-background-color: none; -fx-prompt-text-fill: black;" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Poppins Light" size="18.0" />
                                  </font>
@@ -137,14 +137,14 @@
                               </ImageView>
                            </left>
                            <center>
-                              <PasswordField maxWidth="400.0" promptText="Nouveau mot de passe" style="-fx-background-color: none; -fx-prompt-text-fill: black;" BorderPane.alignment="CENTER">
+                              <PasswordField fx:id="passwordTextField" maxWidth="400.0" promptText="Nouveau mot de passe" style="-fx-background-color: none; -fx-prompt-text-fill: black;" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Poppins Light" size="18.0" />
                                  </font>
                               </PasswordField>
                            </center>
                         </BorderPane>
-                        <Button fx:id="ButtonValidateChange" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" minWidth="500.0" mnemonicParsing="false" style="-fx-background-radius: 15; -fx-background-color: #EFEFEF;" text="Confirmer les changements">
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" minWidth="500.0" mnemonicParsing="false" onAction="#validateChange" style="-fx-background-radius: 15; -fx-background-color: #EFEFEF;" stylesheets="@../css/button.css" text="Confirmer les changements">
                            <font>
                               <Font name="Poppins Medium" size="23.0" />
                            </font>

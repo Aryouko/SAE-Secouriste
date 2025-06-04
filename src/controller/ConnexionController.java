@@ -8,6 +8,8 @@ import model.data.service.AuthentificationManagement;
 
 import java.io.IOException;
 
+import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
+
 public class ConnexionController {
 
     @FXML
@@ -73,8 +75,7 @@ public class ConnexionController {
     public void ButtonConnexionClicked() {
         // Logique de connexion ici
         System.out.println("Connexion button clicked");
-        AuthentificationManagement authentificationManagement = new AuthentificationManagement();
-        if (authentificationManagement.login(mailTextField.getText(), passwordPasswordField.getText())) {
+        if (getInstanceAuthentificationManagement().login(mailTextField.getText(), passwordPasswordField.getText())) {
             System.out.println("login et mdp bons");
             try {
                 // Load Evenement

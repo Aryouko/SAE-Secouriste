@@ -11,6 +11,12 @@ import static model.utils.PasswordHashing.verifyPassword;
 public class AuthentificationManagement {
 
     /**
+     * instance of Authentication
+     */
+    private static final AuthentificationManagement instance = new AuthentificationManagement();
+
+
+    /**
      * This class manages the authentication of users.
      */
     private UserDAO userDAO;
@@ -33,6 +39,7 @@ public class AuthentificationManagement {
         this.userDAO = DAOFactory.getUserDAO();
     }
 
+    public static AuthentificationManagement getInstanceAuthentificationManagement() { return instance; }
 
     /**
      * Registers a new user with the provided login and password.
@@ -91,14 +98,15 @@ public class AuthentificationManagement {
      *
      * @param login The login of the user requesting the code.
      */
-    public void ReceiveCode(String login) {
+    public boolean ReceiveCode(String login) {
         if (userDAO.doesLoginExist(login)) {
-
             this.code = Math.abs(System.currentTimeMillis() % 1000000);
             this.user = userDAO.getUserByLogin(login);
             System.out.println("Code : " + this.code);
+            return true;
         } else {
             System.out.println("User not found.");
+            return false;
         }
     }
 
@@ -107,16 +115,18 @@ public class AuthentificationManagement {
      *
      * @param code  The code to verify.
      * @param npw1  The new password.
-     * @param npw2  Confirmation of the new password.
      */
-    public void changePassword(long code, String npw1, String npw2 ) {
+    public boolean changePassword(long code, String npw1) {
+        System.out.print(this.code);
         if (code == this.code) {
-            if (!Objects.equals(npw1, "") && npw1 != null && npw1.equals(npw2)) {
+            if (!Objects.equals(npw1, "") && npw1 != null) {
                 userDAO.changePasswordByLogin(user.getLogin(), npw1);
                 user.setPassword(npw1);
                 System.out.println("Password changed successfully.");
+                return true;
             }
         }
+        return false;
     }
 
 
