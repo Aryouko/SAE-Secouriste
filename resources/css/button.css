@@ -1,0 +1,6 @@
+.button:pressed {
+    -fx-background-color: #3a86ff;
+    -fx-effect: dropshadow(gaussian, #222, 8, 0.3, 0, 2);
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}

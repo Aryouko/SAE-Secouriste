@@ -144,7 +144,7 @@
                               </PasswordField>
                            </center>
                                 </BorderPane>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" minWidth="500.0" mnemonicParsing="false" onAction="#ButtonConnexionClicked" style="-fx-background-radius: 15; -fx-background-color: #EFEFEF;" text="Se connecter">
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" minWidth="500.0" mnemonicParsing="false" onAction="#ButtonConnexionClicked" style="-fx-background-radius: 15; -fx-background-color: #EFEFEF;" stylesheets="@../css/button.css" text="Se connecter">
                            <font>
                               <Font name="Poppins Medium" size="20.0" />
                            </font>
