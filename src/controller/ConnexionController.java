@@ -1,17 +1,10 @@
 package controller;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
+import model.data.service.AuthentificationManagement;
 
 import java.io.IOException;
 
@@ -79,7 +72,27 @@ public class ConnexionController {
     @FXML
     public void ButtonConnexionClicked() {
         // Logique de connexion ici
+        AuthentificationManagement authentificationManagement = new AuthentificationManagement();
+        if ( authentificationManagement.authenticate(mailTextField.toString(), passwordPasswordField.toString())) {
+            System.out.println("Tentative de connexion reussi");
+            try {
+                // Charger la page Inscription.fxml
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/FenetreEvenement.fxml"));
+                AnchorPane pageEvenement = loader.load();
 
+                // Remplacer le contenu actuel par la nouvelle page
+                pageConnexion.getChildren().setAll(pageEvenement);
+
+                AnchorPane.setTopAnchor(pageEvenement, 0.0);
+                AnchorPane.setBottomAnchor(pageEvenement, 0.0);
+                AnchorPane.setLeftAnchor(pageEvenement, 0.0);
+                AnchorPane.setRightAnchor(pageEvenement, 0.0);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.err.println("Erreur lors du chargement de la page Inscription.fxml");
+            }
+        }
         System.out.println("Connexion button clicked");
         System.out.println("Mail: " + mailTextField.getText());
         System.out.println("Password: " + passwordPasswordField.getText());

@@ -43,7 +43,11 @@ public class AuthentificationManagement {
         if (user == null) {
             return false; // login inexistant
         }
-        return user.getPassword().equals(password);
+        if (user.getPassword().equals(password)) {
+            this.user = user;
+            return true;
+        }
+        return false ;
     }
 
     /**
@@ -96,6 +100,15 @@ public class AuthentificationManagement {
                 System.out.println("User registered successfully.");
             }
         }
+    }
+
+    /**
+     * Get the current user loaded
+     *
+     * @return the user
+     */
+    public User getCurrentUser() {
+        return this.user;
     }
 }
 
