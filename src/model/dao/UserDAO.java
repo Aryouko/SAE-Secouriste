@@ -57,7 +57,7 @@ public class UserDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                user = new User(rs.getLong("idUser"), rs.getString("login"), rs.getString("password"));
+                user = new User(rs.getLong("idUser"), rs.getString("login"), rs.getString("password"), rs.getString("role"));
             }
 
         } catch (SQLException e) {
@@ -82,7 +82,7 @@ public class UserDAO {
             return;
         }
 
-        String updateQuery = "UPDATE user SET password = ? WHERE id = ?";
+        String updateQuery = "UPDATE user SET password = ? WHERE idUser = ?";
 
         try (Connection con = ConnexionBDD.getConnexion();
              PreparedStatement stmt = con.prepareStatement(updateQuery)) {
@@ -105,11 +105,11 @@ public class UserDAO {
 
     /**
      * Adds a new user to the database.
+     *
      * @param user the User object containing the login and password of the new user.
-     * @return the generated ID of the new user, or -1 if the insertion failed.
      */
-    public int addUser(User user) throws SQLException {
-        String query = "INSERT INTO user (login, password) VALUES (?, ?)";
+    public void addUser(User user) throws SQLException {
+        String query = "INSERT INTO user (login, password) VALUES (?, ?, ?)";
         int generatedId = -1;
 
         try (Connection con = ConnexionBDD.getConnexion();
@@ -118,6 +118,7 @@ public class UserDAO {
 
             stmt.setString(1, user.getLogin());
             stmt.setString(2, user.getPassword());
+            stmt.setString(2, user.getRole());
 
             int affectedRows = stmt.executeUpdate();
 
@@ -133,7 +134,6 @@ public class UserDAO {
             throw new SQLException("Erreur lors de l'ajout de l'utilisateur : " + e.getMessage(), e);
         }
 
-        return generatedId; // retourne l’ID ou -1 en cas d’échec
     }
 }
 

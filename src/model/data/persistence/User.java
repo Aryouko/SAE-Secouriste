@@ -17,17 +17,24 @@ public class User {
      */
     private String password; // Password of the user
 
+    /**
+     * role of the user
+     */
+    private String role; // Password of the user
+
 
     /**
      * Constructor of User
      * @param idUser - id of the user
      * @param login - username of the user
      * @param password - password of the user
+     * @param role - password of the user
      */
-    public User(long idUser, String login, String password) {
+    public User(long idUser, String login, String password, String role) {
         this.idUser = idUser;
         this.login = login;
         this.password = password;
+        this.role = role;
     }
 
     /**
@@ -77,5 +84,22 @@ public class User {
     public void setIdUser(long idUser) {
         this.idUser = idUser;
     }
+
+    /**
+     * Getter of IdUser
+     * @return the id of the user
+     */
+    public String getRole() {
+        return role;
+    }
+
+    /**
+     * Setter of IdUser
+     * @param role - the role of the user to set
+     */
+    public void setRole(String role) {
+        this.role = role;
+    }
+
 
 }
