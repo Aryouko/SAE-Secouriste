@@ -49,7 +49,7 @@ public class InscriptionController {
             System.out.println("Email: " + labelMail.getText());
             if (getInstanceAuthentificationManagement().register(labelMail.getText(), labelPassword.getText(), newPasswordConfirmation.getText())) {
                 showInfo("L'inscription a réussi. Vous pouvez maintenant vous connecter.");
-                linkToConnexion();
+                linkToPage(pageRegister, "/fxml/RegistrationForm.fxml");
             } else {
                 showError("L'inscription a échoué. Veuillez vérifier vos informations.");
             }
