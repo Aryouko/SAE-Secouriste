@@ -22,16 +22,14 @@ public class Secouriste {
      * @param nom the name of the secouriste
      * @param prenom the first name of the secouriste
      * @param dateNaissance the birth date of the secouriste
-     * @param email the email of the secouriste
      * @param tel the phone number of the secouriste
      * @param adresse the address of the secouriste
      */
-    public Secouriste(long id, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
+    public Secouriste(long id, String nom, String prenom, String dateNaissance, String tel, String adresse) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
-        this.email = email;
         this.tel = tel;
         this.adresse = adresse;
     }
@@ -82,23 +80,6 @@ public class Secouriste {
         this.dateNaissance = dateNaissance;
     }
 
-    /**
-     * Getter of Email
-     * 
-     * @return the email of the secouriste
-     */
-    public String getEmail(){
-        return this.email;
-    }
-
-    /**
-     * Setter of Email
-     * 
-     * @param email the email of the secouriste to set
-     */
-    public void setEmail(String email){
-        this.email = email;
-    }
 
     /**
      * Getter of Tel
@@ -117,8 +98,6 @@ public class Secouriste {
     public void setTel(String tel){
         this.tel = tel;
     }
-
-
 
     /**
      * Getter of Adresse
