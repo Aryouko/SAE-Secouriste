@@ -55,6 +55,7 @@ public class InscriptionController {
             }
         } catch (SQLException e) {
             showError("Une erreur est survenue lors de l'inscription. Veuillez réessayer plus tard.");
+            System.out.println("Email: " + e.getMessage());
         }
     }
 

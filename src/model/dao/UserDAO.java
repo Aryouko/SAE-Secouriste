@@ -88,7 +88,7 @@ public class UserDAO {
              PreparedStatement stmt = con.prepareStatement(updateQuery)) {
 
             stmt.setString(1, hashPassword(newPassword));       // nouveau mot de passe
-            stmt.setLong(2, user.getIdUser());        // identifiant unique du user
+            stmt.setLong(2, user.getIdUser());        // identifiant unique
 
             int updated = stmt.executeUpdate();
 
@@ -109,7 +109,7 @@ public class UserDAO {
      * @param user the User object containing the login and password of the new user.
      */
     public void addUser(User user) throws SQLException {
-        String query = "INSERT INTO user (login, password) VALUES (?, ?, ?)";
+        String query = "INSERT INTO user (login, password, role) VALUES (?, ?, ?)";
         int generatedId = -1;
 
         try (Connection con = ConnexionBDD.getConnexion();
@@ -118,7 +118,7 @@ public class UserDAO {
 
             stmt.setString(1, user.getLogin());
             stmt.setString(2, user.getPassword());
-            stmt.setString(2, user.getRole());
+            stmt.setString(3, user.getRole());
 
             int affectedRows = stmt.executeUpdate();
 
