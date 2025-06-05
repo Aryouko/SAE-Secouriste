@@ -37,15 +37,14 @@ CREATE TABLE User (
 
 -- Table des secouristes
 CREATE TABLE Secouriste (
-    id INTEGER,
+    idSecouriste INTEGER,
     nom VARCHAR(32) NOT NULL,
     prenom VARCHAR(32) NOT NULL,
     date_naissance VARCHAR(32),
-    email VARCHAR(64),
     tel VARCHAR(10),
     adresse VARCHAR(64),
-    CONSTRAINT pk_Secouriste PRIMARY KEY (id),
-    CONSTRAINT fk_Secouriste_User FOREIGN KEY (id) REFERENCES User(idUser)
+    CONSTRAINT pk_Secouriste PRIMARY KEY (idSecouriste),
+    CONSTRAINT fk_Secouriste_User FOREIGN KEY (idSecouriste) REFERENCES User(idUser)
 );
 
 -- Table des sports
@@ -100,7 +99,7 @@ CREATE TABLE Disponibilite (
     secouristeDisp INTEGER,
     journeeDisp INTEGER,
     CONSTRAINT pk_Disponibilite PRIMARY KEY (secouristeDisp, journeeDisp),
-    CONSTRAINT fk_Disponibilite_Secouriste FOREIGN KEY (secouristeDisp) REFERENCES Secouriste(id),
+    CONSTRAINT fk_Disponibilite_Secouriste FOREIGN KEY (secouristeDisp) REFERENCES Secouriste(idSecouriste),
     CONSTRAINT fk_Disponibilite_Journee FOREIGN KEY (journeeDisp) REFERENCES Journee(id)
 );
 
@@ -109,7 +108,7 @@ CREATE TABLE Possession (
     secouriste INTEGER,
     competence VARCHAR(64),
     CONSTRAINT pk_Possession PRIMARY KEY (secouriste, competence),
-    CONSTRAINT fk_Possession_Secouriste FOREIGN KEY (secouriste) REFERENCES Secouriste(id),
+    CONSTRAINT fk_Possession_Secouriste FOREIGN KEY (secouriste) REFERENCES Secouriste(idSecouriste),
     CONSTRAINT fk_Possession_Competence FOREIGN KEY (competence) REFERENCES Competence(intitule)
 );
 
@@ -128,7 +127,7 @@ CREATE TABLE Affectation (
     DPSAffect INTEGER,
     competenceAffect VARCHAR(64),
     CONSTRAINT pk_Affectation PRIMARY KEY (secouristeAffect, DPSAffect, competenceAffect),
-    CONSTRAINT fk_Affectation_Secouriste FOREIGN KEY (secouristeAffect) REFERENCES Secouriste(id),
+    CONSTRAINT fk_Affectation_Secouriste FOREIGN KEY (secouristeAffect) REFERENCES Secouriste(idSecouriste),
     CONSTRAINT fk_Affectation_DPS FOREIGN KEY (DPSAffect) REFERENCES DPS(id),
     CONSTRAINT fk_Affectation_Competence FOREIGN KEY (competenceAffect) REFERENCES Competence(intitule)
 );
