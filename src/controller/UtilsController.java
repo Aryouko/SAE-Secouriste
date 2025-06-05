@@ -1,11 +1,8 @@
 package controller;
 
-import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
-
 import java.io.IOException;
 
 /**
