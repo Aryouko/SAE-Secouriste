@@ -31,6 +31,30 @@ public class SecouristeDAO {
         return secouristes;
     }
 
+    public Secouriste findSecouriste(long id) {
+        Secouriste secouriste = null;
+
+        try (Connection con = ConnexionBDD.getConnexion();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM secouriste WHERE id=" + id)) {
+
+            while (rs.next()) {
+                secouriste = new Secouriste(
+                        rs.getLong("id"),
+                        rs.getString("nom"),
+                        rs.getString("prenom"),
+                        rs.getString("dateNaissance"),
+                        rs.getString("email"),
+                        rs.getString("tel"),
+                        rs.getString("adresse")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return secouriste;
+    }
+
     /**
      * findByDay return all the secouriste ready for a specific day
      *
