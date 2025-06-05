@@ -20,7 +20,7 @@
 
 <AnchorPane fx:id="pageConnexion" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistrationFormController">
     <children>
-        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" layoutX="-1.6" prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: #F5F5F5;" styleClass="windowed" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="-0.40000000000009095" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <FlowPane fx:id="pageRegistrationForm" alignment="CENTER" cache="true" columnHalignment="CENTER" layoutX="-1.6" prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: #F5F5F5;" styleClass="windowed" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="-0.40000000000009095" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox alignment="CENTER" depthTest="DISABLE" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
                     <children>
@@ -187,7 +187,7 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </BorderPane>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" minWidth="500.0" mnemonicParsing="false" onAction="#ButtonValideClicked" style="-fx-background-radius: 15; -fx-background-color: #EFEFEF;" stylesheets="@../css/button.css" text="Valider">
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" minWidth="500.0" mnemonicParsing="false" onAction="#buttonVerifyClicked" style="-fx-background-radius: 15; -fx-background-color: #EFEFEF;" stylesheets="@../css/button.css" text="Valider">
                            <font>
                               <Font name="Poppins Medium" size="20.0" />
                            </font>
