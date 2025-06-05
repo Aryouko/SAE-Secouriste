@@ -84,4 +84,32 @@ public class SecouristeDAO {
         }
         return secouristes;
     }
+
+
+    /**
+     * findById find the secouriste by his id
+     *
+     * @return return the secouriste
+     */
+    public Secouriste findById(long idSecouriste) {
+        String query = "SELECT * FROM Secouriste WHERE Secouriste.idSecouriste = ?";
+        try (Connection con = ConnexionBDD.getConnexion();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setLong(1, idSecouriste);
+            ResultSet rs = stmt.executeQuery();
+            Secouriste secouriste = new Secouriste(
+                    rs.getLong("idSecouriste"),
+                    rs.getString("nom"),
+                    rs.getString("prenom"),
+                    rs.getString("date_naissance"),
+                    rs.getString("tel"),
+                    rs.getString("adresse")
+            );
+            return secouriste;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
