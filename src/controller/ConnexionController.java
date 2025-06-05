@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import model.data.service.AuthentificationManagement;
 
 import java.io.IOException;
 
@@ -21,8 +20,6 @@ public class ConnexionController {
 
     @FXML
     public void initialize() {
-        // connexionLoginLabel.setAlignment(Pos.CENTER);
-        // connexionPasswordLabel.setAlignment(Pos.CENTER);
         System.out.println("ConnexionController initialized");
     }
 
@@ -41,10 +38,8 @@ public class ConnexionController {
             AnchorPane.setBottomAnchor(pageInscription, 0.0);
             AnchorPane.setLeftAnchor(pageInscription, 0.0);
             AnchorPane.setRightAnchor(pageInscription, 0.0);
-
         } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Erreur lors du chargement de la page Inscription.fxml");
+            System.err.println("Erreur lors du chargement de la page Inscription.fxml : " + e.getMessage());
         }
     }
 
@@ -65,8 +60,7 @@ public class ConnexionController {
             AnchorPane.setRightAnchor(pageMotDePasseOublie, 0.0);
 
         } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Erreur lors du chargement de la page Inscription.fxml");
+            System.err.println("Erreur lors du chargement de la page ReceiveCode.fxml : " + e.getMessage());
         }
     }
 
@@ -91,9 +85,7 @@ public class ConnexionController {
                 AnchorPane.setRightAnchor(pageEvenement, 0.0);
 
             } catch (IOException e) {
-                e.printStackTrace();
-                System.err.println("Erreur lors du chargement de la page Inscription.fxml");
-
+                System.err.println("Erreur lors du clique bouton connexion : " + e.getMessage());
             }
         } else {
             // Afficher le pop-up d'inscription réussie
