@@ -35,12 +35,12 @@ public class ProfilController {
         AuthentificationManagement auth = new AuthentificationManagement();
         if (auth.getCurrentUser().getRole().equals("rescuer")) {
             SecouristeDAO secouristeDAO = new SecouristeDAO();
-            Secouriste secouriste = secouristeDAO.findSecouriste(auth.getCurrentUser().getIdUser());
+            Secouriste secouriste = secouristeDAO.findById(auth.getCurrentUser().getIdUser());
             nomLabel.setText(secouriste.getPrenom() + "  " + secouriste.getNom());
             adminSecourLabel.setText("Secouriste");
         } else {
             AdministrateurDAO administrateurDAO = new AdministrateurDAO();
-            Administrateur administrateur = administrateurDAO.findAdministrateur(auth.getCurrentUser().getIdUser());
+            Administrateur administrateur = administrateurDAO.findById(auth.getCurrentUser().getIdUser());
             nomLabel.setText(administrateur.getPrenom() + "  " + administrateur.getNom());
             adminSecourLabel.setText("Administrateur");
         }
