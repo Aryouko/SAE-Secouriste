@@ -7,13 +7,14 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Chargement.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Connexion.fxml")));
 
-        
         javafx.scene.text.Font.loadFont(
                 getClass().getResourceAsStream("/fonts/JetBrainsMono-Regular.ttf"), 19
         );
