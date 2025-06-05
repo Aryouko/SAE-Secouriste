@@ -31,11 +31,16 @@ public class ProfilController {
     public void initialize() {
         AuthentificationManagement auth = new AuthentificationManagement();
         SecouristeDAO secouristeDAO = new SecouristeDAO();
+        if (auth.getCurrentUser().getRole() = "Secouriste") {
+            Secouriste secouriste = secouristeDAO.findSecouriste(auth.getCurrentUser().getIdUser());
+            nomLabel.setText(secouriste.getPrenom() + "  " + secouriste.getNom());
+            adminSecourLabel.setText("Secouriste");
+        } else {
+            Administrateur administrateur = Administrateur.findAdministrateur(auth.getCurrentUser().getIdUser());
+            nomLabel.setText(administrateur.getPrenom() + "  " + administrateur.getNom());
+            adminSecourLabel.setText("Administrateur");
+        }
 
-        Secouriste secouriste = secouristeDAO.findSecouriste(auth.getCurrentUser().getIdUser());
-
-        nomLabel.setText(secouriste.getPrenom() + "  " + secouriste.getNom());
-        adminSecourLabel.setText("Rien");
 
         myCircle.setStroke(Color.BLACK);
         Image image = new Image("/images/pdp.png", false);
