@@ -12,8 +12,8 @@ public class SecouristeManagement {
     /**
      * Constructor of SecouristeManagement
      */
-    public void ajouterSecouriste(long id, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
-        Secouriste secouriste = new Secouriste(id, nom, prenom, dateNaissance, email, tel, adresse);
+    public void ajouterSecouriste(long id, String nom, String prenom, String dateNaissance, String tel, String adresse) {
+        this.secouristes.add(new Secouriste(id, nom, prenom, dateNaissance, tel, adresse));
     }
 
     /**
