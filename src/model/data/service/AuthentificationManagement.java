@@ -65,6 +65,7 @@ public class AuthentificationManagement {
             if (newPassword != null && !newPassword.isEmpty() && newPassword.equals(newPasswordConfirmation)) {
                 User user = new User(-1, mail, hashPassword(newPassword), "rescuer");
                 userDAO.addUser(user);
+                this.user = userDAO.getUserByLogin(mail);
                 System.out.println("User registered successfully.");
                 didRegistrationWorked = true;
             }
