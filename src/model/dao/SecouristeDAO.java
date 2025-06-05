@@ -112,4 +112,56 @@ public class SecouristeDAO {
         }
         return null;
     }
+
+    /**
+     * updateSecouriste is to update like in the register controller
+     *
+     * @param secouriste a secouriste
+     * @return a boolean that verify the right fonctionnement.
+     */
+    public boolean updateSecouriste(Secouriste secouriste) {
+        String query = "UPDATE Secouriste SET nom = ?, prenom = ?, date_naissance = ?, tel = ?, adresse = ? WHERE idSecouriste = ?";
+        try (Connection con = ConnexionBDD.getConnexion();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setString(1, secouriste.getNom());
+            stmt.setString(2, secouriste.getPrenom());
+            stmt.setString(3, secouriste.getDateNaissance());
+            stmt.setString(4, secouriste.getTel());
+            stmt.setString(5, secouriste.getAdresse());
+            stmt.setLong(6, secouriste.getIdSecouriste());
+
+            int updated = stmt.executeUpdate();
+            return updated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * addSecouriste is to add a secouriste
+     *
+     * @param secouriste a secouriste
+     * @return a boolean that verify the right fonctionnement.
+     */
+    public boolean addSecouriste(Secouriste secouriste) {
+        String query = "INSERT INTO Secouriste (idSecouriste, nom, prenom, date_naissance, tel, adresse) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection con = ConnexionBDD.getConnexion();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setLong(1, secouriste.getIdSecouriste());
+            stmt.setString(2, secouriste.getNom());
+            stmt.setString(3, secouriste.getPrenom());
+            stmt.setString(4, secouriste.getDateNaissance());
+            stmt.setString(5, secouriste.getTel());
+            stmt.setString(6, secouriste.getAdresse());
+
+            int inserted = stmt.executeUpdate();
+            return inserted > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

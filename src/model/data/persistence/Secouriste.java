@@ -64,19 +64,19 @@ public class Secouriste {
 
 
     /**
-     * Getter of DateNaissace
+     * Getter of DateNaissance
      * 
      * @return the birth date of the secouriste
      */
-    public String getDateNaissace(){
+    public String getDateNaissance(){
         return this.dateNaissance;
     }
 
     /**
-     * Setter of DateNaissace
+     * Setter of DateNaissance
      * @param dateNaissance the birth date of the secouriste
      */
-    public void setDateNaissace(String dateNaissance){
+    public void setDateNaissance(String dateNaissance){
         this.dateNaissance = dateNaissance;
     }
 

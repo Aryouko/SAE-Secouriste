@@ -147,6 +147,17 @@ public class AuthentificationManagement {
         return false;
     }
 
+    public boolean createRescuerFromUser(long id, String nom, String prenom, String dateNaissance, String tel, String adresse) {
+
+        this.secouriste = new Secouriste(id, nom, prenom, dateNaissance, tel, adresse);
+        boolean ok = DAOFactory.getSecouristeDAO().addSecouriste(this.secouriste);
+        if (ok) {
+            System.out.println("Rescuer created successfully.");
+        } else {
+            System.out.println("Failed to create rescuer.");
+        }
+        return ok;
+    }
 
 
     /**
