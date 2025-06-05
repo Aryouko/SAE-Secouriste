@@ -31,7 +31,7 @@ public class ProfilController {
     public void initialize() {
         AuthentificationManagement auth = new AuthentificationManagement();
         SecouristeDAO secouristeDAO = new SecouristeDAO();
-        if (auth.getCurrentUser().getRole() = "Secouriste") {
+        if (auth.getCurrentUser().getRole() = "rescuer") {
             Secouriste secouriste = secouristeDAO.findSecouriste(auth.getCurrentUser().getIdUser());
             nomLabel.setText(secouriste.getPrenom() + "  " + secouriste.getNom());
             adminSecourLabel.setText("Secouriste");
