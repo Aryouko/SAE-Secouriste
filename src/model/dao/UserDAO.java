@@ -117,7 +117,7 @@ public class UserDAO {
 
 
             stmt.setString(1, user.getLogin());
-            stmt.setString(2, hashPassword(user.getPassword()));
+            stmt.setString(2, user.getPassword());
 
             int affectedRows = stmt.executeUpdate();
 
