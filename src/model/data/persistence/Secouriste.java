@@ -22,7 +22,6 @@ public class Secouriste {
      * @param nom the name of the secouriste
      * @param prenom the first name of the secouriste
      * @param dateNaissance the birth date of the secouriste
-     * @param email the email of the secouriste
      * @param tel the phone number of the secouriste
      * @param adresse the address of the secouriste
      */

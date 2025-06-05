@@ -11,14 +11,14 @@ public class SecouristeDAO {
 
         try (Connection con = ConnexionBDD.getConnexion();
              Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM secouriste")) {
+             ResultSet rs = stmt.executeQuery("SELECT * FROM Secouriste")) {
 
             while (rs.next()) {
                 Secouriste s = new Secouriste(
-                        rs.getLong("id"),
+                        rs.getLong("idSecouriste"),
                         rs.getString("nom"),
                         rs.getString("prenom"),
-                        rs.getString("dateNaissance"),
+                        rs.getString("date_naissance"),
                         rs.getString("tel"),
                         rs.getString("adresse")
                 );
@@ -35,14 +35,14 @@ public class SecouristeDAO {
 
         try (Connection con = ConnexionBDD.getConnexion();
              Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM secouriste WHERE id=" + id)) {
+             ResultSet rs = stmt.executeQuery("SELECT * FROM Secouriste WHERE idSecouriste =" + id)) {
 
             while (rs.next()) {
                 secouriste = new Secouriste(
-                        rs.getLong("id"),
+                        rs.getLong("idSecouriste"),
                         rs.getString("nom"),
                         rs.getString("prenom"),
-                        rs.getString("dateNaissance"),
+                        rs.getString("date_naissance"),
                         rs.getString("tel"),
                         rs.getString("adresse")
                 );
@@ -54,27 +54,26 @@ public class SecouristeDAO {
     }
 
     /**
-     * findByDay return all the secouriste ready for a specific day
-     *
-     * @return idJourFind
+     * findByDay retourne tous les secouristes disponibles pour un jour donné
      */
     public List<Secouriste> findByDay(long idJourFind) {
         List<Secouriste> secouristes = new ArrayList<>();
-        String query = "SELECT * FROM secouriste JOIN disponibilite ON secouriste.idSecouriste = disponibilite.idDisponibilite WHERE disponibilite.jour = ?";
-
+        String query = "SELECT * FROM Secouriste " +
+                "JOIN Disponibilite ON Secouriste.idSecouriste = Disponibilite.secouristeDisp " +
+                "WHERE Disponibilite.journeeDisp = ?";
 
         try (Connection con = ConnexionBDD.getConnexion();
-             PreparedStatement stmt = con.prepareStatement(query);) {
+             PreparedStatement stmt = con.prepareStatement(query)) {
 
-            stmt.setLong(1, idJourFind);  // on remplace le ? par la valeur du login
+            stmt.setLong(1, idJourFind);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Secouriste s = new Secouriste(
-                        rs.getLong("id"),
+                        rs.getLong("idSecouriste"),
                         rs.getString("nom"),
                         rs.getString("prenom"),
-                        rs.getString("dateNaissance"),
+                        rs.getString("date_naissance"),
                         rs.getString("tel"),
                         rs.getString("adresse")
                 );
