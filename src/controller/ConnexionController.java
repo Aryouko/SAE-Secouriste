@@ -7,30 +7,58 @@ import static controller.UtilsController.linkToPage;
 import static controller.UtilsController.showError;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
+/**
+ * ConnexionController is responsible for handling the login page of the application.
+ * It provides functionality to log in, navigate to the registration page, and recover forgotten passwords.
+ */
 public class ConnexionController {
 
+    /**
+     * The AnchorPane that serves as the login page.
+     */
     @FXML
     private TextField mailTextField;
+    /**
+     * The PasswordField for entering the password.
+     */
     @FXML
     private PasswordField passwordPasswordField;
+    /**
+     * The AnchorPane that contains the login page layout.
+     */
     @FXML
     private AnchorPane pageConnexion;
 
+    /**
+     * Initializes the ConnexionController by setting up the login page.
+     * This method is called automatically when the FXML file is loaded.
+     */
     @FXML
     public void initialize() {
         System.out.println("ConnexionController initialized");
     }
 
+    /**
+     * Links to the registration page when the "Register" button is clicked.
+     */
     @FXML
     public void linkToRegister() {
         linkToPage(pageConnexion, "/fxml/Inscription.fxml");
     }
 
+    /**
+     * Links to the password recovery page when the "Forgot Password" link is clicked.
+     */
     @FXML
     public void linkToReceiveCode() {
         linkToPage(pageConnexion, "/fxml/EnvoiCode.fxml");
     }
 
+    /**
+     * Handles the login button click event.
+     * It attempts to log in with the provided email and password.
+     * If successful, it navigates to the event page; otherwise, it shows an error message.
+     */
     @FXML
     public void ButtonConnexionClicked() {
         System.out.println("Connexion button clicked");
