@@ -6,6 +6,8 @@ import model.data.persistence.Secouriste;
 import model.data.persistence.User;
 import java.sql.SQLException;
 import java.util.Objects;
+
+import static model.dao.DAOFactory.getSecouristeDAO;
 import static model.utils.PasswordHashing.hashPassword;
 import static model.utils.PasswordHashing.verifyPassword;
 
@@ -78,6 +80,7 @@ public class AuthentificationManagement {
         SUCCESS,
         INVALID_LOGIN,
         INVALID_PASSWORD,
+        INVALID_RESCUER,
         ERROR
     }
 
@@ -97,8 +100,15 @@ public class AuthentificationManagement {
             if (!verifyPassword(password, user.getPassword())) {
                 return LoginResult.INVALID_PASSWORD;
             }
-            this.user = user;
-            return LoginResult.SUCCESS;
+
+            if ( SecouristeIsCreated() ) {
+                this.user = user;
+                this.secouriste = getSecouristeDAO().findById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
+                return LoginResult.SUCCESS;
+            } else {
+                return LoginResult.INVALID_RESCUER;
+            }
+
         } catch (Exception e) {
             this.user = null;
             System.err.println("Erreur lors de la connexion : " + e.getMessage());
@@ -159,6 +169,14 @@ public class AuthentificationManagement {
         return ok;
     }
 
+    public boolean SecouristeIsCreated() {
+        boolean isCreated = false;
+        Secouriste secouriste = getSecouristeDAO().findById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
+        if (!(secouriste.getNom() == null || secouriste.getNom().isEmpty())) {
+            isCreated = true;
+        }
+        return isCreated;
+    }
 
     /**
      * Get the current user loaded
