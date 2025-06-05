@@ -75,15 +75,17 @@ public class SecouristeDAO {
 
             stmt.setLong(1, idSecouriste);
             ResultSet rs = stmt.executeQuery();
-            Secouriste secouriste = new Secouriste(
-                    rs.getLong("idSecouriste"),
-                    rs.getString("nom"),
-                    rs.getString("prenom"),
-                    rs.getString("date_naissance"),
-                    rs.getString("tel"),
-                    rs.getString("adresse")
-            );
-            return secouriste;
+            if (rs.next()) {
+                Secouriste secouriste = new Secouriste(
+                        rs.getLong("idSecouriste"),
+                        rs.getString("nom"),
+                        rs.getString("prenom"),
+                        rs.getString("date_naissance"),
+                        rs.getString("tel"),
+                        rs.getString("adresse")
+                );
+                return secouriste;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
