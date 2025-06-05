@@ -192,6 +192,13 @@ public class AuthentificationManagement {
         return this.user;
     }
 
-
+    /**
+     * Get the current rescuer loaded
+     *
+     * @return the user
+     */
+    public Secouriste getCurrentRescuer() {
+        return this.secouriste;
+    }
 }
 
