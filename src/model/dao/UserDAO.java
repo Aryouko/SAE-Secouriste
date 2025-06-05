@@ -48,7 +48,7 @@ public class UserDAO {
      */
     public User getUserByLogin(String login) {
         User user = null;
-        String query = "SELECT idUser, login, password FROM user WHERE login = ?";
+        String query = "SELECT idUser, login, password, role FROM user WHERE login = ?";
 
         try (Connection con = ConnexionBDD.getConnexion();
              PreparedStatement stmt = con.prepareStatement(query)) {
