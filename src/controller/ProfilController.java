@@ -15,6 +15,8 @@ import model.data.persistence.Administrateur;
 import model.data.persistence.Secouriste;
 import model.data.service.AuthentificationManagement;
 
+import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
+
 public class ProfilController {
 
     @FXML
@@ -32,7 +34,7 @@ public class ProfilController {
 
     @FXML
     public void initialize() {
-        AuthentificationManagement auth = new AuthentificationManagement();
+        AuthentificationManagement auth = getInstanceAuthentificationManagement();
         if (auth.getCurrentUser().getRole().equals("rescuer")) {
             SecouristeDAO secouristeDAO = new SecouristeDAO();
             Secouriste secouriste = secouristeDAO.findById(auth.getCurrentUser().getIdUser());
