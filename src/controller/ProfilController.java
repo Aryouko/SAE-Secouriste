@@ -9,7 +9,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import model.dao.SecouristeDAO;
 import model.data.persistence.Secouriste;
+import model.data.service.AuthentificationManagement;
 
 public class ProfilController {
 
@@ -20,17 +22,20 @@ public class ProfilController {
     Label nomLabel;
 
     @FXML
-    Label metierLabel;
+    Label adminSecourLabel;
 
     @FXML
     Button notifBouton;
 
     @FXML
     public void initialize() {
-        Secouriste secouriste = new Secouriste(1, "Carré", "Lucien", "24 mars 2006", "luciencarre@quelque.chose", "01 23 45 67 89", "23 rue Boule Frite Vannes");
+        AuthentificationManagement auth = new AuthentificationManagement();
+        SecouristeDAO secouristeDAO = new SecouristeDAO();
+
+        Secouriste secouriste = secouristeDAO.findSecouriste(auth.getCurrentUser().getIdUser());
 
         nomLabel.setText(secouriste.getPrenom() + "  " + secouriste.getNom());
-        metierLabel.setText("Rien");
+        adminSecourLabel.setText("Rien");
 
         myCircle.setStroke(Color.BLACK);
         Image image = new Image("/images/pdp.png", false);
