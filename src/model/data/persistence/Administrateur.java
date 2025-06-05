@@ -11,7 +11,6 @@ public class Administrateur {
     private String nom;     // Nom du secouriste
     private String prenom;  // Prénom du secouriste
     private String dateNaissance; // Date de naissance (corrigé)
-    private String email;   // Adresse email
     private String tel;     // Numéro de téléphone
     private String adresse; // Adresse postale
 
@@ -22,16 +21,14 @@ public class Administrateur {
      * @param nom the name of the secouriste
      * @param prenom the first name of the secouriste
      * @param dateNaissance the birth date of the secouriste
-     * @param email the email of the secouriste
      * @param tel the phone number of the secouriste
      * @param adresse the address of the secouriste
      */
-    public Administrateur(long id, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
+    public Administrateur(long id, String nom, String prenom, String dateNaissance, String tel, String adresse) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
-        this.email = email;
         this.tel = tel;
         this.adresse = adresse;
     }
@@ -80,24 +77,6 @@ public class Administrateur {
      */
     public void setDateNaissace(String dateNaissance){
         this.dateNaissance = dateNaissance;
-    }
-
-    /**
-     * Getter of Email
-     * 
-     * @return the email of the secouriste
-     */
-    public String getEmail(){
-        return this.email;
-    }
-
-    /**
-     * Setter of Email
-     * 
-     * @param email the email of the secouriste to set
-     */
-    public void setEmail(String email){
-        this.email = email;
     }
 
     /**
