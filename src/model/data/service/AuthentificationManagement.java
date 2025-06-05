@@ -91,7 +91,6 @@ public class AuthentificationManagement {
     }
 
 
-
     /**
      * Receives a code for password recovery based on the user's login.
      * The code is generated as a random number based on the current time.
