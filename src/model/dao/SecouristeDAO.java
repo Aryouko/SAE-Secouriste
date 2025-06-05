@@ -19,7 +19,6 @@ public class SecouristeDAO {
                         rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getString("dateNaissance"),
-                        rs.getString("email"),
                         rs.getString("tel"),
                         rs.getString("adresse")
                 );
@@ -44,7 +43,6 @@ public class SecouristeDAO {
                         rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getString("dateNaissance"),
-                        rs.getString("email"),
                         rs.getString("tel"),
                         rs.getString("adresse")
                 );
@@ -58,7 +56,7 @@ public class SecouristeDAO {
     /**
      * findByDay return all the secouriste ready for a specific day
      *
-     * @return
+     * @return idJourFind
      */
     public List<Secouriste> findByDay(long idJourFind) {
         List<Secouriste> secouristes = new ArrayList<>();
@@ -77,7 +75,6 @@ public class SecouristeDAO {
                         rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getString("dateNaissance"),
-                        rs.getString("email"),
                         rs.getString("tel"),
                         rs.getString("adresse")
                 );
