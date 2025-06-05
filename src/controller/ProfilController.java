@@ -9,7 +9,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import model.dao.AdministrateurDAO;
 import model.dao.SecouristeDAO;
+import model.data.persistence.Administrateur;
 import model.data.persistence.Secouriste;
 import model.data.service.AuthentificationManagement;
 
@@ -27,17 +29,18 @@ public class ProfilController {
     @FXML
     Button notifBouton;
 
-    /*
+
     @FXML
     public void initialize() {
         AuthentificationManagement auth = new AuthentificationManagement();
-        SecouristeDAO secouristeDAO = new SecouristeDAO();
-        if (auth.getCurrentUser().getRole() = "rescuer") {
+        if (auth.getCurrentUser().getRole().equals("rescuer")) {
+            SecouristeDAO secouristeDAO = new SecouristeDAO();
             Secouriste secouriste = secouristeDAO.findSecouriste(auth.getCurrentUser().getIdUser());
             nomLabel.setText(secouriste.getPrenom() + "  " + secouriste.getNom());
             adminSecourLabel.setText("Secouriste");
         } else {
-            Administrateur administrateur = Administrateur.findAdministrateur(auth.getCurrentUser().getIdUser());
+            AdministrateurDAO administrateurDAO = new AdministrateurDAO();
+            Administrateur administrateur = administrateurDAO.findAdministrateur(auth.getCurrentUser().getIdUser());
             nomLabel.setText(administrateur.getPrenom() + "  " + administrateur.getNom());
             adminSecourLabel.setText("Administrateur");
         }
@@ -48,6 +51,5 @@ public class ProfilController {
         myCircle.setFill(new ImagePattern(image));
 
     }
-    */
 
 }
