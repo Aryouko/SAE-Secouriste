@@ -22,7 +22,6 @@ public class AdministrateurDAO {
                         rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getString("dateNaissance"),
-                        rs.getString("email"),
                         rs.getString("tel"),
                         rs.getString("adresse")
                 );
@@ -34,27 +33,30 @@ public class AdministrateurDAO {
         return administrateurs;
     }
 
-    public Administrateur findAdministrateur(long id) {
-        Administrateur administrateur = null;
-
+    /**
+     * findById find the adminstrator by his id
+     *
+     * @return return the administrator
+     */
+    public Administrateur findById(long idAdministrateur) {
+        String query = "SELECT * FROM Administrateur WHERE Administrateur.idAdministrateur = ?";
         try (Connection con = ConnexionBDD.getConnexion();
-             Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM secouriste WHERE id=" + id)) {
+             PreparedStatement stmt = con.prepareStatement(query)) {
 
-            while (rs.next()) {
-                administrateur = new Administrateur(
-                        rs.getLong("id"),
-                        rs.getString("nom"),
-                        rs.getString("prenom"),
-                        rs.getString("dateNaissance"),
-                        rs.getString("email"),
-                        rs.getString("tel"),
-                        rs.getString("adresse")
-                );
-            }
+            stmt.setLong(1, idAdministrateur);
+            ResultSet rs = stmt.executeQuery();
+            Administrateur administrateur = new Administrateur(
+                    rs.getLong("idAdministrateur"),
+                    rs.getString("nom"),
+                    rs.getString("prenom"),
+                    rs.getString("date_naissance"),
+                    rs.getString("tel"),
+                    rs.getString("adresse")
+            );
+            return administrateur;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return administrateur;
+        return null;
     }
 }

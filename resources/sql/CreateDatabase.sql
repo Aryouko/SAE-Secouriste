@@ -47,6 +47,18 @@ CREATE TABLE Secouriste (
     CONSTRAINT fk_Secouriste_User FOREIGN KEY (idSecouriste) REFERENCES User(idUser)
 );
 
+-- Table des administrateurs
+CREATE TABLE Administrateur (
+                            idAdministrateur INTEGER,
+                            nom VARCHAR(32) NOT NULL,
+                            prenom VARCHAR(32) NOT NULL,
+                            date_naissance VARCHAR(32),
+                            tel VARCHAR(10),
+                            adresse VARCHAR(64),
+                            CONSTRAINT pk_Administrateur PRIMARY KEY (idAdministrateur),
+                            CONSTRAINT fk_Administrateur_User FOREIGN KEY (idAdministrateur) REFERENCES User(idUser)
+);
+
 -- Table des sports
 CREATE TABLE Sport (
     code INTEGER,
