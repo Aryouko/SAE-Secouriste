@@ -27,11 +27,10 @@ CREATE TABLE Site (
 
 -- Table des utilisateurs
 CREATE TABLE User (
-    idUser INTEGER AUTO_INCREMENT,
+    idUser INTEGER AUTO_INCREMENT UNIQUE,
     login VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     role VARCHAR(32) NOT NULL,
-    CONSTRAINT ck_User UNIQUE,
     CONSTRAINT pk_User PRIMARY KEY (idUser),
     CONSTRAINT ck_User CHECK (login LIKE '%@%.%')
 );
