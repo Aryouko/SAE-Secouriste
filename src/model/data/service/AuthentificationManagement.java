@@ -102,9 +102,10 @@ public class AuthentificationManagement {
                 return LoginResult.INVALID_PASSWORD;
             }
 
-            if ( SecouristeIsCreated() ) {
-                this.user = user;
-                this.secouriste = getSecouristeDAO().findById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
+            this.user = user; // Affecte l'utilisateur courant avant de vérifier le secouriste
+
+            if (SecouristeIsCreated()) {
+                this.secouriste = getSecouristeDAO().findById(this.user.getIdUser());
                 return LoginResult.SUCCESS;
             } else {
                 return LoginResult.INVALID_RESCUER;
@@ -171,12 +172,15 @@ public class AuthentificationManagement {
     }
 
     public boolean SecouristeIsCreated() {
-        boolean isCreated = false;
-        Secouriste secouriste = getSecouristeDAO().findById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
-        if (!(secouriste.getNom() == null || secouriste.getNom().isEmpty())) {
-            isCreated = true;
+        User currentUser = getInstanceAuthentificationManagement().getCurrentUser();
+        if (currentUser == null) {
+            return false;
         }
-        return isCreated;
+        Secouriste secouriste = getSecouristeDAO().findById(currentUser.getIdUser());
+        if (secouriste == null) {
+            return false;
+        }
+        return secouriste.getNom() != null && !secouriste.getNom().isEmpty();
     }
 
     /**
