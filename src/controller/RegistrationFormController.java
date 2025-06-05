@@ -5,6 +5,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import static controller.UtilsController.linkToPage;
+import static controller.UtilsController.showError;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
 public class RegistrationFormController {
@@ -30,7 +31,11 @@ public class RegistrationFormController {
         String address = addressTextField.getText();
         String phoneNumber = phoneNumberTextField.getText();
 
-        getInstanceAuthentificationManagement().createRescuerFromUser(getInstanceAuthentificationManagement().getCurrentUser().getIdUser() ,name, forename, birthdate, address, phoneNumber);
-        linkToPage(pageRegistrationForm, "/fxml/Connexion.fxml");
+        if (getInstanceAuthentificationManagement().createRescuer(getInstanceAuthentificationManagement().getCurrentUser().getIdUser() ,name, forename, birthdate, address, phoneNumber)) {;
+            System.out.println("Rescuer created successfully.");
+            linkToPage(pageRegistrationForm, "/fxml/Connexion.fxml");
+        } else {
+            showError("Impossible de créer le secouriste. Veuillez vérifier vos informations.");
+        }
     }
 }
