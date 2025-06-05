@@ -3,8 +3,12 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import model.data.service.AuthentificationManagement;
 import static controller.UtilsController.linkToPage;
 import static controller.UtilsController.showError;
+import static model.data.service.AuthentificationManagement.LoginResult.SUCCESS;
+import static model.data.service.AuthentificationManagement.LoginResult.INVALID_PASSWORD;
+import static model.data.service.AuthentificationManagement.LoginResult.INVALID_LOGIN;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
 /**
@@ -62,10 +66,28 @@ public class ConnexionController {
     @FXML
     public void ButtonConnexionClicked() {
         System.out.println("Connexion button clicked");
-        if (getInstanceAuthentificationManagement().login(mailTextField.getText(), passwordPasswordField.getText())) {
-            linkToPage(pageConnexion, "/fxml/FenetreEvenement.fxml");
-        } else {
-            showError("Identifiant ou mot de passe incorrect. Veuillez réessayer.");
+        try {
+            AuthentificationManagement.LoginResult result = getInstanceAuthentificationManagement().login(mailTextField.getText(), passwordPasswordField.getText());
+            if (result == SUCCESS) {
+                linkToPage(pageConnexion, "/fxml/FenetreEvenement.fxml");
+            } else {
+                if (result == INVALID_LOGIN) {
+                    mailTextField.clear();
+                    mailTextField.setPromptText("Adresse mail inconnue");
+                    mailTextField.requestFocus();
+
+                    passwordPasswordField.clear();
+                    passwordPasswordField.requestFocus();
+                }
+                if (result == INVALID_PASSWORD) {
+                    passwordPasswordField.clear();
+                    passwordPasswordField.setPromptText("Mot de passe incorrect");
+                    passwordPasswordField.requestFocus();
+                }
+            }
+        } catch (Exception e) {
+            showError("Une erreur est survenue lors de la connexion. Veuillez réessayer plus tard.");
+            System.err.println("Erreur lors de la connexion : " + e.getMessage());
         }
     }
 }

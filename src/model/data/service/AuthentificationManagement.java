@@ -3,10 +3,8 @@ package model.data.service;
 import model.dao.DAOFactory;
 import model.dao.UserDAO;
 import model.data.persistence.User;
-
 import java.sql.SQLException;
 import java.util.Objects;
-
 import static model.utils.PasswordHashing.hashPassword;
 import static model.utils.PasswordHashing.verifyPassword;
 
@@ -21,7 +19,7 @@ public class AuthentificationManagement {
     /**
      * This class manages the authentication of users.
      */
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
 
     /**
      * Code for password recovery.
@@ -54,18 +52,27 @@ public class AuthentificationManagement {
      */
     public boolean register(String mail, String newPassword, String newPasswordConfirmation) throws SQLException {
         boolean didRegistrationWorked = false;
-
         System.out.println("Registration attempt for login: " + mail);
         if (mail != null && !mail.isEmpty() && !userDAO.doesLoginExist(mail) ) {
             if (newPassword != null && !newPassword.isEmpty() && newPassword.equals(newPasswordConfirmation)) {
-                User user = new User(-1, mail, newPassword);
+                User user = new User(-1, mail, hashPassword(newPassword));
                 userDAO.addUser(user);
                 System.out.println("User registered successfully.");
                 didRegistrationWorked = true;
             }
         }
-
         return didRegistrationWorked;
+    }
+
+
+    /**
+     * Enum representing the possible results of a login attempt.
+     */
+    public enum LoginResult {
+        SUCCESS,
+        INVALID_LOGIN,
+        INVALID_PASSWORD,
+        ERROR
     }
 
     /**
@@ -73,21 +80,24 @@ public class AuthentificationManagement {
      *
      * @param mail    The login of the user.
      * @param password The password of the user.
-     * @return true if the authentication is successful, false otherwise.
+     * @return LoginResult indicating the result of the login attempt.
      */
-    public boolean login(String mail, String password) {
+    public LoginResult login(String mail, String password) {
         try {
             User user = userDAO.getUserByLogin(mail);
-            if (user != null && verifyPassword(password, user.getPassword())) {
-                this.user = user;
-                return true;
-            } else {
-                throw new Exception("Invalid login or password.");
+            if (user == null) {
+                return LoginResult.INVALID_LOGIN;
             }
+            if (!verifyPassword(password, user.getPassword())) {
+                return LoginResult.INVALID_PASSWORD;
+            }
+            this.user = user;
+            return LoginResult.SUCCESS;
         } catch (Exception e) {
+            this.user = null;
             System.err.println("Erreur lors de la connexion : " + e.getMessage());
+            return LoginResult.ERROR;
         }
-        return false;
     }
 
 
@@ -105,6 +115,7 @@ public class AuthentificationManagement {
             return true;
         } else {
             System.out.println("User not found.");
+            this.user = null;
             return false;
         }
     }
@@ -118,7 +129,7 @@ public class AuthentificationManagement {
     public boolean changePassword(long code, String npw1) {
         System.out.print(this.code);
         if (code == this.code) {
-            if (!Objects.equals(npw1, "") && npw1 != null) {
+            if (npw1 != null && !Objects.equals(npw1, "")) {
                 String hashedPassword = hashPassword(npw1); // Hash du nouveau mot de passe
                 userDAO.changePasswordByLogin(user.getLogin(), hashedPassword);
                 user.setPassword(hashedPassword);
@@ -126,6 +137,7 @@ public class AuthentificationManagement {
                 return true;
             }
         }
+        this.user = null;
         return false;
     }
 
