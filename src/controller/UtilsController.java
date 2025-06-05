@@ -1,8 +1,11 @@
 package controller;
 
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
+
 import java.io.IOException;
 
 /**
@@ -51,6 +54,7 @@ public class UtilsController {
             AnchorPane.setBottomAnchor(page, 0.0);
             AnchorPane.setLeftAnchor(page, 0.0);
             AnchorPane.setRightAnchor(page, 0.0);
+
         } catch (IOException e) {
             showError("Erreur lors du chargement de la page : " + fxmlPath);
         }
