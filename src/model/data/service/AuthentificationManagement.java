@@ -2,6 +2,7 @@ package model.data.service;
 
 import model.dao.DAOFactory;
 import model.dao.UserDAO;
+import model.data.persistence.Secouriste;
 import model.data.persistence.User;
 import java.sql.SQLException;
 import java.util.Objects;
@@ -30,6 +31,11 @@ public class AuthentificationManagement {
      * User object representing the currently authenticated user.
      */
     private User user;
+
+    /**
+     * User object representing the currently authenticated user.
+     */
+    private Secouriste secouriste;
 
     /**
      * Constructor for AuthentificationManagement
@@ -151,5 +157,7 @@ public class AuthentificationManagement {
     public User getCurrentUser() {
         return this.user;
     }
+
+
 }
 
