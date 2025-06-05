@@ -27,6 +27,7 @@ public class ProfilController {
     @FXML
     Button notifBouton;
 
+    /*
     @FXML
     public void initialize() {
         AuthentificationManagement auth = new AuthentificationManagement();
@@ -47,4 +48,6 @@ public class ProfilController {
         myCircle.setFill(new ImagePattern(image));
 
     }
+    */
+
 }
