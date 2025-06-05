@@ -83,7 +83,7 @@ public class Secouriste {
 
     /**
      * Getter of Tel
-     * 
+     *
      * @return the phone number of the secouriste
      */
     public String getTel(){
