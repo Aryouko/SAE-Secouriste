@@ -14,18 +14,34 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
 
 public class InscriptionController {
 
+    /**
+     * The AnchorPane that serves as the registration page.
+     */
     @FXML
     private TextField labelMail;
 
+    /**
+     * The PasswordField for entering the password.
+     */
     @FXML
     private PasswordField labelPassword;
 
+    /**
+     * The PasswordField for confirming the new password.
+     */
     @FXML
     private PasswordField newPasswordConfirmation;
 
+    /**
+     * The AnchorPane that contains the registration page layout.
+     */
     @FXML
     private AnchorPane pageRegister;
 
+    /**
+     * Initializes the InscriptionController by setting up the registration page.
+     * This method is called automatically when the FXML file is loaded.
+     */
     @FXML
     public void ButtonRegisterClicked() {
         try {
@@ -42,6 +58,9 @@ public class InscriptionController {
         }
     }
 
+    /**
+     * Links to the login page when the "Already have an account? Log in" link is clicked.
+     */
     @FXML
     private void linkToConnexion() {
         linkToPage(pageRegister, "/fxml/Connexion.fxml");
