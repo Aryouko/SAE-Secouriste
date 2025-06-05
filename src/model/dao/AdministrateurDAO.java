@@ -45,15 +45,17 @@ public class AdministrateurDAO {
 
             stmt.setLong(1, idAdministrateur);
             ResultSet rs = stmt.executeQuery();
-            Administrateur administrateur = new Administrateur(
-                    rs.getLong("idAdministrateur"),
-                    rs.getString("nom"),
-                    rs.getString("prenom"),
-                    rs.getString("date_naissance"),
-                    rs.getString("tel"),
-                    rs.getString("adresse")
-            );
-            return administrateur;
+            if (rs.next()) {
+                Administrateur administrateur = new Administrateur(
+                        rs.getLong("idAdministrateur"),
+                        rs.getString("nom"),
+                        rs.getString("prenom"),
+                        rs.getString("date_naissance"),
+                        rs.getString("tel"),
+                        rs.getString("adresse")
+                );
+                return administrateur;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
