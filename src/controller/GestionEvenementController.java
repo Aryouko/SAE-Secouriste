@@ -88,11 +88,14 @@ public class GestionEvenementController {
             gridPane.setMaxSize(369, 376);
             gridPane.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10; -fx-border-color: #A0A0A0; -fx-border-width: 1px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 4);");
 
-            Label sport = new Label(dps.getSport().getNom());
-            sport.setStyle("-fx-font-size: 32;");
+            Label titre = new Label(dps.getName());
+            titre.setStyle("-fx-font-size: 32;");
 
-            Label site = new Label(dps.getSite().getNom());
-            site.setStyle("-fx-font-size: 12;");
+            Label sport = new Label("Sport : " + dps.getSport().getNom());
+            sport.setStyle("-fx-font-size: 14;");
+
+            Label site = new Label("Lieu : " + dps.getSite().getNom());
+            site.setStyle("-fx-font-size: 14;");
 
             GridPane subSubGridPane1 = new GridPane();
             subSubGridPane1.setPrefSize(230, 22);
@@ -103,14 +106,16 @@ public class GestionEvenementController {
             Label entre = new Label("au");
             Label fin = new Label(dps.getHoraireFin() + "h");
             jour.setMinWidth(50);
-            dep.setMinWidth(50);
-            entre.setMinWidth(25);
-            fin.setMinWidth(50);
+            dep.setMinWidth(60);
+            entre.setMinWidth(30);
+            fin.setMinWidth(60);
             dep.setAlignment(Pos.CENTER);
             entre.setAlignment(Pos.CENTER);
             fin.setAlignment(Pos.CENTER);
-            dep.setStyle("-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2px; -fx-padding: 6;");
-            fin.setStyle("-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2px; -fx-padding: 6;");
+            jour.setStyle("-fx-font-size: 14;");
+            dep.setStyle("-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2px; -fx-padding: 6; -fx-font-size: 14;");
+            entre.setStyle("-fx-font-size: 14;");
+            fin.setStyle("-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2px; -fx-padding: 6; -fx-font-size: 14;");
 
             subSubGridPane1.add(jour,0,0);
             subSubGridPane1.add(dep,1,0);
@@ -122,9 +127,10 @@ public class GestionEvenementController {
             subGridPane1.setMaxSize(354, 305);
             subGridPane1.setStyle("-fx-background-color: #B9D9FF; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10;");
 
-            subGridPane1.add(sport,0,0);
-            subGridPane1.add(site,0,1);
-            subGridPane1.add(subSubGridPane1,0,2);
+            subGridPane1.add(titre,0,0);
+            subGridPane1.add(sport,0,1);
+            subGridPane1.add(site,0,2);
+            subGridPane1.add(subSubGridPane1,0,3);
 
             GridPane subGridPane2 = new GridPane();
             subGridPane2.setPrefSize(354, 71);
