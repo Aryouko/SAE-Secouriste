@@ -112,8 +112,9 @@ public class GestionSecouristeController {
                 subGridPane1.setMaxSize(354, 305);
                 subGridPane1.setStyle("-fx-background-color: #B9D9FF; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10;");
 
-                subGridPane1.add(certif, 0, 0);
-                subGridPane1.add(subSubGridPane1, 0, 1);
+                subGridPane1.add(personne, 0, 0);
+                subGridPane1.add(certif, 0, 1);
+                subGridPane1.add(subSubGridPane1, 0, 2);
 
                 GridPane subGridPane2 = new GridPane();
                 subGridPane2.setPrefSize(354, 71);
