@@ -3,11 +3,9 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import model.data.persistence.Secouriste;
 import model.data.service.AuthentificationManagement;
 import static controller.UtilsController.linkToPage;
 import static controller.UtilsController.showError;
-import static model.dao.DAOFactory.getSecouristeDAO;
 import static model.data.service.AuthentificationManagement.LoginResult.*;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
@@ -69,7 +67,7 @@ public class ConnexionController {
         try {
             AuthentificationManagement.LoginResult result = getInstanceAuthentificationManagement().login(mailTextField.getText(), passwordPasswordField.getText());
             if (result == SUCCESS) {
-                linkToPage(pageConnexion, "/fxml/FenetreEvenement.fxml");
+                linkToPage(pageConnexion, "/fxml/FenetreGestion.fxml");
             } else if (result ==INVALID_RESCUER) {
                 linkToPage(pageConnexion, "/fxml/RegistrationForm.fxml");
             } else {

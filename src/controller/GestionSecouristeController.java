@@ -35,6 +35,8 @@ public class GestionSecouristeController {
 
     private List<Secouriste> secouristeList;
 
+    private FenetreGestionController fenetreGestionController;
+
     @FXML
     public void initialize() {
 
@@ -172,5 +174,14 @@ public class GestionSecouristeController {
 
         }
         tileInitialize(listSecouriste);
+    }
+
+    public void setFenetreGestionController(FenetreGestionController fenetreGestionController) {
+        this.fenetreGestionController = fenetreGestionController;
+    }
+
+    @FXML
+    public void GestionEvenementButton() {
+        this.fenetreGestionController.loadContent("/fxml/GestionEvenement.fxml");
     }
 }

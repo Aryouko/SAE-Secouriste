@@ -3,7 +3,6 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -23,10 +22,10 @@ import model.data.persistence.Journee;
 public class EvenementController {
 
     @FXML
-    VBox listEvent;
+    private VBox listEvent;
 
     @FXML
-    Label countLabel;
+    private Label countLabel;
 
     @FXML
     public void initialize() {
@@ -63,7 +62,7 @@ public class EvenementController {
             label.setStyle("-fx-text-fill: white; -fx-font-size: 16px");
             String[] months = { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
 
-            Label date = new Label(dps.getJournee().getJour() + " " + months[dps.getJournee().getMois()] + " de " + dps.getHoraireDepart() + "h à " + dps.getHoraireFin() + "h");
+            Label date = new Label(dps.getJournee().getJour() + " " + months[dps.getJournee().getMois() - 1] + " de " + dps.getHoraireDepart() + "h à " + dps.getHoraireFin() + "h");
             date.setStyle("-fx-text-fill: white; -fx-font-size: 12px");
 
             Circle circle = new Circle();
