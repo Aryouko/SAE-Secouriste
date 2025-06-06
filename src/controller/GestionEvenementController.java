@@ -181,6 +181,6 @@ public class GestionEvenementController {
 
     @FXML
     public void GestionSecouristeButton() {
-        this.fenetreGestionController.loadContent("/fxml/GestionSecouriste.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/GestionSecouriste.fxml");
     }
 }

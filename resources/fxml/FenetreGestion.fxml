@@ -9,7 +9,7 @@
 
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
-<AnchorPane prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" style="-fx-background-color: #000000;" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FenetreGestionController">
+<AnchorPane fx:id="FenetreGestion" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" style="-fx-background-color: #000000;" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FenetreGestionController">
    <children>
       <GridPane prefHeight="1026.0" prefWidth="1824.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -20,12 +20,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-             <fx:include source="/fxml/MenuParallele.fxml" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
+             <StackPane fx:id="includePane1" />
              <HBox GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" alignment="CENTER_LEFT">
                  <GridPane.margin>
                       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                  </GridPane.margin>
-                 <StackPane fx:id="includePane" />
+                 <StackPane fx:id="includePane2" />
             </HBox>
          </children>
       </GridPane>
