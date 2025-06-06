@@ -34,6 +34,8 @@ public class GestionEvenementController {
 
     private ArrayList<DPS> dpsList;
 
+    private FenetreGestionController fenetreGestionController;
+
     @FXML
     public void initialize() {
 
@@ -165,5 +167,14 @@ public class GestionEvenementController {
             }
         }
         tileInitialize(listDPS);
+    }
+
+    public void setFenetreGestionController(FenetreGestionController fenetreGestionController) {
+        this.fenetreGestionController = fenetreGestionController;
+    }
+
+    @FXML
+    public void GestionSecouristeButton() {
+        this.fenetreGestionController.loadContent("/fxml/GestionSecouriste.fxml");
     }
 }
