@@ -88,8 +88,8 @@ public class GestionSecouristeController {
 
                 int row = 0;
                 int col = 0;
-                for (String certification : this.certifications) {
-                    Label certLabel = new Label(certification);
+                for (Competence competence : possession.getCompetencesSec()) {
+                    Label certLabel = new Label(competence.getIntitule());
                     certLabel.setMinWidth(50);
                     certLabel.setAlignment(Pos.CENTER);
                     certLabel.setStyle("-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2px; -fx-padding: 6;");

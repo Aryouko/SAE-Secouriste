@@ -23,16 +23,14 @@ public class PossessionDAO {
         Possession ret = null;
         try (Connection con = ConnexionBDD.getConnexion();
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Possession WHERE ID = " + secouriste.getIdSecouriste() + "")) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Possession WHERE SECOURISTE = " + secouriste.getIdSecouriste() + "")) {
+            ArrayList<Competence> competences = new ArrayList<>();
             while (rs.next()) {
-                long id = rs.getLong("ID");
                 String intitule = rs.getString("INTITULE");
 
-                ArrayList<Competence> competences = new ArrayList<>();
-
                 competences.add(new Competence(intitule));
-                ret = new Possession(competences, secouriste);
             }
+            ret = new Possession(competences, secouriste);
         } catch (SQLException ex) {
             ex.printStackTrace ();
         }
