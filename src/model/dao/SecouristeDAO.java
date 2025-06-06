@@ -125,7 +125,7 @@ public class SecouristeDAO {
      * @return a boolean that verify the right fonctionnement.
      */
     public boolean addSecouriste(Secouriste secouriste) {
-        String query = "INSERT INTO Secouriste (idSecouriste, nom, prenom, date_naissance, tel, adresse) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Secouriste (idSecouriste, nom, prenom, date_naissance, adresse, tel) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection con = ConnexionBDD.getConnexion();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
@@ -133,8 +133,9 @@ public class SecouristeDAO {
             stmt.setString(2, secouriste.getNom());
             stmt.setString(3, secouriste.getPrenom());
             stmt.setString(4, secouriste.getDateNaissance());
-            stmt.setString(5, secouriste.getTel());
-            stmt.setString(6, secouriste.getAdresse());
+            stmt.setString(5, secouriste.getAdresse());
+            stmt.setString(6, secouriste.getTel());
+
 
             int inserted = stmt.executeUpdate();
             return inserted > 0;

@@ -47,11 +47,8 @@ public class ProfilController {
             adminSecourLabel.setText("Administrateur");
         }
 
-
         myCircle.setStroke(Color.BLACK);
         Image image = new Image("/images/pdp.png", false);
         myCircle.setFill(new ImagePattern(image));
-
     }
-
 }
