@@ -18,7 +18,11 @@ public class Possession {
      * @param secouriste - a rescuer
      */
     public Possession(ArrayList<Competence> competencesSec, Secouriste secouriste) {
-        this.competencesSec = competencesSec;
+        if  (competencesSec == null) {
+            this.competencesSec = new ArrayList<>();
+        } else {
+            this.competencesSec = competencesSec;
+        }
         this.secouriste = secouriste;
     }
 
