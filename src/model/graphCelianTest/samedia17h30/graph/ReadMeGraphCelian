@@ -4,9 +4,16 @@ et on comprend par derriere. je suis parti sur une structure claire et pas un tr
 1)  Ok Deja je commence par la creation des methodes dans le Dao Necessite, Je fait les methodes
     en Anglais Necessite = SkillNeeded, Dans les methodes Créées :
 
-    - addSkillNeeded( skill, neededSkill )
     - findAll() Le plus Important qui renvoi tt la table que je vais pouvoir utilisé dans la création de graph
-    -
+
+2)  Maintenant j'ai besoin de transformer ma Liste de Necessite en Matrice. J
+    Je vais donc modifier mon fichier MatrixUtils qui contient les methodes de base des matrices.
+    Simplement la creation de la matrice pour le moment
+
+    -private Map<Competence, Integer> MapSkillToHisInt ;  Un attribut qui va permettre de savoir quel nombre est attribue a quel competence
+
+    - private Map<Integer, Integer[]> convertToListInt(List<Necessite> elements) ; Convertit une liste de Necessite en un dictionnaire avec une competence d'un coté (key) et toutes les competences vers qui elle est relié (values)
+    - public static int[][] createAdjacencyMatrix(List<Necessite> elements) Tu lis le nom de la fonction espece de golmon
 
 
 

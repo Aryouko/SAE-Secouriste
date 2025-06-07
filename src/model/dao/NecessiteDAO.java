@@ -10,8 +10,12 @@ import static model.dao.ConnectionBDD.getConnection;
 
 public class NecessiteDAO {
 
+    /**
+     * This method retrieves all Necessite objects from the database.
+     *
+     * @return List<Necessite> a list of all Necessite objects
+     */
     public static List<Necessite> findAll() {
-
         List<Necessite> listSkillNeeded = new ArrayList<>();
         try (Connection con = getConnection();
              Statement stmt = con.createStatement();
@@ -25,12 +29,8 @@ public class NecessiteDAO {
                 listSkillNeeded.add(skillNeeded);
             }
         } catch(SQLException e) {
-
+            e.printStackTrace();
         }
-        return null;
-    }
-
-    public static void addSkillNeeded() {
-
+        return listSkillNeeded;
     }
 }
