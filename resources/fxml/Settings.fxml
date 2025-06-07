@@ -20,14 +20,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SettingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SettingsController">
    <children>
       <FlowPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <VBox prefHeight="1080.0" prefWidth="441.0">
          <children>
             <HBox layoutX="18.0" layoutY="18.0" prefHeight="97.0" prefWidth="402.0" style="-fx-background-color: #18191B; -fx-background-radius: 25;">
                <children>
-                  <ImageView fitHeight="62.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" x="20.0" y="11.0">
+                  <ImageView fx:id="pdp" fitHeight="62.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" x="20.0" y="11.0">
                      <image>
                         <Image url="@../images/pdpChat.png" />
                      </image>
@@ -184,7 +184,7 @@
                </effect>
             </Circle>
             <Circle fill="WHITE" layoutX="304.0" layoutY="217.0" radius="70.0" stroke="WHITE" strokeType="INSIDE" />
-            <ImageView fitHeight="133.0" fitWidth="133.0" layoutX="237.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="pdpProfil" fitHeight="133.0" fitWidth="133.0" layoutX="237.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/pdpChat.png" />
                </image>
@@ -234,7 +234,7 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <Button layoutX="500.0" layoutY="450.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #CCCCCC; -fx-background-radius: 100; -fx-border-radius: 100;">
+            <Button fx:id="btnImporterPdp" layoutX="500.0" layoutY="450.0" mnemonicParsing="false" onAction="#importerPdp" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #CCCCCC; -fx-background-radius: 100; -fx-border-radius: 100;">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -244,19 +244,18 @@
                </graphic>
             </Button>
             <Button layoutX="1057.0" layoutY="370.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #CCCCCC; -fx-background-radius: 5;" text="Annuler" />
-            <Button layoutX="1144.0" layoutY="370.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="Enregistrer" textFill="WHITE" />
+            <Button layoutX="1144.0" layoutY="370.0" mnemonicParsing="false" onAction="#annulerClicked" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="Enregistrer" textFill="WHITE" />
             <ComboBox layoutX="500.0" layoutY="762.0" prefHeight="26.0" prefWidth="325.0" promptText="Type de certification" style="-fx-background-color: #EEEEEE; -fx-border-radius: 5; -fx-border-color: #CCCCCC;" />
             <Button layoutX="500.0" layoutY="804.0" mnemonicParsing="false" prefHeight="98.0" prefWidth="326.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #CCCCCC; -fx-background-radius: 5; -fx-border-radius: 5;" />
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="652.0" layoutY="819.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="653.0" layoutY="832.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Importer.png" />
                </image>
             </ImageView>
-            <Text layoutX="586.0" layoutY="865.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importer" underline="true" />
-            <Text layoutX="636.0" layoutY="865.0" strokeType="OUTSIDE" strokeWidth="0.0" text="une photo au format" />
-            <Text layoutX="581.0" layoutY="886.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SVG, PBG, SVG (800x400px max)" />
-            <TextField layoutX="500.0" layoutY="624.0" prefHeight="62.0" prefWidth="442.0" text="&lt;biographie&gt;" />
-            <TextField layoutX="500.0" layoutY="581.0" prefHeight="26.0" prefWidth="206.0" text="&lt;pseudo&gt;" />
+            <Text layoutX="616.0" layoutY="874.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importer" underline="true" />
+            <Text layoutX="665.0" layoutY="874.0" strokeType="OUTSIDE" strokeWidth="0.0" text="un pdf" />
+            <TextField fx:id="bioField" layoutX="500.0" layoutY="624.0" onAction="#setBio" prefHeight="62.0" prefWidth="442.0" text="&lt;biographie&gt;" />
+            <TextField fx:id="pseudoField" layoutX="500.0" layoutY="581.0" onAction="#setPseudo" prefHeight="26.0" prefWidth="206.0" text="&lt;pseudo&gt;" />
          </children>
       </AnchorPane>
       <Line endX="580.0" endY="450.0" startX="1700.0" startY="450.0" />
