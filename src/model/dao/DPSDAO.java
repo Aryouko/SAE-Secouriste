@@ -13,7 +13,7 @@ public class DPSDAO {
 
     public void insert(DPS dps) {
         String query = "INSERT INTO DPS VALUES (" + dps.getId() + "," + dps.getName() + "," + dps.getHoraireDepart() + "," + dps.getHoraireFin() + "," + dps.getSite().getCode() + "," + dps.getSport().getCode() + "," + dps.getJournee().getJour() + "," + dps.getJournee().getMois() + "," + dps.getJournee().getAnnee() + ")";
-        try (Connection con = ConnexionBDD.getConnexion();
+        try (Connection con = ConnectionBDD.getConnection();
              Statement stmt = con.createStatement()) {
              stmt.executeUpdate(query);
         } catch (SQLException ex) {
@@ -22,7 +22,7 @@ public class DPSDAO {
     }
 
     public void findAll () {
-        try (Connection con = ConnexionBDD.getConnexion();
+        try (Connection con = ConnectionBDD.getConnection();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT d.ID, d.NAME, d.HORAIRE_DEPART, d.HORAIRE_FIN, d.JOUR, d.MOIS, d.ANNEE, s.CODE AS SITE_CODE, s.NOM AS SITE_NOM, s.LONGITUDE AS SITE_LON, s.LATITUDE AS SITE_LAT, sp.CODE AS SPORT_CODE, sp.NOM AS SPORT_NOM FROM DPS d JOIN Site s ON d.CODE_SITE = s.CODE JOIN Sport sp ON d.CODE_SPORT = sp.CODE")) {
              while (rs.next()) {
