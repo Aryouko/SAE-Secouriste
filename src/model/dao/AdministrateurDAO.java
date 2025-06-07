@@ -1,7 +1,6 @@
 package model.dao;
 
 import model.data.persistence.Administrateur;
-import model.data.persistence.Secouriste;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ public class AdministrateurDAO {
     public List<Administrateur> findAll() {
         List<Administrateur> administrateurs = new ArrayList<>();
 
-        try (Connection con = ConnexionBDD.getConnexion();
+        try (Connection con = ConnectionBDD.getConnection();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM Administrateur")) {
 
@@ -40,7 +39,7 @@ public class AdministrateurDAO {
      */
     public Administrateur findById(long idAdministrateur) {
         String query = "SELECT * FROM Administrateur WHERE Administrateur.idAdministrateur = ?";
-        try (Connection con = ConnexionBDD.getConnexion();
+        try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
             stmt.setLong(1, idAdministrateur);

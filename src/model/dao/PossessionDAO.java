@@ -10,7 +10,7 @@ public class PossessionDAO {
     public void insert(Possession possession) {
         for (Competence competence : possession.competencesSec) {
             String query = "INSERT INTO Possession VALUES (" + competence.getIntitule() + "," + possession.getSecouriste().getIdSecouriste() + ")";
-            try (Connection con = ConnexionBDD.getConnexion();
+            try (Connection con = ConnectionBDD.getConnection();
                  Statement stmt = con.createStatement()) {
                 stmt.executeUpdate(query);
             } catch (SQLException ex) {
@@ -21,9 +21,9 @@ public class PossessionDAO {
 
     public Possession find (Secouriste secouriste) {
         Possession ret = null;
-        try (Connection con = ConnexionBDD.getConnexion();
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Possession WHERE SECOURISTE = " + secouriste.getIdSecouriste() + "")) {
+        try (Connection con = ConnectionBDD.getConnection();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM Possession WHERE SECOURISTE = " + secouriste.getIdSecouriste() + "")) {
             ArrayList<Competence> competences = new ArrayList<>();
             while (rs.next()) {
                 String intitule = rs.getString("INTITULE");

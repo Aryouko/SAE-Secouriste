@@ -9,7 +9,7 @@ public class SecouristeDAO {
     public List<Secouriste> findAll() {
         List<Secouriste> secouristes = new ArrayList<>();
 
-        try (Connection con = ConnexionBDD.getConnexion();
+        try (Connection con = ConnectionBDD.getConnection();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM Secouriste")) {
 
@@ -39,7 +39,7 @@ public class SecouristeDAO {
                 "JOIN Disponibilite ON Secouriste.idSecouriste = Disponibilite.secouristeDisp " +
                 "WHERE Disponibilite.journeeDisp = ?";
 
-        try (Connection con = ConnexionBDD.getConnexion();
+        try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
             stmt.setLong(1, idJourFind);
@@ -70,7 +70,7 @@ public class SecouristeDAO {
      */
     public Secouriste findById(long idSecouriste) {
         String query = "SELECT * FROM Secouriste WHERE Secouriste.idSecouriste = ?";
-        try (Connection con = ConnexionBDD.getConnexion();
+        try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
             stmt.setLong(1, idSecouriste);
@@ -100,7 +100,7 @@ public class SecouristeDAO {
      */
     public boolean updateSecouriste(Secouriste secouriste) {
         String query = "UPDATE Secouriste SET nom = ?, prenom = ?, date_naissance = ?, tel = ?, adresse = ? WHERE idSecouriste = ?";
-        try (Connection con = ConnexionBDD.getConnexion();
+        try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
             stmt.setString(1, secouriste.getNom());
@@ -126,7 +126,7 @@ public class SecouristeDAO {
      */
     public boolean addSecouriste(Secouriste secouriste) {
         String query = "INSERT INTO Secouriste (idSecouriste, nom, prenom, date_naissance, adresse, tel) VALUES (?, ?, ?, ?, ?, ?)";
-        try (Connection con = ConnexionBDD.getConnexion();
+        try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
             stmt.setLong(1, secouriste.getIdSecouriste());

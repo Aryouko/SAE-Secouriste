@@ -1,0 +1,12 @@
+Ok l'équipe j'explique tout ce que je fais comme ca je m'en souviens
+et on comprend par derriere. je suis parti sur une structure claire et pas un truc de gros golmon
+
+1)  Ok Deja je commence par la creation des methodes dans le Dao Necessite, Je fait les methodes
+    en Anglais Necessite = SkillNeeded, Dans les methodes Créées :
+
+    - addSkillNeeded( skill, neededSkill )
+    - findAll() Le plus Important qui renvoi tt la table que je vais pouvoir utilisé dans la création de graph
+    -
+
+
+

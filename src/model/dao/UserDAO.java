@@ -24,7 +24,7 @@ public class UserDAO {
         boolean ret = false;
         String query = "SELECT login FROM user WHERE login = ?";
 
-        try (Connection con = ConnexionBDD.getConnexion();
+        try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
             stmt.setString(1, login);  // on remplace le ? par la valeur du login
@@ -50,7 +50,7 @@ public class UserDAO {
         User user = null;
         String query = "SELECT idUser, login, password, role FROM user WHERE login = ?";
 
-        try (Connection con = ConnexionBDD.getConnexion();
+        try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
             stmt.setString(1, login);  // on remplace le ? par la valeur du login
@@ -84,7 +84,7 @@ public class UserDAO {
 
         String updateQuery = "UPDATE user SET password = ? WHERE idUser = ?";
 
-        try (Connection con = ConnexionBDD.getConnexion();
+        try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(updateQuery)) {
 
             stmt.setString(1, hashPassword(newPassword));       // nouveau mot de passe
@@ -112,7 +112,7 @@ public class UserDAO {
         String query = "INSERT INTO user (login, password, role) VALUES (?, ?, ?)";
         int generatedId = -1;
 
-        try (Connection con = ConnexionBDD.getConnexion();
+        try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
 
