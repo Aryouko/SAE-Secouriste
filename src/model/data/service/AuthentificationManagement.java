@@ -17,8 +17,7 @@ public class AuthentificationManagement {
      * instance of Authentication
      */
     private static final AuthentificationManagement instance = new AuthentificationManagement();
-
-
+    
     /**
      * This class manages the authentication of users.
      */
