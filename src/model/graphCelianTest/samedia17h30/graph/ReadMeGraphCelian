@@ -10,10 +10,16 @@ et on comprend par derriere. je suis parti sur une structure claire et pas un tr
     Je vais donc modifier mon fichier MatrixUtils qui contient les methodes de base des matrices.
     Simplement la creation de la matrice pour le moment
 
-    -private Map<Competence, Integer> MapSkillToHisInt ;  Un attribut qui va permettre de savoir quel nombre est attribue a quel competence
+    -private Map<Competence, Integer> MapSkillToHisInt ;  Un attribut qui va permettre de savoir quel nombre est attribue a quel competence. Elle est initialisé dans la premiere methode convertToListInt pour etre correctement sur d'associé les bonnes valeurs.
 
-    - private Map<Integer, Integer[]> convertToListInt(List<Necessite> elements) ; Convertit une liste de Necessite en un dictionnaire avec une competence d'un coté (key) et toutes les competences vers qui elle est relié (values)
+    - private Map<Integer, Integer[]> convertToListInt(List<Necessite> elements) ; Convertit une liste de Necessite en un dictionnaire avec une competence d'un coté (key) et toutes les competences vers qui elle est relié (values), mais init
     - public static int[][] createAdjacencyMatrix(List<Necessite> elements) Tu lis le nom de la fonction espece de golmon
+    - matrixToString pour afficher la matrice mais jsp Override
+
+    / J'ai fait des tests d'affichage dans BasicGraphFunction
 
 
+3) Dans GraphAlgorithms
+
+    - isOriented() verif si la matrice est orienté
 

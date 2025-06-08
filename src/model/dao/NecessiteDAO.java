@@ -15,7 +15,7 @@ public class NecessiteDAO {
      *
      * @return List<Necessite> a list of all Necessite objects
      */
-    public static List<Necessite> findAll() {
+    public List<Necessite> findAll() {
         List<Necessite> listSkillNeeded = new ArrayList<>();
         try (Connection con = getConnection();
              Statement stmt = con.createStatement();

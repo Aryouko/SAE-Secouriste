@@ -53,13 +53,28 @@ SET @idJournee = LAST_INSERT_ID();
 INSERT INTO DPS VALUES (10, 'DPS Matin', 8, 12, 1, 1, @idJournee);
 INSERT INTO DPS VALUES (20, 'DPS Après-midi', 14, 18, 1, 1, @idJournee);
 
-INSERT INTO Competence (intitule) VALUES ('PSC1');
+INSERT INTO Competence (intitule) VALUES ('PSE1');
 INSERT INTO Competence (intitule) VALUES ('PSE2');
+INSERT INTO Competence (intitule) VALUES ('CE');
+INSERT INTO Competence (intitule) VALUES ('CP');
+INSERT INTO Competence (intitule) VALUES ('CO');
+INSERT INTO Competence (intitule) VALUES ('SSA');
+INSERT INTO Competence (intitule) VALUES ('VPSP');
+INSERT INTO Competence (intitule) VALUES ('PBC');
+INSERT INTO Competence (intitule) VALUES ('PBF');
+
+INSERT INTO Necessite VALUES ('PSE1', 'PSE2');
+INSERT INTO Necessite VALUES ('PSE2', 'CE');
+INSERT INTO Necessite VALUES ('CE', 'CP');
+INSERT INTO Necessite VALUES ('CP', 'CO');
+INSERT INTO Necessite VALUES ('SSA', 'PSE1');
+INSERT INTO Necessite VALUES ('VPSP', 'PSE2');
+INSERT INTO Necessite VALUES ('PBF', 'PBC');
 
 -- On suppose que les secouristes 1 et 2, les DPS 10 et 20, et les compétences 'PSC1' et 'PSE2' existent déjà
-INSERT INTO Affectation VALUES (1, 10, 'PSC1');
+INSERT INTO Affectation VALUES (1, 10, 'PSE1');
 INSERT INTO Affectation VALUES (2, 10, 'PSE2');
 INSERT INTO Affectation VALUES (1, 20, 'PSE2');
-INSERT INTO Affectation VALUES (2, 20, 'PSC1');
+INSERT INTO Affectation VALUES (2, 20, 'PSE1');
 
 
