@@ -6,6 +6,7 @@ public class DAOFactory {
     private static DPSDAO dpsDAO;
     private static JourneeDAO journeeDAO;
     private static UserDAO userDAO;
+    private static NecessiteDAO NecessiteDAO;
 
     /**
      * Returns a singleton instance of SecouristeDAO.
@@ -57,5 +58,17 @@ public class DAOFactory {
             userDAO = new UserDAO();
         }
         return userDAO;
+    }
+
+    /**
+     *
+     *
+     * @return
+     */
+    public static NecessiteDAO getNecessiteDAO() {
+        if (NecessiteDAO == null) {
+            NecessiteDAO = new NecessiteDAO();
+        }
+        return NecessiteDAO;
     }
 }
