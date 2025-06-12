@@ -1,14 +1,9 @@
 package model.graphCelianTest.samedia17h30.graph;
 
-import model.dao.CompetenceDAO;
-import model.dao.DisponibiliteDAO;
-import model.dao.PossessionDAO;
-import model.dao.SecouristeDAO;
-import model.data.persistence.Competence;
-import model.data.persistence.DPS;
-import model.data.persistence.Journee;
-import model.data.persistence.Secouriste;
+import model.dao.*;
+import model.data.persistence.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,23 +14,45 @@ public class AssignmentGreedy {
 
     private ArrayList<Secouriste> secouristesAssignement;
 
+    /**
+     * Constructeur permettant
+     * @param dps
+     * @param competencesUtiles
+     */
     public AssignmentGreedy(DPS dps, ArrayList<Competence> competencesUtiles) {
         if (dps == null || competencesUtiles == null) {
             throw new IllegalArgumentException("Les arguments ne peut pas null");
         }
         this.secouristesAssignement = new ArrayList<>();
         Journee journee = dps.getJournee();
-        List<Secouriste> secouristes = new SecouristeDAO().findByDay(new DisponibiliteDAO().findIdByJour(journee.getJour(), journee.getMois(), journee.getAnnee()));
+        List<Secouriste> secouristes = secouristesDisponible(journee);
+
         if (secouristes == null) {
             throw new IllegalArgumentException("Il n'y a pas de secouristes de disponible");
         }
         ArrayList<ArrayList<Long>> tabSecouComp = tabSecouComp(secouristes);
         while (!competencesUtiles.isEmpty()) {
+            Competence competenceSelect = new Competence(this.competences.get(indiceCompetenceSelectionne(tabSecouComp,  competencesUtiles)));
             Secouriste secouristeSelect = SecouristeSelectionne(tabSecouComp, competencesUtiles);
             this.secouristesAssignement.add(secouristeSelect);
             retirerSecouristeComp(secouristeSelect, competencesUtiles, tabSecouComp);
-
+            new AffectationDAO().insert(new Affectation(secouristeSelect, dps, competenceSelect));
         }
+    }
+
+    private List<Secouriste> secouristesDisponible(Journee journee) {
+        List<Secouriste> secouristesJour = new SecouristeDAO().findByDay(new JourneeDAO().findIdByJour(journee.getJour(), journee.getMois(), journee.getAnnee()));
+        List<Secouriste> ret = new ArrayList<>();
+
+        for (Secouriste secouriste : secouristesJour) {
+            long idJournee = new JourneeDAO().findIdByJour(journee.getJour(), journee.getMois(), journee.getAnnee());
+            long idSecouriste = secouriste.getIdSecouriste();
+            if (!new AffectationDAO().rescuerThisDay(idJournee, idSecouriste)) {
+                ret.add(secouriste);
+            }
+        }
+
+        return ret;
     }
 
     private ArrayList<ArrayList<Long>> tabSecouComp(List<Secouriste> secouristes) {
