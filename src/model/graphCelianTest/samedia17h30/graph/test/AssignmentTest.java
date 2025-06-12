@@ -13,6 +13,7 @@ public class AssignmentTest {
     public static void main(String[] args) {
         AssignmentGreedy assignmentGreedy = new AssignmentGreedy();
         ArrayList<Secouriste> secouristes = assignmentGreedy.AssignmentGreedy(new DPSDAO().findAll().get(0));
+        System.out.println("secouristes size: " + secouristes.size());
         for (Secouriste secouriste : secouristes) {
             System.out.println(secouriste.getNom() + " " + secouriste.getPrenom());
         }
