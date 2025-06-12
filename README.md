@@ -8,7 +8,7 @@
 - @c0w5lip: Calendrier + Map
 - @Aryouko: Gestion des DPS/Secouristes / backend global
 - Célian: Profil / Notofications / Peaufinage frontend
-- Glen: ?
+- Glen: Graphes / Assignments
 
 
 DAO :
