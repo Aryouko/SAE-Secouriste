@@ -32,7 +32,7 @@ public class GraphAlgorithms {
      * @param inProcess - the list that contains true if a vertex is going to be studied from the current vertex, false otherwise
      * @return true if a cycle is detected, false otherwise
      */
-    private static boolean cycleDetected(int[][] adjMatrix, int v, boolean[] visited, boolean[] inProcess) {
+    static boolean cycleDetected(int[][] adjMatrix, int v, boolean[] visited, boolean[] inProcess) {
         visited[v] = true;
         inProcess[v] = true;
 
