@@ -35,9 +35,7 @@ public class SecouristeDAO {
      */
     public List<Secouriste> findByDay(long idJourFind) {
         List<Secouriste> secouristes = new ArrayList<>();
-        String query = "SELECT * FROM Secouriste " +
-                "JOIN Disponibilite ON Secouriste.idSecouriste = Disponibilite.secouristeDisp " +
-                "WHERE Disponibilite.journeeDisp = ?";
+        String query = "SELECT * FROM Secouriste WHERE idSecouriste = ? ";
 
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
