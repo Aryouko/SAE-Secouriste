@@ -10,12 +10,12 @@ import java.util.List;
 
 public class AssignmentGreedy {
 
-    private ArrayList<String> competences = new ArrayList<>(Arrays.asList("PSE1", "PSE2", "SSA", "CE", "VPSP", "CP", "CO", "PBC", "PBF"));
+    private final ArrayList<String> competences = new ArrayList<>(Arrays.asList("PSE1", "PSE2", "SSA", "CE", "VPSP", "CP", "CO", "PBC", "PBF"));
 
     private ArrayList<Secouriste> secouristesAssignement;
 
     /**
-     * Constructeur permettant
+     * Constructeur permettant d'assigner les secouristes
      * @param dps
      * @param competencesUtiles
      */
@@ -23,6 +23,7 @@ public class AssignmentGreedy {
         if (dps == null || competencesUtiles == null) {
             throw new IllegalArgumentException("Les arguments ne peut pas null");
         }
+
         this.secouristesAssignement = new ArrayList<>();
         Journee journee = dps.getJournee();
         List<Secouriste> secouristes = secouristesDisponible(journee);
@@ -30,8 +31,10 @@ public class AssignmentGreedy {
         if (secouristes == null) {
             throw new IllegalArgumentException("Il n'y a pas de secouristes de disponible");
         }
+
         ArrayList<ArrayList<Long>> tabSecouComp = tabSecouComp(secouristes);
-        while (!competencesUtiles.isEmpty()) {
+
+        while (!competencesUtiles.isEmpty() && secouristes.size() > 0) {
             Competence competenceSelect = new Competence(this.competences.get(indiceCompetenceSelectionne(tabSecouComp,  competencesUtiles)));
             Secouriste secouristeSelect = SecouristeSelectionne(tabSecouComp, competencesUtiles);
             this.secouristesAssignement.add(secouristeSelect);
@@ -40,6 +43,11 @@ public class AssignmentGreedy {
         }
     }
 
+    /**
+     * Permettant de récupérer tout les secouristes disponibles
+     * @param journee
+     * @return
+     */
     private List<Secouriste> secouristesDisponible(Journee journee) {
         List<Secouriste> secouristesJour = new SecouristeDAO().findByDay(new JourneeDAO().findIdByJour(journee.getJour(), journee.getMois(), journee.getAnnee()));
         List<Secouriste> ret = new ArrayList<>();
@@ -55,6 +63,12 @@ public class AssignmentGreedy {
         return ret;
     }
 
+    /**
+     * Permettant d'avoi un tableau avec comme 1ère colonne : l'id du secouriste et les autres : les compétences
+     * Il y a 1 quand le secouriste à la compétence et 0 si non
+     * @param secouristes
+     * @return
+     */
     private ArrayList<ArrayList<Long>> tabSecouComp(List<Secouriste> secouristes) {
         ArrayList<ArrayList<Long>> ret = new ArrayList<>();
 
@@ -76,6 +90,12 @@ public class AssignmentGreedy {
         return ret;
     }
 
+    /**
+     * On récupère l'indice de la competence avec le moins de secouristes assignés dans l'attribut competence
+     * @param tabSecouComp
+     * @param competencesUtiles
+     * @return
+     */
     private int indiceCompetenceSelectionne(ArrayList<ArrayList<Long>> tabSecouComp, ArrayList<Competence> competencesUtiles) {
         long[] compNombre = nombreCompetences(tabSecouComp);
         int ret = 0;
@@ -93,6 +113,12 @@ public class AssignmentGreedy {
         return ret;
     }
 
+    /**
+     * Permet de créer un tableau avec pour chaque indices de compétences
+     * le nombre d'occurences qu'il apparait chez les secouristes
+     * @param tabSecouComp
+     * @return
+     */
     private long[] nombreCompetences(ArrayList<ArrayList<Long>> tabSecouComp) {
         long[] ret = new long[competences.size()];
 
@@ -105,6 +131,12 @@ public class AssignmentGreedy {
         return ret;
     }
 
+    /**
+     * Sélectionne les secouristes qui ont la compétence la moins présente
+     * @param tabSecouComp
+     * @param competencesUtiles
+     * @return
+     */
     private ArrayList<ArrayList<Long>> SecouristesSelectionnes(ArrayList<ArrayList<Long>> tabSecouComp, ArrayList<Competence> competencesUtiles) {
         ArrayList<ArrayList<Long>> ret = new ArrayList<>();
         int indCompMoinsRepresente = indiceCompetenceSelectionne(tabSecouComp, competencesUtiles);
@@ -118,6 +150,12 @@ public class AssignmentGreedy {
         return ret;
     }
 
+    /**
+     * Permet de Récupéré le secouriste qui a le moins de compétence dans les secouristes séléctionnés
+     * @param tabSecouComp
+     * @param competencesUtiles
+     * @return
+     */
     private Secouriste SecouristeSelectionne(ArrayList<ArrayList<Long>> tabSecouComp, ArrayList<Competence> competencesUtiles) {
         ArrayList<ArrayList<Long>> secouristes = SecouristesSelectionnes(tabSecouComp, competencesUtiles);
         int indMin = 0;
@@ -138,6 +176,13 @@ public class AssignmentGreedy {
         return new SecouristeDAO().findById(indMin);
     }
 
+    /**
+     * Permet après avoir trouvé le secouriste de le supprimer de la liste et d'enlever
+     * la competence utile qui a été attribué
+     * @param secouriste
+     * @param competencesUtiles
+     * @param tabSecouComp
+     */
     private void retirerSecouristeComp (Secouriste secouriste, ArrayList<Competence> competencesUtiles, ArrayList<ArrayList<Long>> tabSecouComp) {
         for (int i = 0; i < tabSecouComp.size(); i++) {
             if (tabSecouComp.get(i).get(0) == secouriste.getIdSecouriste()) {
