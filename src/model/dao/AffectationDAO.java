@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class AffectationDAO {
 
     public void insert(Affectation affectation) {
-        String query = "INSERT INTO Disponibilite VALUES (?, ?, ?)";
+        String query = "INSERT INTO Affectation VALUES (?, ?, ?)";
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 

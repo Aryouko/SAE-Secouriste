@@ -99,9 +99,8 @@ CREATE TABLE DPS (
 
 -- Table des besoins (liée à DPS)
 CREATE TABLE Besoin (
-    competence VARCHAR(64),
     dps INTEGER,
-    nombre INTEGER,
+    competence VARCHAR(64),
     CONSTRAINT pk_Besoin PRIMARY KEY (competence, dps),
     CONSTRAINT fk_Besoin_Competence FOREIGN KEY (competence) REFERENCES Competence(intitule),
     CONSTRAINT fk_Besoin_DPS FOREIGN KEY (dps) REFERENCES DPS(id)
