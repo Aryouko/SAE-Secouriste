@@ -2,6 +2,18 @@
 
 
 
+
+# TO-DO
+
+- IHM
+    - Ajouter un bouton pour ajouter un secouriste
+    - Ajouter un bouton pour supprimer un secouriste
+- POO
+- DAO
+    - Ajouter un DAO pour les dispositifs
+    - Ajouter un DAO pour les jours
+
+
 DAO :
 
 A quoi ca sert :
