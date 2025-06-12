@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import model.data.persistence.DPS;
 import model.data.persistence.Site;
@@ -21,10 +22,11 @@ public class DPSDAO {
         }
     }
 
-    public void findAll () {
+    public ArrayList<DPS> findAll () {
+        ArrayList<DPS> dpsList = new ArrayList<>();
         try (Connection con = ConnectionBDD.getConnection();
              Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT d.ID, d.NAME, d.HORAIRE_DEPART, d.HORAIRE_FIN, d.JOUR, d.MOIS, d.ANNEE, s.CODE AS SITE_CODE, s.NOM AS SITE_NOM, s.LONGITUDE AS SITE_LON, s.LATITUDE AS SITE_LAT, sp.CODE AS SPORT_CODE, sp.NOM AS SPORT_NOM FROM DPS d JOIN Site s ON d.CODE_SITE = s.CODE JOIN Sport sp ON d.CODE_SPORT = sp.CODE")) {
+             ResultSet rs = stmt.executeQuery("SELECT d.ID, d.NAME, d.HORAIRE_DEPART, d.HORAIRE_FIN, j.JOUR, j.MOIS, j.ANNEE, s.CODE AS SITE_CODE, s.NOM AS SITE_NOM, s.LONGITUDE AS SITE_LON, s.LATITUDE AS SITE_LAT, sp.CODE AS SPORT_CODE, sp.NOM AS SPORT_NOM FROM DPS d JOIN Site s ON d.SITE = s.CODE JOIN Sport sp ON d.SPORT = sp.CODE JOIN Journee j ON j.ID = d.JOURNEE")) {
              while (rs.next()) {
                  // DPS
                  int id = rs.getInt("ID");
@@ -52,9 +54,11 @@ public class DPSDAO {
 
                  // DPS complet
                  DPS dps = new DPS(id, name, horaireDepart, horaireFin, site, sport, journee);
+                 dpsList.add(dps);
              }
         } catch (SQLException ex) {
             ex.printStackTrace ();
         }
+        return dpsList;
     }
 }

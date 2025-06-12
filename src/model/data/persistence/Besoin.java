@@ -1,4 +1,7 @@
 package model.data.persistence;
+
+import java.util.ArrayList;
+
 /**
  * This class stores the number of someone that we need for DPS
  * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
@@ -7,23 +10,41 @@ package model.data.persistence;
 public class Besoin {
 
     /**
-     * Private variable containing the number
+     * Private variable containing the dps
      */
-    int nombre; 
+    DPS dps;
 
     /**
-     * Get the attribute "nombre"
-     * @return the value in "nombre"
+     * Private variable containing the competences
      */
-    public int getNombre() {
-        return this.nombre;
+    ArrayList<Competence> competences;
+
+    /**
+     * Constructor of Besoin class
+     * @param dps - DPS that he needs skills
+     * @param competences - Skills needed
+     */
+    public Besoin(DPS dps, ArrayList<Competence> competences) {
+        if (competences == null || dps == null) {
+            throw new IllegalArgumentException("arguments cannot be null");
+        }
+        this.competences = competences;
+        this.dps = dps;
     }
 
-    /**
-     * Set the attribute "nombre"
-     * @param nombre the new value to "nombre"
-     */
-    public void setNombre(int nombre) {
-        this.nombre = nombre;
+    public ArrayList<Competence> getCompetences() {
+        return this.competences;
+    }
+
+    public void setCompetences(ArrayList<Competence> competences) {
+        this.competences = competences;
+    }
+
+    public DPS getDps() {
+        return this.dps;
+    }
+
+    public void setDps(DPS dps) {
+        this.dps = dps;
     }
 }

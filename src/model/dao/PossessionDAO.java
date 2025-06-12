@@ -26,7 +26,7 @@ public class PossessionDAO {
              ResultSet rs = stmt.executeQuery("SELECT * FROM Possession WHERE SECOURISTE = " + secouriste.getIdSecouriste() + "")) {
             ArrayList<Competence> competences = new ArrayList<>();
             while (rs.next()) {
-                String intitule = rs.getString("INTITULE");
+                String intitule = rs.getString("Competence");
 
                 competences.add(new Competence(intitule));
             }

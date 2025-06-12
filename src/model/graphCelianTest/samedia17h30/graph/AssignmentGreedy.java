@@ -12,35 +12,44 @@ public class AssignmentGreedy {
 
     private final ArrayList<String> competences = new ArrayList<>(Arrays.asList("PSE1", "PSE2", "SSA", "CE", "VPSP", "CP", "CO", "PBC", "PBF"));
 
-    private ArrayList<Secouriste> secouristesAssignement;
-
     /**
      * Constructeur permettant d'assigner les secouristes
      * @param dps
-     * @param competencesUtiles
      */
-    public AssignmentGreedy(DPS dps, ArrayList<Competence> competencesUtiles) {
-        if (dps == null || competencesUtiles == null) {
-            throw new IllegalArgumentException("Les arguments ne peut pas null");
+    public ArrayList<Secouriste> AssignmentGreedy(DPS dps) {
+
+        if (dps == null) {
+            throw new IllegalArgumentException("L'argument est null");
         }
 
-        this.secouristesAssignement = new ArrayList<>();
+        ArrayList<Competence> competencesBesoins = new BesoinDAO().findByDPS(dps).getCompetences();
+
+        if (competencesBesoins.isEmpty()) {
+            throw new IllegalArgumentException("L'argument est null");
+        }
+
+        System.out.println(new BesoinDAO().findByDPS(dps));
+
+
+        ArrayList<Secouriste> secouristesAssignement = new ArrayList<>();
         Journee journee = dps.getJournee();
         List<Secouriste> secouristes = secouristesDisponible(journee);
 
-        if (secouristes == null) {
+        if (secouristes == null || secouristes.isEmpty()) {
             throw new IllegalArgumentException("Il n'y a pas de secouristes de disponible");
         }
 
         ArrayList<ArrayList<Long>> tabSecouComp = tabSecouComp(secouristes);
 
-        while (!competencesUtiles.isEmpty() && secouristes.size() > 0) {
-            Competence competenceSelect = new Competence(this.competences.get(indiceCompetenceSelectionne(tabSecouComp,  competencesUtiles)));
-            Secouriste secouristeSelect = SecouristeSelectionne(tabSecouComp, competencesUtiles);
-            this.secouristesAssignement.add(secouristeSelect);
-            retirerSecouristeComp(secouristeSelect, competencesUtiles, tabSecouComp);
+        while (!competencesBesoins.isEmpty() && secouristes.size() > 0) {
+
+            Competence competenceSelect = new Competence(this.competences.get(indiceCompetenceSelectionne(tabSecouComp,  competencesBesoins)));
+            Secouriste secouristeSelect = SecouristeSelectionne(tabSecouComp, competencesBesoins);
+            secouristesAssignement.add(secouristeSelect);
+            retirerSecouristeComp(secouristeSelect, competencesBesoins, tabSecouComp);
             new AffectationDAO().insert(new Affectation(secouristeSelect, dps, competenceSelect));
         }
+        return secouristesAssignement;
     }
 
     /**
@@ -51,7 +60,6 @@ public class AssignmentGreedy {
     private List<Secouriste> secouristesDisponible(Journee journee) {
         List<Secouriste> secouristesJour = new SecouristeDAO().findByDay(new JourneeDAO().findIdByJour(journee.getJour(), journee.getMois(), journee.getAnnee()));
         List<Secouriste> ret = new ArrayList<>();
-
         for (Secouriste secouriste : secouristesJour) {
             long idJournee = new JourneeDAO().findIdByJour(journee.getJour(), journee.getMois(), journee.getAnnee());
             long idSecouriste = secouriste.getIdSecouriste();
@@ -71,7 +79,9 @@ public class AssignmentGreedy {
      */
     private ArrayList<ArrayList<Long>> tabSecouComp(List<Secouriste> secouristes) {
         ArrayList<ArrayList<Long>> ret = new ArrayList<>();
-
+        if (secouristes == null || secouristes.isEmpty()) {
+            throw new IllegalArgumentException("L'argument est null");
+        }
         for (Secouriste secouriste : secouristes) {
             for (Competence competence : new PossessionDAO().find(secouriste).getCompetencesSec()) {
                 ArrayList<Long> list = new ArrayList<>();

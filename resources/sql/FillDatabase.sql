@@ -77,4 +77,66 @@ INSERT INTO Affectation VALUES (2, 10, 'PSE2');
 INSERT INTO Affectation VALUES (1, 20, 'PSE2');
 INSERT INTO Affectation VALUES (2, 20, 'PSE1');
 
+-- Disponibilités des secouristes
+INSERT INTO Disponibilite VALUES (@idAlice, @idJournee);
+INSERT INTO Disponibilite VALUES (@idBob, @idJournee);
+INSERT INTO Disponibilite VALUES (@idDave, @idJournee);
 
+-- Compétences possédées par les secouristes
+-- Alice
+INSERT INTO Possession VALUES (@idAlice, 'PSE1');
+INSERT INTO Possession VALUES (@idAlice, 'CE');
+INSERT INTO Possession VALUES (@idAlice, 'CP');
+
+-- Bob
+INSERT INTO Possession VALUES (@idBob, 'PSE2');
+INSERT INTO Possession VALUES (@idBob, 'CO');
+INSERT INTO Possession VALUES (@idBob, 'PBC');
+
+-- Dave
+INSERT INTO Possession VALUES (@idDave, 'PSE1');
+INSERT INTO Possession VALUES (@idDave, 'PSE2');
+INSERT INTO Possession VALUES (@idDave, 'SSA');
+
+-- Besoins pour les DPS
+INSERT INTO Besoin VALUES ('PSE1', 10);
+INSERT INTO Besoin VALUES ('CE', 10);
+INSERT INTO Besoin VALUES ('PSE2', 20);
+INSERT INTO Besoin VALUES ('SSA', 20);
+INSERT INTO Besoin VALUES ('VPSP', 20);
+
+-- Ajouter un 2e site et une journée supplémentaire
+INSERT INTO Site (code, nom, longitude, latitude) VALUES (2, 'Gymnase Nord', 2.36, 48.86);
+INSERT INTO Sport (code, nom) VALUES (2, 'Basketball');
+INSERT INTO Journee (jour, mois, annee) VALUES (7, 6, 2025);
+SET @idJournee2 = LAST_INSERT_ID();
+
+-- Nouveau DPS sur la nouvelle journée
+INSERT INTO DPS VALUES (30, 'DPS Soir', 18, 22, 2, 2, @idJournee2);
+
+-- Ajouter des besoins pour ce DPS
+INSERT INTO Besoin VALUES (30, 'PSE1');
+INSERT INTO Besoin VALUES (30, 'PSE2');
+INSERT INTO Besoin VALUES (30, 'PBF');
+
+-- Ajouter un nouveau user et secouriste
+INSERT INTO User (login, password, role) VALUES ('emma@example.com', 'emma', 'rescuer');
+SET @idEmma = LAST_INSERT_ID();
+INSERT INTO Secouriste VALUES (@idEmma, 'Bernard', 'Emma', '020202la', '04040404', 'ailleurs');
+
+-- Compétences d’Emma
+INSERT INTO Possession VALUES (@idEmma, 'PSE1');
+INSERT INTO Possession VALUES (@idEmma, 'PSE2');
+INSERT INTO Possession VALUES (@idEmma, 'PBF');
+
+-- Disponibilités
+INSERT INTO Disponibilite VALUES (@idEmma, @idJournee2);
+INSERT INTO Disponibilite VALUES (@idEmma, @idJournee); -- dispo sur les deux jours
+
+-- Plus de besoins pour tester les combinaisons
+INSERT INTO Besoin VALUES (10, 'CP');
+INSERT INTO Besoin VALUES (10, 'CO');
+
+-- Plus de possessions
+INSERT INTO Possession VALUES (@idBob, 'PSE1'); -- Bob sait PSE1 aussi
+INSERT INTO Possession VALUES (@idDave, 'CO');
