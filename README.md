@@ -5,13 +5,10 @@
 
 # TO-DO
 
-- IHM
-    - Ajouter un bouton pour ajouter un secouriste
-    - Ajouter un bouton pour supprimer un secouriste
-- POO
-- DAO
-    - Ajouter un DAO pour les dispositifs
-    - Ajouter un DAO pour les jours
+- @c0w5lip: Calendrier + Map
+- @Aryouko: Gestion des DPS/Secouristes / backend global
+- Célian: Profil / Notofications / Peaufinage frontend
+- Glen: ?
 
 
 DAO :
