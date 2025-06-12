@@ -62,13 +62,13 @@ public class BesoinDAO {
     }
 
     public void deleteByDPSAndCompetence(DPS dps, Competence competence) {
-        Besoin ret = null;
+        long idBesoin = findByDPSAndCompetence(dps, competence);
         String query = "DELETE FROM Besoin WHERE ID = ?";
 
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
-            stmt.setLong(1, dps.getId());
+            stmt.setLong(1, idBesoin);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
