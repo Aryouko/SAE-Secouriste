@@ -5,7 +5,7 @@
 
 # TO-DO
 
-- @c0w5lip: Calendrier + Map
+- @c0w5lip: Photo de profil + Calendrier + Map
 - @Aryouko: Gestion des DPS/Secouristes / backend global
 - Célian: Profil / Notofications / Peaufinage frontend
 - Glen: Graphes / Assignments
