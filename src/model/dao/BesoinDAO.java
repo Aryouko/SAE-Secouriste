@@ -30,9 +30,7 @@ public class BesoinDAO {
 
             ArrayList<Competence> competences = new ArrayList<>();
             while (rs.next()) {
-                System.out.println(rs.getString("DPS"));
                 String intitule = rs.getString("COMPETENCE");
-                System.out.println(intitule);
                 competences.add(new Competence(intitule));
             }
             ret = new Besoin(dps, competences);
@@ -40,5 +38,40 @@ public class BesoinDAO {
             ex.printStackTrace();
         }
         return ret;
+    }
+
+    public long findByDPSAndCompetence(DPS dps, Competence competence) {
+        long ret = -1;
+        String query = "SELECT ID FROM Besoin WHERE DPS = ? AND COMPETENCE = ? LIMIT 1";
+
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setLong(1, dps.getId());
+            stmt.setString(2, competence.getIntitule());
+            ResultSet rs = stmt.executeQuery();
+
+            ArrayList<Competence> competences = new ArrayList<>();
+            if (rs.next()) {
+                ret = rs.getLong("ID");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return ret;
+    }
+
+    public void deleteByDPSAndCompetence(DPS dps, Competence competence) {
+        Besoin ret = null;
+        String query = "DELETE FROM Besoin WHERE ID = ?";
+
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setLong(1, dps.getId());
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }

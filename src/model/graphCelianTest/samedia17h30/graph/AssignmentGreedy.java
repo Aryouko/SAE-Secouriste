@@ -40,14 +40,22 @@ public class AssignmentGreedy {
         }
 
         ArrayList<ArrayList<Long>> tabSecouComp = tabSecouComp(secouristes);
+        try {
+            while (!competencesBesoins.isEmpty() && secouristes.size() > 0) {
+                Competence competenceSelect = new Competence(this.competences.get(indiceCompetenceSelectionne(tabSecouComp, competencesBesoins)));
+                Secouriste secouristeSelect = SecouristeSelectionne(tabSecouComp, competencesBesoins);
 
-        while (!competencesBesoins.isEmpty() && secouristes.size() > 0) {
+                secouristesAssignement.add(secouristeSelect);
+                retirerSecouristeComp(secouristeSelect, competencesBesoins, tabSecouComp);
 
-            Competence competenceSelect = new Competence(this.competences.get(indiceCompetenceSelectionne(tabSecouComp,  competencesBesoins)));
-            Secouriste secouristeSelect = SecouristeSelectionne(tabSecouComp, competencesBesoins);
-            secouristesAssignement.add(secouristeSelect);
-            retirerSecouristeComp(secouristeSelect, competencesBesoins, tabSecouComp);
-            new AffectationDAO().insert(new Affectation(secouristeSelect, dps, competenceSelect));
+                Affectation affectation = new Affectation(secouristeSelect, dps, competenceSelect);
+                if (!new AffectationDAO().exists(affectation)) {
+                    new AffectationDAO().insert(affectation);
+                }
+                new BesoinDAO().deleteByDPSAndCompetence(dps, competenceSelect);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
         return secouristesAssignement;
     }
@@ -67,7 +75,6 @@ public class AssignmentGreedy {
                 ret.add(secouriste);
             }
         }
-
         return ret;
     }
 
@@ -77,25 +84,30 @@ public class AssignmentGreedy {
      * @param secouristes
      * @return
      */
-    private ArrayList<ArrayList<Long>> tabSecouComp(List<Secouriste> secouristes) {
+    private ArrayList<ArrayList<Long>> tabSecouComp(List<Secouriste> secouristes) throws IllegalArgumentException {
         ArrayList<ArrayList<Long>> ret = new ArrayList<>();
         if (secouristes == null || secouristes.isEmpty()) {
-            throw new IllegalArgumentException("L'argument est null");
+            throw new IllegalArgumentException("Il n'y a pas/plus de secouristes de disponible");
         }
         for (Secouriste secouriste : secouristes) {
+            ArrayList<Long> list = new ArrayList<>();
+            list.add(secouriste.getIdSecouriste());
+
+            ArrayList<String> compSecouriste = new ArrayList<>();
             for (Competence competence : new PossessionDAO().find(secouriste).getCompetencesSec()) {
-                ArrayList<Long> list = new ArrayList<>();
-                list.add(secouriste.getIdSecouriste());
-                for (int i = 0; i < this.competences.size(); i++) {
-                    if (this.competences.get(i).equals(competence.getIntitule())) {
-                        list.add(1L);
-                    } else {
-                        list.add(0L);
-                    }
-                }
-                ret.add(list);
+                compSecouriste.add(competence.getIntitule());
             }
-        }
+
+            for (String compentence : competences) {
+                if (compSecouriste.contains(compentence)) {
+                    list.add(1L);
+                } else {
+                    list.add(0L);
+                }
+            }
+            ret.add(list);
+            }
+
 
         return ret;
     }
@@ -134,7 +146,7 @@ public class AssignmentGreedy {
 
         for (ArrayList<Long> list : tabSecouComp) {
             for (int i = 1; i < list.size(); i++) {
-                ret[i] += list.get(i);
+                ret[i - 1] += list.get(i);
             }
         }
 
@@ -152,7 +164,7 @@ public class AssignmentGreedy {
         int indCompMoinsRepresente = indiceCompetenceSelectionne(tabSecouComp, competencesUtiles);
 
         for (ArrayList<Long> list : tabSecouComp) {
-            if  (list.get(indCompMoinsRepresente) == 1) {
+            if (list.get(indCompMoinsRepresente + 1) == 1) {
                 ret.add(list);
             }
         }
@@ -166,24 +178,28 @@ public class AssignmentGreedy {
      * @param competencesUtiles
      * @return
      */
-    private Secouriste SecouristeSelectionne(ArrayList<ArrayList<Long>> tabSecouComp, ArrayList<Competence> competencesUtiles) {
+    private Secouriste SecouristeSelectionne(ArrayList<ArrayList<Long>> tabSecouComp, ArrayList<Competence> competencesUtiles) throws IllegalArgumentException {
         ArrayList<ArrayList<Long>> secouristes = SecouristesSelectionnes(tabSecouComp, competencesUtiles);
-        int indMin = 0;
+
+        if (secouristes.isEmpty() || secouristes.get(0).isEmpty()) {
+            throw new IllegalArgumentException("Il n'y a plus de secouristes sélectionnables");
+        }
+        long idMin = secouristes.get(0).get(0);
         long valMin = Long.MAX_VALUE;
 
-        for (int i = 0; i < tabSecouComp.size(); i++) {
-            ArrayList<Long> list = secouristes.get(i);
+        for (ArrayList<Long> list : secouristes) {
+            long id = list.get(0);
             int somme = 0;
             for (int x = 1; x < list.size(); x++) {
                 somme += list.get(x);
             }
             if (somme < valMin) {
                 valMin = somme;
-                indMin = i;
+                idMin = id;
             }
         }
 
-        return new SecouristeDAO().findById(indMin);
+        return new SecouristeDAO().findById(idMin);
     }
 
     /**
@@ -193,8 +209,11 @@ public class AssignmentGreedy {
      * @param competencesUtiles
      * @param tabSecouComp
      */
-    private void retirerSecouristeComp (Secouriste secouriste, ArrayList<Competence> competencesUtiles, ArrayList<ArrayList<Long>> tabSecouComp) {
+    private void retirerSecouristeComp (Secouriste secouriste, ArrayList<Competence> competencesUtiles, ArrayList<ArrayList<Long>> tabSecouComp) throws IllegalArgumentException {
         for (int i = 0; i < tabSecouComp.size(); i++) {
+            if (secouriste == null) {
+                throw new IllegalArgumentException("Le secouriste n'a pas été indiqué");
+            }
             if (tabSecouComp.get(i).get(0) == secouriste.getIdSecouriste()) {
                 tabSecouComp.remove(i);
             }
@@ -202,9 +221,9 @@ public class AssignmentGreedy {
 
         int indiceCompetence = indiceCompetenceSelectionne(tabSecouComp, competencesUtiles);
         int taille = competencesUtiles.size();
-        while (competencesUtiles.size() == taille) {
-            if (competencesUtiles.contains(this.competences.get(indiceCompetence))) {
-                competencesUtiles.remove(indiceCompetence);
+        for (int i = 1; i < taille && competencesUtiles.size() == taille; i++) {
+            if (competencesUtiles.get(i).equals(this.competences.get(indiceCompetence))) {
+                competencesUtiles.remove(i);
             }
         }
     }

@@ -16,127 +16,94 @@ DELETE FROM User;
 DELETE FROM Site;
 ALTER TABLE User AUTO_INCREMENT = 1;
 
--- Insertion des utilisateurs et récupération des id
-INSERT INTO User (login, password, role) VALUES ('alice@example.com', 'alice', 'rescuer');
-SET @idAlice = LAST_INSERT_ID();
-INSERT INTO User (login, password, role) VALUES ('bob@example.com', 'bob', 'rescuer');
-SET @idBob = LAST_INSERT_ID();
-INSERT INTO User (login, password, role) VALUES ('carol@example.com', 'carol', 'admin');
-SET @idCarol = LAST_INSERT_ID();
-INSERT INTO User (login, password, role) VALUES ('dave@example.com', 'dave', 'rescuer');
-SET @idDave = LAST_INSERT_ID();
-INSERT INTO User (login, password, role) VALUES ('admin@admin.com', 'admin', 'admin');
-SET @idAdmin = LAST_INSERT_ID();
+-- Insertion des sites
+INSERT INTO Site (code, nom, longitude, latitude) VALUES
+                                                      (1, 'Stade Central', 2.35, 48.85),
+                                                      (2, 'Gymnase Nord', 2.36, 48.86);
 
--- Insertion des secouristes avec les bons id
-INSERT INTO Secouriste VALUES (@idAlice, 'Dupont', 'Alice', '010101la', '03030303', 'labas');
-INSERT INTO Secouriste VALUES (@idBob, 'Martin', 'Bob', '010101la', '03030303', 'labas');
-INSERT INTO Secouriste VALUES (@idDave, 'Durand', 'Dave', '010101la', '03030303', 'labas');
+-- Insertion des sports
+INSERT INTO Sport (code, nom) VALUES
+                                  (1, 'Football'),
+                                  (2, 'Basketball');
+
+-- Insertion des journées
+INSERT INTO Journee (jour, mois, annee) VALUES
+                                            (6, 6, 2025),
+                                            (7, 6, 2025);
+SET @idJournee1 = 1;
+SET @idJournee2 = 2;
+
+-- Insertion des compétences
+INSERT INTO Competence (intitule) VALUES
+                                      ('PSE1'), ('PSE2'), ('CE'), ('CP'), ('CO'), ('SSA'),
+                                      ('VPSP'), ('PBC'), ('PBF');
+
+-- Insertion des nécessités
+INSERT INTO Necessite VALUES
+                          ('PSE1', 'PSE2'),
+                          ('PSE2', 'CE'),
+                          ('CE', 'CP'),
+                          ('CP', 'CO'),
+                          ('SSA', 'PSE1'),
+                          ('VPSP', 'PSE2'),
+                          ('PBF', 'PBC');
+
+-- Insertion des utilisateurs
+INSERT INTO User (login, password, role) VALUES
+                                             ('alice@example.com', 'alice', 'rescuer'),
+                                             ('bob@example.com', 'bob', 'rescuer'),
+                                             ('carol@example.com', 'carol', 'admin'),
+                                             ('dave@example.com', 'dave', 'rescuer'),
+                                             ('emma@example.com', 'emma', 'rescuer'),
+                                             ('admin@admin.com', 'admin', 'admin');
+SET @idAlice = 1;
+SET @idBob = 2;
+SET @idCarol = 3;
+SET @idDave = 4;
+SET @idEmma = 5;
+SET @idAdmin = 6;
+
+-- Insertion des secouristes
+INSERT INTO Secouriste VALUES
+                           (@idAlice, 'Dupont', 'Alice', '1990-01-01', '0123456789', '123 rue A'),
+                           (@idBob, 'Martin', 'Bob', '1985-02-02', '0123456789', '456 rue B'),
+                           (@idDave, 'Durand', 'Dave', '1995-03-03', '0123456789', '789 rue C'),
+                           (@idEmma, 'Bernard', 'Emma', '1992-04-04', '0123456789', '101 rue D');
 
 -- Insertion des administrateurs
-INSERT INTO Administrateur VALUES (@idCarol, 'Lemoine', 'Carol', '010101la', '03030303', 'labas');
-INSERT INTO Administrateur VALUES (@idAdmin, 'Admin', 'Admin', '010101la', '03030303', 'labas');
+INSERT INTO Administrateur VALUES
+                               (@idCarol, 'Lemoine', 'Carol', '1980-05-05', '0123456789', '202 rue E'),
+                               (@idAdmin, 'Admin', 'Admin', '1970-01-01', '0123456789', '303 rue F');
 
--- Insertion d’un site
-INSERT INTO Site (code, nom, longitude, latitude) VALUES (1, 'Stade Central', 2.35, 48.85);
+-- Insertion des DPS
+INSERT INTO DPS VALUES
+                    (10, 'DPS Matin', 8, 12, 1, 1, @idJournee1),
+                    (20, 'DPS Après-midi', 14, 18, 1, 1, @idJournee1),
+                    (30, 'DPS Soir', 18, 22, 2, 2, @idJournee2);
 
--- Insertion d’un sport
-INSERT INTO Sport (code, nom) VALUES (1, 'Football');
+-- Insertion des besoins
+INSERT INTO Besoin (dps, competence) VALUES
+                                         (10, 'PSE1'), (10, 'CE'), (10, 'CP'), (10, 'CO'),
+                                         (20, 'PSE2'), (20, 'SSA'), (20, 'VPSP'),
+                                         (30, 'PSE1'), (30, 'PSE2'), (30, 'PBF');
 
+-- Insertion des disponibilités
+INSERT INTO Disponibilite VALUES
+                              (@idAlice, @idJournee1),
+                              (@idBob, @idJournee1),
+                              (@idDave, @idJournee1),
+                              (@idEmma, @idJournee1),
+                              (@idEmma, @idJournee2);
 
--- Insertion d’une journée
-INSERT INTO Journee (jour, mois, annee) VALUES ( 6, 6, 2025); -- id auto-incrémenté
-SET @idJournee = LAST_INSERT_ID();
-
--- Récupérer l’id de la journée insérée (ex : 1)
--- Insertion de DPS
-INSERT INTO DPS VALUES (10, 'DPS Matin', 8, 12, 1, 1, @idJournee);
-INSERT INTO DPS VALUES (20, 'DPS Après-midi', 14, 18, 1, 1, @idJournee);
-
-INSERT INTO Competence (intitule) VALUES ('PSE1');
-INSERT INTO Competence (intitule) VALUES ('PSE2');
-INSERT INTO Competence (intitule) VALUES ('CE');
-INSERT INTO Competence (intitule) VALUES ('CP');
-INSERT INTO Competence (intitule) VALUES ('CO');
-INSERT INTO Competence (intitule) VALUES ('SSA');
-INSERT INTO Competence (intitule) VALUES ('VPSP');
-INSERT INTO Competence (intitule) VALUES ('PBC');
-INSERT INTO Competence (intitule) VALUES ('PBF');
-
-INSERT INTO Necessite VALUES ('PSE1', 'PSE2');
-INSERT INTO Necessite VALUES ('PSE2', 'CE');
-INSERT INTO Necessite VALUES ('CE', 'CP');
-INSERT INTO Necessite VALUES ('CP', 'CO');
-INSERT INTO Necessite VALUES ('SSA', 'PSE1');
-INSERT INTO Necessite VALUES ('VPSP', 'PSE2');
-INSERT INTO Necessite VALUES ('PBF', 'PBC');
-
--- On suppose que les secouristes 1 et 2, les DPS 10 et 20, et les compétences 'PSC1' et 'PSE2' existent déjà
-INSERT INTO Affectation VALUES (1, 10, 'PSE1');
-INSERT INTO Affectation VALUES (2, 10, 'PSE2');
-INSERT INTO Affectation VALUES (1, 20, 'PSE2');
-INSERT INTO Affectation VALUES (2, 20, 'PSE1');
-
--- Disponibilités des secouristes
-INSERT INTO Disponibilite VALUES (@idAlice, @idJournee);
-INSERT INTO Disponibilite VALUES (@idBob, @idJournee);
-INSERT INTO Disponibilite VALUES (@idDave, @idJournee);
-
--- Compétences possédées par les secouristes
+-- Insertion des possessions
 -- Alice
-INSERT INTO Possession VALUES (@idAlice, 'PSE1');
-INSERT INTO Possession VALUES (@idAlice, 'CE');
-INSERT INTO Possession VALUES (@idAlice, 'CP');
+INSERT INTO Possession VALUES (@idAlice, 'PSE1'), (@idAlice, 'CE'), (@idAlice, 'CP');
 
 -- Bob
-INSERT INTO Possession VALUES (@idBob, 'PSE2');
-INSERT INTO Possession VALUES (@idBob, 'CO');
-INSERT INTO Possession VALUES (@idBob, 'PBC');
+INSERT INTO Possession VALUES (@idBob, 'PSE2'), (@idBob, 'CO'), (@idBob, 'PBC'), (@idBob, 'PSE1');
 
 -- Dave
-INSERT INTO Possession VALUES (@idDave, 'PSE1');
-INSERT INTO Possession VALUES (@idDave, 'PSE2');
-INSERT INTO Possession VALUES (@idDave, 'SSA');
+INSERT INTO Possession VALUES (@idDave, 'PSE1'), (@idDave, 'PSE2'), (@idDave, 'SSA'), (@idDave, 'CO');
 
--- Besoins pour les DPS
-INSERT INTO Besoin VALUES ('PSE1', 10);
-INSERT INTO Besoin VALUES ('CE', 10);
-INSERT INTO Besoin VALUES ('PSE2', 20);
-INSERT INTO Besoin VALUES ('SSA', 20);
-INSERT INTO Besoin VALUES ('VPSP', 20);
-
--- Ajouter un 2e site et une journée supplémentaire
-INSERT INTO Site (code, nom, longitude, latitude) VALUES (2, 'Gymnase Nord', 2.36, 48.86);
-INSERT INTO Sport (code, nom) VALUES (2, 'Basketball');
-INSERT INTO Journee (jour, mois, annee) VALUES (7, 6, 2025);
-SET @idJournee2 = LAST_INSERT_ID();
-
--- Nouveau DPS sur la nouvelle journée
-INSERT INTO DPS VALUES (30, 'DPS Soir', 18, 22, 2, 2, @idJournee2);
-
--- Ajouter des besoins pour ce DPS
-INSERT INTO Besoin VALUES (30, 'PSE1');
-INSERT INTO Besoin VALUES (30, 'PSE2');
-INSERT INTO Besoin VALUES (30, 'PBF');
-
--- Ajouter un nouveau user et secouriste
-INSERT INTO User (login, password, role) VALUES ('emma@example.com', 'emma', 'rescuer');
-SET @idEmma = LAST_INSERT_ID();
-INSERT INTO Secouriste VALUES (@idEmma, 'Bernard', 'Emma', '020202la', '04040404', 'ailleurs');
-
--- Compétences d’Emma
-INSERT INTO Possession VALUES (@idEmma, 'PSE1');
-INSERT INTO Possession VALUES (@idEmma, 'PSE2');
-INSERT INTO Possession VALUES (@idEmma, 'PBF');
-
--- Disponibilités
-INSERT INTO Disponibilite VALUES (@idEmma, @idJournee2);
-INSERT INTO Disponibilite VALUES (@idEmma, @idJournee); -- dispo sur les deux jours
-
--- Plus de besoins pour tester les combinaisons
-INSERT INTO Besoin VALUES (10, 'CP');
-INSERT INTO Besoin VALUES (10, 'CO');
-
--- Plus de possessions
-INSERT INTO Possession VALUES (@idBob, 'PSE1'); -- Bob sait PSE1 aussi
-INSERT INTO Possession VALUES (@idDave, 'CO');
+-- Emma
+INSERT INTO Possession VALUES (@idEmma, 'PSE1'), (@idEmma, 'PSE2'), (@idEmma, 'PBF');
