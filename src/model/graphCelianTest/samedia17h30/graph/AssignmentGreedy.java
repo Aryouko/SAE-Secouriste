@@ -37,11 +37,6 @@ public class AssignmentGreedy {
 
         ArrayList<ArrayList<Long>> tabSecouComp = tabSecouComp(secouristes);
         try {
-            System.out.println("Initial besoins: ");
-            for (Competence c : competencesBesoins) {
-                System.out.println("- " + c.getIntitule());
-            }
-            System.out.println("Initial tableau secouristes: " + tabSecouComp.size());
             while (!competencesBesoins.isEmpty() && !tabSecouComp.isEmpty()) {
                 int indiceComp = indiceCompetenceSelectionne(tabSecouComp, competencesBesoins);
                 String compIntitule = this.competences.get(indiceComp);
@@ -58,26 +53,17 @@ public class AssignmentGreedy {
                             break;
                         }
                     }
-                    System.out.println("Aucun secouriste ne possède la compétence : " + competenceSelect.getIntitule() + ". On passe à la suivante.");
-                    System.out.println(competencesBesoins);
-                    continue; // Passe à la prochaine itération sans faire d'affectation
-                }
+                } else {
+                    secouristesAssignement.add(secouristeSelect);
+                    retirerSecouristeComp(secouristeSelect, competencesBesoins, tabSecouComp, competenceSelect);
 
-                System.out.println("Initial besoins: ");
-                for (Competence c : competencesBesoins) {
-                    System.out.println("- " + c.getIntitule());
+                    Affectation affectation = new Affectation(secouristeSelect, dps, competenceSelect);
+                    AffectationDAO affectationDAO = new AffectationDAO();
+                    if (!affectationDAO.exists(affectation)) {
+                        affectationDAO.insert(affectation);
+                    }
+                    new BesoinDAO().deleteByDPSAndCompetence(dps, competenceSelect);
                 }
-                System.out.println("Initial tableau secouristes: " + tabSecouComp.size());
-
-                secouristesAssignement.add(secouristeSelect);
-                retirerSecouristeComp(secouristeSelect, competencesBesoins, tabSecouComp, competenceSelect);
-
-                Affectation affectation = new Affectation(secouristeSelect, dps, competenceSelect);
-                AffectationDAO affectationDAO = new AffectationDAO();
-                if (!affectationDAO.exists(affectation)) {
-                    affectationDAO.insert(affectation);
-                }
-                new BesoinDAO().deleteByDPSAndCompetence(dps, competenceSelect);
             }
 
 
@@ -193,18 +179,11 @@ public class AssignmentGreedy {
     private ArrayList<ArrayList<Long>> secouristesSelectionnes(ArrayList<ArrayList<Long>> tabSecouComp, ArrayList<Competence> competencesUtiles) {
         ArrayList<ArrayList<Long>> ret = new ArrayList<>();
         int indCompMoinsRepresente = indiceCompetenceSelectionne(tabSecouComp, competencesUtiles);
-        System.out.println("Indice compétence la moins représentée : " + indCompMoinsRepresente);
-        System.out.println("Compétence ciblée : " + this.competences.get(indCompMoinsRepresente));
 
         for (ArrayList<Long> list : tabSecouComp) {
             if (list.get(indCompMoinsRepresente + 1) == 1) {
                 ret.add(list);
-                System.out.println("Secouriste avec compétence : id=" + list.get(0));
             }
-        }
-
-        if (ret.isEmpty()) {
-            System.out.println("Aucun secouriste ne possède la compétence ciblée.");
         }
 
         return ret;
