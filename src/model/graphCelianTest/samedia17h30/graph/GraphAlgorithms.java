@@ -1,9 +1,10 @@
 package model.graphCelianTest.samedia17h30.graph;
 
+
 public class GraphAlgorithms {
 
-    public static boolean isOriented(int[][] matrix) {
 
+    public static boolean isOriented(int[][] matrix) {
         int indexL = 0 ;
         for (int[] line : matrix) {
 
