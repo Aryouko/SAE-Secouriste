@@ -1,4 +1,6 @@
 -- Nettoyage comme avant
+USE sae_db;
+
 DELETE FROM Affectation;
 DELETE FROM Necessite;
 DELETE FROM Possession;
@@ -13,6 +15,7 @@ DELETE FROM Secouriste;
 DELETE FROM User;
 DELETE FROM Site;
 ALTER TABLE User AUTO_INCREMENT = 1;
+
 
 -- Insertion sites JO 2030
 INSERT INTO Site (code, nom, longitude, latitude) VALUES

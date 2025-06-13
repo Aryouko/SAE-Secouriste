@@ -79,13 +79,14 @@ public class GestionSecouristeController {
                 gridPane.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10; -fx-border-color: #A0A0A0; -fx-border-width: 1px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 4);");
 
                 Label personne = new Label(secouriste.getNom() + " " + secouriste.getPrenom());
-                personne.setStyle("-fx-font-size: 32;");
+                personne.setStyle("-fx-font-size: 32; -fx-font-weight: bold; -fx-text-fill: #FFFFFF;");
 
                 GridPane subSubGridPane1 = new GridPane();
                 subSubGridPane1.setPrefSize(230, 22);
                 subSubGridPane1.setMaxSize(230, 22);
 
                 Label certif = new Label("Certifications :");
+                certif.setStyle("-fx-text-fill: #FFFFFF;");
 
                 int row = 0;
                 int col = 0;
@@ -94,7 +95,7 @@ public class GestionSecouristeController {
                     certLabel.setMinWidth(50);
                     certLabel.setAlignment(Pos.CENTER);
                     GridPane.setMargin(certLabel, new Insets(5));
-                    certLabel.setStyle("-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2px; -fx-padding: 6;");
+                    certLabel.setStyle("-fx-border-radius: 20; -fx-border-color: #FFFFFF; -fx-text-fill: #FFFFFF; -fx-border-width: 2px; -fx-padding: 6;");
                     if (row == 3) {
                         row = 0;
                         col++;
@@ -113,7 +114,7 @@ public class GestionSecouristeController {
                 GridPane subGridPane1 = new GridPane();
                 subGridPane1.setPrefSize(354, 305);
                 subGridPane1.setMaxSize(354, 305);
-                subGridPane1.setStyle("-fx-background-color: #B9D9FF; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10;");
+                subGridPane1.setStyle("-fx-background-color: #FF4747; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10;");
 
                 subGridPane1.add(personne, 0, 0);
                 subGridPane1.add(certif, 0, 1);
