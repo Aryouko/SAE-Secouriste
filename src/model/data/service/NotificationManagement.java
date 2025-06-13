@@ -15,6 +15,6 @@ public class NotificationManagement {
     public void createNotification(String title, String message, DPS recipientGroup) {
 
         // Get the list of recipients from the DPS in all the all affectations
-        List<Integer> recipients = recipientGroup.getSecouriste(recipientGroup);
+        // List<Integer> recipients = recipientGroup.getSecouriste(recipientGroup);
     }
 }
