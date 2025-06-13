@@ -1,11 +1,14 @@
 package model.dao;
 
 import model.data.persistence.Affectation;
+import model.data.persistence.Secouriste;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AffectationDAO {
 
@@ -62,5 +65,24 @@ public class AffectationDAO {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static List<Integer> findIdRescuerByDPS(long idDPS) {
+        List<Integer> idSecouristes = new ArrayList<>();
+        String query = "SELECT * FROM Affectation WHERE DPSAffect = ?";
+
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setLong(1, idDPS);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                idSecouristes.add(rs.getInt("secouristeAffect"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return idSecouristes;
     }
 }
