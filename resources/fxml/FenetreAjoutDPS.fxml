@@ -20,8 +20,8 @@
       </Label>
       <GridPane layoutX="26.0" layoutY="103.0" prefHeight="536.0" prefWidth="375.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="338.5332946777344" minWidth="10.0" prefWidth="108.4000244140625" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="585.6666564941406" minWidth="10.0" prefWidth="266.7999755859375" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="338.5332946777344" minWidth="10.0" prefWidth="117.59998779296875" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="585.6666564941406" minWidth="10.0" prefWidth="258.40001220703124" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
