@@ -32,7 +32,7 @@ public class SettingsController {
     private String bioInitiale;
 
     @FXML
-    private Button btnImporterPdp;
+    private Image pdpInitiale;
 
     @FXML
     private ImageView pdp;
@@ -40,9 +40,12 @@ public class SettingsController {
     @FXML
     private ImageView pdpProfil;
 
+    /*
     private ImageView pdpInitiale;
 
+     */
 
+/*
     public void initialize() {
         pseudo = "JeanDeLaFontaine";
         pseudoField.setText(pseudo);
@@ -140,4 +143,6 @@ public class SettingsController {
         Circle clip = new Circle(width / 2, height / 2, radius);
         imageView.setClip(clip);
     }
+
+ */
 }

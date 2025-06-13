@@ -2,7 +2,6 @@ package model.dao;
 
 import java.sql.*;
 import java.util.*;
-
 import model.data.persistence.Competence;
 import model.data.persistence.Necessite;
 
