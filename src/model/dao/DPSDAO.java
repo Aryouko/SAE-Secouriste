@@ -1,10 +1,8 @@
 package model.dao;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
+import javafx.scene.chart.ScatterChart;
 import model.data.persistence.DPS;
 import model.data.persistence.Site;
 import model.data.persistence.Sport;
@@ -13,14 +11,51 @@ import model.data.persistence.Journee;
 public class DPSDAO {
 
     public void insert(DPS dps) {
-        String query = "INSERT INTO DPS VALUES (" + dps.getId() + "," + dps.getName() + "," + dps.getHoraireDepart() + "," + dps.getHoraireFin() + "," + dps.getSite().getCode() + "," + dps.getSport().getCode() + "," + dps.getJournee().getJour() + "," + dps.getJournee().getMois() + "," + dps.getJournee().getAnnee() + ")";
-        try (Connection con = ConnectionBDD.getConnection();
-             Statement stmt = con.createStatement()) {
-             stmt.executeUpdate(query);
+        String insertJourneeQuery = "INSERT INTO Journee (jour, mois, annee) VALUES (?, ?, ?)";
+        String insertDPSQuery = "INSERT INTO DPS (id, name, horaire_depart, horaire_fin, site, sport, journee) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection con = ConnectionBDD.getConnection()) {
+            // Commencer transaction
+            con.setAutoCommit(false);
+
+            int journeeId;
+
+            // Insertion dans Journee
+            try (PreparedStatement stmt = con.prepareStatement(insertJourneeQuery, Statement.RETURN_GENERATED_KEYS)) {
+                stmt.setInt(1, dps.getJournee().getJour());
+                stmt.setInt(2, dps.getJournee().getMois());
+                stmt.setInt(3, dps.getJournee().getAnnee());
+                stmt.executeUpdate();
+
+                try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        journeeId = generatedKeys.getInt(1);
+                    } else {
+                        con.rollback();
+                        throw new SQLException("Échec de la récupération de l'ID de la journée.");
+                    }
+                }
+            }
+
+            // Insertion dans DPS
+            try (PreparedStatement stmt2 = con.prepareStatement(insertDPSQuery)) {
+                stmt2.setLong(1, dps.getId());
+                stmt2.setString(2, dps.getName());
+                stmt2.setInt(3, dps.getHoraireDepart());
+                stmt2.setInt(4, dps.getHoraireFin());
+                stmt2.setLong(5, dps.getSite().getCode());
+                stmt2.setLong(6, dps.getSport().getCode());
+                stmt2.setInt(7, journeeId);
+                stmt2.executeUpdate();
+            }
+
+            // Commit transaction
+            con.commit();
         } catch (SQLException ex) {
-            ex.printStackTrace ();
+            ex.printStackTrace();
         }
     }
+
 
     public ArrayList<DPS> findAll () {
         ArrayList<DPS> dpsList = new ArrayList<>();
@@ -62,5 +97,20 @@ public class DPSDAO {
         return dpsList;
     }
 
+    public boolean findById(long id) {
+        boolean ret = false;
+        String query = "SELECT * FROM DPS WHERE ID = ?";
+        try (Connection con = ConnectionBDD.getConnection();
+            PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setLong(1,id);
+            ResultSet rs = stmt.executeQuery();
 
+            if (rs.next()) {
+                ret = true;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return ret;
+    }
 }

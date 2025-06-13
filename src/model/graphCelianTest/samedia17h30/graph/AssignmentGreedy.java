@@ -15,14 +15,14 @@ public class AssignmentGreedy {
      * Constructeur permettant d'assigner les secouristes
      * @param dps - a DPS
      */
-    public ArrayList<Secouriste> AssignmentRescuersGreedy(DPS dps) {
+    public ArrayList<Secouriste> AssignmentRescuersGreedy(DPS dps) throws Exception {
 
         if (dps == null) {
             throw new IllegalArgumentException("L'argument est null");
         }
 
         ArrayList<Competence> competencesBesoins = new BesoinDAO().findByDPS(dps).getCompetences();
-
+        System.out.println("Competences: " + competencesBesoins.size());
         if (competencesBesoins.isEmpty()) {
             throw new IllegalArgumentException("L'argument est null");
         }

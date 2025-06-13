@@ -2,6 +2,7 @@ package model.data.service;
 
 import java.util.ArrayList;
 
+import model.dao.DAOFactory;
 import model.data.persistence.DPS;
 
 public class DPSManagement {
@@ -16,7 +17,7 @@ public class DPSManagement {
     }
 
     public ArrayList<DPS> getListDPS() {
-        return listDPS;
+        return DAOFactory.getDPSDAO().findAll();
     }
 
     public void addDPS(DPS dps) {

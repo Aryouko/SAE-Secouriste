@@ -8,10 +8,12 @@ import java.util.ArrayList;
 public class BesoinDAO {
     public void insert(Besoin besoin) {
         for (Competence competence : besoin.getCompetences()) {
-            String query = "INSERT INTO Besoin VALUES (" + besoin.getDps().getId() + ",'" + competence.getIntitule() + "')";
+            String query = "INSERT INTO Besoin (DPS, COMPETENCE) VALUES (?,?)";
             try (Connection con = ConnectionBDD.getConnection();
-                 Statement stmt = con.createStatement()) {
-                 stmt.executeUpdate(query);
+                 PreparedStatement stmt = con.prepareStatement(query)) {
+                 stmt.setLong(1, besoin.getDps().getId());
+                 stmt.setString(2, competence.getIntitule());
+                 stmt.executeUpdate();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
