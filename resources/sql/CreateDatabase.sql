@@ -16,6 +16,7 @@ DROP TABLE IF EXISTS Administrateur;
 DROP TABLE IF EXISTS Secouriste;
 DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS Site;
+DROP TABLE IF EXISTS Notification;
 
 -- Table des sites
 CREATE TABLE Site (
@@ -143,4 +144,16 @@ CREATE TABLE Affectation (
     CONSTRAINT fk_Affectation_Secouriste FOREIGN KEY (secouristeAffect) REFERENCES Secouriste(idSecouriste),
     CONSTRAINT fk_Affectation_DPS FOREIGN KEY (DPSAffect) REFERENCES DPS(id),
     CONSTRAINT fk_Affectation_Competence FOREIGN KEY (competenceAffect) REFERENCES Competence(intitule)
+);
+
+-- Table Notifications (pour les notifications des affectations)
+CREATE TABLE Notification (
+    title VARCHAR(20) NOT NULL,
+    message VARCHAR(255) NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    sender INTEGER,
+    recipient INTEGER,
+    CONSTRAINT pk_Notification PRIMARY KEY (date, sender, recipient),
+    CONSTRAINT fk_Notification_Sender FOREIGN KEY (sender) REFERENCES Administrateur(idAdministrateur),
+    CONSTRAINT fk_Notification_Recipient FOREIGN KEY (recipient) REFERENCES Secouriste(idSecouriste)
 );

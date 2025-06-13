@@ -56,4 +56,7 @@ public class UtilsController {
             showError("Erreur lors du chargement de la page : " + fxmlPath);
         }
     }
+
+
+
 }
