@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -92,12 +93,14 @@ public class GestionSecouristeController {
                     Label certLabel = new Label(competence.getIntitule());
                     certLabel.setMinWidth(50);
                     certLabel.setAlignment(Pos.CENTER);
+                    GridPane.setMargin(certLabel, new Insets(5));
                     certLabel.setStyle("-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2px; -fx-padding: 6;");
-                    if (col == 3) {
-                        col = 0;
-                        row++;
+                    if (row == 3) {
+                        row = 0;
+                        col++;
                     }
                     subSubGridPane1.add(certLabel, row, col);
+                    row++;
                 }
 
                 for (int i = 0; i < col % 3; i++) {
@@ -164,12 +167,11 @@ public class GestionSecouristeController {
             PossessionDAO possessionDAO = new PossessionDAO();
             boolean verifCert = false;
             for (Competence competence : possessionDAO.find(secouriste).getCompetencesSec()) {
-                if (secouriste.getNom().equals(this.certComboBox.getSelectionModel().getSelectedItem())) {
+                if (competence.getIntitule().equals(this.certComboBox.getSelectionModel().getSelectedItem())) {
                     verifCert = true;
                 }
             }
-            if (verifCert
-                    || this.certComboBox.getSelectionModel().getSelectedItem().equals("Site")) {
+            if (verifCert || this.certComboBox.getSelectionModel().getSelectedItem().equals("Certification")) {
                 listSecouriste.add(secouriste);
             }
 

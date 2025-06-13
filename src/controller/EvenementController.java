@@ -30,21 +30,8 @@ public class EvenementController {
     @FXML
     public void initialize() {
         DPSManagement dpsManagement = new DPSManagement();
-        ArrayList<DPS>  listDPS = new ArrayList<>();
-        Site site1 = new Site(1, "Stade A", 2.35f, 48.85f);
-        Site site2 = new Site(2, "Gymnase B", 2.38f, 48.87f);
+        ArrayList<DPS>  listDPS = dpsManagement.getListDPS();
 
-        Sport sport1 = new Sport(1, "Football");
-        Sport sport2 = new Sport(2, "Basketball");
-
-        Journee jour1 = new Journee(1, 6, 2025);
-        Journee jour2 = new Journee(13, 6, 2025);
-
-        listDPS.add(new DPS(1, "DPS 1", 9, 12, site1, sport1, jour1));
-        listDPS.add(new DPS(2, "DPS 2", 13, 16, site2, sport2, jour1));
-        listDPS.add(new DPS(3, "DPS 3", 10, 15, site1, sport2, jour2));
-        listDPS.add(new DPS(4, "DPS 4", 8, 11, site2, sport1, jour2));
-        listDPS.add(new DPS(5, "DPS 5", 8, 11, site2, sport1, jour2));
         ArrayList<GridPane> list = listDPSToListGridPane(listDPS);
         listEvent.getChildren().clear();
         listEvent.getChildren().addAll(list);

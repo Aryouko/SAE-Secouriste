@@ -2,9 +2,15 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,7 +24,7 @@ public class FenetreGestionController {
     private StackPane includePane2;
 
     @FXML
-    private AnchorPane FenetreGestion;
+    private AnchorPane fenetreGestion;
 
     public void initialize() {
         loadContent1("/fxml/MenuParallele.fxml");
@@ -61,6 +67,31 @@ public class FenetreGestionController {
     }
 
     public AnchorPane getFenetreGestion() {
-        return FenetreGestion;
+        return this.fenetreGestion;
+    }
+
+    public void fenetreCreationDPS() {
+        try {
+            // Charger le FXML de la nouvelle fenêtre (à créer)
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/FenetreAjoutDPS.fxml"));
+            Parent overlayContent = loader.load();
+
+            StackPane overlayPane = new StackPane();
+            overlayPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);"); // fond semi-transparent sombre
+
+            overlayPane.getChildren().add(overlayContent);
+            StackPane.setAlignment(overlayContent, Pos.CENTER);
+
+            AnchorPane.setTopAnchor(overlayPane, 0.0);
+            AnchorPane.setBottomAnchor(overlayPane, 0.0);
+            AnchorPane.setLeftAnchor(overlayPane, 0.0);
+            AnchorPane.setRightAnchor(overlayPane, 0.0);
+
+            this.fenetreGestion.getChildren().add(overlayPane);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
