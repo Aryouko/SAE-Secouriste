@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="notificationFormAnchorPane" prefHeight="722.0" prefWidth="536.0" style="-fx-background-radius: 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.NotificationFormController">
+   <children>
+      <GridPane alignment="CENTER" layoutX="14.0" prefHeight="722.0" prefWidth="536.0" style="-fx-background-color: trensparent;" styleClass="send" stylesheets="@../../css/button.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="122.59998168945313" minHeight="10.0" prefHeight="112.19998779296876" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="98.60001220703126" minHeight="0.0" prefHeight="27.40001220703124" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="206.79999999999998" minHeight="10.0" prefHeight="30.99999389648437" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="370.20000610351565" minHeight="10.0" prefHeight="370.20000610351565" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="subjectTextField" prefHeight="90.0" prefWidth="423.0" promptText="Sujet" style="-fx-background-color: trensparent; -fx-prompt-text-fill: #000000;" stylesheets="@../../css/button.css" GridPane.columnSpan="2">
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Poppins Regular" size="48.0" />
+               </font>
+               <padding>
+                  <Insets left="18.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="input" />
+                  <String fx:value="text-field" />
+               </styleClass>
+            </TextField>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: trensparent;" GridPane.columnIndex="2">
+               <center>
+                  <Button fx:id="closeButtonNotificationForm" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#closeNotificationForm" prefHeight="28.0" prefWidth="51.0" style="-fx-background-radius: 100; -fx-background-color: #FF4747;" styleClass="send" stylesheets="@../../css/button.css" textFill="WHITE" textOverrun="CLIP" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </center>
+            </BorderPane>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="De :" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Poppins Regular" size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="18.0" />
+               </GridPane.margin>
+            </Text>
+            <TextArea fx:id="messageTextArea" prefHeight="0.0" prefWidth="0.0" promptText="Entrer votre message ..." style="-fx-background-color: trensparent;" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="3">
+               <font>
+                  <Font name="Poppins Regular" size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </TextArea>
+            <ComboBox fx:id="dpsComboBox" promptText="Choisir un DPS" style="-fx-background-color: #111113; -fx-background-radius: 20; -fx-prompt-text-fill: #111113;" stylesheets="@../../css/button.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <styleClass>
+                  <String fx:value="input" />
+                  <String fx:value="text-field" />
+               </styleClass>
+            </ComboBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vers :" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Poppins Regular" size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="18.0" />
+               </GridPane.margin>
+            </Text>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: trensparent;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <top>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sendMessage" prefHeight="56.0" prefWidth="250.0" style="-fx-background-radius: 20; -fx-background-color: #111113;" styleClass="send" stylesheets="@../../css/button.css" text="Envoyer" textFill="WHITE" textOverrun="CLIP" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </top>
+            </BorderPane>
+            <Label fx:id="dateTextlabel" text="date" textFill="#00000040" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Poppins Regular" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="fromTextlabel" text="from" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Poppins Regular" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

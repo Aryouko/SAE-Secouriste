@@ -67,9 +67,9 @@ public class AffectationDAO {
         return false;
     }
 
-    public static List<Integer> findIdRescuerByDPS(long idDPS) {
+    public List<Integer> findIdRescuerByDPS(long idDPS) {
         List<Integer> idSecouristes = new ArrayList<>();
-        String query = "SELECT * FROM Affectation WHERE DPSAffect = ?";
+        String query = "SELECT secouristeAffect FROM Affectation WHERE DPSAffect = ?";
 
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
