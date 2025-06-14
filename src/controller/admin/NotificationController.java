@@ -1,28 +1,47 @@
 package controller.admin;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
+import javafx.stage.*;
+import model.data.persistence.DPS;
 
-import java.awt.*;
+import javafx.scene.control.*;
+
+import java.io.IOException;
 
 public class NotificationController {
 
+    // NOTIFICATION VIEW
     @FXML
-    private ScrollPane scrollPane ;
-
+    private ScrollPane scrollPaneNotification ;
     @FXML
-    private Button send ;
+    private Button openFormButton ;
 
+
+    // NOTIFICATION VIEW
     @FXML
     public void initialize() {
-
-
     }
 
     /**
-     * Create a Box Massage to use in the eventController and
+     * openForm
      */
-    @FXML
-    public static void sendMessage() {
-        
+    public void openForm() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/NotificationForm.fxml"));
+        Parent root = loader.load();
+
+        Stage popupStage = new Stage();
+        popupStage.initStyle(StageStyle.TRANSPARENT);
+        Scene scene = new Scene(root);
+        scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+        popupStage.setScene(scene);
+        popupStage.initModality(Modality.APPLICATION_MODAL);
+        popupStage.showAndWait();
     }
 }
