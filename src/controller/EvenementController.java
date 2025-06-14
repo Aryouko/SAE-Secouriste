@@ -10,14 +10,12 @@ import javafx.scene.layout.VBox;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.data.service.DPSManagement;
 import model.data.persistence.DPS;
-import model.data.persistence.Site;
-import model.data.persistence.Sport;
-import model.data.persistence.Journee;
 
 public class EvenementController {
 
@@ -27,10 +25,11 @@ public class EvenementController {
     @FXML
     private Label countLabel;
 
+    private final DPSManagement dpsManagement = new DPSManagement();
+
     @FXML
     public void initialize() {
-        DPSManagement dpsManagement = new DPSManagement();
-        ArrayList<DPS>  listDPS = dpsManagement.getListDPS();
+        List<DPS> listDPS = this.dpsManagement.getDps();
 
         ArrayList<GridPane> list = listDPSToListGridPane(listDPS);
         listEvent.getChildren().clear();
@@ -41,7 +40,7 @@ public class EvenementController {
         countLabel.setText(String.valueOf(listEvent.getChildren().size()));
     }
 
-    private ArrayList<GridPane> listDPSToListGridPane(ArrayList<DPS> listDPS) {
+    private ArrayList<GridPane> listDPSToListGridPane(List<DPS> listDPS) {
         ArrayList<GridPane> list = new ArrayList<>();
         for (int i = 0; i < listDPS.size(); i++) {
             DPS dps = listDPS.get(i);

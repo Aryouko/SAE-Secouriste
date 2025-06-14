@@ -8,11 +8,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import model.dao.BesoinDAO;
-import model.dao.DPSDAO;
-import model.dao.SiteDAO;
-import model.dao.SportDAO;
 import model.data.persistence.*;
+import model.data.service.BesoinManagement;
+import model.data.service.DPSManagement;
+import model.data.service.SiteManagement;
+import model.data.service.SportManagement;
 import model.graphCelianTest.samedia17h30.graph.AssignmentGreedy;
 
 import java.time.LocalDate;
@@ -91,6 +91,14 @@ public class FenetreAjoutDPSController {
 
     private GestionEvenementController gestionEvenementController;
 
+    private final SportManagement sportManagement = new SportManagement();
+
+    private final SiteManagement siteManagement = new SiteManagement();
+
+    private final DPSManagement dpsManagement = new DPSManagement();
+
+    private final BesoinManagement besoinManagement = new BesoinManagement();
+
     public void setGestionEvenementController(GestionEvenementController controller) {
         this.gestionEvenementController = controller;
     }
@@ -103,8 +111,9 @@ public class FenetreAjoutDPSController {
         this.horaireDeb = 8;
         this.horaireFin = 12;
 
-        this.sport = new SportDAO().findAll().get(0);
-        this.site = new SiteDAO().findAll().get(0);
+
+        this.sport = this.sportManagement.getSports().get(0);
+        this.site = this.siteManagement.getSites().get(0);
 
         initializeComboBoxCompetences();
         initializeComboBoxSport();
@@ -149,7 +158,7 @@ public class FenetreAjoutDPSController {
     private void initializeComboBoxSport() {
         this.sportComboBox.getItems().clear();
 
-        for (Sport s : new SportDAO().findAll()) {
+        for (Sport s : this.sportManagement.getSports()) {
             this.sportComboBox.getItems().add(s.getNom());
         }
 
@@ -161,7 +170,7 @@ public class FenetreAjoutDPSController {
     private void initializeComboBoxSite() {
         this.siteComboBox.getItems().clear();
 
-        for (Site s : new SiteDAO().findAll()) {
+        for (Site s : this.siteManagement.getSites()) {
             this.siteComboBox.getItems().add(s.getNom());
         }
 
@@ -233,12 +242,12 @@ public class FenetreAjoutDPSController {
         if (source == this.sportComboBox) {
             String selectedSport = this.sportComboBox.getSelectionModel().getSelectedItem();
             if (selectedSport != null && !selectedSport.equals(this.sport.getNom())) {
-                this.sport = new SportDAO().findByName(selectedSport);
+                this.sport = this.sportManagement.getSportByName(selectedSport);
             }
         } else if (source == this.siteComboBox) {
             String selectedSite = this.siteComboBox.getSelectionModel().getSelectedItem();
             if (selectedSite != null && !selectedSite.equals(this.site.getNom())) {
-                this.site = new SiteDAO().findByName(selectedSite);
+                this.site = this.siteManagement.getSiteByName(selectedSite);
             }
         } else if (source == this.horaireDebComboBox) {
             Integer deb = this.horaireDebComboBox.getSelectionModel().getSelectedItem();
@@ -281,9 +290,8 @@ public class FenetreAjoutDPSController {
             this.infosLabel.setText("Erreur sur les horaires");
             this.infosLabel.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
         } else {
-            DPSDAO dpsDAO = new DPSDAO();
-            long id = dpsDAO.findAll().size();
-            while (dpsDAO.findById(id)) {
+            long id = this.dpsManagement.numberOfDps();
+            while (this.dpsManagement.exists(id)) {
                 id++;
             }
             if (this.nomTextField.getText().isEmpty()) {
@@ -292,7 +300,7 @@ public class FenetreAjoutDPSController {
             } else {
                 Journee journee = new Journee(this.date.getDayOfMonth(), this.date.getMonthValue(), this.date.getYear());
                 dps = new DPS(id, this.nomTextField.getText(), this.horaireDeb, this.horaireFin, this.site, this.sport, journee);
-                new DPSDAO().insert(dps);
+                this.dpsManagement.addDps(dps);
             }
         }
         return dps;
@@ -346,7 +354,7 @@ public class FenetreAjoutDPSController {
                 this.infosLabel.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
             } else {
                 try {
-                    new BesoinDAO().insert(new Besoin(dps, competences));
+                    this.besoinManagement.addBesoin(new Besoin(dps, competences));
                     new AssignmentGreedy().AssignmentRescuersGreedy(dps);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
