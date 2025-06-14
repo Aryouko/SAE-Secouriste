@@ -24,8 +24,9 @@ public class JourneeDAO {
         }
     }
 
-    public Long findIdByJour(int jour, int mois, int annee) {
+    public long findIdByJour(int jour, int mois, int annee) {
         String query = "SELECT id FROM Journee WHERE jour = ? AND mois = ? AND annee = ?";
+        long ret = -1;
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
@@ -35,15 +36,13 @@ public class JourneeDAO {
 
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return rs.getLong("id");
-            } else {
-                return null; // Pas trouvé
+                ret =  rs.getLong("id");
             }
 
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         }
+        return ret;
     }
 }
