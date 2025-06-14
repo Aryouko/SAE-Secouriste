@@ -2,6 +2,7 @@ package model.data.service;
 import model.dao.AffectationDAO;
 import model.data.persistence.Affectation;
 import model.data.persistence.DPS;
+import model.data.persistence.Secouriste;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,5 +29,9 @@ public class AffectationManagement {
 
     public void addAffectation(Affectation affectation) {
         this.affectationDAO.insert(affectation);
+    }
+
+    public List<Affectation> getAffectationsByRescuer(Secouriste secouriste) {
+        return this.affectationDAO.findByRescuer(secouriste.getIdSecouriste());
     }
 }

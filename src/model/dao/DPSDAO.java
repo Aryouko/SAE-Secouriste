@@ -97,16 +97,39 @@ public class DPSDAO {
         return dpsList;
     }
 
-    public boolean findById(long id) {
-        boolean ret = false;
-        String query = "SELECT * FROM DPS WHERE ID = ?";
+    public DPS findById(long idDps) {
+        DPS ret = null;
+        String query = "SELECT d.ID, d.NAME, d.HORAIRE_DEPART, d.HORAIRE_FIN, j.JOUR, j.MOIS, j.ANNEE, s.CODE AS SITE_CODE, s.NOM AS SITE_NOM, s.LONGITUDE AS SITE_LON, s.LATITUDE AS SITE_LAT, sp.CODE AS SPORT_CODE, sp.NOM AS SPORT_NOM FROM DPS d JOIN Site s ON d.SITE = s.CODE JOIN Sport sp ON d.SPORT = sp.CODE JOIN Journee j ON j.ID = d.JOURNEE WHERE d.ID = ?";
         try (Connection con = ConnectionBDD.getConnection();
             PreparedStatement stmt = con.prepareStatement(query)) {
-            stmt.setLong(1,id);
+            stmt.setLong(1,idDps);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                ret = true;
+                // DPS
+                String name = rs.getString("NAME");
+                int horaireDepart = rs.getInt("HORAIRE_DEPART");
+                int horaireFin = rs.getInt("HORAIRE_FIN");
+
+                // Site
+                long siteCode = rs.getLong("SITE_CODE");
+                String siteNom = rs.getString("SITE_NOM");
+                Float siteLongitude = rs.getFloat("SITE_LON");
+                Float siteLatitude = rs.getFloat("SITE_LAT");
+                Site site = new Site(siteCode, siteNom, siteLongitude, siteLatitude); // adapte ce constructeur
+
+                // Sport
+                Long sportCode = rs.getLong("SPORT_CODE");
+                String sportNom = rs.getString("SPORT_NOM");
+                Sport sport = new Sport(sportCode, sportNom); // idem, adapte selon ton modèle
+
+                // Journee
+                int jour = rs.getInt("JOUR");
+                int mois = rs.getInt("MOIS");
+                int annee = rs.getInt("ANNEE");
+                Journee journee = new Journee(jour, mois, annee);
+
+                ret = new DPS(idDps, name, horaireDepart, horaireFin, site, sport, journee);;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

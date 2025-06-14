@@ -18,9 +18,12 @@ public class DPSManagement {
     }
 
     public boolean exists(long id) {
-        return this.dpsDAO.findById(id);
+        return (this.dpsDAO.findById(id) != null);
     }
 
+    public DPS getDpsById(long id) {
+        return this.dpsDAO.findById(id);
+    }
     public long numberOfDps(){
         return this.dpsDAO.findAll().size();
     }

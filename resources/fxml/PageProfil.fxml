@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PageProfilController">
+    <children>
+        <FlowPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <VBox prefHeight="1080.0" prefWidth="441.0">
+            <children>
+                <HBox layoutX="18.0" layoutY="18.0" prefHeight="97.0" prefWidth="402.0" style="-fx-background-color: #18191B; -fx-background-radius: 25;">
+                    <children>
+                        <ImageView fx:id="pdp" fitHeight="62.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" x="20.0" y="11.0">
+                            <image>
+                                <Image url="@../images/pdpChat.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets left="25.0" top="18.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <VBox prefHeight="41.0" prefWidth="189.0">
+                            <children>
+                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Glen POTAY">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                </Text>
+                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Secouriste" wrappingWidth="88.93794631958008">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                            <HBox.margin>
+                                <Insets left="15.0" top="30.0" />
+                            </HBox.margin></VBox>
+                        <AnchorPane prefHeight="98.0" prefWidth="109.0">
+                            <children>
+                                <Button layoutY="20.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: black; -fx-background-radius: 100;">
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/Cloche.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <FlowPane layoutX="30.0" layoutY="10.0" prefHeight="27.0" prefWidth="27.0" style="-fx-background-color: #FF004D; -fx-background-radius: 100;">
+                                    <children>
+                                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="5" textAlignment="CENTER" wrappingWidth="13.668701171875">
+                                            <FlowPane.margin>
+                                                <Insets left="7.0" top="5.0" />
+                                            </FlowPane.margin>
+                                        </Text>
+                                    </children>
+                                </FlowPane>
+                            </children>
+                            <HBox.margin>
+                                <Insets left="50.0" />
+                            </HBox.margin>
+                        </AnchorPane>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="25.0" />
+                    </VBox.margin>
+                </HBox>
+                <GridPane prefHeight="821.0" prefWidth="442.0" style="-fx-background-color: #18191B; -fx-background-radius: 25;">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                    </VBox.margin>
+                    <children>
+                        <ImageView fitHeight="193.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/declaration.png" />
+                            </image>
+                            <GridPane.margin>
+                                <Insets left="40.0" top="30.0" />
+                            </GridPane.margin>
+                        </ImageView>
+                        <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="50.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                            <image>
+                                <Image url="@../images/declaration.png" />
+                            </image>
+                            <GridPane.margin>
+                                <Insets left="30.0" top="30.0" />
+                            </GridPane.margin>
+                        </ImageView>
+                        <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="50.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                            <image>
+                                <Image url="@../images/declaration.png" />
+                            </image>
+                            <GridPane.margin>
+                                <Insets left="40.0" />
+                            </GridPane.margin>
+                        </ImageView>
+                        <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="10.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <image>
+                                <Image url="@../images/declaration.png" />
+                            </image>
+                            <GridPane.margin>
+                                <Insets left="30.0" />
+                            </GridPane.margin>
+                        </ImageView>
+                        <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="10.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                            <image>
+                                <Image url="@../images/declaration.png" />
+                            </image>
+                            <GridPane.margin>
+                                <Insets bottom="30.0" left="40.0" />
+                            </GridPane.margin>
+                        </ImageView>
+                        <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="50.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <image>
+                                <Image url="@../images/declaration.png" />
+                            </image>
+                            <GridPane.margin>
+                                <Insets bottom="30.0" left="30.0" />
+                            </GridPane.margin>
+                        </ImageView>
+                    </children>
+                </GridPane>
+                <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="195.0" style="-fx-background-color: black;" text=" Calendrier" textFill="WHITE" textOverrun="CLIP">
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/CalendarBlanc.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <VBox.margin>
+                        <Insets left="10.0" top="30.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Button>
+            </children>
+        </VBox>
+        <AnchorPane layoutX="446.0" layoutY="25.0" prefHeight="1028.0" prefWidth="1442.0" style="-fx-background-color: white; -fx-background-radius: 30;">
+            <children>
+                <Pane prefHeight="200.0" prefWidth="1442.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #BFB0FE, #877EF2, #3636E1); -fx-background-radius: 30 30 0 0;">
+                    <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1372.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/CercleCroixBleue.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+                <Text layoutX="400.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Glen POTAY" wrappingWidth="457.137451171875">
+                    <font>
+                        <Font name="System Bold" size="32.0" />
+                    </font>
+                </Text>
+                <Circle fill="WHITE" layoutX="210.0" layoutY="217.0" opacity="0.31" radius="70.0" stroke="WHITE" strokeType="INSIDE">
+                    <effect>
+                        <Shadow />
+                    </effect>
+                </Circle>
+                <Circle fill="WHITE" layoutX="210.0" layoutY="210.0" radius="70.0" stroke="WHITE" strokeType="INSIDE" />
+                <ImageView fx:id="pdpProfil" fitHeight="133.0" fitWidth="133.0" layoutX="144.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/pdpChat.png" />
+                    </image>
+                </ImageView>
+            <Text layoutX="179.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Secouriste">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="400.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\@glenpotay56" wrappingWidth="171.96051025390625">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="400.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arradon, Bretagne, France" wrappingWidth="171.96051025390625">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <Pane layoutX="400.0" layoutY="380.0" prefHeight="142.0" prefWidth="512.0" style="-fx-border-color: #CCCCCC; -fx-border-radius: 5;">
+               <children>
+                  <Text layoutX="10.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Déterminé à secourir !" wrappingWidth="496.8000976562502" />
+               </children>
+            </Pane>
+            <Text layoutX="400.0" layoutY="552.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disponiblités" wrappingWidth="171.96051025390625">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="400.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez informer les jours entiers pour lesquels" wrappingWidth="319.69384765625">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="400.0" layoutY="595.0" strokeType="OUTSIDE" strokeWidth="0.0" text="vous êtes disponible" wrappingWidth="319.69384765625">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <Pane layoutX="400.0" layoutY="616.0" prefHeight="350.0" prefWidth="350.0" style="-fx-border-color: #CCCCCC; -fx-border-radius: 25;" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

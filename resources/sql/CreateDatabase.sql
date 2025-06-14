@@ -93,6 +93,7 @@ CREATE TABLE DPS (
     site INTEGER,
     sport INTEGER,
     journee INTEGER,
+    CONSTRAINT uq_name UNIQUE(name),
     CONSTRAINT pk_DPS PRIMARY KEY (id),
     CONSTRAINT fk_DPS_Site FOREIGN KEY (site) REFERENCES Site(code),
     CONSTRAINT fk_DPS_Sport FOREIGN KEY (sport) REFERENCES Sport(code),
