@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import model.dao.PossessionDAO;
+import model.dao.SecouristeDAO;
 import model.data.persistence.*;
 import model.data.service.SecouristeManagement;
 
@@ -38,6 +39,8 @@ public class GestionSecouristeController {
 
     private FenetreGestionController fenetreGestionController;
 
+    private final SecouristeManagement secouristeManagement = new SecouristeManagement();
+
     @FXML
     public void initialize() {
 
@@ -50,7 +53,6 @@ public class GestionSecouristeController {
         this.evenementTile.setStyle("-fx-padding: 50;");
         this.evenementTile.setMaxWidth(1350);
 
-        SecouristeManagement secouristeManagement = new SecouristeManagement();
         this.secouristeList = secouristeManagement.getAllSecouristes();
 
         tileInitialize(this.secouristeList);

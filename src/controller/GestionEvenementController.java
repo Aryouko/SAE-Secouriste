@@ -17,6 +17,7 @@ import model.data.persistence.Sport;
 import model.data.service.DPSManagement;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GestionEvenementController {
 
@@ -33,9 +34,11 @@ public class GestionEvenementController {
 
     private ArrayList<String> sites;
 
-    private ArrayList<DPS> dpsList;
+    private List<DPS> dpsList;
 
     private FenetreGestionController fenetreGestionController;
+
+    private final DPSManagement dpsManagement = new DPSManagement();
 
     @FXML
     public void initialize() {
@@ -49,14 +52,13 @@ public class GestionEvenementController {
         this.evenementTile.setStyle("-fx-padding: 50;");
         this.evenementTile.setMaxWidth(1350);
 
-        DPSManagement dpsManagement = new DPSManagement();
-        this.dpsList = dpsManagement.getListDPS();
+        this.dpsList = this.dpsManagement.getDps();
 
         tileInitialize(this.dpsList);
         comboBoxInitialize();
     }
 
-    private void tileInitialize(ArrayList<DPS> listDPS) {
+    private void tileInitialize(List<DPS> listDPS) {
 
         String[] months = {"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"};
 

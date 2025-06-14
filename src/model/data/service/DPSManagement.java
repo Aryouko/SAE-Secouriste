@@ -1,30 +1,28 @@
 package model.data.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.dao.DAOFactory;
+import model.dao.DPSDAO;
 import model.data.persistence.DPS;
 
 public class DPSManagement {
-    private ArrayList<DPS> listDPS;
+    private final DPSDAO dpsDAO = new DPSDAO();
 
-    public DPSManagement() {
-        listDPS = new ArrayList<>();
+    public List<DPS> getDps(){
+        return this.dpsDAO.findAll();
     }
 
-    public DPSManagement(ArrayList<DPS> listDPS) {
-        this.listDPS = listDPS;
+    public void addDps(DPS dps) {
+        this.dpsDAO.insert(dps);
     }
 
-    public ArrayList<DPS> getListDPS() {
-        return DAOFactory.getDPSDAO().findAll();
+    public boolean exists(long id) {
+        return this.dpsDAO.findById(id);
     }
 
-    public void addDPS(DPS dps) {
-        listDPS.add(dps);
-    }
-
-    public void removeDPS(DPS dps) {
-        listDPS.remove(dps);
+    public long numberOfDps(){
+        return this.dpsDAO.findAll().size();
     }
 }

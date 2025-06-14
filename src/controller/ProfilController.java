@@ -13,7 +13,9 @@ import model.dao.AdministrateurDAO;
 import model.dao.SecouristeDAO;
 import model.data.persistence.Administrateur;
 import model.data.persistence.Secouriste;
+import model.data.service.AdministrateurManagement;
 import model.data.service.AuthentificationManagement;
+import model.data.service.SecouristeManagement;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
@@ -31,18 +33,19 @@ public class ProfilController {
     @FXML
     Button notifBouton;
 
+    private AdministrateurManagement administrateurManagement = new AdministrateurManagement();
+
+    private SecouristeManagement secouristeManagement = new SecouristeManagement();
 
     @FXML
     public void initialize() {
         AuthentificationManagement auth = getInstanceAuthentificationManagement();
         if (auth.getCurrentUser().getRole().equals("rescuer")) {
-            SecouristeDAO secouristeDAO = new SecouristeDAO();
-            Secouriste secouriste = secouristeDAO.findById(auth.getCurrentUser().getIdUser());
+            Secouriste secouriste = secouristeManagement.getSecouristeById(auth.getCurrentUser().getIdUser());
             nomLabel.setText(secouriste.getPrenom() + "  " + secouriste.getNom());
             adminSecourLabel.setText("Secouriste");
         } else {
-            AdministrateurDAO administrateurDAO = new AdministrateurDAO();
-            Administrateur administrateur = administrateurDAO.findById(auth.getCurrentUser().getIdUser());
+            Administrateur administrateur = administrateurManagement.getAdministrateurById(auth.getCurrentUser().getIdUser());
             nomLabel.setText(administrateur.getPrenom() + "  " + administrateur.getNom());
             adminSecourLabel.setText("Administrateur");
         }
