@@ -3,7 +3,6 @@ package controller;
 import javafx.fxml.FXML;
 import java.util.logging.Logger;
 import java.util.logging.Level;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
@@ -27,13 +26,6 @@ public class SettingsController {
     @FXML
     private TextField bioField;
 
-    private String pseudoInitial;
-
-    private String bioInitiale;
-
-    @FXML
-    private Image pdpInitiale;
-
     @FXML
     private ImageView pdp;
 
@@ -41,11 +33,37 @@ public class SettingsController {
     private ImageView pdpProfil;
 
     /*
-    private ImageView pdpInitiale;
+    @FXML
+    private ImageView certif1;
 
-     */
+    @FXML
+    private ImageView certif2;
 
-/*
+    @FXML
+    private ImageView certif3;
+
+    @FXML
+    private ImageView certif4;
+
+    @FXML
+    private ImageView certif5;
+
+    @FXML
+    private ImageView certif6;
+    */
+
+    private String pseudoInitial;
+    private String bioInitiale;
+    private Image pdpInitiale;
+    /*
+    private Image certif1Initiale;
+    private Image certif2Initiale;
+    private Image certif3Initiale;
+    private Image certif4Initiale;
+    private Image certif5Initiale;
+    private Image certif6Initiale;
+    */
+
     public void initialize() {
         pseudo = "JeanDeLaFontaine";
         pseudoField.setText(pseudo);
@@ -58,7 +76,7 @@ public class SettingsController {
 
         pseudoInitial = pseudo;
         bioInitiale = bio;
-        pdpInitiale.setImage(pdp.getImage());
+        pdpInitiale = pdp.getImage();
     }
 
     @FXML
@@ -97,6 +115,10 @@ public class SettingsController {
     private void annulerClicked() {
         pseudoField.setText(pseudoInitial);
         bioField.setText(bioInitiale);
+        pdp.setImage(pdpInitiale);
+        pdpProfil.setImage(pdpInitiale);
+        clipCircle(pdp);
+        clipCircle(pdpProfil);
     }
 
     @FXML
@@ -117,12 +139,10 @@ public class SettingsController {
 
                 pdp.setImage(image);
                 pdpProfil.setImage(image);
-                pdpInitiale.setImage(image);
 
                 // Crop rond
                 clipCircle(pdp);
                 clipCircle(pdpProfil);
-                clipCircle(pdpInitiale);
 
             } catch (Exception e) {
                 LOGGER.log(Level.SEVERE, "Erreur lors du chargement de l'image", e);
@@ -143,6 +163,4 @@ public class SettingsController {
         Circle clip = new Circle(width / 2, height / 2, radius);
         imageView.setClip(clip);
     }
-
- */
 }
