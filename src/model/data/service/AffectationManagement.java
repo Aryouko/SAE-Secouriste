@@ -1,6 +1,10 @@
 package model.data.service;
+import model.dao.AffectationDAO;
 import model.data.persistence.Affectation;
+import model.data.persistence.DPS;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class allow to collect all affectation
@@ -8,29 +12,21 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class AffectationManagement {
-    private ArrayList<Affectation> listAffectation;
+    private final AffectationDAO affectationDAO = new AffectationDAO();
 
-    /**
-     * Constructor for AffectationManagement
-     * @param affectations - an affectation list
-     */
-    public AffectationManagement(ArrayList<Affectation> affectations) {
-        this.listAffectation = affectations;
+    public List<Integer> getIdRescuersByDps(long idDps) {
+        return this.affectationDAO.findIdRescuerByDPS(idDps);
     }
 
-    /**
-     * Method allow to add an affectation
-     * @param affectation - affectation to add
-     */
+    public boolean rescuerAvailable(long idDay, long idRescuer) {
+        return this.affectationDAO.rescuerThisDay(idDay, idRescuer);
+    }
+
+    public boolean isExist(Affectation affectation) {
+        return this.affectationDAO.exists(affectation);
+    }
+
     public void addAffectation(Affectation affectation) {
-        this.listAffectation.add(affectation);
-    }
-
-    /**
-     * Method allow to remove an affectation
-     * @param affectation - affectation to remove
-     */
-    public void removeAffectation(Affectation affectation) {
-        this.listAffectation.remove(affectation);
+        this.affectationDAO.insert(affectation);
     }
 }
