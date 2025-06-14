@@ -100,15 +100,26 @@ public class AffectationDAO {
             stmt.setLong(1, idRescuer);
             ResultSet rs = stmt.executeQuery();
 
+            ArrayList<Object[]> save = new ArrayList<>();
             while (rs.next()) {
                 long idSecouristeAffect = rs.getLong("secouristeAffect");
                 long idDPS = rs.getLong("DPSAffect");
                 String idCompetenceAffect = rs.getString("competenceAffect");
-
-                affectations.add(new Affectation(new SecouristeManagement().getSecouristeById(idSecouristeAffect),
-                        new DPSManagement().getDpsById(idDPS),
-                        new Competence(idCompetenceAffect)));
+                save.add(new Object[]{idSecouristeAffect, idDPS, idCompetenceAffect});
             }
+            for (Object[] row : save) {
+                long idSecouristeAffect = (long) row[0];
+                long idDPS = (long) row[1];
+                String idCompetenceAffect = (String) row[2];
+
+                Affectation affectation = new Affectation(
+                        new SecouristeManagement().getSecouristeById(idSecouristeAffect),
+                        new DPSManagement().getDpsById(idDPS),
+                        new Competence(idCompetenceAffect)
+                );
+                affectations.add(affectation);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

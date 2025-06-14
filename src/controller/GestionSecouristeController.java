@@ -79,7 +79,6 @@ public class GestionSecouristeController {
                 }
 
                 List<Affectation> affectations = this.affectationManagement.getAffectationsByRescuer(secouriste);
-                System.out.println(affectations);
                 for (Affectation affectation : affectations) {
                     if (!this.groupes.contains(affectation.getDPSAffect().getName())) {
                         this.groupes.add(affectation.getDPSAffect().getName());
@@ -117,12 +116,6 @@ public class GestionSecouristeController {
                     row++;
                 }
 
-                for (int i = 0; i < col % 3; i++) {
-                    Label certLabel = new Label();
-                    certLabel.setMinWidth(50);
-                    certLabel.setAlignment(Pos.CENTER);
-                    subSubGridPane1.add(certLabel, row, i);
-                }
 
                 GridPane subGridPane1 = new GridPane();
                 subGridPane1.setPrefSize(354, 305);
