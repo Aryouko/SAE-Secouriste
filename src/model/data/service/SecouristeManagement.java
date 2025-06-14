@@ -15,4 +15,12 @@ public class SecouristeManagement {
     public Secouriste getSecouristeById(long idSecouriste) {
         return secouristeDAO.findById(idSecouriste);
     }
+
+    public List<Secouriste> findAll() {
+        return secouristeDAO.findAll();
+    }
+
+    public List<Secouriste> findByIdJournee(long idJournee) {
+        return secouristeDAO.findByDay(idJournee);
+    }
 }

@@ -99,10 +99,6 @@ public class FenetreAjoutDPSController {
 
     private final BesoinManagement besoinManagement = new BesoinManagement();
 
-    public void setGestionEvenementController(GestionEvenementController controller) {
-        this.gestionEvenementController = controller;
-    }
-
     @FXML
     public void initialize() {
         LocalDate today = LocalDate.now();
@@ -110,7 +106,6 @@ public class FenetreAjoutDPSController {
 
         this.horaireDeb = 8;
         this.horaireFin = 12;
-
 
         this.sport = this.sportManagement.getSports().get(0);
         this.site = this.siteManagement.getSites().get(0);
@@ -353,17 +348,20 @@ public class FenetreAjoutDPSController {
                 this.infosLabel.setText("Erreur sur les competences");
                 this.infosLabel.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
             } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Affectation partielle");
+                alert.setHeaderText("Certaines compétences n'ont pas été affectées");
+                alert.setContentText("Il sera possible de mettre à jour l'affectation plus tard.");
                 try {
                     this.besoinManagement.addBesoin(new Besoin(dps, competences));
                     new AssignmentGreedy().AssignmentRescuersGreedy(dps);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Affectation partielle");
-                    alert.setHeaderText("Certaines compétences n'ont pas été affectées");
-                    alert.setContentText("Il sera possible de mettre à jour l'affectation plus tard.");
                     alert.showAndWait();
                 }
+                if (!this.besoinManagement.getBesoinByDPS(dps).getCompetences().isEmpty()) {
+                    alert.showAndWait();
+                };
                 annuleDPS();
             }
         }

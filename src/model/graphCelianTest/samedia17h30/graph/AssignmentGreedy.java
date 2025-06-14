@@ -1,7 +1,11 @@
 package model.graphCelianTest.samedia17h30.graph;
 
-import model.dao.*;
 import model.data.persistence.*;
+import model.data.service.AffectationManagement;
+import model.data.service.BesoinManagement;
+import model.data.service.JourneeManagement;
+import model.data.service.SecouristeManagement;
+import model.data.service.PossessionManagement;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +14,16 @@ import java.util.List;
 public class AssignmentGreedy {
 
     private final ArrayList<String> competences = new ArrayList<>(Arrays.asList("PSE1", "PSE2", "SSA", "CE", "VPSP", "CP", "CO", "PBC", "PBF"));
+
+    private final BesoinManagement besoinManagement = new BesoinManagement();
+
+    private final AffectationManagement affectationManagement = new AffectationManagement();
+
+    private final SecouristeManagement secouristeManagement = new SecouristeManagement();
+
+    private final JourneeManagement journeeManagement = new JourneeManagement();
+
+    private final PossessionManagement possessionManagement = new PossessionManagement();
 
     /**
      * Constructeur permettant d'assigner les secouristes
@@ -21,7 +35,7 @@ public class AssignmentGreedy {
             throw new IllegalArgumentException("L'argument est null");
         }
 
-        ArrayList<Competence> competencesBesoins = new BesoinDAO().findByDPS(dps).getCompetences();
+        ArrayList<Competence> competencesBesoins = this.besoinManagement.getBesoinByDPS(dps).getCompetences();
         System.out.println("Competences: " + competencesBesoins.size());
         if (competencesBesoins.isEmpty()) {
             throw new IllegalArgumentException("L'argument est null");
@@ -58,16 +72,12 @@ public class AssignmentGreedy {
                     retirerSecouristeComp(secouristeSelect, competencesBesoins, tabSecouComp, competenceSelect);
 
                     Affectation affectation = new Affectation(secouristeSelect, dps, competenceSelect);
-                    AffectationDAO affectationDAO = new AffectationDAO();
-                    if (!affectationDAO.exists(affectation)) {
-                        affectationDAO.insert(affectation);
+                    if (!this.affectationManagement.isExist(affectation)) {
+                        this.affectationManagement.addAffectation(affectation);
                     }
-                    new BesoinDAO().deleteByDPSAndCompetence(dps, competenceSelect);
+                    this.besoinManagement.deleteBesoinByDPSAndCompetence(dps, competenceSelect);
                 }
             }
-
-
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -80,13 +90,12 @@ public class AssignmentGreedy {
      * @return rescuer list available
      */
     private List<Secouriste> secouristesDisponible(Journee journee) {
-        List<Secouriste> secouristesJour = new SecouristeDAO().findByDay(new JourneeDAO().findIdByJour(journee.getJour(), journee.getMois(), journee.getAnnee()));
+        List<Secouriste> secouristesJour = this.secouristeManagement.findByIdJournee(this.journeeManagement.getJourneeByJour(journee.getJour(), journee.getMois(), journee.getAnnee()));
         List<Secouriste> ret = new ArrayList<>();
-        JourneeDAO journeeDAO = new JourneeDAO();
         for (Secouriste secouriste : secouristesJour) {
-            long idJournee = journeeDAO.findIdByJour(journee.getJour(), journee.getMois(), journee.getAnnee());
+            long idJournee = this.journeeManagement.getJourneeByJour(journee.getJour(), journee.getMois(), journee.getAnnee());
             long idSecouriste = secouriste.getIdSecouriste();
-            if (!new AffectationDAO().rescuerThisDay(idJournee, idSecouriste)) {
+            if (!this.affectationManagement.rescuerAvailable(idJournee, idSecouriste)) {
                 ret.add(secouriste);
             }
         }
@@ -109,7 +118,7 @@ public class AssignmentGreedy {
             list.add(secouriste.getIdSecouriste());
 
             ArrayList<String> compSecouriste = new ArrayList<>();
-            for (Competence competence : new PossessionDAO().find(secouriste).getCompetencesSec()) {
+            for (Competence competence : this.possessionManagement.getPossessionBySecouriste(secouriste).getCompetencesSec()) {
                 compSecouriste.add(competence.getIntitule());
             }
 
@@ -216,7 +225,7 @@ public class AssignmentGreedy {
                     idMin = id;
                 }
             }
-            ret = new SecouristeDAO().findById(idMin);
+            ret = this.secouristeManagement.getSecouristeById(idMin);
         }
         return ret;
     }
