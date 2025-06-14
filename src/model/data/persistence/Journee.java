@@ -80,4 +80,10 @@ public class Journee {
     public void setAnnee(int annee) {
         this.annee = annee;
     }
+
+    @Override
+    public String toString() {
+        String[] months = { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
+        return this.jour + " " + months[this.mois - 1] + " " + this.annee;
+    }
 }

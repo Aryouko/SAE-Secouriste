@@ -5,8 +5,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.TilePane;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.*;
 import model.data.persistence.*;
 import model.data.service.AffectationManagement;
 import model.data.service.PossessionManagement;
@@ -108,7 +108,7 @@ public class GestionSecouristeController {
                     certLabel.setAlignment(Pos.CENTER);
                     GridPane.setMargin(certLabel, new Insets(5));
                     certLabel.setStyle("-fx-border-radius: 20; -fx-border-color: #FFFFFF; -fx-text-fill: #FFFFFF; -fx-border-width: 2px; -fx-padding: 6;");
-                    if (row == 3) {
+                    if (row == 5) {
                         row = 0;
                         col++;
                     }
@@ -116,15 +116,52 @@ public class GestionSecouristeController {
                     row++;
                 }
 
+                ScrollPane scrollPane = new ScrollPane();
+                scrollPane.setFitToWidth(true);
+                scrollPane.setMaxHeight(Double.MAX_VALUE);
+                scrollPane.setMaxWidth(Double.MAX_VALUE);
+                GridPane.setVgrow(scrollPane, Priority.ALWAYS);
+                GridPane.setHgrow(scrollPane, Priority.ALWAYS);
+                scrollPane.setStyle("-fx-background: #FF4747; -fx-background-color: #FF4747; -fx-border-color: transparent; -fx-background-insets: 0; -fx-padding: 0;");
+
+                GridPane subSubGridPane2 = new GridPane();
+                subSubGridPane2.setMinSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+                subSubGridPane2.setStyle("-fx-background-color: #FF4747;");
+
+                Label affect = new Label("Affectations :");
+                affect.setStyle("-fx-text-fill: #FFFFFF;");
+
+                row = 0;
+                col = 0;
+                for (Affectation affectation : this.affectationManagement.getAffectationsByRescuer(secouriste)) {
+                    Label affectLabel = new Label(affectation.getDPSAffect().getName() + " (" + affectation.getCompetenceAffect().getIntitule() + ") : " + affectation.getDPSAffect().getJournee());
+                    affectLabel.setMinWidth(295);
+                    affectLabel.setAlignment(Pos.CENTER);
+                    GridPane.setMargin(affectLabel, new Insets(5));
+                    affectLabel.setStyle("-fx-border-radius: 20; -fx-border-color: #FFFFFF; -fx-text-fill: #FFFFFF; -fx-border-width: 2px; -fx-padding: 6;");
+                    col++;
+                    subSubGridPane2.add(affectLabel, row, col);
+                }
+
+                scrollPane.setContent(subSubGridPane2);
 
                 GridPane subGridPane1 = new GridPane();
                 subGridPane1.setPrefSize(354, 305);
                 subGridPane1.setMaxSize(354, 305);
                 subGridPane1.setStyle("-fx-background-color: #FF4747; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10;");
 
+                Region spacer = new Region();
+                spacer.setMinHeight(20);
+                Region spacer2 = new Region();
+                spacer2.setMinHeight(20);
+
                 subGridPane1.add(personne, 0, 0);
-                subGridPane1.add(certif, 0, 1);
-                subGridPane1.add(subSubGridPane1, 0, 2);
+                subGridPane1.add(spacer, 0, 1);
+                subGridPane1.add(certif, 0, 2);
+                subGridPane1.add(subSubGridPane1, 0, 3);
+                subGridPane1.add(spacer2, 0, 4);
+                subGridPane1.add(affect, 0, 5);
+                subGridPane1.add(scrollPane, 0, 6);
 
                 GridPane subGridPane2 = new GridPane();
                 subGridPane2.setPrefSize(354, 71);

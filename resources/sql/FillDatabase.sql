@@ -115,6 +115,7 @@ INSERT INTO Disponibilite VALUES (@idSec10, @idJournee3);
 
 -- Possessions compétences respectant le graphe, exemples :
 INSERT INTO Possession VALUES (@idSec1, 'PSE1');
+INSERT INTO Possession VALUES (@idSec1, 'PSE2');
 INSERT INTO Possession VALUES (@idSec1, 'SSA');
 
 INSERT INTO Possession VALUES (@idSec2, 'PSE2');
