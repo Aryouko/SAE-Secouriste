@@ -24,14 +24,18 @@
             <children>
                 <HBox layoutX="18.0" layoutY="18.0" prefHeight="97.0" prefWidth="402.0" style="-fx-background-color: #18191B; -fx-background-radius: 25;">
                     <children>
-                        <ImageView fx:id="pdp" fitHeight="62.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" x="20.0" y="11.0">
-                            <image>
-                                <Image url="@../images/pdpChat.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets left="25.0" top="18.0" />
-                            </HBox.margin>
-                        </ImageView>
+                  <Button mnemonicParsing="false" style="-fx-background-color: #18191B; -fx-background-radius: 100; -fx-border-radius: 100;">
+                     <graphic>
+                              <ImageView fx:id="pdp" fitHeight="62.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" x="20.0" y="11.0">
+                                  <image>
+                                      <Image url="@../images/pdpChat.png" />
+                                  </image>
+                              </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="15.0" top="15.0" />
+                     </HBox.margin>
+                  </Button>
                         <VBox prefHeight="41.0" prefWidth="189.0">
                             <children>
                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Glen POTAY">
