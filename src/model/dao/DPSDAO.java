@@ -113,4 +113,20 @@ public class DPSDAO {
         }
         return ret;
     }
+
+    public ArrayList<String> findDPSName() {
+        ArrayList<String> dpsNames = new ArrayList<>();
+        String query = "SELECT NAME FROM DPS";
+        try (Connection con = ConnectionBDD.getConnection();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                dpsNames.add(rs.getString("NAME"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return dpsNames;
+    }
+    
 }

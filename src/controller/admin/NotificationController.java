@@ -4,13 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.*;
-import model.data.persistence.DPS;
-
 import javafx.scene.control.*;
 
 import java.io.IOException;

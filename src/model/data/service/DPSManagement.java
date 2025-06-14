@@ -3,7 +3,6 @@ package model.data.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.dao.DAOFactory;
 import model.dao.DPSDAO;
 import model.data.persistence.DPS;
 
@@ -24,5 +23,9 @@ public class DPSManagement {
 
     public long numberOfDps(){
         return this.dpsDAO.findAll().size();
+    }
+
+    public ArrayList<String> getDpsName() {
+        return this.dpsDAO.findDPSName();
     }
 }

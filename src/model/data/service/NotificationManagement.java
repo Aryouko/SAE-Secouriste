@@ -4,8 +4,10 @@ import model.dao.AffectationDAO;
 import model.dao.NotificationDAO;
 import model.data.persistence.Affectation;
 import model.data.persistence.DPS;
+import model.data.persistence.Notification;
 import model.data.persistence.Secouriste;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NotificationManagement {
@@ -16,12 +18,17 @@ public class NotificationManagement {
     public NotificationManagement() {
     }
 
-    public void createNotification(String title, String message, DPS recipientGroup) {
+    public void createNotification(String title, String message, String date, int sender ,DPS recipientGroup) {
 
         // Get the list of recipients from the DPS in all the all affectations
         // List<Integer> recipients = recipientGroup.getSecouriste(recipientGroup);
 
-        int iDDPS ;
-        List<Integer> listIdRescuer = affectationDAO.findIdRescuerByDPS(1);
+        long iDDPS = recipientGroup.getId();
+        ArrayList<Integer> listIdRescuer = affectationDAO.findIdRescuerByDPS(iDDPS);
+
+        for(int idRescuer : listIdRescuer) {
+            Notification notif = new Notification(title, message, date, sender, idRescuer );
+            notificationDAO.insert(notif);
+        }
     }
 }

@@ -151,7 +151,7 @@ CREATE TABLE Affectation (
 CREATE TABLE Notification (
     title VARCHAR(20) NOT NULL,
     message VARCHAR(255) NOT NULL,
-    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    date VARCHAR(20),
     sender INTEGER,
     recipient INTEGER,
     CONSTRAINT pk_Notification PRIMARY KEY (date, sender, recipient),
