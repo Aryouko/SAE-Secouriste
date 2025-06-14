@@ -53,7 +53,7 @@ public class GestionSecouristeController {
         this.evenementTile.setStyle("-fx-padding: 50;");
         this.evenementTile.setMaxWidth(1350);
 
-        this.secouristeList = secouristeManagement.getAllSecouristes();
+        this.secouristeList = secouristeManagement.getSecouristes();
 
         tileInitialize(this.secouristeList);
         comboBoxInitialize();
