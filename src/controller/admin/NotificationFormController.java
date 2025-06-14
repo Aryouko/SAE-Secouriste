@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import model.data.persistence.DPS;
 import model.data.service.AuthentificationManagement;
 import model.data.service.DPSManagement;
+import model.data.service.NotificationManagement;
 
 
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ public class NotificationFormController {
     private LocalDateTime now = LocalDateTime.now();
     private final AuthentificationManagement auth = new AuthentificationManagement();
     private final DPSManagement dpsMana = new DPSManagement();
+    private final NotificationManagement notificationManagement = new NotificationManagement();
 
     // FORM
     @FXML
@@ -60,13 +62,11 @@ public class NotificationFormController {
         String title = subjectTextField.getText();
         String message = messageTextArea.getText();
         String date = dateTextlabel.getText();
-        String sender = dateTextlabel.getText();
+        String DPSName = dpsComboBox.getValue();
 
-        DPS DPSName = dpsComboBox.getValue();
+        notificationManagement.createNotification(title, message, date, DPSName);
 
-        createNotification();
 
-         */
 
     }
 
