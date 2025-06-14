@@ -12,8 +12,9 @@ public class Notification {
     public String date;
     public long sender;
     public long recipient;
+    public boolean getIsViewed;
 
-    public Notification(String title, String message, String date, long sender, long recipient) {
+    public Notification(String title, String message, String date, long sender, long recipient, boolean isViewed) {
         this.title = title;
         this.message = message;
         this.date = date;
@@ -39,5 +40,9 @@ public class Notification {
 
     public long getRecipient() {
         return recipient;
+    }
+
+    public boolean getIsViewed() {
+        return getIsViewed;
     }
 }

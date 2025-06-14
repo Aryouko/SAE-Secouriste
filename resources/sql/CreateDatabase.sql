@@ -155,6 +155,7 @@ CREATE TABLE Notification (
     date VARCHAR(20),
     sender INTEGER,
     recipient INTEGER,
+    isViewed BOOLEAN DEFAULT FALSE,
     CONSTRAINT pk_Notification PRIMARY KEY (date, sender, recipient),
     CONSTRAINT fk_Notification_Sender FOREIGN KEY (sender) REFERENCES Administrateur(idAdministrateur),
     CONSTRAINT fk_Notification_Recipient FOREIGN KEY (recipient) REFERENCES Secouriste(idSecouriste)

@@ -27,7 +27,7 @@ public class FenetreGestionController {
     private AnchorPane fenetreGestion;
 
     public void initialize() {
-        loadContent1("/fxml/MenuParallele.fxml");
+        loadContent1("/fxml/Notification.fxml");
         loadContent2("/fxml/GestionEvenement.fxml");
     }
 
