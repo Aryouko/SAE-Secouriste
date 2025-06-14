@@ -52,7 +52,7 @@
                   </Label>
                </children>
             </GridPane>
-            <Button fx:id="notifBouton" mnemonicParsing="false" prefHeight="66.0" prefWidth="86.0" style="-fx-background-color: #000000; -fx-background-radius: 100;" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <Button fx:id="notifBouton" mnemonicParsing="false" onAction="#switchNotifCalendar" prefHeight="66.0" prefWidth="86.0" style="-fx-background-color: #000000; -fx-background-radius: 100;" stylesheets="@../css/button.css" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets bottom="7.0" left="5.0" right="5.0" top="7.0" />
                </GridPane.margin>

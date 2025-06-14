@@ -18,7 +18,7 @@ import java.util.Locale;
 public class NotificationFormController {
 
     private LocalDateTime now = LocalDateTime.now();
-    private final AuthentificationManagement auth = new AuthentificationManagement();
+    private final AuthentificationManagement auth = AuthentificationManagement.getInstanceAuthentificationManagement();;
     private final DPSManagement dpsMana = new DPSManagement();
     private final NotificationManagement notificationManagement = new NotificationManagement();
 

@@ -35,7 +35,7 @@ public class NotificationController {
     private VBox VBoxlistNotification;
 
     private final NotificationManagement notificationManagement = new NotificationManagement();
-    private final AuthentificationManagement auth = new AuthentificationManagement();
+    private final AuthentificationManagement auth = AuthentificationManagement.getInstanceAuthentificationManagement();
 
 
     // NOTIFICATION VIEW
