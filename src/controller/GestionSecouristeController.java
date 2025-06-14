@@ -7,9 +7,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
-import model.dao.PossessionDAO;
-import model.dao.SecouristeDAO;
 import model.data.persistence.*;
+import model.data.service.AffectationManagement;
+import model.data.service.PossessionManagement;
 import model.data.service.SecouristeManagement;
 
 import java.util.ArrayList;
@@ -41,6 +41,10 @@ public class GestionSecouristeController {
 
     private final SecouristeManagement secouristeManagement = new SecouristeManagement();
 
+    private final PossessionManagement possessionManagement = new PossessionManagement();
+
+    private final AffectationManagement affectationManagement = new AffectationManagement();
+
     @FXML
     public void initialize() {
 
@@ -64,14 +68,21 @@ public class GestionSecouristeController {
         String[] months = {"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"};
         if (listSecouristes != null) {
             for (Secouriste secouriste : listSecouristes) {
-                PossessionDAO possessionDAO = new PossessionDAO();
 
-                Possession possession = possessionDAO.find(secouriste);
+                Possession possession = this.possessionManagement.getPossessionBySecouriste(secouriste);
                 if (possession != null) {
                     for (Competence competence : possession.getCompetencesSec()) {
                         if (!this.certifications.contains(competence.getIntitule())) {
                             this.certifications.add(competence.getIntitule());
                         }
+                    }
+                }
+
+                List<Affectation> affectations = this.affectationManagement.getAffectationsByRescuer(secouriste);
+                System.out.println(affectations);
+                for (Affectation affectation : affectations) {
+                    if (!this.groupes.contains(affectation.getDPSAffect().getName())) {
+                        this.groupes.add(affectation.getDPSAffect().getName());
                     }
                 }
 
@@ -167,14 +178,25 @@ public class GestionSecouristeController {
         this.evenementTile.getChildren().clear();
         ArrayList<Secouriste> listSecouriste = new ArrayList<>();
         for (Secouriste secouriste : this.secouristeList) {
-            PossessionDAO possessionDAO = new PossessionDAO();
             boolean verifCert = false;
-            for (Competence competence : possessionDAO.find(secouriste).getCompetencesSec()) {
-                if (competence.getIntitule().equals(this.certComboBox.getSelectionModel().getSelectedItem())) {
+            for (Competence competence : this.possessionManagement.getPossessionBySecouriste(secouriste).getCompetencesSec()) {
+                if (competence.getIntitule().equals(this.certComboBox.getSelectionModel().getSelectedItem())
+                        || this.certComboBox.getSelectionModel().getSelectedItem().equals("Certification")) {
+                    System.out.println(this.certComboBox.getSelectionModel().getSelectedItem());
                     verifCert = true;
                 }
             }
-            if (verifCert || this.certComboBox.getSelectionModel().getSelectedItem().equals("Certification")) {
+
+            boolean verifGrp = false;
+            for (Affectation affectation : this.affectationManagement.getAffectationsByRescuer(secouriste)) {
+                if (affectation.getDPSAffect().getName().equals(this.grpComboBox.getSelectionModel().getSelectedItem())
+                        || this.grpComboBox.getSelectionModel().getSelectedItem().equals("Groupe d'affectation")) {
+                    System.out.println(this.grpComboBox.getSelectionModel().getSelectedItem());
+                    verifGrp = true;
+                }
+            }
+
+            if (verifCert && verifGrp) {
                 listSecouriste.add(secouriste);
             }
 
