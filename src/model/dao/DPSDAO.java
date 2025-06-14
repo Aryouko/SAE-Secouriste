@@ -151,5 +151,40 @@ public class DPSDAO {
         }
         return dpsNames;
     }
-    
+
+    public DPS findByName(String name) {
+        DPS ret = null;
+        String query = "SELECT d.ID, d.NAME, d.HORAIRE_DEPART, d.HORAIRE_FIN, j.JOUR, j.MOIS, j.ANNEE, s.CODE AS SITE_CODE, s.NOM AS SITE_NOM, s.LONGITUDE AS SITE_LON, s.LATITUDE AS SITE_LAT, sp.CODE AS SPORT_CODE, sp.NOM AS SPORT_NOM FROM DPS d JOIN Site s ON d.SITE = s.CODE JOIN Sport sp ON d.SPORT = sp.CODE JOIN Journee j ON j.ID = d.JOURNEE WHERE d.NAME = ?";
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                long id = rs.getLong("ID");
+                int horaireDepart = rs.getInt("HORAIRE_DEPART");
+                int horaireFin = rs.getInt("HORAIRE_FIN");
+
+                long siteCode = rs.getLong("SITE_CODE");
+                String siteNom = rs.getString("SITE_NOM");
+                float siteLongitude = rs.getFloat("SITE_LON");
+                float siteLatitude = rs.getFloat("SITE_LAT");
+                Site site = new Site(siteCode, siteNom, siteLongitude, siteLatitude);
+
+                long sportCode = rs.getLong("SPORT_CODE");
+                String sportNom = rs.getString("SPORT_NOM");
+                Sport sport = new Sport(sportCode, sportNom);
+
+                int jour = rs.getInt("JOUR");
+                int mois = rs.getInt("MOIS");
+                int annee = rs.getInt("ANNEE");
+                Journee journee = new Journee(jour, mois, annee);
+
+                ret = new DPS(id, name, horaireDepart, horaireFin, site, sport, journee);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return ret;
+    }
 }
