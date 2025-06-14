@@ -49,7 +49,8 @@ public class AffectationDAO {
     }
 
     public boolean exists(Affectation affectation) {
-        String query = "SELECT COUNT(*) FROM affectation WHERE secouristeAffect = ? AND DPSAffect = ? AND competenceAffect = ?";
+        String query = "SELECT 1 FROM affectation WHERE secouristeAffect = ? AND DPSAffect = ? AND competenceAffect = ?";
+        boolean ret = false;
 
         try (Connection con = ConnectionBDD.getConnection();
             PreparedStatement stmt = con.prepareStatement(query)) {
@@ -59,12 +60,12 @@ public class AffectationDAO {
             stmt.setString(3, affectation.getCompetenceAffect().getIntitule());
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return rs.getInt(1) > 0;
+                ret = true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return ret;
     }
 
     public List<Integer> findIdRescuerByDPS(long idDPS) {
