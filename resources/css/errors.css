@@ -3,5 +3,5 @@
 }
 
 .comboBox-error {
-    -fx-background-color: linear-gradient(to bottom, #ffcccc, #ff9999);
+    -fx-background-color: #ffcccc;
 }

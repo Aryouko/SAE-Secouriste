@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -37,6 +38,10 @@ public class ProfilController {
 
     private SecouristeManagement secouristeManagement = new SecouristeManagement();
 
+    private MenuParalleleController menuParalleleController;
+
+    private boolean isNotif = false ;
+
     @FXML
     public void initialize() {
         AuthentificationManagement auth = getInstanceAuthentificationManagement();
@@ -53,5 +58,23 @@ public class ProfilController {
         myCircle.setStroke(Color.BLACK);
         Image image = new Image("/images/pdp.png", false);
         myCircle.setFill(new ImagePattern(image));
+    }
+
+
+    @FXML
+    private void switchNotifCalendar() {
+        if (menuParalleleController != null) {
+            if (!isNotif) {
+                menuParalleleController.setRow(1, "/fxml/admin/Notification.fxml");
+                isNotif = true ;
+            } else {
+                menuParalleleController.setRow(1, "/fxml/Calendar.fxml");
+                isNotif = false ;
+            }
+        }
+    }
+
+    public void setMenuParallelController(MenuParalleleController controller) {
+        this.menuParalleleController = controller;
     }
 }
