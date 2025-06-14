@@ -16,8 +16,8 @@ public class NotificationDAO {
      *
      * @return return the secouriste
      */
-    public List<Notification> findById(long idSecouriste) {
-        List<Notification> listNotifications = new ArrayList<>();
+    public ArrayList<Notification> findById(long idSecouriste) {
+        ArrayList<Notification> listNotifications = new ArrayList<>();
         String query = "SELECT * FROM Notification, Secouriste WHERE Notification.recipient = ?";
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
@@ -30,7 +30,8 @@ public class NotificationDAO {
                         rs.getString("message"),
                         rs.getString("date"),
                         rs.getLong("sender"),
-                        rs.getLong("recipient")
+                        rs.getLong("recipient"),
+                        rs.getBoolean("isViewed")
                 );
 
                 listNotifications.add(notification);
@@ -47,7 +48,7 @@ public class NotificationDAO {
      * @param notification the notification to save
      */
     public void insert(Notification notification) {
-        String query = "INSERT INTO Notification (title, date, message, sender, recipient) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Notification (title, date, message, sender, recipient, isViewed) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
@@ -56,6 +57,7 @@ public class NotificationDAO {
             stmt.setString(3, notification.getDate());
             stmt.setLong(4, notification.getSender());
             stmt.setLong(5, notification.getRecipient());
+            stmt.setBoolean(6, notification.getIsViewed());
 
             stmt.executeUpdate();
         } catch (SQLException e) {

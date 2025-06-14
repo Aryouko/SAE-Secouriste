@@ -34,7 +34,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="subjectTextField" prefHeight="90.0" prefWidth="423.0" promptText="Sujet" style="-fx-background-color: trensparent; -fx-prompt-text-fill: #000000;" stylesheets="@../../css/button.css" GridPane.columnSpan="2">
+            <TextField fx:id="subjectTextField" prefHeight="90.0" prefWidth="423.0" promptText="Sujet" style="-fx-background-color: trensparent;" GridPane.columnSpan="2">
                <GridPane.margin>
                   <Insets top="10.0" />
                </GridPane.margin>
@@ -44,10 +44,6 @@
                <padding>
                   <Insets left="18.0" />
                </padding>
-               <styleClass>
-                  <String fx:value="input" />
-                  <String fx:value="text-field" />
-               </styleClass>
             </TextField>
             <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: trensparent;" GridPane.columnIndex="2">
                <center>

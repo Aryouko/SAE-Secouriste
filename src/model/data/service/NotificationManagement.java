@@ -18,6 +18,15 @@ public class NotificationManagement {
     public NotificationManagement() {
     }
 
+    /**
+     * Retrieves all notifications.
+     *
+     * @return a list of all notifications
+     */
+    public ArrayList<Notification> getNotificationById(long id) {
+        return notificationDAO.findById(id);
+    }
+
     public void createNotification(String title, String message, String date ,String recipientDPSGroupName) {
 
         long sender = authentificationManagement.getCurrentUser().getIdUser();
@@ -28,8 +37,10 @@ public class NotificationManagement {
 
         ArrayList<Integer> listIdRescuer = affectationDAO.findIdRescuerByDPS(iDDps);
 
+        boolean isViewed = false;
+
         for(int idRescuer : listIdRescuer) {
-            Notification notification = new Notification(title, message, date, sender, idRescuer );
+            Notification notification = new Notification(title, message, date, sender, idRescuer, isViewed);
             notificationDAO.insert(notification);
         }
     }
