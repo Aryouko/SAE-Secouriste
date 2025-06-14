@@ -1,7 +1,10 @@
 package model.dao;
 
 import model.data.persistence.Affectation;
+import model.data.persistence.Competence;
 import model.data.persistence.Secouriste;
+import model.data.service.DPSManagement;
+import model.data.service.SecouristeManagement;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -85,5 +88,30 @@ public class AffectationDAO {
             e.printStackTrace();
         }
         return idSecouristes;
+    }
+
+    public List<Affectation> findByRescuer(long idRescuer) {
+        List<Affectation> affectations = new ArrayList<>();
+        String query = "SELECT * FROM Affectation WHERE SecouristeAffect = ?";
+
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setLong(1, idRescuer);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                long idSecouristeAffect = rs.getLong("secouristeAffect");
+                long idDPS = rs.getLong("DPSAffect");
+                String idCompetenceAffect = rs.getString("competenceAffect");
+
+                affectations.add(new Affectation(new SecouristeManagement().getSecouristeById(idSecouristeAffect),
+                        new DPSManagement().getDpsById(idDPS),
+                        new Competence(idCompetenceAffect)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return affectations;
     }
 }
