@@ -3,11 +3,10 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.stage.StageStyle;
 import model.data.persistence.*;
 import model.data.service.BesoinManagement;
 import model.data.service.DPSManagement;
@@ -103,6 +102,9 @@ public class FenetreAjoutDPSController {
     public void initialize() {
         LocalDate today = LocalDate.now();
         this.date = today.plusDays(7);
+
+        this.infosLabel.setWrapText(true);
+        this.infosLabel.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
 
         this.horaireDeb = 8;
         this.horaireFin = 12;
@@ -273,7 +275,7 @@ public class FenetreAjoutDPSController {
 
                 if (!newDate.equals(this.date)) {
                     this.date = newDate;
-                    initializeComboBoxDate(); // only reinitialise if the date has changed
+                    initializeComboBoxDate();
                 }
             }
         }
@@ -282,31 +284,35 @@ public class FenetreAjoutDPSController {
     public DPS ajoutDPS() {
         DPS dps = null;
         if (this.horaireDeb >= horaireFin) {
-            this.infosLabel.setText("Erreur sur les horaires");
-            this.infosLabel.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
+            this.infosLabel.setText("Erreur : Horaire de début >= Horaire de fin");
         } else {
             long id = this.dpsManagement.numberOfDps();
             while (this.dpsManagement.exists(id)) {
                 id++;
             }
             if (this.nomTextField.getText().isEmpty()) {
-                this.infosLabel.setText("Erreur sur le nom");
-                this.infosLabel.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
+                this.infosLabel.setText("Erreur : Nom de DPS n'existe pas");
             } else {
-                Journee journee = new Journee(this.date.getDayOfMonth(), this.date.getMonthValue(), this.date.getYear());
-                dps = new DPS(id, this.nomTextField.getText(), this.horaireDeb, this.horaireFin, this.site, this.sport, journee);
-                this.dpsManagement.addDps(dps);
+                boolean dpsNameExists = false;
+                for (DPS autreDps : dpsManagement.getDps()) {
+                    if (autreDps.getName().equals(this.nomTextField.getText())) {
+                    dpsNameExists = true;
+                    }
+                }
+                if (!dpsNameExists) {
+                    Journee journee = new Journee(this.date.getDayOfMonth(), this.date.getMonthValue(), this.date.getYear());
+                    dps = new DPS(id, this.nomTextField.getText(), this.horaireDeb, this.horaireFin, this.site, this.sport, journee);
+                } else {
+                    this.infosLabel.setText("Erreur : Nom de DPS déjà existant");
+                }
             }
         }
         return dps;
     }
 
     public void affectDPS() {
-        DPS dps =  this.ajoutDPS();
-        if (dps == null) {
-            this.infosLabel.setText("Erreur sur le nom");
-            this.infosLabel.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
-        } else {
+        DPS dps = this.ajoutDPS();
+        if (dps != null) {
             ArrayList<Competence> competences = new ArrayList<>();
 
             for (int i = 0; i < this.comboBoxCE.getSelectionModel().getSelectedItem(); i++) {
@@ -345,19 +351,52 @@ public class FenetreAjoutDPSController {
                 competences.add(new Competence("VPSP"));
             }
             if (competences.isEmpty()) {
-                this.infosLabel.setText("Erreur sur les competences");
-                this.infosLabel.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
+                this.infosLabel.setText("Erreur : Aucune compétences renseignées");
             } else {
+                this.dpsManagement.addDps(dps);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Affectation partielle");
                 alert.setHeaderText("Certaines compétences n'ont pas été affectées");
                 alert.setContentText("Il sera possible de mettre à jour l'affectation plus tard.");
+
+                alert.initStyle(StageStyle.UNDECORATED);
+                alert.setGraphic(null);
+
+                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane.getScene().setFill(Color.TRANSPARENT);
+
+                Label headerLabel = (Label) dialogPane.lookup(".header-panel .label");
+                if (headerLabel != null) {
+                    headerLabel.setStyle(
+                            "-fx-font-size: 18px; " +
+                                    "-fx-font-weight: bold; " +
+                                    "-fx-text-fill: #2C3E50; " +
+                                    "-fx-padding: 20 0 10 0;"
+                    );
+                }
+
+                Label contentLabel = (Label) dialogPane.lookup(".content");
+                if (contentLabel != null) {
+                    contentLabel.setStyle(
+                            "-fx-font-size: 14px; " +
+                                    "-fx-text-fill: #34495E; " +
+                                    "-fx-padding: 10 20 20 20; " +
+                                    "-fx-line-spacing: 2px;"
+                    );
+                }
+
+                dialogPane.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 35; -fx-border-width: 3; border-radius: 35; -fx-border-color: #000000");
+
+                dialogPane.getStylesheets().add("data:text/css,.dialog-pane {-fx-background-radius: 20; -fx-border-radius: 20; } " +
+                        ".dialog-pane .header-panel {-fx-background-radius: 20 20 0 0; } " +
+                        ".dialog-pane .button-bar {-fx-background-radius: 0 0 20 20; }");
+
+                dialogPane.lookupButton(ButtonType.OK).setStyle("-fx-background-color: #0C0D0F; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius : 15;");
                 try {
                     this.besoinManagement.addBesoin(new Besoin(dps, competences));
                     new AssignmentGreedy().AssignmentRescuersGreedy(dps);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
-                    alert.showAndWait();
                 }
                 if (!this.besoinManagement.getBesoinByDPS(dps).getCompetences().isEmpty()) {
                     alert.showAndWait();

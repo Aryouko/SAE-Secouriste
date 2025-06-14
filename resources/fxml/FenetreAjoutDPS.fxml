@@ -133,7 +133,7 @@
             </Button>
          </children>
       </GridPane>
-      <Label fx:id="infosLabel" layoutX="33.0" layoutY="650.0" prefHeight="63.0" prefWidth="218.0">
+      <Label fx:id="infosLabel" layoutX="25.0" layoutY="650.0" prefHeight="63.0" prefWidth="239.0">
          <font>
             <Font size="14.0" />
          </font>

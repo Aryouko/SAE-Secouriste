@@ -6,7 +6,7 @@
 # TO-DO
 
 - @c0w5lip: Photo de profil + Calendrier + Map (api mapbox + webview HTML)
-- @Aryouko: Gestion des DPS/Secouristes / backend global
+- @Aryouko: Gestion des DPS/Secouristes / backend global / Vérif les noms dans DPS / Lien page
 - Célian: Profil / Notofications / Peaufinage frontend
 - Glen: Graphes / Assignments
 
