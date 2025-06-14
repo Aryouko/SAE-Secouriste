@@ -2,6 +2,8 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import model.data.service.AuthentificationManagement;
 import static controller.UtilsController.linkToPage;
@@ -88,6 +90,13 @@ public class ConnexionController {
         } catch (Exception e) {
             showError("Une erreur est survenue lors de la connexion. Veuillez réessayer plus tard.");
             System.err.println("Erreur lors de la connexion : " + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void enterConnectionClicked(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            ButtonConnexionClicked();
         }
     }
 }
