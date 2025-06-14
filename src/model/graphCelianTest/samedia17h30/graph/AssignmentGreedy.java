@@ -59,8 +59,6 @@ public class AssignmentGreedy {
                 Secouriste secouristeSelect = SecouristeSelectionne(tabSecouComp, competencesBesoins);
 
                 if (secouristeSelect == null) {
-                    // Aucun secouriste trouvé pour cette compétence
-                    // On supprime la compétence pour ne pas rester bloqué
                     for (int i = 0; i < competencesBesoins.size(); i++) {
                         if (competencesBesoins.get(i).getIntitule().equals(this.competences.get(indiceComp))) {
                             competencesBesoins.remove(i);
@@ -204,10 +202,10 @@ public class AssignmentGreedy {
      * @param competencesUtiles
      * @return
      */
-    private Secouriste SecouristeSelectionne(ArrayList<ArrayList<Long>> tabSecouComp, ArrayList<Competence> competencesUtiles) throws IllegalArgumentException {
+    private Secouriste SecouristeSelectionne(ArrayList<ArrayList<Long>> tabSecouComp, ArrayList<Competence> competencesUtiles) {
         ArrayList<ArrayList<Long>> secouristes = secouristesSelectionnes(tabSecouComp, competencesUtiles);
 
-        Secouriste ret = null;
+        Secouriste ret;
         if (secouristes.isEmpty() || secouristes.get(0).isEmpty()) {
             ret = null;
         } else {
@@ -237,7 +235,7 @@ public class AssignmentGreedy {
      * @param competencesUtiles
      * @param tabSecouComp
      */
-    private void retirerSecouristeComp (Secouriste secouriste, ArrayList<Competence> competencesUtiles, ArrayList<ArrayList<Long>> tabSecouComp, Competence competenceASuppr) throws IllegalArgumentException {
+    private void retirerSecouristeComp (Secouriste secouriste, ArrayList<Competence> competencesUtiles, ArrayList<ArrayList<Long>> tabSecouComp, Competence competenceASuppr) {
         for (int i = 0; i < competencesUtiles.size(); i++) {
             if (competencesUtiles.get(i).getIntitule().equals(competenceASuppr.getIntitule())) {
                 competencesUtiles.remove(i);
