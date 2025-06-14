@@ -74,12 +74,6 @@
                   <Insets top="10.0" />
                </GridPane.margin>
             </TextArea>
-            <ComboBox fx:id="dpsComboBox" promptText="Choisir un DPS" style="-fx-background-color: #111113; -fx-background-radius: 20; -fx-prompt-text-fill: #111113;" stylesheets="@../../css/button.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <styleClass>
-                  <String fx:value="input" />
-                  <String fx:value="text-field" />
-               </styleClass>
-            </ComboBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vers :" GridPane.rowIndex="2">
                <font>
                   <Font name="Poppins Regular" size="24.0" />
@@ -97,16 +91,31 @@
                   </Button>
                </top>
             </BorderPane>
-            <Label fx:id="dateTextlabel" text="date" textFill="#00000040" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Poppins Regular" size="20.0" />
-               </font>
-            </Label>
             <Label fx:id="fromTextlabel" text="from" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Poppins Regular" size="24.0" />
                </font>
             </Label>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+               <right>
+                  <Label fx:id="dateTextlabel" alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="226.0" text="date" textFill="#00000040" wrapText="true" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Poppins Regular" size="20.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets right="30.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </right>
+               <left>
+                  <ComboBox fx:id="dpsComboBox" promptText="Choisir un DPS" style="-fx-background-color: #111113; -fx-background-radius: 20; -fx-prompt-text-fill: #111113;" stylesheets="@../../css/button.css" BorderPane.alignment="CENTER">
+                     <styleClass>
+                        <String fx:value="input" />
+                        <String fx:value="text-field" />
+                     </styleClass>
+                  </ComboBox>
+               </left>
+            </BorderPane>
          </children>
       </GridPane>
    </children>

@@ -199,5 +199,24 @@ public class AuthentificationManagement {
     public Secouriste getCurrentRescuer() {
         return this.secouriste;
     }
+
+
+
+
+    public String getCurrentUserName() {
+        if (user == null) {
+            return "Vous n'êtes pas connecté";
+        }
+        if ("rescuer".equals(user.getRole())) {
+            Secouriste sec = getSecouristeDAO().findById(user.getIdUser());
+            if (sec != null && sec.getNom() != null) {
+                return sec.getNom();
+            }
+        }
+        if ("admin".equals(user.getRole())) {
+            return "Administrateur";
+        }
+        return "";
+    }
 }
 

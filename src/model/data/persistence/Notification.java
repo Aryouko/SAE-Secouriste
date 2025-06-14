@@ -9,11 +9,11 @@ public class Notification {
      */
     public String title;
     public String message;
-    public Date date;
-    public int sender;
-    public int recipient;
+    public String date;
+    public long sender;
+    public long recipient;
 
-    public Notification(String title, String message, Date date, int sender, int recipient) {
+    public Notification(String title, String message, String date, long sender, long recipient) {
         this.title = title;
         this.message = message;
         this.date = date;
@@ -29,15 +29,15 @@ public class Notification {
         return message;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public int getSender() {
+    public long getSender() {
         return sender;
     }
 
-    public int getRecipient() {
+    public long getRecipient() {
         return recipient;
     }
 }

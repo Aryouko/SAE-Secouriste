@@ -28,9 +28,9 @@ public class NotificationDAO {
                 Notification notification = new Notification(
                         rs.getString("title"),
                         rs.getString("message"),
-                        rs.getDate("date"),
-                        rs.getInt("sender"),
-                        rs.getInt("recipient")
+                        rs.getString("date"),
+                        rs.getLong("sender"),
+                        rs.getLong("recipient")
                 );
 
                 listNotifications.add(notification);
@@ -47,14 +47,15 @@ public class NotificationDAO {
      * @param notification the notification to save
      */
     public void insert(Notification notification) {
-        String query = "INSERT INTO Notification (title, message, sender, recipient) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO Notification (title, date, message, sender, recipient) VALUES (?, ?, ?, ?, ?)";
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
             stmt.setString(1, notification.getTitle());
             stmt.setString(2, notification.getMessage());
-            stmt.setInt(3, notification.getSender());
-            stmt.setInt(4, notification.getRecipient());
+            stmt.setString(3, notification.getDate());
+            stmt.setLong(4, notification.getSender());
+            stmt.setLong(5, notification.getRecipient());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
