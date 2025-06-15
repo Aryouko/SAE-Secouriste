@@ -25,9 +25,4 @@ public class SecouristeManagement {
     public List<Secouriste> findByIdJournee(long idJournee) {
         return secouristeDAO.findByDay(idJournee);
     }
-
-
-    public boolean updateSecouriste(Secouriste secouriste) {
-        return DAOFactory.getSecouristeDAO().updateSecouriste(secouriste);
-    }
 }
