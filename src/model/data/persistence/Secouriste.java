@@ -1,5 +1,9 @@
 package model.data.persistence;
 
+import javafx.scene.image.Image;
+
+import java.io.ByteArrayInputStream;
+
 /**
  * Secouriste class
  */
@@ -14,6 +18,7 @@ public class Secouriste {
     private String email;   // Adresse email
     private String tel;     // Numéro de téléphone
     private String adresse; // Adresse postale
+    private byte[] photo;
 
     /**
      * Constructor of Secouriste
@@ -25,13 +30,14 @@ public class Secouriste {
      * @param tel the phone number of the secouriste
      * @param adresse the address of the secouriste
      */
-    public Secouriste(long id, String nom, String prenom, String dateNaissance, String tel, String adresse) {
+    public Secouriste(long id, String nom, String prenom, String dateNaissance, String tel, String adresse, byte[] photo) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.tel = tel;
         this.adresse = adresse;
+        this.photo = photo;
     }
 
     /**
@@ -115,5 +121,17 @@ public class Secouriste {
      */
     public void setAdresse(String adresse){
         this.adresse = adresse;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
+
+    public Image getPhotoAsImage() {
+        return new Image(new ByteArrayInputStream(photo));
     }
 }

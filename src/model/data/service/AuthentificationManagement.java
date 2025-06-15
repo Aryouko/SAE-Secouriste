@@ -1,6 +1,7 @@
 package model.data.service;
 
 import model.dao.DAOFactory;
+import model.dao.SecouristeDAO;
 import model.dao.UserDAO;
 import model.data.persistence.Secouriste;
 import model.data.persistence.User;
@@ -168,9 +169,15 @@ public class AuthentificationManagement {
         return false;
     }
 
-    public boolean createRescuer(long id, String nom, String prenom, String dateNaissance, String tel, String adresse) {
+    public boolean createRescuer(long id, String nom, String prenom, String dateNaissance, String tel, String adresse, byte[] photo) {
 
-        this.secouriste = new Secouriste(id, nom, prenom, dateNaissance, tel, adresse);
+        SecouristeDAO dao = DAOFactory.getSecouristeDAO();
+        // Vérifie si un secouriste avec le même id existe déjà
+        if (dao.findById(id) != null) {
+            System.out.println("Un secouriste avec l'ID " + id + " existe déjà.");
+            return false;
+        }
+        this.secouriste = new Secouriste(id, nom, prenom, dateNaissance, tel, adresse, photo);
         boolean ok = DAOFactory.getSecouristeDAO().addSecouriste(this.secouriste);
         if (ok) {
             System.out.println("Rescuer created successfully.");
