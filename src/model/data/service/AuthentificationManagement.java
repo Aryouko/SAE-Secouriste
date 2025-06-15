@@ -213,9 +213,5 @@ public class AuthentificationManagement {
         }
         return "";
     }
-
-    public Secouriste getSecouriste() {
-        return this.secouriste;
-    }
 }
 
