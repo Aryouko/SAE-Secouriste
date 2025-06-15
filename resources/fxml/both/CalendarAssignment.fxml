@@ -103,9 +103,17 @@
                               <Font name="System Bold" size="36.0" />
                            </font>
                            <GridPane.margin>
-                              <Insets left="75.0" />
+                              <Insets left="80.0" top="3.0" />
                            </GridPane.margin>
                         </Label>
+                        <ImageView fitHeight="33.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@../../images/calendar.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets left="35.0" />
+                           </GridPane.margin>
+                        </ImageView>
                      </children>
                   </GridPane>
                </children>
