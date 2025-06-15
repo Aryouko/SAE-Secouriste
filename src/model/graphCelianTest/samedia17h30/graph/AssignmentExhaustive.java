@@ -143,6 +143,7 @@ public class AssignmentExhaustive {
         return affectation;
     }
 
+
     /**
      * Récupère la liste des secouristes disponibles pour une journée donnée, c’est-à-dire ceux
      * qui ne sont pas déjà affectés ce jour-là.
@@ -171,4 +172,5 @@ public class AssignmentExhaustive {
     private Competence getCompetence(String nom) {
         return new Competence(nom);
     }
+
 }

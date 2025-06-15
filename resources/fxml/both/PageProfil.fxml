@@ -28,7 +28,7 @@
                      <graphic>
                               <ImageView fx:id="pdp" fitHeight="62.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" x="20.0" y="11.0">
                                   <image>
-                                      <Image url="@../images/anonyme.png" />
+                                      <Image url="@../../images/anonyme.png" />
                                   </image>
                               </ImageView>
                      </graphic>
@@ -38,7 +38,7 @@
                   </Button>
                         <VBox prefHeight="41.0" prefWidth="189.0">
                             <children>
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Glen POTAY">
+                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom NOM">
                                     <font>
                                         <Font name="System Bold" size="16.0" />
                                     </font>
@@ -58,7 +58,7 @@
                                     <graphic>
                                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/Cloche.png" />
+                                                <Image url="@../../images/Cloche.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
@@ -98,62 +98,44 @@
                     <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                     </VBox.margin>
-                    <children>
-                        <ImageView fitHeight="193.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/declaration.png" />
-                            </image>
-                            <GridPane.margin>
-                                <Insets left="40.0" top="30.0" />
-                            </GridPane.margin>
-                        </ImageView>
-                        <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="50.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-                            <image>
-                                <Image url="@../images/declaration.png" />
-                            </image>
-                            <GridPane.margin>
-                                <Insets left="30.0" top="30.0" />
-                            </GridPane.margin>
-                        </ImageView>
-                        <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="50.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-                            <image>
-                                <Image url="@../images/declaration.png" />
-                            </image>
-                            <GridPane.margin>
-                                <Insets left="40.0" />
-                            </GridPane.margin>
-                        </ImageView>
-                        <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="10.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                            <image>
-                                <Image url="@../images/declaration.png" />
-                            </image>
-                            <GridPane.margin>
-                                <Insets left="30.0" />
-                            </GridPane.margin>
-                        </ImageView>
-                        <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="10.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
-                            <image>
-                                <Image url="@../images/declaration.png" />
-                            </image>
-                            <GridPane.margin>
-                                <Insets bottom="30.0" left="40.0" />
-                            </GridPane.margin>
-                        </ImageView>
-                        <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="50.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                            <image>
-                                <Image url="@../images/declaration.png" />
-                            </image>
-                            <GridPane.margin>
-                                <Insets bottom="30.0" left="30.0" />
-                            </GridPane.margin>
-                        </ImageView>
-                    </children>
+               <children>
+                  <ImageView fitHeight="193.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
+                     <GridPane.margin>
+                        <Insets left="40.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="10.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="40.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="10.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="40.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="10.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="211.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fitHeight="193.0" fitWidth="136.0" layoutX="211.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </ImageView>
+               </children>
                 </GridPane>
                 <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="195.0" style="-fx-background-color: black;" text=" Calendrier" textFill="WHITE" textOverrun="CLIP">
                     <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/CalendarBlanc.png" />
+                                <Image url="@../../images/CalendarBlanc.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -170,15 +152,17 @@
             <children>
                 <Pane prefHeight="200.0" prefWidth="1444.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #BFB0FE, #877EF2, #3636E1); -fx-background-radius: 30 30 0 0;">
                     <children>
-                  <Button layoutX="1349.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-background-radius: 100; -fx-border-radius: 100;" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1361.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/CercleCroixBleue.png" />
-                            </image>
+                  <Button layoutX="1357.0" layoutY="22.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-background-radius: 100; -fx-border-radius: 100;">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/CercleCroixBleue.png" />
+                           </image>
                         </ImageView>
+                     </graphic></Button>
                     </children>
                 </Pane>
-                <Text layoutX="400.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Glen POTAY" wrappingWidth="457.137451171875">
+                <Text layoutX="400.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom NOM" wrappingWidth="457.137451171875">
                     <font>
                         <Font name="System Bold" size="32.0" />
                     </font>
@@ -191,7 +175,7 @@
                 <Circle fill="WHITE" layoutX="210.0" layoutY="210.0" radius="70.0" stroke="WHITE" strokeType="INSIDE" />
                 <ImageView fx:id="pdpProfil" fitHeight="133.0" fitWidth="133.0" layoutX="144.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/anonyme.png" />
+                        <Image url="@../../images/anonyme.png" />
                     </image>
                 </ImageView>
             <Text layoutX="179.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Secouriste">
@@ -199,7 +183,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Text>
-            <Text layoutX="400.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\@glenpotay56" wrappingWidth="171.96051025390625">
+            <Text layoutX="400.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\@prenomNOM56" wrappingWidth="171.96051025390625">
                <font>
                   <Font size="13.0" />
                </font>

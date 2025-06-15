@@ -47,6 +47,8 @@ CREATE TABLE Secouriste (
     date_naissance VARCHAR(32),
     tel VARCHAR(10),
     adresse VARCHAR(64),
+    pseudo VARCHAR(15),
+    bio VARCHAR(250),
     CONSTRAINT pk_Secouriste PRIMARY KEY (idSecouriste),
     CONSTRAINT fk_Secouriste_User FOREIGN KEY (idSecouriste) REFERENCES User(idUser)
 );

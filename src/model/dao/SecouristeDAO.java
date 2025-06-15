@@ -6,13 +6,12 @@ import model.data.persistence.Secouriste;
 
 public class SecouristeDAO {
 
-    public List<Secouriste> findAll() {
-        List<Secouriste> secouristes = new ArrayList<>();
-
+    public static List<Secouriste> findAll() {
+        List<Secouriste> liste = new ArrayList<>();
+        String query = "SELECT * FROM Secouriste";
         try (Connection con = ConnectionBDD.getConnection();
-             Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM Secouriste")) {
-
+             PreparedStatement stmt = con.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 Secouriste s = new Secouriste(
                         rs.getLong("idSecouriste"),
@@ -22,124 +21,104 @@ public class SecouristeDAO {
                         rs.getString("tel"),
                         rs.getString("adresse")
                 );
-                secouristes.add(s);
+                s.setPseudo(rs.getString("pseudo"));
+                s.setBio(rs.getString("bio"));
+                liste.add(s);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return secouristes;
+        return liste;
     }
 
-    /**
-     * findByDay retourne tous les secouristes disponibles pour un jour donné
-     */
-    public List<Secouriste> findByDay(long idJourFind) {
-        List<Secouriste> secouristes = new ArrayList<>();
-        String query = "SELECT * FROM Secouriste s JOIN Disponibilite d ON s.idSecouriste = d.secouristeDisp WHERE journeeDisp = ? ";
-
+    public static Secouriste findById(long id) {
+        Secouriste s = null;
+        String query = "SELECT * FROM Secouriste WHERE idSecouriste = ?";
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
-
-            stmt.setLong(1, idJourFind);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                Secouriste s = new Secouriste(
-                        rs.getLong("idSecouriste"),
-                        rs.getString("nom"),
-                        rs.getString("prenom"),
-                        rs.getString("date_naissance"),
-                        rs.getString("tel"),
-                        rs.getString("adresse")
-                );
-                secouristes.add(s);
+            stmt.setLong(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    s = new Secouriste(
+                            rs.getLong("idSecouriste"),
+                            rs.getString("nom"),
+                            rs.getString("prenom"),
+                            rs.getString("date_naissance"),
+                            rs.getString("tel"),
+                            rs.getString("adresse")
+                    );
+                    s.setPseudo(rs.getString("pseudo"));
+                    s.setBio(rs.getString("bio"));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return secouristes;
+        return s;
     }
 
-
-    /**
-     * findById find the secouriste by his id
-     *
-     * @return return the secouriste
-     */
-    public Secouriste findById(long idSecouriste) {
-        String query = "SELECT * FROM Secouriste WHERE Secouriste.idSecouriste = ?";
+    public static List<Secouriste> findByDay(long jour) {
+        List<Secouriste> liste = new ArrayList<>();
+        String query = "SELECT * FROM Secouriste WHERE idSecouriste IN (SELECT idSecouriste FROM Affectation WHERE jour = ?)";
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
-
-            stmt.setLong(1, idSecouriste);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                Secouriste secouriste = new Secouriste(
-                        rs.getLong("idSecouriste"),
-                        rs.getString("nom"),
-                        rs.getString("prenom"),
-                        rs.getString("date_naissance"),
-                        rs.getString("tel"),
-                        rs.getString("adresse")
-                );
-                return secouriste;
+            stmt.setLong(1, jour); // <-- correction ici
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Secouriste s = new Secouriste(
+                            rs.getLong("idSecouriste"),
+                            rs.getString("nom"),
+                            rs.getString("prenom"),
+                            rs.getString("date_naissance"),
+                            rs.getString("tel"),
+                            rs.getString("adresse")
+                    );
+                    s.setPseudo(rs.getString("pseudo"));
+                    s.setBio(rs.getString("bio"));
+                    liste.add(s);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return liste;
     }
 
-    /**
-     * updateSecouriste is to update like in the register controller
-     *
-     * @param secouriste a secouriste
-     * @return a boolean that verify the right fonctionnement.
-     */
-    public boolean updateSecouriste(Secouriste secouriste) {
-        String query = "UPDATE Secouriste SET nom = ?, prenom = ?, date_naissance = ?, tel = ?, adresse = ? WHERE idSecouriste = ?";
+
+    public static boolean updateSecouriste(Secouriste s) {
+        String query = "UPDATE Secouriste SET nom = ?, prenom = ?, date_naissance = ?, tel = ?, adresse = ?, pseudo = ?, bio = ? WHERE idSecouriste = ?";
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
-
-            stmt.setString(1, secouriste.getNom());
-            stmt.setString(2, secouriste.getPrenom());
-            stmt.setString(3, secouriste.getDateNaissance());
-            stmt.setString(4, secouriste.getTel());
-            stmt.setString(5, secouriste.getAdresse());
-            stmt.setLong(6, secouriste.getIdSecouriste());
-
-            int updated = stmt.executeUpdate();
-            return updated > 0;
+            stmt.setString(1, s.getNom());
+            stmt.setString(2, s.getPrenom());
+            stmt.setString(3, s.getDateNaissance());
+            stmt.setString(4, s.getTel());
+            stmt.setString(5, s.getAdresse());
+            stmt.setString(6, s.getPseudo());
+            stmt.setString(7, s.getBio());
+            stmt.setLong(8, s.getIdSecouriste());
+            return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
 
-    /**
-     * addSecouriste is to add a secouriste
-     *
-     * @param secouriste a secouriste
-     * @return a boolean that verify the right fonctionnement.
-     */
-    public boolean addSecouriste(Secouriste secouriste) {
-        String query = "INSERT INTO Secouriste (idSecouriste, nom, prenom, date_naissance, adresse, tel) VALUES (?, ?, ?, ?, ?, ?)";
+    public static boolean addSecouriste(Secouriste s) {
+        String query = "INSERT INTO Secouriste (nom, prenom, date_naissance, tel, adresse, pseudo, bio) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
-
-            stmt.setLong(1, secouriste.getIdSecouriste());
-            stmt.setString(2, secouriste.getNom());
-            stmt.setString(3, secouriste.getPrenom());
-            stmt.setString(4, secouriste.getDateNaissance());
-            stmt.setString(5, secouriste.getAdresse());
-            stmt.setString(6, secouriste.getTel());
-
-
-            int inserted = stmt.executeUpdate();
-            return inserted > 0;
+            stmt.setString(1, s.getNom());
+            stmt.setString(2, s.getPrenom());
+            stmt.setString(3, s.getDateNaissance());
+            stmt.setString(4, s.getTel());
+            stmt.setString(5, s.getAdresse());
+            stmt.setString(6, s.getPseudo());
+            stmt.setString(7, s.getBio());
+            return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 }

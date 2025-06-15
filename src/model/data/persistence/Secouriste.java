@@ -14,6 +14,8 @@ public class Secouriste {
     private String email;   // Adresse email
     private String tel;     // Numéro de téléphone
     private String adresse; // Adresse postale
+    private String pseudo;
+    private String bio;
 
     /**
      * Constructor of Secouriste
@@ -32,6 +34,8 @@ public class Secouriste {
         this.dateNaissance = dateNaissance;
         this.tel = tel;
         this.adresse = adresse;
+        this.pseudo = "";
+        this.bio = "";
     }
 
     /**
@@ -117,4 +121,35 @@ public class Secouriste {
         this.adresse = adresse;
     }
 
+    /**
+     * Getter of pseudo
+     * @return the pseudo of the secouriste
+     */
+    public String getPseudo(){
+        return this.pseudo;
+    }
+
+    /**
+     * Setter of pseudo
+     * @param pseudo - the username
+     */
+    public void setPseudo(String pseudo){
+        this.pseudo = pseudo;
+    }
+
+    /**
+     * Getter of bio
+     * @return the bio of the secouriste
+     */
+    public String getBio(){
+        return this.bio;
+    }
+
+    /**
+     * Setter of bio
+     * @param bio - the bio
+     */
+    public void setBio(String bio){
+        this.bio = bio;
+    }
 }
