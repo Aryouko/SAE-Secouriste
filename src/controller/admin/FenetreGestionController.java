@@ -29,15 +29,12 @@ public class FenetreGestionController {
 
     private MenuParalleleController menuParalleleController;
 
-
-
-
     public void initialize() {
         if (getInstanceAuthentificationManagement().isAdmin()) {
-            loadContent2("/fxml/admin/GestionSecouriste.fxml");
+            loadContent2("/fxml/admin/GestionEvenement.fxml");
             loadContent1("/fxml/both/MenuParallele.fxml");
         } else {
-            loadContent2("/fxml/admin/GestionSecouriste.fxml");
+            loadContent2("/fxml/admin/GestionEvenement.fxml");
             loadContent1("/fxml/both/MenuParallele.fxml");
         }
     }
