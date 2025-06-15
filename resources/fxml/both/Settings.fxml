@@ -143,7 +143,7 @@
                </effect>
             </Circle>
             <Circle fill="WHITE" layoutX="304.0" layoutY="217.0" radius="70.0" stroke="WHITE" strokeType="INSIDE" />
-            <ImageView fx:id="pdpProfil" fitHeight="133.0" fitWidth="133.0" layoutX="237.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="133.0" fitWidth="133.0" layoutX="237.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/anonyme.png" />
                </image>
