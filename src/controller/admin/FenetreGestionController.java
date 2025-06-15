@@ -31,12 +31,22 @@ public class FenetreGestionController {
 
     @FXML
     public void initialize() {
-        if (getInstanceAuthentificationManagement().isAdmin()) {
-            loadContent2("/fxml/admin/GestionEvenement.fxml");
-        } else {
-            loadContent2("/fxml/both/CalendarAssignment.fxml");
-        }
         loadContent1("/fxml/both/MenuParallele.fxml");
+        try {
+            if (getInstanceAuthentificationManagement().isAdmin()) {
+                loadContent2("/fxml/admin/GestionEvenement.fxml");
+            } else {
+                loadContent2("/fxml/both/CalendarAssignment.fxml");
+            }
+
+            // Charge le menu parallèle
+
+
+        } catch (Exception e) {
+            System.err.println("Erreur lors de l'initialisation : " + e.getMessage());
+            e.printStackTrace();
+            controller.UtilsController.showError("Erreur d'initialisation : " + e.getMessage());
+        }
     }
 
     public void loadContent1(String fxmlFile) {

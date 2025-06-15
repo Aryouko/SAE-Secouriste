@@ -3,6 +3,7 @@ package model.dao;
 public class DAOFactory {
 
     private static SecouristeDAO secouristeDAO;
+    private static AdministrateurDAO administrateurDAO;
     private static DPSDAO dpsDAO;
     private static JourneeDAO journeeDAO;
     private static UserDAO userDAO;
@@ -20,6 +21,15 @@ public class DAOFactory {
         }
         return secouristeDAO;
     }
+
+
+    public static AdministrateurDAO getAdministrateurDAO() {
+        if (administrateurDAO == null) {
+            administrateurDAO = new AdministrateurDAO();
+        }
+        return administrateurDAO;
+    }
+
 
     /**
      * Returns a singleton instance of SecouristeDAO.

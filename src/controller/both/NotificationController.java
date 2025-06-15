@@ -43,7 +43,8 @@ public class NotificationController {
         openFormButton.setVisible(auth.isAdmin());
         openFormButton.setDisable(!auth.isAdmin());
 
-        List<Notification> listNotification = this.notificationManagement.getNotificationById(id);
+        List<Notification> listNotification = this.notificationManagement.getNotificationByIdSender(id);
+        System.out.println("Nombre de notifications récupérées : " + listNotification.size());
 
         ArrayList<GridPane> list = listNotificationToListGridPane(listNotification);
         VBoxlistNotification.getChildren().clear();
@@ -56,19 +57,33 @@ public class NotificationController {
     private ArrayList<GridPane> listNotificationToListGridPane(List<Notification> listNotification) {
 
         ArrayList<GridPane> list = new ArrayList<>();
+        model.data.service.DPSManagement dpsManagement = new model.data.service.DPSManagement();
         for (int i = 0; i < listNotification.size(); i++) {
             Notification notification = listNotification.get(i);
+
             Label label = new Label(notification.getTitle());
             label.setStyle("-fx-text-fill: white; -fx-font-size: 16px");
 
+            // Ajout du nom du DPS concerné
+
+            String dpsName = dpsManagement.getDpsById(notification.getIdDPS()).getName();
+
+            Label dpsLabel = new Label(dpsName);
+            dpsLabel.setStyle("-fx-text-fill: #ffffff47; -fx-font-size: 12px; -fx-font-weight: bold; -fx-padding: 0 10 0 0;");
+
             Label date = new Label(notification.getDate());
-            date.setStyle("-fx-text-fill: white; -fx-font-size: 12px");
+            date.setStyle("-fx-text-fill: #ffffff47; -fx-font-size: 12px");
 
             Circle circle = new Circle();
             circle.setRadius(15);
+            circle.setFill(javafx.scene.paint.Color.web("#4A4AE4"));
+
+
 
             GridPane pane = new GridPane();
             GridPane subPane = new GridPane();
+
+
 
             ColumnConstraints col = new ColumnConstraints();
             col.setMaxWidth(500);
@@ -76,24 +91,45 @@ public class NotificationController {
             pane.getColumnConstraints().addAll(col);
 
             subPane.add(label, 0, 0);
-            subPane.add(date, 0, 1);
+            subPane.add(dpsLabel, 0, 1);
+            subPane.add(date, 1, 1);
             pane.add(subPane,0,0);
             pane.add(circle,1,0);
+
+            // Ajout de la pastille pour nouvelle notif non lue
+            Circle badge = null;
+            if (!notification.getIsViewed()) {
+                badge = new Circle();
+                badge.setRadius(6);
+                badge.setFill(javafx.scene.paint.Color.web("#FF004D"));
+                badge.setTranslateX(290); // décalage à droite
+                badge.setTranslateY(-15); // décalage vers le haut
+                // Ajout dans le même parent que le cercle
+                pane.getChildren().add(badge);
+                badge.toFront(); // S'assurer que la pastille est au-dessus
+            }
+
             pane.setPrefHeight(60);
             pane.setPadding(new Insets(10));
             VBox.setMargin(pane, new Insets(0,10,0,0));
-            pane.setStyle("-fx-background-color: #2A2A2A; -fx-background-radius: 15");
+
+            circle.setFill(javafx.scene.paint.Color.web("#4A4AE4")); // Color:
+            if (notification.getIsViewed()) {
+                pane.setStyle("-fx-background-color: #2A2B2D; -fx-background-radius: 25");
+            } else {
+                pane.setStyle("-fx-background-color: #46484C; -fx-background-radius: 25");
+
+            }
+
             label.setLayoutX(10);
             label.setLayoutY(10);
-            /*
+
 
 
             pane.setOnMouseClicked(event -> {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/both/ReadNotification.fxml"));
                     Parent root = loader.load();
-
-                    // Récupère le contrôleur et passe la notification
                     ReadNotificationController controller = loader.getController();
                     controller.setNotification(notification);
 
@@ -107,9 +143,21 @@ public class NotificationController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                pane.setStyle("-fx-background-color: #2A2B2D; -fx-background-radius: 25");
+
             });
 
-             */
+
+            circle.setOnMouseClicked(event -> {
+
+                notificationManagement.deleteNotification(notification);
+
+                VBoxlistNotification.getChildren().remove(pane);
+                event.consume(); // Empêche la propagation du clic au pane
+            });
+
+
 
             list.add(pane);
 

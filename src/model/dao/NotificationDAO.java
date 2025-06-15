@@ -7,33 +7,33 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class NotificationDAO {
 
     /**
-     * findById find the notification by the id of the secouriste
+     * Récupère toutes les notifications dont l'utilisateur est destinataire
      *
-     * @return return the secouriste
+     * @param idRecipient l'id de l'utilisateur destinataire
+     * @return la liste des notifications reçues
      */
-    public ArrayList<Notification> findById(long idSecouriste) {
+    public ArrayList<Notification> findByIdSender(long idRecipient) {
         ArrayList<Notification> listNotifications = new ArrayList<>();
-        String query = "SELECT * FROM Notification, Secouriste WHERE Notification.recipient = ?";
+        String query = "SELECT * FROM Notification WHERE Notification.recipient = ? ORDER BY date DESC";
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
-            stmt.setLong(1, idSecouriste);
+            stmt.setLong(1, idRecipient);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 Notification notification = new Notification(
                         rs.getString("title"),
                         rs.getString("message"),
                         rs.getString("date"),
                         rs.getLong("sender"),
                         rs.getLong("recipient"),
+                        rs.getLong("idDPS"),
                         rs.getBoolean("isViewed")
                 );
-
                 listNotifications.add(notification);
             }
         } catch (SQLException e) {
@@ -48,7 +48,7 @@ public class NotificationDAO {
      * @param notification the notification to save
      */
     public void insert(Notification notification) {
-        String query = "INSERT INTO Notification (title, date, message, sender, recipient, isViewed) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Notification (title, message, date, sender, recipient, idDPS, isViewed) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
@@ -57,7 +57,30 @@ public class NotificationDAO {
             stmt.setString(3, notification.getDate());
             stmt.setLong(4, notification.getSender());
             stmt.setLong(5, notification.getRecipient());
-            stmt.setBoolean(6, notification.getIsViewed());
+            stmt.setLong(6, notification.getIdDPS());
+            stmt.setBoolean(7, notification.getIsViewed());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Deletes a notification from the database.
+     *
+     * @param notification the notification
+     */
+    public void delete(Notification notification) {
+        String query = "DELETE FROM Notification WHERE idDPS = ? AND sender = ? AND recipient = ?";
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+
+            stmt.setLong(1, notification.getSender());
+            stmt.setLong(2, notification.getRecipient());
+            stmt.setLong(3, notification.getIdDPS());
 
             stmt.executeUpdate();
         } catch (SQLException e) {

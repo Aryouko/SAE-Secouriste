@@ -156,10 +156,12 @@ CREATE TABLE Notification (
     date VARCHAR(20),
     sender INTEGER,
     recipient INTEGER,
+    idDPS INTEGER,
     isViewed BOOLEAN DEFAULT FALSE,
     CONSTRAINT pk_Notification PRIMARY KEY (date, sender, recipient),
     CONSTRAINT fk_Notification_Sender FOREIGN KEY (sender) REFERENCES Administrateur(idAdministrateur),
-    CONSTRAINT fk_Notification_Recipient FOREIGN KEY (recipient) REFERENCES Secouriste(idSecouriste)
+    CONSTRAINT fk_Notification_Recipient FOREIGN KEY (recipient) REFERENCES User(idUser),
+    CONSTRAINT fk_Notification_idDPS FOREIGN KEY (idDPS) REFERENCES DPS(id)
 );
 
 -- Table des certificats (liée aux secouristes et aux compétences)
