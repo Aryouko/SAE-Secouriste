@@ -62,15 +62,15 @@
             </Label>
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.20001220703125" minWidth="10.0" prefWidth="83.79998779296875" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.59999084472656" minWidth="10.0" prefWidth="84.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.79998779296875" minWidth="10.0" prefWidth="98.39999999999998" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.20001220703125" minWidth="10.0" prefWidth="61.800052642822266" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.59999084472656" minWidth="10.0" prefWidth="123.00001220703123" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.79998779296875" minWidth="10.0" prefWidth="74.19998779296878" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox fx:id="moisComboBox" onAction="#filterUpdate" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: EBF0F6; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <ComboBox fx:id="moisComboBox" onAction="#filterUpdate" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: EBF0F6; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <ComboBox fx:id="anneeComboBox" onAction="#filterUpdate" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: EBF0F6; -fx-background-radius: 5;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />

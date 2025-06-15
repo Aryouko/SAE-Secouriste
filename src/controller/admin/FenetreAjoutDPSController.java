@@ -283,8 +283,10 @@ public class FenetreAjoutDPSController {
 
     public DPS ajoutDPS() {
         DPS dps = null;
-        if (this.horaireDeb >= horaireFin) {
+        if (this.horaireDeb >= this.horaireFin) {
             this.infosLabel.setText("Erreur : Horaire de début >= Horaire de fin");
+        } else if (this.horaireFin - this.horaireDeb < 3) {
+            this.infosLabel.setText("Erreur : Le Dps doit durer plus de 3h");
         } else {
             long id = this.dpsManagement.numberOfDps();
             while (this.dpsManagement.exists(id)) {
