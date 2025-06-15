@@ -34,7 +34,7 @@ public class FenetreGestionController {
         if (getInstanceAuthentificationManagement().isAdmin()) {
             loadContent2("/fxml/admin/GestionEvenement.fxml");
         } else {
-            loadContent2("/fxml/admin/GestionSecouriste.fxml");
+            loadContent2("/fxml/both/CalendarAssignment.fxml");
         }
         loadContent1("/fxml/both/MenuParallele.fxml");
     }
