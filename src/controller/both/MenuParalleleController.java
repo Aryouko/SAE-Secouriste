@@ -9,6 +9,8 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import java.io.IOException;
 
+import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
+
 public class MenuParalleleController {
 
     private FenetreGestionController fenetreGestionController;
