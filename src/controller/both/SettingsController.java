@@ -21,14 +21,14 @@ public class SettingsController {
     @FXML
     private Text prenomNomProfile;
     @FXML
-    private Text prenomPrenomParam;
+    private Text prenomNomParam;
 
     @FXML
     public void initialize() {
         sec = AuthentificationManagement.getInstanceAuthentificationManagement().getSecouriste();
         if (sec != null) {
             prenomNomProfile.setText(sec.getPrenom() + " " + sec.getNom());
-            prenomPrenomParam.setText(sec.getPrenom() + " " + sec.getNom());
+            prenomNomParam.setText(sec.getPrenom() + " " + sec.getNom());
             pseudoField.setText(sec.getPseudo());
             bioField.setText(sec.getBio());
         }
