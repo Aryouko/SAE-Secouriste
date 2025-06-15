@@ -31,12 +31,12 @@ public class FenetreGestionController {
 
     @FXML
     public void initialize() {
+        loadContent1("/fxml/both/MenuParallele.fxml");
         if (getInstanceAuthentificationManagement().isAdmin()) {
             loadContent2("/fxml/admin/GestionEvenement.fxml");
         } else {
             loadContent2("/fxml/both/CalendarAssignment.fxml");
         }
-        loadContent1("/fxml/both/MenuParallele.fxml");
     }
 
     public void loadContent1(String fxmlFile) {
@@ -61,12 +61,12 @@ public class FenetreGestionController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent newContent = loader.load();
-
             this.includePane2.getChildren().setAll(newContent);
+
             Object controller = loader.getController();
             if (controller instanceof GestionEvenementController) {
                 this.gestionEvenementController = (GestionEvenementController) controller;
-                ((GestionEvenementController)controller).setFenetreGestionController(this);
+                ((GestionEvenementController) controller).setFenetreGestionController(this);
                 ((GestionEvenementController) controller).setEvenementController(this.menuParalleleController.getEvenementController());
             }
             if (controller instanceof GestionSecouristeController) {
