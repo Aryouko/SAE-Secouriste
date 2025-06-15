@@ -18,13 +18,9 @@
           <RowConstraints maxHeight="761.0000152587891" minHeight="10.0" prefHeight="749.0000152587891" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <ScrollPane prefHeight="200.0" fitToHeight="false" prefWidth="200.0" GridPane.rowIndex="1">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="710.0" prefWidth="1415.0">
-                     <children>
-                        <Pane fx:id="calendarPane" prefWidth="1444.0" style="-fx-background-color: #F9FCFF;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="-6.399999999999864" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                     </children>
-                  </AnchorPane>
+                  <Pane fx:id="calendarPane" prefWidth="1444.0" style="-fx-background-color: #F9FCFF;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="-6.399999999999864" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
               </content>
             </ScrollPane>
             <GridPane style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0.3, 0, 2); -fx-background-color: #FFFFFF;">
