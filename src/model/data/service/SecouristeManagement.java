@@ -1,5 +1,6 @@
 package model.data.service;
 
+import model.dao.DAOFactory;
 import model.dao.SecouristeDAO;
 import model.data.persistence.Secouriste;
 
@@ -19,6 +20,7 @@ public class SecouristeManagement {
     public List<Secouriste> findAll() {
         return secouristeDAO.findAll();
     }
+
 
     public List<Secouriste> findByIdJournee(long idJournee) {
         return secouristeDAO.findByDay(idJournee);
