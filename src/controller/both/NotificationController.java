@@ -86,6 +86,7 @@ public class NotificationController {
             label.setLayoutX(10);
             label.setLayoutY(10);
 
+
             pane.setOnMouseClicked(event -> {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/both/ReadNotification.fxml"));
