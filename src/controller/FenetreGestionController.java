@@ -26,6 +26,12 @@ public class FenetreGestionController {
     @FXML
     private AnchorPane fenetreGestion;
 
+    private GestionEvenementController gestionEvenementController;
+
+    private GestionSecouristeController gestionSecouristeController;
+
+    private MenuParalleleController menuParalleleController;
+
     public void initialize() {
         loadContent1("/fxml/MenuParallele.fxml");
         loadContent2("/fxml/GestionEvenement.fxml");
@@ -39,6 +45,7 @@ public class FenetreGestionController {
             this.includePane1.getChildren().setAll(newContent);
             Object controller = loader.getController();
 
+            this.menuParalleleController = (MenuParalleleController) controller;
             ((MenuParalleleController)controller).setFenetreGestionController(this);
 
 
@@ -55,9 +62,12 @@ public class FenetreGestionController {
             this.includePane2.getChildren().setAll(newContent);
             Object controller = loader.getController();
             if (controller instanceof GestionEvenementController) {
+                this.gestionEvenementController = (GestionEvenementController) controller;
                 ((GestionEvenementController)controller).setFenetreGestionController(this);
+                ((GestionEvenementController) controller).setEvenementController(this.menuParalleleController.getEvenementController());
             }
             if (controller instanceof GestionSecouristeController) {
+                this.gestionSecouristeController = (GestionSecouristeController) controller;
                 ((GestionSecouristeController)controller).setFenetreGestionController(this);
             }
 
@@ -76,6 +86,10 @@ public class FenetreGestionController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/FenetreAjoutDPS.fxml"));
             Parent overlayContent = loader.load();
 
+            FenetreAjoutDPSController controller = loader.getController();
+            controller.initializeGestionEvenementController(this.gestionEvenementController);
+            controller.initializeEvenementController(this.menuParalleleController.getEvenementController());
+
             StackPane overlayPane = new StackPane();
             overlayPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);"); // fond semi-transparent sombre
 
@@ -88,8 +102,6 @@ public class FenetreGestionController {
             AnchorPane.setRightAnchor(overlayPane, 0.0);
 
             this.fenetreGestion.getChildren().add(overlayPane);
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }

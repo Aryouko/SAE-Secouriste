@@ -23,4 +23,8 @@ public class BesoinManagement {
     public void deleteBesoinByDPSAndCompetence(DPS dps, Competence competence) {
         this.besoinDAO.deleteByDPSAndCompetence(dps, competence);
     }
+
+    public void removeByDps(DPS dps) {
+        besoinDAO.deleteByDps(dps.getId());
+    }
 }

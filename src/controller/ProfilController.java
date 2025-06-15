@@ -74,7 +74,7 @@ public class ProfilController {
         }
     }
 
-    public void setMenuParallelController(MenuParalleleController controller) {
+    public void setMenuParalleleController(MenuParalleleController controller) {
         this.menuParalleleController = controller;
     }
 }

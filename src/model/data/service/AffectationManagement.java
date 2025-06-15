@@ -3,6 +3,7 @@ import model.dao.AffectationDAO;
 import model.data.persistence.Affectation;
 import model.data.persistence.DPS;
 import model.data.persistence.Secouriste;
+import model.graphCelianTest.samedia17h30.graph.AssignmentGreedy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,5 +34,17 @@ public class AffectationManagement {
 
     public List<Affectation> getAffectationsByRescuer(Secouriste secouriste) {
         return this.affectationDAO.findByRescuer(secouriste.getIdSecouriste());
+    }
+
+    public List<Affectation> getAffectationsByDps(DPS dps) {
+        return this.affectationDAO.findByDPS(dps.getId());
+    }
+
+    public void launchAffectation(DPS dps) throws Exception {
+        new AssignmentGreedy().AssignmentRescuersGreedy(dps);
+    }
+
+    public void removeByDps(Affectation affectation) {
+        this.affectationDAO.deleteByDPS(affectation);
     }
 }

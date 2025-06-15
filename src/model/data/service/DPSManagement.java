@@ -24,11 +24,16 @@ public class DPSManagement {
     public DPS getDpsById(long id) {
         return this.dpsDAO.findById(id);
     }
+
     public long numberOfDps(){
         return this.dpsDAO.findAll().size();
     }
 
     public ArrayList<String> getDpsName() {
         return this.dpsDAO.findDPSName();
+    }
+
+    public void removeDps(DPS dps) {
+        this.dpsDAO.deleteByIdDPS(dps.getId());
     }
 }
