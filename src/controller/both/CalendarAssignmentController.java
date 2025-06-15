@@ -1,4 +1,4 @@
-package controller.admin;
+package controller.both;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
