@@ -29,14 +29,14 @@ public class FenetreGestionController {
 
     private MenuParalleleController menuParalleleController;
 
+    @FXML
     public void initialize() {
         if (getInstanceAuthentificationManagement().isAdmin()) {
             loadContent2("/fxml/admin/GestionEvenement.fxml");
-            loadContent1("/fxml/both/MenuParallele.fxml");
         } else {
-            loadContent2("/fxml/admin/GestionEvenement.fxml");
-            loadContent1("/fxml/both/MenuParallele.fxml");
+            loadContent2("/fxml/admin/GestionSecouriste.fxml");
         }
+        loadContent1("/fxml/both/MenuParallele.fxml");
     }
 
     public void loadContent1(String fxmlFile) {
