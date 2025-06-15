@@ -51,7 +51,7 @@ public class GestionEvenementController {
 
     @FXML
     public void initialize() {
-
+        System.out.println("GestionEvenementController initialized");
         this.sports = new ArrayList<>();
         this.sites = new ArrayList<>();
         this.dpsList = new ArrayList<>();

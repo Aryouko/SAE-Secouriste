@@ -50,9 +50,10 @@ public class FenetreGestionController {
             this.menuParalleleController = (MenuParalleleController) controller;
             ((MenuParalleleController)controller).setFenetreGestionController(this);
 
-
         } catch (IOException e) {
+            System.err.println("Erreur lors du chargement de " + fxmlFile + " : " + e.getMessage());
             e.printStackTrace();
+            controller.UtilsController.showError("Erreur lors du chargement de " + fxmlFile + " : " + e.getMessage());
         }
     }
 
@@ -74,6 +75,7 @@ public class FenetreGestionController {
             }
 
         } catch (IOException e) {
+            System.err.println("Erreur lors du chargement de " + fxmlFile + " : " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -105,6 +107,7 @@ public class FenetreGestionController {
 
             this.fenetreGestion.getChildren().add(overlayPane);
         } catch (IOException e) {
+            System.err.println(e.getMessage());
             e.printStackTrace();
         }
     }

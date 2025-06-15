@@ -85,6 +85,7 @@ public class NotificationController {
             pane.setStyle("-fx-background-color: #2A2A2A; -fx-background-radius: 15");
             label.setLayoutX(10);
             label.setLayoutY(10);
+            /*
 
 
             pane.setOnMouseClicked(event -> {
@@ -107,6 +108,8 @@ public class NotificationController {
                     e.printStackTrace();
                 }
             });
+
+             */
 
             list.add(pane);
 
