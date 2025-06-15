@@ -23,6 +23,7 @@ public class SettingsController {
     @FXML
     private Text prenomNomParam;
 
+    /*
     @FXML
     public void initialize() {
         sec = AuthentificationManagement.getInstanceAuthentificationManagement().getSecouriste();
@@ -75,4 +76,6 @@ public class SettingsController {
             }
         }).start();
     }
+    /*
+
 }
