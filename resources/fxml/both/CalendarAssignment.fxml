@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="990.0" prefWidth="1444.0" style="-fx-background-color: #F9FCFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.CalendarAssignmentController">
    <children>
@@ -23,66 +18,35 @@
           <RowConstraints maxHeight="761.0000152587891" minHeight="10.0" prefHeight="749.0000152587891" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Pane fx:id="calendarPane" prefWidth="1444.0" style="-fx-background-color: #F9FCFF;" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Pane>
-            <GridPane style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0.3, 0, 2); -fx-background-color: #FFFFFF; -fx-background-radius: 30;">
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="710.0" prefWidth="1415.0">
+                     <children>
+                        <Pane fx:id="calendarPane" prefWidth="1444.0" style="-fx-background-color: #F9FCFF;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="-6.399999999999864" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <GridPane style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0.3, 0, 2); -fx-background-color: #FFFFFF;">
               <columnConstraints>
                 <ColumnConstraints />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="991.0" minWidth="10.0" prefWidth="955.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="719.0" minWidth="10.0" prefWidth="503.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1441.000048828125" minWidth="10.0" prefWidth="1410.59990234375" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="207.0" minHeight="10.0" prefHeight="193.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="122.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="207.0" minHeight="10.0" prefHeight="118.40001831054687" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="148.39996337890625" minHeight="10.0" prefHeight="127.99998168945314" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="59.0" prefWidth="346.0" style="-fx-background-color: #EBF0F6; -fx-background-radius: 10;" text="Gestion des secouristes" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets right="35.0" top="35.0" />
-                     </GridPane.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #121315; -fx-background-radius: 10;" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <graphic>
-                        <GridPane prefHeight="9.0" prefWidth="202.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.666748046875" minWidth="10.0" prefWidth="156.3333740234375" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.333251953125" minWidth="10.0" prefWidth="44.6666259765625" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label prefHeight="25.0" prefWidth="148.0" text="Créer un évènement" textFill="WHITE" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-                                 <image>
-                                    <Image url="@../../images/plus.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </GridPane>
-                     </graphic>
-                     <GridPane.margin>
-                        <Insets right="35.0" />
-                     </GridPane.margin>
-                  </Button>
-                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <GridPane fx:id="gridPaneWeek" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="471.3333435058594" minWidth="10.0" prefWidth="265.3333282470703" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="720.9999847412109" minWidth="10.0" prefWidth="682.6666717529297" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
