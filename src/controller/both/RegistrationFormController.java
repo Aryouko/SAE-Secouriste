@@ -31,7 +31,7 @@ public class RegistrationFormController {
         String address = addressTextField.getText();
         String phoneNumber = phoneNumberTextField.getText();
 
-        if (getInstanceAuthentificationManagement().createRescuer(getInstanceAuthentificationManagement().getCurrentUser().getIdUser() ,name, forename, birthdate, address, phoneNumber)) {;
+        if (getInstanceAuthentificationManagement().createRescuer(getInstanceAuthentificationManagement().getCurrentUser().getIdUser() ,name, forename, birthdate, address, phoneNumber, null)) {;
             System.out.println("Rescuer created successfully.");
             linkToPage(pageRegistrationForm, "/fxml/both/Connexion.fxml");
         } else {

@@ -1,7 +1,12 @@
 package model.dao;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.*;
+
+import javafx.scene.image.Image;
 import model.data.persistence.Secouriste;
 
 public class SecouristeDAO {
@@ -20,7 +25,8 @@ public class SecouristeDAO {
                         rs.getString("prenom"),
                         rs.getString("date_naissance"),
                         rs.getString("tel"),
-                        rs.getString("adresse")
+                        rs.getString("adresse"),
+                        rs.getBytes("photo")
                 );
                 secouristes.add(s);
             }
@@ -50,7 +56,8 @@ public class SecouristeDAO {
                         rs.getString("prenom"),
                         rs.getString("date_naissance"),
                         rs.getString("tel"),
-                        rs.getString("adresse")
+                        rs.getString("adresse"),
+                        rs.getBytes("photo")
                 );
                 secouristes.add(s);
             }
@@ -80,7 +87,8 @@ public class SecouristeDAO {
                         rs.getString("prenom"),
                         rs.getString("date_naissance"),
                         rs.getString("tel"),
-                        rs.getString("adresse")
+                        rs.getString("adresse"),
+                        rs.getBytes("photo")
                 );
                 return secouriste;
             }
@@ -141,5 +149,59 @@ public class SecouristeDAO {
             e.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * insérer une photo pour un secouriste existant
+     *
+     * @param id - id du secouriste
+     * @param imageFile fichier image à insérer
+     * @return boolean indiquant si l'insertion a réussi
+     */
+    public boolean insererPhoto(long id, File imageFile) {
+        String query = "UPDATE Secouriste SET photo = ? WHERE idSecouriste = ?";
+
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query);
+             FileInputStream fis = new FileInputStream(imageFile)) {
+
+            stmt.setBinaryStream(1, fis, (int) imageFile.length());
+            stmt.setLong(2, id);
+
+            int updated = stmt.executeUpdate();
+            return updated > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * recuperer une photo pour un secouriste existant
+     *
+     * @param id - id du secouriste
+     * @return la photo de profil
+     */
+    public Image recupererPhoto(long id) {
+        String sql = "SELECT photo FROM Secouriste WHERE idSecouriste = ?";
+        try (Connection conn = ConnectionBDD.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                InputStream is = rs.getBinaryStream("photo");
+                if (is != null) {
+                    return new Image(is);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

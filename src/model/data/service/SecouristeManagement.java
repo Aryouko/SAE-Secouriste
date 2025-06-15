@@ -1,9 +1,11 @@
 package model.data.service;
 
+import javafx.scene.image.Image;
 import model.dao.DAOFactory;
 import model.dao.SecouristeDAO;
 import model.data.persistence.Secouriste;
 
+import java.io.File;
 import java.util.List;
 
 public class SecouristeManagement {
@@ -24,5 +26,13 @@ public class SecouristeManagement {
 
     public List<Secouriste> findByIdJournee(long idJournee) {
         return secouristeDAO.findByDay(idJournee);
+    }
+
+    public boolean insererPhoto(long idSecouriste, File imageFile) {
+        return secouristeDAO.insererPhoto(idSecouriste, imageFile);
+    }
+
+    public Image recupererPhoto(long idSecouriste) {
+        return secouristeDAO.recupererPhoto(idSecouriste);
     }
 }

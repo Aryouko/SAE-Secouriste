@@ -138,8 +138,6 @@ public class CalendarAssignmentController {
             LocalDate startDate = this.date.minusDays(dayWeek - 1);
             for (int i = 0; i < 7; i++) {
                 LocalDate currentDate = startDate.plusDays(i);
-                System.out.println(currentDate);
-                System.out.println(dpsDate);
                 if (dpsDate.equals(currentDate)) {
 
                     int startHour = dps.getHoraireDepart();
