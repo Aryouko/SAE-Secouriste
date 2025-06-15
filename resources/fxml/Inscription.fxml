@@ -188,7 +188,7 @@
                               </DropShadow>
                            </effect>
                         </Button>
-                        <Hyperlink onAction="#linkToConnexion" text="Connextion">
+                        <Hyperlink onAction="#linkToConnexion" text="Connexion">
                            <font>
                               <Font name="Poppins Medium" size="20.0" />
                            </font>
