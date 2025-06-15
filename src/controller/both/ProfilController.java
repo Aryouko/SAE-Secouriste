@@ -61,7 +61,7 @@ public class ProfilController {
     private void switchNotifCalendar() {
         if (menuParalleleController != null) {
             if (!isNotif) {
-                menuParalleleController.setRow(1, "/fxml/admin/Notification.fxml");
+                menuParalleleController.setRow(1, "/fxml/both/Notification.fxml");
                 isNotif = true ;
             } else {
                 menuParalleleController.setRow(1, "/fxml/both/Calendar.fxml");

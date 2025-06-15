@@ -1,4 +1,4 @@
-package controller.admin;
+package controller.both;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="380.0" prefWidth="380.0" style="-fx-background-color: #121215; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.NotificationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="380.0" prefWidth="380.0" style="-fx-background-color: #121215; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.NotificationController">
    <children>
       <Label layoutX="85.0" layoutY="22.0" prefHeight="52.0" prefWidth="251.0" text="Notifications" textFill="WHITE" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="22.0">
          <font>
