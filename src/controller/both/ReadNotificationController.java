@@ -33,17 +33,11 @@ public class ReadNotificationController {
 
     private AdministrateurManagement admin = new AdministrateurManagement();
 
-
     private DPSManagement dps = new DPSManagement();
-
 
     @FXML
     private void initialize() {
-        titleLabel.setText(notif.getTitle());
-        fromTextlabel.setText(admin.getAdministrateurById(notif.getSender()).getNom());
-        toTextlabel.setText(dps.getDpsById(notif.getRecipient()).getName());
-        dateTextlabel.setText(notif.getDate());
-        messageTextArea.setText(notif.getMessage());
+
     }
 
     @FXML
@@ -54,6 +48,11 @@ public class ReadNotificationController {
 
     public void setNotification(Notification notif) {
         this.notif = notif;
+        titleLabel.setText(notif.getTitle());
+        fromTextlabel.setText(admin.getAdministrateurById(notif.getSender()).getNom());
+        toTextlabel.setText(dps.getDpsById(notif.getIdDPS()).getName());
+        dateTextlabel.setText(notif.getDate());
+        messageTextArea.setText(notif.getMessage());
     }
-
 }
+

@@ -14,11 +14,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
+
 
 public class NotificationFormController {
 
     private LocalDateTime now = LocalDateTime.now();
-    private final AuthentificationManagement auth = AuthentificationManagement.getInstanceAuthentificationManagement();;
+    private final AuthentificationManagement auth = getInstanceAuthentificationManagement();;
     private final DPSManagement dpsMana = new DPSManagement();
     private final NotificationManagement notificationManagement = new NotificationManagement();
 
@@ -47,6 +49,7 @@ public class NotificationFormController {
         dateTextlabel.setText(formatted);
 
         String UserName = auth.getCurrentUserName();
+        System.out.println("UserName: " + UserName);
         fromTextlabel.setText(UserName);
 
         dpsComboBox.setItems(FXCollections.observableArrayList(dpsMana.getDpsName()));
@@ -96,6 +99,8 @@ public class NotificationFormController {
         String DPSName = dpsComboBox.getValue();
 
         notificationManagement.createNotification(title, message, date, DPSName);
+
+        closeNotificationForm();
     }
 
 

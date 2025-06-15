@@ -42,8 +42,8 @@ public class NotificationManagement {
      *
      * @return a list of all notifications
      */
-    public ArrayList<Notification> getNotificationById(long id) {
-        return notificationDAO.findById(id);
+    public ArrayList<Notification> getNotificationByIdSender(long id) {
+        return notificationDAO.findByIdSender(id);
     }
 
 
@@ -61,7 +61,14 @@ public class NotificationManagement {
 
         // Research the DPS by name with the value of the comboBox
         DPS dps = dpsDAO.findByName(recipientDPSGroupName);
+
+
         long iDDps = dps.getId();
+
+        System.out.println("Creating notification for DPS group: " + recipientDPSGroupName);
+        System.out.println("DPS ID: " + iDDps);
+        System.out.println("1Creating notification for sender message: " + message);
+        System.out.println("Creating notification for sender date: " + date);
 
         // Get the list of rescuer IDs associated with the DPS group
         ArrayList<Integer> listIdRescuer = affectationDAO.findIdRescuerByDPS(iDDps);
@@ -70,12 +77,24 @@ public class NotificationManagement {
 
         // Create a notification for each rescuer in the DPS group
         for(int idRescuer : listIdRescuer) {
-            Notification notification = new Notification(title, message, date, sender, idRescuer, isViewed);
+            Notification notification = new Notification(title, message, date, sender, idRescuer, iDDps, isViewed);
+            System.out.println("Insertion notification avec idDPS = " + notification.getIdDPS());
             notificationDAO.insert(notification);
         }
-
+        System.out.println("Notification created for sender: " + sender);
         // Create a notification for the sender as well
-        Notification notification = new Notification(title, message, date, sender, sender, true);
+
+        System.out.println("Creating notification for sender message: " + message);
+        System.out.println("Creating notification for sender date: " + date);
+
+        Notification notification = new Notification(title, message, date, sender, sender, iDDps, true);
         notificationDAO.insert(notification);
+        System.out.println("Notification created for recipient: " + sender);
+    }
+
+
+    public void deleteNotification(Notification Notification) {
+        notificationDAO.delete(Notification);
     }
 }
+

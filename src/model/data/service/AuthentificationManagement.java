@@ -2,11 +2,13 @@ package model.data.service;
 
 import model.dao.DAOFactory;
 import model.dao.UserDAO;
+import model.data.persistence.Administrateur;
 import model.data.persistence.Secouriste;
 import model.data.persistence.User;
 import java.sql.SQLException;
 import java.util.Objects;
 
+import static model.dao.DAOFactory.getAdministrateurDAO;
 import static model.dao.DAOFactory.getSecouristeDAO;
 import static model.utils.PasswordHashing.hashPassword;
 import static model.utils.PasswordHashing.verifyPassword;
@@ -212,8 +214,11 @@ public class AuthentificationManagement {
                 return sec.getNom();
             }
         }
-        if ("admin".equals(user.getRole())) {
-            return "Administrateur";
+        else if ("administrator".equals(user.getRole())) {
+            Administrateur admin = getAdministrateurDAO().findById(user.getIdUser());
+            if (admin != null && admin.getNom() != null) {
+                return admin.getNom();
+            }
         }
         return "";
     }
