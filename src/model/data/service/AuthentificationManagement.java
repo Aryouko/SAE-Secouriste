@@ -109,11 +109,15 @@ public class AuthentificationManagement {
 
             this.user = user; // Affecte l'utilisateur courant avant de vérifier le secouriste
 
-            if (SecouristeIsCreated()) {
-                this.secouriste = getSecouristeDAO().findById(this.user.getIdUser());
+            if( "administrator".equals(user.getRole())) {
                 return LoginResult.SUCCESS;
             } else {
-                return LoginResult.INVALID_RESCUER;
+                if (SecouristeIsCreated()) {
+                    this.secouriste = getSecouristeDAO().findById(this.user.getIdUser());
+                    return LoginResult.SUCCESS;
+                } else {
+                    return LoginResult.INVALID_RESCUER;
+                }
             }
 
         } catch (Exception e) {

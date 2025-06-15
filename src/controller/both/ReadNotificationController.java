@@ -1,8 +1,10 @@
 package controller.both;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 import model.data.persistence.Notification;
 import model.data.service.AdministrateurManagement;
 import model.data.service.DPSManagement;
@@ -24,6 +26,9 @@ public class ReadNotificationController {
     @FXML
     private Label dateTextlabel;
 
+    @FXML
+    private Button closeButtonNotificationForm;
+
     private Notification notif;
 
     private AdministrateurManagement admin = new AdministrateurManagement();
@@ -41,6 +46,11 @@ public class ReadNotificationController {
         messageTextArea.setText(notif.getMessage());
     }
 
+    @FXML
+    private void closeNotificationForm() {
+        Stage stage = (Stage) closeButtonNotificationForm.getScene().getWindow();
+        stage.close();
+    }
 
     public void setNotification(Notification notif) {
         this.notif = notif;

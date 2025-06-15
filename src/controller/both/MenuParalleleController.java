@@ -22,6 +22,7 @@ public class MenuParalleleController {
 
     @FXML
     public void initialize() {
+        System.out.println("MenuParalleleController initialized");
         setRow(0, "/fxml/both/Profil.fxml");
         setRow(1, "/fxml/both/Calendar.fxml");
         setRow(2, "/fxml/admin/Evenement.fxml");
