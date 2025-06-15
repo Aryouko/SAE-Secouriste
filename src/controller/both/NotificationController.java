@@ -1,4 +1,4 @@
-package controller.admin;
+package controller.both;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,20 +7,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import model.data.persistence.DPS;
 import model.data.persistence.Notification;
 import model.data.service.AuthentificationManagement;
 import model.data.service.NotificationManagement;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +38,11 @@ public class NotificationController {
     @FXML
     public void initialize() {
         long id = auth.getCurrentUser().getIdUser() ;
+
+        // Delete the possibilities to send message if you are a rescuer
+        openFormButton.setVisible(auth.isAdmin());
+        openFormButton.setDisable(!auth.isAdmin());
+
         List<Notification> listNotification = this.notificationManagement.getNotificationById(id);
 
         ArrayList<GridPane> list = listNotificationToListGridPane(listNotification);
@@ -96,7 +97,7 @@ public class NotificationController {
      * openForm
      */
     public void openForm() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/NotificationForm.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/both/NotificationForm.fxml"));
         Parent root = loader.load();
 
         Stage popupStage = new Stage();
