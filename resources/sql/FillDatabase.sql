@@ -62,6 +62,7 @@ INSERT INTO Necessite VALUES ('PBF', 'PBC');
 -- Insertion de secouristes (User + Secouriste)
 
 INSERT INTO User (login, password, role) VALUES
+                                             ('admin@secouriste.fr', '$2a$12$kd.N0.jMwDU8lPta7XBt2OneFnJn.rwUSlUV4Esli4hm5WuGnK2uK', 'administrator'),
                                              ('sec1@example.com', 'pass1', 'rescuer'),
                                              ('sec2@example.com', 'pass2', 'rescuer'),
                                              ('sec3@example.com', 'pass3', 'rescuer'),
@@ -97,6 +98,9 @@ INSERT INTO Secouriste (idSecouriste, nom, prenom, date_naissance, tel, adresse)
                                                                                      (@idSec8, 'Nom8', 'Prenom8', '080808', '8888888888', 'adresse8'),
                                                                                      (@idSec9, 'Nom9', 'Prenom9', '090909', '9999999999', 'adresse9'),
                                                                                      (@idSec10, 'Nom10', 'Prenom10', '101010', '0000000000', 'adresse10');
+
+SELECT @idAdm1 := idUser FROM User WHERE login = 'admin@secouriste.fr';
+INSERT INTO Administrateur VALUES (@idAdm1, 'Dupont', 'Martin', '12/03/1980', 0645783219, '45 rue des Lilas, 69003 Lyon, France');
 
 -- Disponibilités sur les trois jours
 INSERT INTO Disponibilite VALUES (@idSec1, @idJournee1);

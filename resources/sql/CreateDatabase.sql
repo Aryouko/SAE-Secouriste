@@ -3,6 +3,7 @@ CREATE DATABASE IF NOT EXISTS sae_db;
 USE sae_db;
 
 -- Suppression des tables si elles existent déjà (ordre inverse)
+DROP TABLE IF EXISTS Certificat;
 DROP TABLE IF EXISTS Affectation;
 DROP TABLE IF EXISTS Necessite;
 DROP TABLE IF EXISTS Possession;
