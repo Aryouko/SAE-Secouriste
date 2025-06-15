@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SettingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.SettingsController">
    <children>
       <FlowPane prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -30,9 +29,9 @@
                      <children>
                         <Button mnemonicParsing="false" style="-fx-background-color: #18191B; -fx-background-radius: 100; -fx-border-radius: 100;">
                            <graphic>
-                              <ImageView fx:id="pdp" fitHeight="62.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" x="20.0" y="11.0">
+                              <ImageView fitHeight="62.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" x="20.0" y="11.0">
                                  <image>
-                                    <Image url="@../images/anonyme.png" />
+                                    <Image url="@../../images/anonyme.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -42,7 +41,7 @@
                         </Button>
                         <VBox prefHeight="41.0" prefWidth="189.0">
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Glen POTAY">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom NOM">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -63,7 +62,7 @@
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/notif.png" />
+                                          <Image url="@../../images/Cloche.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -90,7 +89,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="25.0" />
                      </VBox.margin>
                   </HBox>
-                  <GridPane fx:id="conteneurCertifications" prefHeight="780.0" prefWidth="442.0" style="-fx-background-color: #18191B; -fx-background-radius: 25;">
+                  <GridPane prefHeight="780.0" prefWidth="442.0" style="-fx-background-color: #18191B; -fx-background-radius: 25;">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -103,62 +102,12 @@
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
-                     <children>
-                        <ImageView fx:id="certif1" fitHeight="193.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../IdeaProjects/SAE-Secouriste/resources/images/declaration.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets left="40.0" top="30.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="certif2" fitHeight="193.0" fitWidth="136.0" layoutX="50.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-                           <image>
-                              <Image url="@../../../../../IdeaProjects/SAE-Secouriste/resources/images/declaration.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets left="30.0" top="30.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="certif3" fitHeight="193.0" fitWidth="136.0" layoutX="50.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-                           <image>
-                              <Image url="@../../../../../IdeaProjects/SAE-Secouriste/resources/images/declaration.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets left="40.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="certif4" fitHeight="193.0" fitWidth="136.0" layoutX="10.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <image>
-                              <Image url="@../../../../../IdeaProjects/SAE-Secouriste/resources/images/declaration.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets left="30.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="certif5" fitHeight="193.0" fitWidth="136.0" layoutX="10.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
-                           <image>
-                              <Image url="@../../../../../IdeaProjects/SAE-Secouriste/resources/images/declaration.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets bottom="30.0" left="40.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="certif6" fitHeight="193.0" fitWidth="136.0" layoutX="50.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <image>
-                              <Image url="@../../../../../IdeaProjects/SAE-Secouriste/resources/images/declaration.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets bottom="30.0" left="30.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                     </children>
                   </GridPane>
                   <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="186.0" style="-fx-background-color: black;" text=" Calendrier" textFill="WHITE" textOverrun="CLIP">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/CalendarBlanc.png" />
+                              <Image url="@../../images/CalendarBlanc.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -176,14 +125,14 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="1444.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #FEB0B0, #A80037); -fx-background-radius: 30 30 0 0;">
                <children>
-                  <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="1313.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                  <Button layoutX="1280.0" layoutY="53.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-radius: 100; -fx-background-radius: 100;" />
+                  <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="1365.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../IdeaProjects/SAE-Secouriste/resources/images/Croix.png" />
+                        <Image url="@../../images/Croix.png" />
                      </image>
                   </ImageView>
-               </children>
-            </Pane>
-            <Text layoutX="409.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Glen POTAY">
+               </children></Pane>
+            <Text layoutX="409.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom Nom">
                <font>
                   <Font name="System Bold" size="32.0" />
                </font>
@@ -194,9 +143,9 @@
                </effect>
             </Circle>
             <Circle fill="WHITE" layoutX="304.0" layoutY="217.0" radius="70.0" stroke="WHITE" strokeType="INSIDE" />
-            <ImageView fx:id="pdpProfil" fitHeight="133.0" fitWidth="133.0" layoutX="237.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="133.0" fitWidth="133.0" layoutX="237.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/anonyme.png" />
+                  <Image url="@../../images/anonyme.png" />
                </image>
             </ImageView>
             <Text layoutX="166.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier votre profil public">
@@ -219,58 +168,45 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text layoutX="166.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informations personelles">
+            <Text layoutX="166.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Certifications">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <Text layoutX="166.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Biographie / Pseudo">
+            <Text layoutX="166.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inclus des certificats pour ">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text layoutX="166.0" layoutY="750.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Certifications">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Text>
-            <Text layoutX="166.0" layoutY="770.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inclus des certificats pour ">
+            <Text layoutX="166.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="les administrateurs">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text layoutX="166.0" layoutY="790.0" strokeType="OUTSIDE" strokeWidth="0.0" text="les administrateurs">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <Button layoutX="500.0" layoutY="420.0" mnemonicParsing="false" onAction="#importerPdp" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #CCCCCC; -fx-background-radius: 100; -fx-border-radius: 100;">
+            <Button layoutX="500.0" layoutY="420.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #CCCCCC; -fx-background-radius: 100; -fx-border-radius: 100;">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Importer.png" />
+                        <Image url="@../../images/Importer.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
             <Button layoutX="1064.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #CCCCCC; -fx-background-radius: 5;" text="Annuler" />
-            <Button layoutX="1148.0" layoutY="350.0" mnemonicParsing="false" onAction="#annulerClicked" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="Enregistrer" textFill="WHITE" />
-            <ComboBox layoutX="500.0" layoutY="735.0" prefHeight="26.0" prefWidth="325.0" promptText="Type de certification" style="-fx-background-color: #EEEEEE; -fx-border-radius: 5; -fx-border-color: #CCCCCC;" />
-            <Button layoutX="500.0" layoutY="780.0" mnemonicParsing="false" prefHeight="98.0" prefWidth="326.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #CCCCCC; -fx-background-radius: 5; -fx-border-radius: 5;" />
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="653.0" layoutY="800.0" pickOnBounds="true" preserveRatio="true">
+            <Button layoutX="1148.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="Enregistrer" textFill="WHITE" />
+            <ComboBox layoutX="500.0" layoutY="560.0" prefHeight="26.0" prefWidth="325.0" promptText="Type de certification" style="-fx-background-color: #EEEEEE; -fx-border-radius: 5; -fx-border-color: #CCCCCC;" />
+            <Button layoutX="500.0" layoutY="600.0" mnemonicParsing="false" prefHeight="98.0" prefWidth="326.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #CCCCCC; -fx-background-radius: 5; -fx-border-radius: 5;" />
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="653.0" layoutY="625.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/Importer.png" />
+                  <Image url="@../../images/Importer.png" />
                </image>
             </ImageView>
-            <Text layoutX="616.0" layoutY="844.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importer" underline="true" />
-            <Text layoutX="665.0" layoutY="844.0" strokeType="OUTSIDE" strokeWidth="0.0" text="un pdf" />
-            <TextField fx:id="bioField" layoutX="500.0" layoutY="595.0" onAction="#setBio" prefHeight="62.0" prefWidth="442.0" text="&lt;biographie&gt;" />
-            <TextField fx:id="pseudoField" layoutX="500.0" layoutY="550.0" onAction="#setPseudo" prefHeight="26.0" prefWidth="206.0" text="&lt;pseudo&gt;" />
+            <Text layoutX="616.0" layoutY="665.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importer" underline="true" />
+            <Text layoutX="665.0" layoutY="665.0" strokeType="OUTSIDE" strokeWidth="0.0" text="un pdf" />
          </children>
       </AnchorPane>
       <Line endX="580.0" endY="420.0" startX="1700.0" startY="420.0" />
-      <Line endX="580.0" endY="420.0" layoutY="500.0" startX="1700.0" startY="420.0" />
+      <Line endX="580.0" endY="275.0" layoutY="500.0" startX="1700.0" startY="275.0" />
       <Line endX="580.0" endY="420.0" layoutY="120.0" startX="1700.0" startY="420.0" />
-      <Line endX="580.0" endY="420.0" layoutY="300.0" startX="1700.0" startY="420.0" />
    </children>
 </AnchorPane>

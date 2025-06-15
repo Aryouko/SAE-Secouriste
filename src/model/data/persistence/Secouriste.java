@@ -116,5 +116,4 @@ public class Secouriste {
     public void setAdresse(String adresse){
         this.adresse = adresse;
     }
-
 }

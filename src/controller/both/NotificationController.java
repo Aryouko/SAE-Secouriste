@@ -85,7 +85,32 @@ public class NotificationController {
             pane.setStyle("-fx-background-color: #2A2A2A; -fx-background-radius: 15");
             label.setLayoutX(10);
             label.setLayoutY(10);
+
+
+            pane.setOnMouseClicked(event -> {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/both/ReadNotification.fxml"));
+                    Parent root = loader.load();
+
+                    // Récupère le contrôleur et passe la notification
+                    ReadNotificationController controller = loader.getController();
+                    controller.setNotification(notification);
+
+                    Stage popupStage = new Stage();
+                    popupStage.initStyle(StageStyle.TRANSPARENT);
+                    Scene scene = new Scene(root);
+                    scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+                    popupStage.setScene(scene);
+                    popupStage.initModality(Modality.APPLICATION_MODAL);
+                    popupStage.showAndWait();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
             list.add(pane);
+
+
         }
         return list;
     }
