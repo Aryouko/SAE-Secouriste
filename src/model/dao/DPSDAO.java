@@ -187,4 +187,15 @@ public class DPSDAO {
         }
         return ret;
     }
+
+    public void deleteByIdDPS(long idDps) {
+        String query = "DELETE FROM DPS WHERE ID = ?";
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setLong(1, idDps);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

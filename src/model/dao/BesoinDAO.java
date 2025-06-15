@@ -76,4 +76,17 @@ public class BesoinDAO {
             ex.printStackTrace();
         }
     }
+
+    public void deleteByDps(long idDps) {
+        String query = "DELETE FROM Besoin WHERE DPS = ?";
+
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setLong(1, idDps);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

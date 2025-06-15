@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="990.0" prefWidth="1444.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GestionEvenementController">
+<AnchorPane fx:id="gestionEvenement" prefHeight="990.0" prefWidth="1444.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GestionEvenementController">
    <children>
       <GridPane alignment="CENTER" prefHeight="996.0" prefWidth="1438.0" style="-fx-background-radius: 30;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>

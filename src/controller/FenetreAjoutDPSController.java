@@ -8,10 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.StageStyle;
 import model.data.persistence.*;
-import model.data.service.BesoinManagement;
-import model.data.service.DPSManagement;
-import model.data.service.SiteManagement;
-import model.data.service.SportManagement;
+import model.data.service.*;
 import model.graphCelianTest.samedia17h30.graph.AssignmentGreedy;
 
 import java.time.LocalDate;
@@ -90,6 +87,8 @@ public class FenetreAjoutDPSController {
 
     private GestionEvenementController gestionEvenementController;
 
+    private EvenementController evenementController;
+
     private final SportManagement sportManagement = new SportManagement();
 
     private final SiteManagement siteManagement = new SiteManagement();
@@ -97,6 +96,8 @@ public class FenetreAjoutDPSController {
     private final DPSManagement dpsManagement = new DPSManagement();
 
     private final BesoinManagement besoinManagement = new BesoinManagement();
+
+    private final AffectationManagement  affectationManagement = new AffectationManagement();
 
     @FXML
     public void initialize() {
@@ -350,6 +351,7 @@ public class FenetreAjoutDPSController {
             for (int i = 0; i < this.comboBoxVPSP.getSelectionModel().getSelectedItem(); i++) {
                 competences.add(new Competence("VPSP"));
             }
+
             if (competences.isEmpty()) {
                 this.infosLabel.setText("Erreur : Aucune compétences renseignées");
             } else {
@@ -394,13 +396,16 @@ public class FenetreAjoutDPSController {
                 dialogPane.lookupButton(ButtonType.OK).setStyle("-fx-background-color: #0C0D0F; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius : 15;");
                 try {
                     this.besoinManagement.addBesoin(new Besoin(dps, competences));
-                    new AssignmentGreedy().AssignmentRescuersGreedy(dps);
+                    this.affectationManagement.launchAffectation(dps);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
                 if (!this.besoinManagement.getBesoinByDPS(dps).getCompetences().isEmpty()) {
                     alert.showAndWait();
-                };
+                }
+                this.gestionEvenementController.ajouterDpsList(dps);
+                this.gestionEvenementController.filtreUpdate();
+                this.evenementController.initialize();
                 annuleDPS();
             }
         }
@@ -415,5 +420,13 @@ public class FenetreAjoutDPSController {
             AnchorPane fenetreGestion = (AnchorPane) overlayPane.getParent();
             fenetreGestion.getChildren().remove(overlayPane);
         }
+    }
+
+    public void initializeGestionEvenementController(GestionEvenementController gestionEvenementController) {
+        this.gestionEvenementController = gestionEvenementController;
+    }
+
+    public void initializeEvenementController(EvenementController evenementController) {
+        this.evenementController = evenementController;
     }
 }

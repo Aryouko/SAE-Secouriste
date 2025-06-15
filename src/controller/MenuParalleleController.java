@@ -5,11 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import java.io.IOException;
+import java.util.Calendar;
 
 public class MenuParalleleController {
 
     private FenetreGestionController fenetreGestionController;
 
+    private EvenementController evenementController;
 
     @FXML
     private GridPane composentGrid;
@@ -40,7 +42,9 @@ public class MenuParalleleController {
             Node node = loader.load();
             Object controller = loader.getController();
             if (controller instanceof ProfilController) {
-                ((ProfilController) controller).setMenuParallelController(this);
+                ((ProfilController) controller).setMenuParalleleController(this);
+            } else if (controller instanceof EvenementController) {
+                this.evenementController = (EvenementController) controller;
             }
             composentGrid.add(node, 0, rowIndex);
             GridPane.setHalignment(node, javafx.geometry.HPos.CENTER);
@@ -54,5 +58,9 @@ public class MenuParalleleController {
 
     public GridPane getComposentGrid() {
         return composentGrid;
+    }
+
+    public EvenementController getEvenementController() {
+        return evenementController;
     }
 }

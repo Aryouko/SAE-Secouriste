@@ -125,4 +125,55 @@ public class AffectationDAO {
         }
         return affectations;
     }
+
+    public List<Affectation> findByDPS(long idDps) {
+        List<Affectation> affectations = new ArrayList<>();
+        String query = "SELECT * FROM Affectation WHERE DpsAffect = ?";
+
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setLong(1, idDps);
+            ResultSet rs = stmt.executeQuery();
+
+            ArrayList<Object[]> save = new ArrayList<>();
+            while (rs.next()) {
+                long idSecouristeAffect = rs.getLong("secouristeAffect");
+                long idDPS = rs.getLong("DPSAffect");
+                String idCompetenceAffect = rs.getString("competenceAffect");
+                save.add(new Object[]{idSecouristeAffect, idDPS, idCompetenceAffect});
+            }
+            for (Object[] row : save) {
+                long idSecouristeAffect = (long) row[0];
+                long idDPS = (long) row[1];
+                String idCompetenceAffect = (String) row[2];
+
+                Affectation affectation = new Affectation(
+                        new SecouristeManagement().getSecouristeById(idSecouristeAffect),
+                        new DPSManagement().getDpsById(idDPS),
+                        new Competence(idCompetenceAffect)
+                );
+                affectations.add(affectation);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return affectations;
+    }
+
+    public void deleteByDPS(Affectation affectation) {
+        String query = "DELETE FROM Affectation WHERE SecouristeAffect = ? AND DpsAffect = ? AND CompetenceAffect = ?";
+
+        try (Connection con = ConnectionBDD.getConnection();
+            PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setLong(1, affectation.getSecouristeAffect().getIdSecouriste());
+            stmt.setLong(2, affectation.getDPSAffect().getId());
+            stmt.setString(3, affectation.getCompetenceAffect().getIntitule());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
