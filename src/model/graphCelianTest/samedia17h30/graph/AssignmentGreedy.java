@@ -36,7 +36,6 @@ public class AssignmentGreedy {
         }
 
         ArrayList<Competence> competencesBesoins = this.besoinManagement.getBesoinByDPS(dps).getCompetences();
-        System.out.println("Competences: " + competencesBesoins.size());
         if (competencesBesoins.isEmpty()) {
             throw new IllegalArgumentException("L'argument est null");
         }
@@ -60,20 +59,20 @@ public class AssignmentGreedy {
 
                 if (secouristeSelect == null) {
                     for (int i = 0; i < competencesBesoins.size(); i++) {
-                        if (competencesBesoins.get(i).getIntitule().equals(this.competences.get(indiceComp))) {
+                        if (competencesBesoins.get(i).getIntitule().equals(compIntitule)) {
                             competencesBesoins.remove(i);
                             break;
                         }
                     }
                 } else {
                     secouristesAssignement.add(secouristeSelect);
-                    retirerSecouristeComp(secouristeSelect, competencesBesoins, tabSecouComp, competenceSelect);
 
                     Affectation affectation = new Affectation(secouristeSelect, dps, competenceSelect);
                     if (!this.affectationManagement.isExist(affectation)) {
                         this.affectationManagement.addAffectation(affectation);
+                        this.besoinManagement.deleteBesoinByDPSAndCompetence(dps, competenceSelect);
                     }
-                    this.besoinManagement.deleteBesoinByDPSAndCompetence(dps, competenceSelect);
+                    retirerSecouristeComp(secouristeSelect, competencesBesoins, tabSecouComp, competenceSelect);
                 }
             }
         } catch (IllegalArgumentException e) {
@@ -90,6 +89,7 @@ public class AssignmentGreedy {
     private List<Secouriste> secouristesDisponible(Journee journee) {
         List<Secouriste> secouristesJour = this.secouristeManagement.findByIdJournee(this.journeeManagement.getJourneeByJour(journee.getJour(), journee.getMois(), journee.getAnnee()));
         List<Secouriste> ret = new ArrayList<>();
+
         for (Secouriste secouriste : secouristesJour) {
             long idJournee = this.journeeManagement.getJourneeByJour(journee.getJour(), journee.getMois(), journee.getAnnee());
             long idSecouriste = secouriste.getIdSecouriste();
