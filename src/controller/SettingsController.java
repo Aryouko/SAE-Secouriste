@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
-import javafx.geometry.Rectangle2D;
 
 import java.io.File;
 
@@ -163,21 +162,5 @@ public class SettingsController {
 
         Circle clip = new Circle(width / 2, height / 2, radius);
         imageView.setClip(clip);
-
-        imageView.setViewport(getCenteredSquareViewport(imageView));
-    }
-
-    private Rectangle2D getCenteredSquareViewport(ImageView imageView) {
-        Image img = imageView.getImage();
-        if (img == null) return null;
-
-        double width = img.getWidth();
-        double height = img.getHeight();
-
-        double size = Math.min(width, height);
-        double x = (width - size) / 2;
-        double y = (height - size) / 2;
-
-        return new Rectangle2D(x, y, size, size);
     }
 }
