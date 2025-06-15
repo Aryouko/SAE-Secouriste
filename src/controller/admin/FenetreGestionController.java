@@ -10,6 +10,8 @@ import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 
+import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
+
 public class FenetreGestionController {
 
     @FXML
@@ -27,9 +29,17 @@ public class FenetreGestionController {
 
     private MenuParalleleController menuParalleleController;
 
+
+
+
     public void initialize() {
-        loadContent1("/fxml/both/MenuParallele.fxml");
-        loadContent2("/fxml/admin/GestionEvenement.fxml");
+        if (getInstanceAuthentificationManagement().isAdmin()) {
+            loadContent2("/fxml/admin/GestionSecouriste.fxml");
+            loadContent1("/fxml/both/MenuParallele.fxml");
+        } else {
+            loadContent2("/fxml/admin/GestionSecouriste.fxml");
+            loadContent1("/fxml/both/MenuParallele.fxml");
+        }
     }
 
     public void loadContent1(String fxmlFile) {

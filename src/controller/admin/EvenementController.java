@@ -17,6 +17,8 @@ import javafx.scene.shape.Circle;
 import model.data.service.DPSManagement;
 import model.data.persistence.DPS;
 
+import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
+
 public class EvenementController {
 
     @FXML
@@ -29,7 +31,11 @@ public class EvenementController {
 
     @FXML
     public void initialize() {
-        List<DPS> listDPS = this.dpsManagement.getDps();
+        if (getInstanceAuthentificationManagement().isAdmin()) {
+            List<DPS> listDPS = this.dpsManagement.getDps();
+        } else {
+            List<DPS> listDPS = this.dpsManagement.getDpsById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
+        }
 
         ArrayList<GridPane> list = listDPSToListGridPane(listDPS);
         listEvent.getChildren().clear();

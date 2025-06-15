@@ -72,6 +72,12 @@ public class AuthentificationManagement {
         return didRegistrationWorked;
     }
 
+    public boolean isAdmin() {
+        if (this.user == null) {
+            return false;
+        }
+        return "administrator".equals(this.user.getRole());
+    }
 
     /**
      * Enum representing the possible results of a login attempt.
@@ -190,17 +196,6 @@ public class AuthentificationManagement {
     public User getCurrentUser() {
         return this.user;
     }
-
-    /**
-     * Get the current rescuer loaded
-     *
-     * @return the user
-     */
-    public Secouriste getCurrentRescuer() {
-        return this.secouriste;
-    }
-
-
 
 
     public String getCurrentUserName() {
