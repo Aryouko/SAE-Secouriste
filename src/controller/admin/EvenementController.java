@@ -14,8 +14,12 @@ import java.util.List;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import model.data.persistence.Affectation;
+import model.data.service.AffectationManagement;
+import model.data.service.AuthentificationManagement;
 import model.data.service.DPSManagement;
 import model.data.persistence.DPS;
+import model.data.service.SecouristeManagement;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
@@ -29,12 +33,20 @@ public class EvenementController {
 
     private final DPSManagement dpsManagement = new DPSManagement();
 
+    private final AffectationManagement  affectationManagement = new AffectationManagement();
+
+    private final SecouristeManagement secouristeManagement = new SecouristeManagement();
+
     @FXML
     public void initialize() {
+        List<DPS> listDPS = new ArrayList<>();
         if (getInstanceAuthentificationManagement().isAdmin()) {
-            List<DPS> listDPS = this.dpsManagement.getDps();
+            listDPS = this.dpsManagement.getDps();
         } else {
-            List<DPS> listDPS = this.dpsManagement.getDpsById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
+            List<Affectation> affectations = this.affectationManagement.getAffectationsByRescuer(secouristeManagement.getSecouristeById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser()));
+            for (Affectation affectation : affectations) {
+                listDPS.add(affectation.getDPSAffect());
+            }
         }
 
         ArrayList<GridPane> list = listDPSToListGridPane(listDPS);

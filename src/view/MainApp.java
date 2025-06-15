@@ -13,7 +13,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Chargement.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/both/Chargement.fxml")));
 
         javafx.scene.text.Font.loadFont(
                 getClass().getResourceAsStream("/fonts/JetBrainsMono-Regular.ttf"), 19
