@@ -21,7 +21,7 @@ public class AffectationManagement {
     }
 
     public boolean rescuerAvailable(long idDay, long idRescuer) {
-        return this.affectationDAO.rescuerThisDay(idDay, idRescuer);
+        return !this.affectationDAO.rescuerThisDay(idDay, idRescuer);
     }
 
     public boolean isExist(Affectation affectation) {
