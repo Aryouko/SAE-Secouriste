@@ -170,7 +170,7 @@ public class GestionEvenementController {
             subGridPane2.setPrefSize(354, 71);
             subGridPane2.setMaxSize(354, 71);
 
-            Button majButton = new Button("Maintenance");
+            Button majButton = new Button("Mise à jour  ");
             majButton.setMinWidth(125);
             majButton.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10; -fx-font-size: 15; -fx-border-color: #000000; -fx-border-width: 2px; -fx-text-fill: #000000;");
             Button supprButton = new Button("Suppression");
