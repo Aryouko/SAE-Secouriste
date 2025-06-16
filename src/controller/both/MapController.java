@@ -51,16 +51,12 @@ public class MapController {
     private ArrayList<Location> fetchLocationsFromDB() {
         ArrayList<Location> locations = new ArrayList<>();
 
-        // Add 2 placeholder locations first:
-        locations.add(new Location(48.8584, 2.2945, "Eiffel Tower"));
-        locations.add(new Location(40.6892, -74.0445, "Statue of Liberty"));
-
         // Your MySQL connection settings here
         String url = getUrl();
         String user = getUsername();
         String password = getPassword();
 
-        String query = "SELECT latitude, longitude, name FROM locations";
+        String query = "SELECT nom, latitude, longitude FROM site";
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
              Statement stmt = conn.createStatement();
@@ -69,7 +65,7 @@ public class MapController {
             while (rs.next()) {
                 double lat = rs.getDouble("latitude");
                 double lng = rs.getDouble("longitude");
-                String name = rs.getString("name");
+                String name = rs.getString("nom");
                 locations.add(new Location(lat, lng, name));
             }
 
