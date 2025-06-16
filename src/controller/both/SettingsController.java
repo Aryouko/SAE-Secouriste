@@ -7,14 +7,17 @@ import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import model.dao.PossessionDAO;
+import model.data.persistence.Competence;
+import model.data.persistence.Possession;
 import model.data.persistence.Secouriste;
+import model.data.service.PossessionManagement;
 import model.data.service.SecouristeManagement;
 
 import java.io.*;
@@ -52,6 +55,21 @@ public class SettingsController {
     @FXML private CheckBox checkPBC;
     @FXML private CheckBox checkPBF;
     private byte[] nouvellePhoto;
+    private boolean affichageNotif = false;
+
+    private ArrayList<Competence> getSelectedCompetences() {
+        ArrayList<Competence> competences = new ArrayList<>();
+        if (checkPSE1.isSelected()) competences.add(new Competence("PSE1"));
+        if (checkPSE2.isSelected()) competences.add(new Competence("PSE2"));
+        if (checkCE.isSelected()) competences.add(new Competence("CE"));
+        if (checkCP.isSelected()) competences.add(new Competence("CP"));
+        if (checkCO.isSelected()) competences.add(new Competence("CO"));
+        if (checkSSA.isSelected()) competences.add(new Competence("SSA"));
+        if (checkVPSP.isSelected()) competences.add(new Competence("VPSP"));
+        if (checkPBC.isSelected()) competences.add(new Competence("PBC"));
+        if (checkPBF.isSelected()) competences.add(new Competence("PBF"));
+        return competences;
+    }
 
     @FXML
     public void initialize() {
@@ -72,11 +90,21 @@ public class SettingsController {
                     pdpProfileCircle.setFill(new ImagePattern(image));
                     pdpParamCircle.setFill(new ImagePattern(image));
                 }
-            } else {
-                // Image par défaut si aucun byte n'est enregistré
-                pdpProfileCircle.setFill(new ImagePattern(new Image("/images/anonyme.png", false)));
-                pdpParamCircle.setFill(new ImagePattern(new Image("/images/anonyme.png", false)));
             }
+
+            PossessionManagement possessionManagement = new PossessionManagement();
+            Possession possession = possessionManagement.getPossessionBySecouriste(sec);
+
+            checkPSE1.setSelected(possession.getCompetencesSec().stream().anyMatch(c -> "PSE1".equals(c.getIntitule())));
+            checkPSE2.setSelected(possession.getCompetencesSec().stream().anyMatch(c -> "PSE2".equals(c.getIntitule())));
+            checkCE.setSelected(possession.getCompetencesSec().stream().anyMatch(c -> "CE".equals(c.getIntitule())));
+            checkCP.setSelected(possession.getCompetencesSec().stream().anyMatch(c -> "CP".equals(c.getIntitule())));
+            checkCO.setSelected(possession.getCompetencesSec().stream().anyMatch(c -> "CO".equals(c.getIntitule())));
+            checkSSA.setSelected(possession.getCompetencesSec().stream().anyMatch(c -> "SSA".equals(c.getIntitule())));
+            checkPBC.setSelected(possession.getCompetencesSec().stream().anyMatch(c -> "PBC".equals(c.getIntitule())));
+            checkPBF.setSelected(possession.getCompetencesSec().stream().anyMatch(c -> "PBF".equals(c.getIntitule())));
+            checkVPSP.setSelected(possession.getCompetencesSec().stream().anyMatch(c -> "VPSP".equals(c.getIntitule())));
+
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -174,15 +202,25 @@ public class SettingsController {
 
     @FXML
     private void enregistrerClicked() {
+        long idSec = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
         if (nouvellePhoto != null) {
-            long idSec = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
             boolean success = secouristeManagement.updatePhoto(idSec, nouvellePhoto);
-            sec.setPhoto(nouvellePhoto);
-            initialize();
             System.out.println("Nouvelle photo enregistrée en base.");
         } else {
             System.out.println("Aucune nouvelle photo à enregistrer.");
         }
+
+        // Récupérer compétences sélectionnées
+        ArrayList<Competence> competencesSelectionnees = getSelectedCompetences();
+        Possession possession = new Possession(competencesSelectionnees, sec);
+
+        // Appeler la DAO pour insérer les compétences dans la table Possession
+        PossessionDAO possessionDAO = new PossessionDAO();
+
+        possessionDAO.deleteAllPossessionsForSecouriste(idSec);
+        possessionDAO.insert(possession);
+
+        initialize();
     }
 
     @FXML
@@ -191,8 +229,14 @@ public class SettingsController {
     }
 
     @FXML
-    private void notifClicked(){
-        UtilsController.linkToPage(notifPane, "/fxml/both/NotificationResized.fxml");
+    private void notifClicked() {
+        if (!affichageNotif) {
+            UtilsController.linkToPage(notifPane, "/fxml/both/NotificationResized.fxml");
+            affichageNotif = true;
+        } else {
+            UtilsController.linkToPage(settingsPane, "/fxml/both/Settings.fxml");
+            affichageNotif = false;
+        }
     }
 
     @FXML
@@ -207,10 +251,12 @@ public class SettingsController {
 
     @FXML
     private void supprimerClicked(){
-
+        UtilsController.linkToPage(settingsPane, "/fxml/both/Connexion.fxml");
+        PossessionDAO possessionDAO = new PossessionDAO();
+        long idSec = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
+        possessionDAO.deleteAllPossessionsForSecouriste(idSec);
+        secouristeManagement.removeSecouriste(sec);
     }
-
-
 
     @FXML
     private void moisSuivant() {
