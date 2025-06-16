@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Light.ttf');
+    font-weight: 300;
+}
+
 .button:pressed {
     -fx-background-color: #3a86ff;
     -fx-effect: dropshadow(gaussian, #222, 8, 0.3, 0, 2);
@@ -11,4 +17,64 @@
 
 .input .text-field {
     -fx-prompt-text-fill: #a0a0a0; // or any color you want
+}
+
+
+
+
+
+
+
+.jfx-combo-box {
+    -fx-background-color: #EBF0F6;
+    -fx-background-radius: 5;
+    -fx-font-family: 'Poppins';
+    -fx-font-weight: 300;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 0);
+}
+
+.jfx-combo-box:hover {
+    -fx-background-color: #B9D9FF;
+}
+
+.jfx-combo-box .list-cell {
+    -fx-font-family: 'Poppins';
+    -fx-font-weight: 300;
+}
+
+.jfx-combo-box .list-view .list-cell {
+    -fx-font-family: 'Poppins';
+    -fx-font-weight: 300;
+    -fx-text-fill: #333333;
+}
+
+.jfx-combo-box .list-view .list-cell:hover {
+    -fx-background-color: #e6e6e6;
+}
+
+.jfx-combo-box .list-view .list-cell:selected {
+    -fx-background-color: #3a86ff;
+    -fx-text-fill: white;
+}
+
+.jfx-combo-box .arrow {
+    -fx-background-color: #555555;
+    -fx-shape: "M0,0 L10,0 L5,5 Z";
+    -fx-scale-x: 0.8;
+    -fx-scale-y: 0.8;
+    /* Une seule déclaration de transition suffit */
+    -fx-transition-duration: 0.3s;
+}
+
+/* Animation au survol */
+.jfx-combo-box:hover .arrow {
+    -fx-background-color: #3a86ff;
+}
+
+/* Animation quand ouvert */
+.jfx-combo-box:showing .arrow {
+    -fx-background-color: #3a86ff;
+    -fx-translate-y: 2;
+    -fx-rotate: 180;
+    /* Ne pas redéfinir la transition ici */
 }
