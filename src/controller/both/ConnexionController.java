@@ -60,8 +60,22 @@ public class ConnexionController {
 
     @FXML
     public void quickLogin() {
+        // Récupérer le dernier utilisateur connecté depuis les préférences
+        java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(ConnexionController.class);
+        String lastEmail = prefs.get("lastEmail", "");
+        String lastPW = prefs.get("lastPW", "");
 
+        if (!lastEmail.isEmpty() && (!lastPW.isEmpty())) {
+            // Remplir le champ email avec la dernière adresse utilisée
+            mailTextField.setText(lastEmail);
+            passwordPasswordField.setText(lastPW);
+
+        } else {
+            // Si aucun utilisateur précédent, afficher un message
+            mailTextField.setPromptText("Aucune connexion précédente");
+        }
     }
+
 
     /**
      * Handles the login button click event.
@@ -74,10 +88,21 @@ public class ConnexionController {
         try {
             AuthentificationManagement.LoginResult result = getInstanceAuthentificationManagement().login(mailTextField.getText(), passwordPasswordField.getText());
             if (result == SUCCESS) {
+                // Sauvegarder l'email de l'utilisateur qui vient de se connecter
+                java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(ConnexionController.class);
+                prefs.put("lastEmail", mailTextField.getText());
+                prefs.put("lastPW", passwordPasswordField.getText());
+
                 linkToPage(pageConnexion, "/fxml/admin/FenetreGestion.fxml");
-            } else if (result ==INVALID_RESCUER) {
+            } else if (result == INVALID_RESCUER) {
+                // Sauvegarder également dans ce cas car l'utilisateur existe
+                java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(ConnexionController.class);
+                prefs.put("lastEmail", mailTextField.getText());
+                prefs.put("lastPW", passwordPasswordField.getText());
+
                 linkToPage(pageConnexion, "/fxml/both/RegistrationForm.fxml");
             } else {
+                // Reste du code inchangé pour les erreurs
                 if (result == INVALID_LOGIN) {
                     mailTextField.clear();
                     mailTextField.setPromptText("Adresse mail inconnue");

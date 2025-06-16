@@ -43,7 +43,7 @@
                                         <Insets bottom="20.0" />
                                     </VBox.margin>
                                 </Text>
-                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #4CAF50; -fx-background-radius: 15;" onMouseClicked="#quickLogin">
+                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 15;" onMouseClicked="#quickLogin">
                                     <effect>
                                         <DropShadow height="60.25" radius="35.18" width="82.47">
                                             <color>
@@ -52,11 +52,6 @@
                                         </DropShadow>
                                     </effect>
                                     <children>
-                                        <ImageView fitHeight="49.0" fitWidth="60.0" layoutX="65.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../../images/google.png" />
-                                            </image>
-                                        </ImageView>
                                         <Text fill="WHITE" layoutX="162.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connexion rapide">
                                             <font>
                                                 <Font name="Poppins Regular" size="20.0" />

@@ -13,11 +13,9 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -42,27 +40,6 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </Text>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #1E1E1E; -fx-background-radius: 15;">
-                           <effect>
-                              <DropShadow height="60.25" radius="35.18" width="82.47">
-                                 <color>
-                                    <Color opacity="0.23708201944828033" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                           <children>
-                              <ImageView fitHeight="49.0" fitWidth="60.0" layoutX="65.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../images/google.png" />
-                                 </image>
-                              </ImageView>
-                              <Text fill="WHITE" layoutX="162.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se connecter avec Google">
-                                 <font>
-                                    <Font name="Poppins Regular" size="20.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </Pane>
                         <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="500.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -72,15 +49,6 @@
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
-                           <children>
-                              <Line endX="537.9928588867188" endY="346.0858154296875" startX="343.4999694824219" startY="345.992919921875" GridPane.columnIndex="2" />
-                              <Line endX="540.392822265625" endY="345.34259033203125" startX="343.4999694824219" startY="345.9000244140625" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="OU" GridPane.columnIndex="1">
-                                 <font>
-                                    <Font name="Poppins Regular" size="20.0" />
-                                 </font>
-                              </Text>
-                           </children>
                            <VBox.margin>
                               <Insets bottom="20.0" top="20.0" />
                            </VBox.margin>
