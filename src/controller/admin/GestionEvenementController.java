@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static controller.admin.FenetreGestionController.showOverlay;
+
 public class GestionEvenementController {
 
     @FXML
@@ -291,7 +293,19 @@ public class GestionEvenementController {
 
     @FXML
     public void CreationDPSButton() {
-        this.fenetreGestionController.fenetreCreationDPS();
+        StackPane overlay = showOverlay();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/FenetreAjoutDPS.fxml"));
+            Parent overlayContent = loader.load();
+            FenetreAjoutDPSController controller = loader.getController();
+            controller.initializeGestionEvenementController(this);
+            controller.initializeEvenementController(this.evenementController);
+            overlay.getChildren().add(overlayContent);
+            StackPane.setAlignment(overlayContent, javafx.geometry.Pos.CENTER);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void majAffect(DPS dps) {

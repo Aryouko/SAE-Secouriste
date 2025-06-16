@@ -87,36 +87,8 @@ public class FenetreGestionController {
         return this.fenetreGestion;
     }
 
-    public void fenetreCreationDPS() {
-        try {
-            // Charger le FXML de la nouvelle fenêtre (à créer)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/FenetreAjoutDPS.fxml"));
-            Parent overlayContent = loader.load();
 
-            FenetreAjoutDPSController controller = loader.getController();
-            controller.initializeGestionEvenementController(this.gestionEvenementController);
-            controller.initializeEvenementController(this.menuParalleleController.getEvenementController());
-
-            StackPane overlayPane = new StackPane();
-            overlayPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);"); // fond semi-transparent sombre
-
-            overlayPane.getChildren().add(overlayContent);
-            StackPane.setAlignment(overlayContent, Pos.CENTER);
-
-            AnchorPane.setTopAnchor(overlayPane, 0.0);
-            AnchorPane.setBottomAnchor(overlayPane, 0.0);
-            AnchorPane.setLeftAnchor(overlayPane, 0.0);
-            AnchorPane.setRightAnchor(overlayPane, 0.0);
-
-            this.fenetreGestion.getChildren().add(overlayPane);
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-
-    public static void showOverlay() {
+    public static StackPane showOverlay() {
         StackPane overlayPane = new StackPane();
         overlayPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
         overlayPane.setId("fenetreGestionOverlay");
@@ -125,6 +97,7 @@ public class FenetreGestionController {
         AnchorPane.setLeftAnchor(overlayPane, 0.0);
         AnchorPane.setRightAnchor(overlayPane, 0.0);
         staticFenetreGestion.getChildren().add(overlayPane);
+        return overlayPane;
     }
 
     public static void removeOverlay() {

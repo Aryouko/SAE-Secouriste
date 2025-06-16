@@ -13,6 +13,9 @@ import model.data.service.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import static controller.admin.FenetreGestionController.removeOverlay;
+import static controller.admin.FenetreGestionController.showOverlay;
+
 public class FenetreAjoutDPSController {
 
     @FXML
@@ -165,6 +168,7 @@ public class FenetreAjoutDPSController {
     }
 
     private void initializeComboBoxSite() {
+
         this.siteComboBox.getItems().clear();
 
         for (Site s : this.siteManagement.getSites()) {
@@ -413,14 +417,9 @@ public class FenetreAjoutDPSController {
     }
 
     public void annuleDPS() {
-        // Le parent de rootPane est overlayPane (StackPane)
-        Node overlayPane = rootPane.getParent();
+        removeOverlay();
+        rootPane.getChildren().removeAll();
 
-        // Le parent de overlayPane est fenetreGestion (AnchorPane)
-        if (overlayPane != null && overlayPane.getParent() instanceof AnchorPane) {
-            AnchorPane fenetreGestion = (AnchorPane) overlayPane.getParent();
-            fenetreGestion.getChildren().remove(overlayPane);
-        }
     }
 
     public void initializeGestionEvenementController(GestionEvenementController gestionEvenementController) {
