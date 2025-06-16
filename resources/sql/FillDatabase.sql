@@ -18,14 +18,24 @@ ALTER TABLE User AUTO_INCREMENT = 1;
 
 
 -- Insertion sites JO 2030
+/*
 INSERT INTO Site (code, nom, longitude, latitude) VALUES
-                                                      (1, 'Centre de ski alpin', 6.6, 45.9),
-                                                      (2, 'Patinoire olympique', 6.7, 45.9),
-                                                      (3, 'Stade de biathlon', 6.65, 45.95),
-                                                      (4, 'Piste de ski de fond', 6.7, 45.85),
-                                                      (5, 'Arène de hockey sur glace', 6.68, 45.88),
-                                                      (6, 'Centre de saut à ski', 6.63, 45.92),
-                                                      (7, 'Village olympique', 6.64, 45.87);
+                                                      (1, 'Centre de ski alpin', 45.9, 6.6),
+                                                      (2, 'Patinoire olympique', 45.9, 6.7),
+                                                      (3, 'Stade de biathlon', 45.95, 6.65),
+                                                      (4, 'Piste de ski de fond', 45.85, 6.7),
+                                                      (5, 'Arène de hockey sur glace', 45.88, 6.68),
+                                                      (6, 'Centre de saut à ski', 45.92, 6.63),
+                                                      (7, 'Village olympique', 45.87, 6.64);
+*/
+
+INSERT INTO site (code, nom, latitude, longitude) VALUES
+                                                      (1, 'Eiffel Tower', 48.8584, 2.2945),
+                                                      (2, 'Louvre Museum', 48.8606, 2.3376),
+                                                      (3, 'Mont Saint-Michel', 48.6361, -1.5115),
+                                                      (4, 'Château de Chambord', 47.6169, 1.5161),
+                                                      (5, 'Nice Old Town', 43.6961, 7.2655);
+
 
 -- Sports JO 2030
 INSERT INTO Sport (code, nom) VALUES

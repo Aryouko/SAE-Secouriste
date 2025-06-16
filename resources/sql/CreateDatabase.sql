@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS User;
 CREATE TABLE Site (
     code INTEGER,
     nom VARCHAR(64) NOT NULL,
-    longitude FLOAT,
     latitude FLOAT,
+    longitude FLOAT,
     CONSTRAINT pk_Site PRIMARY KEY (code)
 );
 

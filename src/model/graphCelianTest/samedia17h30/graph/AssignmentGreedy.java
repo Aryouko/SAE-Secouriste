@@ -93,7 +93,7 @@ public class AssignmentGreedy {
         for (Secouriste secouriste : secouristesJour) {
             long idJournee = this.journeeManagement.getJourneeByJour(journee.getJour(), journee.getMois(), journee.getAnnee());
             long idSecouriste = secouriste.getIdSecouriste();
-            if (!this.affectationManagement.rescuerAvailable(idJournee, idSecouriste)) {
+            if (this.affectationManagement.rescuerAvailable(idJournee, idSecouriste)) {
                 ret.add(secouriste);
             }
         }
@@ -120,8 +120,8 @@ public class AssignmentGreedy {
                 compSecouriste.add(competence.getIntitule());
             }
 
-            for (String compentence : competences) {
-                if (compSecouriste.contains(compentence)) {
+            for (String competence : competences) {
+                if (compSecouriste.contains(competence)) {
                     list.add(1L);
                 } else {
                     list.add(0L);

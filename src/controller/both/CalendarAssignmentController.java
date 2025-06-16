@@ -194,9 +194,9 @@ public class CalendarAssignmentController {
         this.date = this.date.plusDays(7);
         if (LocalDate.now().equals(this.date)) {
             weekLabel.setText("Cette semaine");
-        } else if (LocalDate.now() == this.date.minusDays(7)) {
+        } else if (LocalDate.now().equals(this.date.minusDays(7))) {
             weekLabel.setText("Semaine prochaine");
-        } else if (LocalDate.now() == this.date.plusDays(7)) {
+        } else if (LocalDate.now().equals(this.date.plusDays(7))) {
             weekLabel.setText("Semaine précédente");
         } else {
             weekLabel.setText("Autre semaine");

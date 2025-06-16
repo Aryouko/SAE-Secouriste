@@ -11,6 +11,7 @@ import model.data.persistence.Journee;
 public class DPSDAO {
 
     public void insert(DPS dps) {
+        String checkJourneeQuery = "SELECT id FROM Journee WHERE jour = ? AND mois = ? AND annee = ?";
         String insertJourneeQuery = "INSERT INTO Journee (jour, mois, annee) VALUES (?, ?, ?)";
         String insertDPSQuery = "INSERT INTO DPS (id, name, horaire_depart, horaire_fin, site, sport, journee) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -20,19 +21,33 @@ public class DPSDAO {
 
             int journeeId;
 
-            // Insertion dans Journee
-            try (PreparedStatement stmt = con.prepareStatement(insertJourneeQuery, Statement.RETURN_GENERATED_KEYS)) {
-                stmt.setInt(1, dps.getJournee().getJour());
-                stmt.setInt(2, dps.getJournee().getMois());
-                stmt.setInt(3, dps.getJournee().getAnnee());
-                stmt.executeUpdate();
+            // D'abord, vérifier si la journée existe déjà
+            try (PreparedStatement checkStmt = con.prepareStatement(checkJourneeQuery)) {
+                checkStmt.setInt(1, dps.getJournee().getJour());
+                checkStmt.setInt(2, dps.getJournee().getMois());
+                checkStmt.setInt(3, dps.getJournee().getAnnee());
 
-                try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        journeeId = generatedKeys.getInt(1);
+                try (ResultSet rs = checkStmt.executeQuery()) {
+                    if (rs.next()) {
+                        // La journée existe déjà, récupérer son ID
+                        journeeId = rs.getInt("id");
                     } else {
-                        con.rollback();
-                        throw new SQLException("Échec de la récupération de l'ID de la journée.");
+                        // La journée n'existe pas, la créer
+                        try (PreparedStatement insertStmt = con.prepareStatement(insertJourneeQuery, Statement.RETURN_GENERATED_KEYS)) {
+                            insertStmt.setInt(1, dps.getJournee().getJour());
+                            insertStmt.setInt(2, dps.getJournee().getMois());
+                            insertStmt.setInt(3, dps.getJournee().getAnnee());
+                            insertStmt.executeUpdate();
+
+                            try (ResultSet generatedKeys = insertStmt.getGeneratedKeys()) {
+                                if (generatedKeys.next()) {
+                                    journeeId = generatedKeys.getInt(1);
+                                } else {
+                                    con.rollback();
+                                    throw new SQLException("Échec de la récupération de l'ID de la journée.");
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -61,7 +76,7 @@ public class DPSDAO {
         ArrayList<DPS> dpsList = new ArrayList<>();
         try (Connection con = ConnectionBDD.getConnection();
              Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT d.ID, d.NAME, d.HORAIRE_DEPART, d.HORAIRE_FIN, j.JOUR, j.MOIS, j.ANNEE, s.CODE AS SITE_CODE, s.NOM AS SITE_NOM, s.LONGITUDE AS SITE_LON, s.LATITUDE AS SITE_LAT, sp.CODE AS SPORT_CODE, sp.NOM AS SPORT_NOM FROM DPS d JOIN Site s ON d.SITE = s.CODE JOIN Sport sp ON d.SPORT = sp.CODE JOIN Journee j ON j.ID = d.JOURNEE")) {
+             ResultSet rs = stmt.executeQuery("SELECT d.ID, d.NAME, d.HORAIRE_DEPART, d.HORAIRE_FIN, j.JOUR, j.MOIS, j.ANNEE, s.CODE AS SITE_CODE, s.NOM AS SITE_NOM, s.LONGITUDE AS SITE_LON, s.LATITUDE AS SITE_LAT, sp.CODE AS SPORT_CODE, sp.NOM AS SPORT_NOM FROM DPS d JOIN Site s ON d.SITE = s.CODE JOIN Sport sp ON d.SPORT = sp.CODE JOIN Journee j ON j.ID = d.JOURNEE ORDER BY j.ANNEE, j.MOIS, j.JOUR, d.HORAIRE_DEPART")) {
              while (rs.next()) {
                  // DPS
                  int id = rs.getInt("ID");
