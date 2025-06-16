@@ -177,7 +177,7 @@ public class GestionEvenementController {
             subGridPane2.setMaxSize(354, 71);
 
 
-            Button majButton = new Button("Mise à jour  ");
+            Button majButton = new Button("Mise à jour");
             majButton.setMinWidth(125);
             majButton.setStyle("-fx-background-radius: 20, 19; -fx-padding: 10; -fx-font-size: 15; -fx-background-color: #000000, white; -fx-background-insets: 0, 1; -fx-border-width: 0; -fx-text-fill: #000000;");
             majButton.getStyleClass().add("button");
@@ -374,16 +374,10 @@ public class GestionEvenementController {
             FenetreSupprDPSController controller = loader.getController();
             controller.initializeDPS(dps, this, this.evenementController);
 
-            StackPane overlayPane = new StackPane();
-            overlayPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);"); // fond semi-transparent sombre
+            StackPane overlayPane = showOverlay();
 
             overlayPane.getChildren().add(overlayContent);
             StackPane.setAlignment(overlayContent, Pos.CENTER);
-
-            AnchorPane.setTopAnchor(overlayPane, 0.0);
-            AnchorPane.setBottomAnchor(overlayPane, 0.0);
-            AnchorPane.setLeftAnchor(overlayPane, 0.0);
-            AnchorPane.setRightAnchor(overlayPane, 0.0);
 
             this.gestionEvenement.getChildren().add(overlayPane);
         } catch (IOException e) {

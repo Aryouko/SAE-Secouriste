@@ -5,7 +5,6 @@ import model.data.persistence.DPS;
 import model.data.persistence.Secouriste;
 import model.graphCelianTest.samedia17h30.graph.AssignmentGreedy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,7 +43,8 @@ public class AffectationManagement {
         new AssignmentGreedy().AssignmentRescuersGreedy(dps);
     }
 
-    public void removeByDps(Affectation affectation) {
-        this.affectationDAO.deleteByDPS(affectation);
+    public void removeAffectation(Affectation affectation) {
+        this.affectationDAO.delete(affectation);
     }
+
 }

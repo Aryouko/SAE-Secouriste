@@ -165,7 +165,7 @@ public class AffectationDAO {
         return affectations;
     }
 
-    public void deleteByDPS(Affectation affectation) {
+    public void delete(Affectation affectation) {
         String query = "DELETE FROM Affectation WHERE SecouristeAffect = ? AND DpsAffect = ? AND CompetenceAffect = ?";
 
         try (Connection con = ConnectionBDD.getConnection();
