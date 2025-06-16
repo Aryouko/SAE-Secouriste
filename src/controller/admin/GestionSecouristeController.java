@@ -1,19 +1,24 @@
 package controller.admin;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.stage.StageStyle;
 import model.data.persistence.*;
 import model.data.service.AffectationManagement;
 import model.data.service.PossessionManagement;
 import model.data.service.SecouristeManagement;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static controller.admin.FenetreGestionController.showOverlay;
 
 public class GestionSecouristeController {
 
@@ -28,6 +33,9 @@ public class GestionSecouristeController {
 
     @FXML
     private ComboBox<String> attCertComboBox;
+
+    @FXML
+    private AnchorPane gestionSecouriste;
 
     private ArrayList<String> groupes;
 
@@ -165,6 +173,25 @@ public class GestionSecouristeController {
                 subGridPane2.setPrefSize(354, 71);
                 subGridPane2.setMaxSize(354, 71);
 
+                Button adminButton = new Button("Mettre administrateur");
+                adminButton.setMinWidth(125);
+                adminButton.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10; -fx-font-size: 15; -fx-border-color: #000000; -fx-border-width: 2px; -fx-text-fill: #000000;");
+                Button supprButton = new Button("Suppression");
+                supprButton.setMinWidth(125);
+                supprButton.setStyle("-fx-background-color: #FF004D; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10; -fx-font-size: 15; -fx-border-color: #000000; -fx-border-width: 2px; -fx-text-fill: #FFFFFF;");
+
+                adminButton.setOnAction(event -> setAdmin(secouriste));
+                supprButton.setOnAction(event -> supprSecouriste(secouriste));
+
+                GridPane buttonGridPane = new GridPane();
+                buttonGridPane.setAlignment(Pos.CENTER_RIGHT);
+                buttonGridPane.setHgap(10);
+                buttonGridPane.add(supprButton, 1, 0);
+
+                subGridPane2.add(buttonGridPane, 0, 0);
+                subGridPane2.setAlignment(Pos.CENTER_RIGHT);
+                GridPane.setMargin(buttonGridPane, new Insets(10, 0, 0, 0));
+
                 gridPane.add(subGridPane1, 0, 0);
                 gridPane.add(subGridPane2, 0, 1);
 
@@ -188,6 +215,28 @@ public class GestionSecouristeController {
             }
         }
     }
+
+    private void supprSecouriste(Secouriste secouriste) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/FenetreSupprSecouriste.fxml"));
+            Parent overlayContent = loader.load();
+
+            FenetreSupprSecouristeController controller = loader.getController();
+            controller.initializeSecouriste(secouriste, this);
+
+            StackPane overlayPane = showOverlay();
+
+            overlayPane.getChildren().add(overlayContent);
+            StackPane.setAlignment(overlayContent, Pos.CENTER);
+
+            this.gestionSecouriste.getChildren().add(overlayPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setAdmin(Secouriste secouriste) {
+     }
 
     private void comboBoxInitialize() {
         this.grpComboBox.getItems().add("Groupe d'affectation");
@@ -245,5 +294,9 @@ public class GestionSecouristeController {
     @FXML
     public void GestionEvenementButton() {
         this.fenetreGestionController.loadContent2("/fxml/admin/GestionEvenement.fxml");
+    }
+
+    public void retirerList(Secouriste secouriste) {
+        this.secouristeList.remove(secouriste);
     }
 }
