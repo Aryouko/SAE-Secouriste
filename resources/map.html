@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaFX Leaflet Map</title>
+    <meta charset="utf-8" />
+    <style>
+        #map { height: 100vh; width: 100vw; margin: 0; padding: 0; }
+    </style>
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+</head>
+<body>
+<div id="map"></div>
+<script>
+    var map = L.map('map').setView([0, 0], 2); // world view
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Function to add markers dynamically
+    function addMarkers(locations) {
+        locations.forEach(function(loc) {
+            L.marker([loc.lat, loc.lng]).addTo(map)
+                .bindPopup(loc.name || "No name");
+        });
+    }
+</script>
+</body>
+</html>
