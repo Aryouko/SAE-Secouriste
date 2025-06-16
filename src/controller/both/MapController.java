@@ -19,7 +19,7 @@ public class MapController {
     public void initialize() {
         webEngine = mapWebView.getEngine();
         // Load your local map.html file from resources
-        String url = getClass().getResource("/map.html").toExternalForm();
+        String url = getClass().getResource("/html/map.html").toExternalForm();
         webEngine.load(url);
 
         // When page finishes loading, inject markers
@@ -46,6 +46,7 @@ public class MapController {
 
         // Inject locations into JS function addMarkers
         webEngine.executeScript("addMarkers(" + json.toString() + ");");
+        // webEngine.executeScript("focusOnByName('Eiffel Tower')"); // Example to focus on a specific marker
     }
 
     private ArrayList<Location> fetchLocationsFromDB() {
