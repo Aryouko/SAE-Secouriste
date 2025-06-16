@@ -15,7 +15,6 @@ public class Secouriste {
     private String nom;     // Nom du secouriste
     private String prenom;  // Prénom du secouriste
     private String dateNaissance; // Date de naissance (corrigé)
-    private String email;   // Adresse email
     private String tel;     // Numéro de téléphone
     private String adresse; // Adresse postale
     private byte[] photo;

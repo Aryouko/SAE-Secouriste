@@ -128,12 +128,12 @@ public class SecouristeDAO {
     }
 
     /**
-     * addSecouriste is to add a secouriste
+     * insert is to add a secouriste
      *
      * @param secouriste a secouriste
      * @return a boolean that verify the right fonctionnement.
      */
-    public boolean addSecouriste(Secouriste secouriste) {
+    public boolean insert(Secouriste secouriste) {
         String query = "INSERT INTO Secouriste (idSecouriste, nom, prenom, date_naissance, adresse, tel) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection con = getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {

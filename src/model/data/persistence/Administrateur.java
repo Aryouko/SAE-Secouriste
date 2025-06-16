@@ -38,7 +38,7 @@ public class Administrateur {
      * 
      * @return the id of the secouriste
      */
-    public long getIdSecouriste(){
+    public long getIdAdministrateur() {
         return this.id;
     }
 
@@ -67,7 +67,7 @@ public class Administrateur {
      * 
      * @return the birth date of the secouriste
      */
-    public String getDateNaissace(){
+    public String getDateNaissance(){
         return this.dateNaissance;
     }
 
