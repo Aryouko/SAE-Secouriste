@@ -58,6 +58,11 @@ public class ConnexionController {
         linkToPage(pageConnexion, "/fxml/both/EnvoiCode.fxml");
     }
 
+    @FXML
+    public void quickLogin() {
+
+    }
+
     /**
      * Handles the login button click event.
      * It attempts to log in with the provided email and password.

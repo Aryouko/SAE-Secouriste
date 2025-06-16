@@ -45,9 +45,9 @@ public class ReadNotificationController {
 
     @FXML
     private void closeNotificationForm() {
-        removeOverlay();
         Stage stage = (Stage) closeButtonNotificationForm.getScene().getWindow();
         stage.close();
+        removeOverlay();
     }
 
     public void setNotification(Notification notif) {
