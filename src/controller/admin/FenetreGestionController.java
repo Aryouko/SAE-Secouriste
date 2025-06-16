@@ -1,5 +1,6 @@
 package controller.admin;
 
+import controller.both.CalendarAssignmentController;
 import controller.both.MenuParalleleController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,8 @@ public class FenetreGestionController {
     private GestionEvenementController gestionEvenementController;
 
     private GestionSecouristeController gestionSecouristeController;
+
+    private CalendarAssignmentController calendarAssignmentController;
 
     private MenuParalleleController menuParalleleController;
 
@@ -71,10 +74,12 @@ public class FenetreGestionController {
                 this.gestionEvenementController = (GestionEvenementController) controller;
                 ((GestionEvenementController) controller).setFenetreGestionController(this);
                 ((GestionEvenementController) controller).setEvenementController(this.menuParalleleController.getEvenementController());
-            }
-            if (controller instanceof GestionSecouristeController) {
+            } else if (controller instanceof GestionSecouristeController) {
                 this.gestionSecouristeController = (GestionSecouristeController) controller;
                 ((GestionSecouristeController)controller).setFenetreGestionController(this);
+            } else if (controller instanceof CalendarAssignmentController) {
+                this.calendarAssignmentController = (CalendarAssignmentController) controller;
+                ((CalendarAssignmentController)controller).setFenetreGestionController(this);
             }
 
         } catch (IOException e) {

@@ -175,4 +175,12 @@ public class DPS {
     public void setJournee(Journee journee) {
         this.journee = journee;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DPS dps = (DPS) o;
+        return id == dps.id; // ou getIdDps() si idDps est privé
+    }
 }

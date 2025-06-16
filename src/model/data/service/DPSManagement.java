@@ -36,4 +36,8 @@ public class DPSManagement {
     public void removeDps(DPS dps) {
         this.dpsDAO.deleteByIdDPS(dps.getId());
     }
+
+    public ArrayList<DPS> getDpsByDay(long idDay) {
+        return this.dpsDAO.findByDay(idDay);
+    }
 }

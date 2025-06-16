@@ -1,20 +1,22 @@
 package controller.both;
+
+import controller.admin.FenetreGestionController;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.scene.control.Label;
 import model.data.persistence.Affectation;
 import model.data.persistence.DPS;
-import model.data.service.AffectationManagement;
-import model.data.service.AuthentificationManagement;
-import model.data.service.DPSManagement;
-import model.data.service.SecouristeManagement;
+import model.data.service.*;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
@@ -32,19 +34,37 @@ public class CalendarAssignmentController {
 
     private final SecouristeManagement secouristeManagement = new SecouristeManagement();
 
+    private final DPSManagement dpsManagement = new DPSManagement();
+
+    private final JourneeManagement journeeManagement = new JourneeManagement();
+
+    private FenetreGestionController fenetreGestionController;
+
     @FXML
     private Label dateLabel;
 
     @FXML
     private Label weekLabel;
 
+    @FXML
+    private ScrollPane scrollPane;
+
     private LocalDate date;
 
     @FXML
+    private Button gestionButton;
+
+    @FXML
     public void initialize() {
-        dpsList = new ArrayList<>();
-        for (Affectation affectation : affectationManagement.getAffectationsByRescuer(secouristeManagement.getSecouristeById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser()))) {
-            dpsList.add(affectation.getDPSAffect());
+        this.dpsList = new ArrayList<>();
+        if (getInstanceAuthentificationManagement().isAdmin()) {
+            gestionButton.setVisible(true);
+            gestionButton.disableProperty().set(false);
+            this.dpsList = dpsManagement.getDps();
+        } else {
+            for (Affectation affectation : affectationManagement.getAffectationsByRescuer(secouristeManagement.getSecouristeById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser()))) {
+                this.dpsList.add(affectation.getDPSAffect());
+            }
         }
         this.date = LocalDate.now();
         setGridPaneWeek();
@@ -96,7 +116,7 @@ public class CalendarAssignmentController {
     }
 
     private void drawLines() {
-        calendarPane.setPrefWidth(1425);
+        calendarPane.setPrefWidth(1431);
         calendarPane.setPrefHeight(1600);
         calendarPane.setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
         this.calendarPane.getChildren().clear();
@@ -124,37 +144,71 @@ public class CalendarAssignmentController {
      * Show event for
      */
     private void drawDPS() {
-        double width = 1425;
+        double width = 1431;
         double height = 1600;
-        double columnWidth = (width * 0.89) / 7; // ajusté pour laisser un peu de marge
+        double leftMargin = width * 0.11;
+        double rightMargin = width * 0.98;
+        double columnWidth = ((rightMargin - leftMargin) - 70) / 7;
         double hourHeight = height / 24.0;
 
-        for (DPS dps : dpsList) {
-            int dayWeek =this.date.getDayOfWeek().getValue();
+        Map<LocalDate, ArrayList<DPS>> dpsByDate = new HashMap<>();
+        for (int i = 0; i < 7; i++) {
+            LocalDate newDate = this.date.minusDays(this.date.getDayOfWeek().getValue() - 1).plusDays(i);
+            ArrayList<DPS> dpsForDay = this.dpsManagement.getDpsByDay(this.journeeManagement.getJourneeByJour(newDate.getDayOfMonth(), newDate.getMonthValue(), newDate.getYear()));
 
-            String[] styles = new  String[]{"-fx-background-color: #62AAFF; -fx-background-radius: 10;", "-fx-background-color: #FF4747; -fx-background-radius: 10;", "-fx-background-color: #58F58F; -fx-background-radius: 10;", "-fx-background-color: #FFC145; -fx-background-radius: 10;", "-fx-background-color: #FF9E36; -fx-background-radius: 10;", "-fx-background-color: #D336FF; -fx-background-radius: 10;", "-fx-background-color: #BB9368; -fx-background-radius: 10;"};
+            ArrayList<DPS> filteredDPS = new ArrayList<>();
+            for (DPS dps : dpsForDay) {
+                if (this.dpsList.contains(dps)) {
+                    filteredDPS.add(dps);
+                }
+            }
+            System.out.println(filteredDPS);
 
-            LocalDate dpsDate = LocalDate.of(dps.getJournee().getAnnee(), dps.getJournee().getMois(), dps.getJournee().getJour());
-            LocalDate startDate = this.date.minusDays(dayWeek - 1);
-            for (int i = 0; i < 7; i++) {
-                LocalDate currentDate = startDate.plusDays(i);
-                if (dpsDate.equals(currentDate)) {
+            dpsByDate.put(newDate, filteredDPS);
+        }
+
+        for (Map.Entry<LocalDate, ArrayList<DPS>> entry : dpsByDate.entrySet()) {
+            LocalDate dayWeek = entry.getKey();
+            ArrayList<DPS> listDPS = entry.getValue();
+
+            if (!listDPS.isEmpty()) {
+                for (DPS dps : listDPS) {
+                    String[] styles = new String[]{"-fx-background-color: #62AAFF; -fx-background-radius: 10;", "-fx-background-color: #FF4747; -fx-background-radius: 10;", "-fx-background-color: #58F58F; -fx-background-radius: 10;", "-fx-background-color: #FFC145; -fx-background-radius: 10;", "-fx-background-color: #FF9E36; -fx-background-radius: 10;", "-fx-background-color: #D336FF; -fx-background-radius: 10;", "-fx-background-color: #BB9368; -fx-background-radius: 10;"};
 
                     int startHour = dps.getHoraireDepart();
                     int endHour = dps.getHoraireFin();
 
-                    double x = width * 0.06 + (i + 1) * (columnWidth - 13) - 58;
+                    int dayIndex = dayWeek.getDayOfWeek().getValue() - 1;
+                    double columnStartX = leftMargin + (dayIndex * columnWidth) + 10;
+                    double dpsWidth = (columnWidth - 10) / listDPS.size();
+                    double x = columnStartX + 30 + ((listDPS.size() - listDPS.indexOf(dps) - 1) * dpsWidth);
+
                     double y = 50 + startHour * hourHeight;
-                    double heightDPS = (endHour - startHour) * hourHeight;
+                    double heightDPS = ((endHour - startHour) * hourHeight);
 
                     StackPane stackPane = new StackPane();
                     stackPane.setLayoutX(x);
                     stackPane.setLayoutY(y);
-                    stackPane.setPrefWidth(columnWidth - 25);
-                    stackPane.setPrefHeight(heightDPS); // petit espace visuel
+                    stackPane.setPrefWidth(dpsWidth - 2);
+                    stackPane.setPrefHeight(heightDPS);
 
+                    stackPane.setOnMouseEntered(event -> {
+                        stackPane.setLayoutX(columnStartX + 30);
+                        stackPane.setLayoutY(y);
+                        stackPane.setPrefWidth((dpsWidth * listDPS.size()) - 2);
+                        stackPane.setPrefHeight(heightDPS);
+                        stackPane.toFront();
+                    });
 
-                    stackPane.setStyle(styles[i]);
+                    // Événement quand la souris sort de la zone
+                    stackPane.setOnMouseExited(event -> {
+                        stackPane.setLayoutX(x);
+                        stackPane.setLayoutY(y);
+                        stackPane.setPrefWidth(dpsWidth - 2);
+                        stackPane.setPrefHeight(heightDPS);
+                    });
+
+                    stackPane.setStyle(styles[dayWeek.getDayOfWeek().getValue() - 1]);
 
                     Label titleLabel = new Label(dps.getName());
                     titleLabel.setWrapText(true);
@@ -168,19 +222,22 @@ public class CalendarAssignmentController {
                     sportLabel.setWrapText(true);
                     sportLabel.setStyle("-fx-font-size: 16; -fx-text-alignment: center; -fx-text-fill: #FFFFFF");
 
-                    Label competenceLabel = new Label();
-                    competenceLabel.setWrapText(true);
-                    competenceLabel.setStyle("-fx-font-size: 16; -fx-text-alignment: center; -fx-text-fill: #FFFFFF");
-                    for (Affectation affectation : affectationManagement.getAffectationsByDps(dps)) {
-                        if (affectation.getSecouristeAffect().getIdSecouriste() == secouristeManagement.getSecouristeById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser()).getIdSecouriste()) {
-                            competenceLabel.setText("Ma compétence attribué : " + affectation.getCompetenceAffect().getIntitule());
-                        }
-                    }
-
                     VBox vbox = new VBox(5); // 5px d’espacement vertical
                     vbox.setAlignment(Pos.CENTER);
 
-                    vbox.getChildren().addAll(titleLabel, locationLabel, sportLabel, competenceLabel);
+                    vbox.getChildren().addAll(titleLabel, locationLabel, sportLabel);
+
+                    if (!getInstanceAuthentificationManagement().isAdmin()) {
+                        Label competenceLabel = new Label();
+                        competenceLabel.setWrapText(true);
+                        competenceLabel.setStyle("-fx-font-size: 16; -fx-text-alignment: center; -fx-text-fill: #FFFFFF");
+                        for (Affectation affectation : affectationManagement.getAffectationsByDps(dps)) {
+                            if (affectation.getSecouristeAffect().getIdSecouriste() == secouristeManagement.getSecouristeById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser()).getIdSecouriste()) {
+                                competenceLabel.setText("Ma compétence attribué : " + affectation.getCompetenceAffect().getIntitule());
+                            }
+                        }
+                        vbox.getChildren().add(competenceLabel);
+                    }
 
                     stackPane.getChildren().add(vbox);
                     calendarPane.getChildren().add(stackPane);
@@ -223,5 +280,14 @@ public class CalendarAssignmentController {
         setGridPaneWeek();
         drawLines();
         drawDPS();
+    }
+
+    public void setFenetreGestionController(FenetreGestionController fenetreGestionController) {
+        this.fenetreGestionController = fenetreGestionController;
+    }
+
+    @FXML
+    private void retourGestion() {
+        this.fenetreGestionController.loadContent2("/fxml/admin/gestionEvenement.fxml");
     }
 }
