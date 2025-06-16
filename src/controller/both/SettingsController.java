@@ -1,14 +1,18 @@
 package controller.both;
 
+import controller.UtilsController;
+import controller.admin.FenetreGestionController;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import model.data.persistence.Secouriste;
 import model.data.service.SecouristeManagement;
 
@@ -21,9 +25,14 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
 
 public class SettingsController {
 
+    private FenetreGestionController fenetreGestionController;
     private final SecouristeManagement secouristeManagement = new SecouristeManagement();
     Secouriste sec = secouristeManagement.getSecouristeById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
 
+    @FXML
+    private AnchorPane settingsPane;
+    @FXML
+    private AnchorPane notifPane;
     @FXML
     private GridPane calendarGrid;
     @FXML
@@ -96,6 +105,35 @@ public class SettingsController {
         imageView.setClip(clip);
     }
 
+    @FXML
+    private void enregistrerClicked(){
+
+    }
+
+    @FXML
+    private void annulerClicked(){
+
+    }
+
+    @FXML
+    private void notifClicked(){
+        UtilsController.linkToPage(notifPane, "/fxml/both/Notification.fxml");
+    }
+
+    @FXML
+    private void calendrierClicked(){
+        UtilsController.linkToPage(settingsPane, "/fxml/admin/FenetreGestion.fxml");
+    }
+
+    @FXML
+    private void fermerClicked(){
+        UtilsController.linkToPage(settingsPane, "/fxml/admin/FenetreGestion.fxml");
+    }
+
+    @FXML
+    private void supprimerClicked(){
+
+    }
 
     @FXML
     private void moisSuivant() {
