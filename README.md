@@ -5,7 +5,7 @@
 
 # TO-DO
 
-- @c0w5lip: Vue menselle calendrier + Map (api mapbox + webview HTML)
+- @c0w5lip: Vue mensuelle calendrier
 - @Aryouko: Gestion des DPS/Secouristes / backend global 
 - Célian: Profil / Notofications / Peaufinage frontend
 - Glen: Graphes / Assignments
