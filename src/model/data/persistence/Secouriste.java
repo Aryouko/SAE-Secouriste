@@ -3,6 +3,9 @@ package model.data.persistence;
 import javafx.scene.image.Image;
 
 import java.io.ByteArrayInputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Secouriste class
@@ -36,7 +39,17 @@ public class Secouriste {
         this.dateNaissance = dateNaissance;
         this.tel = tel;
         this.adresse = adresse;
-        this.photo = photo;
+        if  (photo == null) {
+            try {
+                Path path = Paths.get("src/main/resources/images/anonyme.png");
+                byte[] imageBytes = Files.readAllBytes(path);
+                this.photo = imageBytes;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            this.photo = photo;
+        }
     }
 
     /**

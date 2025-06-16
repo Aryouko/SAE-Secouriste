@@ -8,14 +8,16 @@ import java.util.ArrayList;
 public class PossessionDAO {
 
     public void insert(Possession possession) {
-        for (Competence competence : possession.competencesSec) {
-            String query = "INSERT INTO Possession VALUES (" + competence.getIntitule() + "," + possession.getSecouriste().getIdSecouriste() + ")";
-            try (Connection con = ConnectionBDD.getConnection();
-                 Statement stmt = con.createStatement()) {
-                stmt.executeUpdate(query);
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+        String query = "INSERT INTO Possession (competence, secouriste) VALUES (?, ?)";
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            for (Competence competence : possession.getCompetencesSec()) {
+                stmt.setString(1, competence.getIntitule());
+                stmt.setLong(2, possession.getSecouriste().getIdSecouriste());
+                stmt.executeUpdate();
             }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -47,6 +49,17 @@ public class PossessionDAO {
 
             stmt.executeUpdate();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteAllPossessionsForSecouriste(long idSecouriste) {
+        String query = "DELETE FROM Possession WHERE secouriste = ?";
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setLong(1, idSecouriste);
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
