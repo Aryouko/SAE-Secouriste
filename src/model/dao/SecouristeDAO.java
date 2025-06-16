@@ -204,4 +204,17 @@ public class SecouristeDAO {
 
         return null;
     }
+
+    public void delete(Secouriste secouriste) {
+        System.out.println("ID à supprimer : " + secouriste.getIdSecouriste());
+        String query = "DELETE FROM Secouriste WHERE idSecouriste = ?";
+        try (Connection con = ConnectionBDD.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(query)) {
+
+            pstmt.setLong(1, secouriste.getIdSecouriste());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
