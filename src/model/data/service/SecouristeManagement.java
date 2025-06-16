@@ -23,13 +23,12 @@ public class SecouristeManagement {
         return secouristeDAO.findAll();
     }
 
-
     public List<Secouriste> findByIdJournee(long idJournee) {
         return secouristeDAO.findByDay(idJournee);
     }
 
-    public boolean insererPhoto(long idSecouriste, File imageFile) {
-        return secouristeDAO.insererPhoto(idSecouriste, imageFile);
+    public boolean updatePhoto(long idSecouriste, byte[] image) {
+        return secouristeDAO.insererPhoto(idSecouriste, image);
     }
 
     public Image recupererPhoto(long idSecouriste) {

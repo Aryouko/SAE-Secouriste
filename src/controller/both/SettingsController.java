@@ -4,22 +4,23 @@ import controller.UtilsController;
 import controller.admin.FenetreGestionController;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import model.data.persistence.Secouriste;
 import model.data.service.SecouristeManagement;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.*;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
@@ -27,40 +28,109 @@ public class SettingsController {
 
     private FenetreGestionController fenetreGestionController;
     private final SecouristeManagement secouristeManagement = new SecouristeManagement();
-    Secouriste sec = secouristeManagement.getSecouristeById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
+    Secouriste sec;
+    private final Map<CheckBox, List<CheckBox>> dependances = new HashMap<>();
+    private final Map<CheckBox, List<CheckBox>> reverseDependances = new HashMap<>();
 
-    @FXML
-    private AnchorPane settingsPane;
-    @FXML
-    private AnchorPane notifPane;
-    @FXML
-    private GridPane calendarGrid;
-    @FXML
-    private Label jourLabel;
+    @FXML private AnchorPane settingsPane;
+    @FXML private AnchorPane notifPane;
+    @FXML private GridPane calendarGrid;
+    @FXML private Label jourLabel;
     private int mois;
     private int annee;
-    @FXML
-    private Text prenomNomProfile;
-    @FXML
-    private Text prenomNomParam;
-    @FXML
-    private ImageView pdpProfile;
-    @FXML
-    private ImageView pdpParam;
+    @FXML private Text prenomNomProfile;
+    @FXML private Text prenomNomParam;
+    @FXML private Circle pdpProfileCircle;
+    @FXML private Circle pdpParamCircle;
+    @FXML private CheckBox checkPSE1;
+    @FXML private CheckBox checkPSE2;
+    @FXML private CheckBox checkCE;
+    @FXML private CheckBox checkCP;
+    @FXML private CheckBox checkCO;
+    @FXML private CheckBox checkSSA;
+    @FXML private CheckBox checkVPSP;
+    @FXML private CheckBox checkPBC;
+    @FXML private CheckBox checkPBF;
+    private byte[] nouvellePhoto;
 
     @FXML
     public void initialize() {
         try {
+            sec = secouristeManagement.getSecouristeById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
             LocalDate today = LocalDate.now();
             this.mois = today.getMonthValue();
             this.annee = today.getYear();
             populateCalendar(this.annee, mois);
             prenomNomProfile.setText(sec.getPrenom() + " " + sec.getNom());
             prenomNomParam.setText(sec.getPrenom() + " " + sec.getNom());
-            pdpProfile.setImage(new Image(new ByteArrayInputStream(sec.getPhoto())));
-            pdpParam.setImage(new Image(new ByteArrayInputStream(sec.getPhoto())));
+            Image image = new Image(new ByteArrayInputStream(sec.getPhoto()));
+            if (image.isError()) {
+                pdpProfileCircle.setFill(new ImagePattern(new Image("/images/anonyme.png", false)));
+                pdpParamCircle.setFill(new ImagePattern(new Image("/images/anonyme.png", false)));
+            } else {
+                pdpProfileCircle.setFill(new ImagePattern(image));
+                pdpParamCircle.setFill(new ImagePattern(image));
+            }
         }catch (Exception e){
             System.out.println(e.getMessage());
+        }
+
+        // Définir les dépendances "vers le bas" (cocher les prérequis)
+        dependances.put(checkCO, List.of(checkCP));
+        dependances.put(checkCP, List.of(checkCE));
+        dependances.put(checkCE, List.of(checkPSE2));
+        dependances.put(checkPSE2, List.of(checkPSE1));
+        dependances.put(checkSSA, List.of(checkPSE1));
+        dependances.put(checkVPSP, List.of(checkPSE2));
+        dependances.put(checkPBF, List.of(checkPBC));
+
+        // Construire la map inverse "vers le haut"
+        for (Map.Entry<CheckBox, List<CheckBox>> entry : dependances.entrySet()) {
+            for (CheckBox prerequis : entry.getValue()) {
+                reverseDependances.computeIfAbsent(prerequis, k -> new ArrayList<>()).add(entry.getKey());
+            }
+        }
+
+        // Listener sur tous les checkboxes
+        Set<CheckBox> allCheckboxes = new HashSet<>();
+        allCheckboxes.addAll(dependances.keySet());
+        dependances.values().forEach(allCheckboxes::addAll);
+
+        for (CheckBox cb : allCheckboxes) {
+            cb.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
+                if (isNowSelected) {
+                    cocherDependenciesRecursivement(cb);
+                } else {
+                    decocherSuperieursRecursivement(cb);
+                }
+            });
+        }
+    }
+
+    private void cocherDependenciesRecursivement(CheckBox checkBox) {
+        List<CheckBox> deps = dependances.get(checkBox);
+        if (deps != null) {
+            for (CheckBox dep : deps) {
+                if (!dep.isSelected()) {
+                    dep.setSelected(true);
+                    cocherDependenciesRecursivement(dep); // appel récursif
+                }
+            }
+        }
+    }
+
+    private void decocherSuperieursRecursivement(CheckBox checkBox) {
+        List<CheckBox> superieurs = reverseDependances.get(checkBox);
+        if (superieurs != null) {
+            for (CheckBox sup : superieurs) {
+                // On ne décoche que si le prérequis qu’on vient de décocher est nécessaire
+                boolean doitDecocher = dependances.getOrDefault(sup, List.of())
+                        .contains(checkBox) && !checkBox.isSelected();
+                if (doitDecocher && sup.isSelected()) {
+                    sup.setSelected(false);
+                    decocherSuperieursRecursivement(sup); // appel récursif
+                }
+            }
         }
     }
 
@@ -69,55 +139,54 @@ public class SettingsController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Sélectionner une photo de profil");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg")
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg")
         );
 
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            long idSecouriste = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
+            try (FileInputStream fis = new FileInputStream(selectedFile)) {
+                Image image = new Image(fis);
 
-            boolean success = secouristeManagement.insererPhoto(idSecouriste, selectedFile);
+                // Met à jour l’image dans le FXML uniquement (pas en base)
+                pdpProfileCircle.setFill(new ImagePattern(image));
+                pdpParamCircle.setFill(new ImagePattern(image));
 
-            if (success) {
-                // Recharge le secouriste mis à jour depuis la BDD
-                Secouriste secMisAJour = secouristeManagement.getSecouristeById(idSecouriste);
-                if (secMisAJour != null && secMisAJour.getPhoto() != null) {
-                    Image image = new Image(new ByteArrayInputStream(secMisAJour.getPhoto()));
-
-                    // Met à jour l’image recadrée en rond
-                    setCircularImage(pdpProfile, image);
-                    setCircularImage(pdpParam, image);
-
-                    System.out.println("Photo mise à jour avec succès.");
+                // Remettre le curseur au début pour relire le fichier
+                try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+                    FileInputStream fis2 = new FileInputStream(selectedFile);
+                    fis2.transferTo(baos);
+                    nouvellePhoto = baos.toByteArray();
                 }
-            } else {
-                System.out.println("Erreur lors de l'importation de la photo.");
+
+                System.out.println("Photo chargée avec succès (non enregistrée en base).");
+
+            } catch (IOException e) {
+                System.out.println("Erreur lors du chargement de l’image : " + e.getMessage());
             }
         }
     }
 
-    private void setCircularImage(ImageView imageView, Image image) {
-        imageView.setImage(image);
-
-        double radius = Math.min(imageView.getFitWidth(), imageView.getFitHeight()) / 2;
-
-        Circle clip = new Circle(radius, radius, radius);
-        imageView.setClip(clip);
-    }
-
     @FXML
-    private void enregistrerClicked(){
-
+    private void enregistrerClicked() {
+        if (nouvellePhoto != null) {
+            long idSec = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
+            boolean success = secouristeManagement.updatePhoto(idSec, nouvellePhoto);
+            sec.setPhoto(nouvellePhoto);
+            initialize();
+            System.out.println("Nouvelle photo enregistrée en base.");
+        } else {
+            System.out.println("Aucune nouvelle photo à enregistrer.");
+        }
     }
 
     @FXML
     private void annulerClicked(){
-
+        initialize();
     }
 
     @FXML
     private void notifClicked(){
-        UtilsController.linkToPage(notifPane, "/fxml/both/Notification.fxml");
+        UtilsController.linkToPage(notifPane, "/fxml/both/NotificationResized.fxml");
     }
 
     @FXML
@@ -134,6 +203,8 @@ public class SettingsController {
     private void supprimerClicked(){
 
     }
+
+
 
     @FXML
     private void moisSuivant() {
