@@ -95,7 +95,7 @@ public class EvenementController {
             pane.setPrefHeight(60);
             pane.setPadding(new Insets(10));
             VBox.setMargin(pane, new Insets(0,10,0,0));
-            pane.setStyle("-fx-background-color: #2A2A2A; -fx-background-radius: 15");
+            pane.setStyle("-fx-background-color: rgba(249, 252, 255, 0.07); -fx-background-radius: 15");
             label.setLayoutX(10);
             label.setLayoutY(10);
             list.add(pane);

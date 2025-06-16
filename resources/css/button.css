@@ -22,14 +22,11 @@
     -fx-border-radius: 20;
 }
 
-.input .text-field {
-    -fx-prompt-text-fill: #a0a0a0; // or any color you want
+
+.text-field {
+    -fx-background-color: trensparent;
+    -fx-prompt-text-fill: black;
 }
-
-
-
-
-
 
 
 .jfx-combo-box {

@@ -41,9 +41,4 @@ public class Competence {
         Competence that = (Competence) o;
         return Objects.equals(intitule, that.intitule); // ou id si tu as un identifiant unique
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(intitule); // ou id
-    }
 }
