@@ -64,8 +64,6 @@ public class GestionSecouristeController {
     }
 
     private void tileInitialize(List<Secouriste> listSecouristes) {
-
-        String[] months = {"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"};
         if (listSecouristes != null) {
             for (Secouriste secouriste : listSecouristes) {
 
@@ -209,20 +207,26 @@ public class GestionSecouristeController {
         ArrayList<Secouriste> listSecouriste = new ArrayList<>();
         for (Secouriste secouriste : this.secouristeList) {
             boolean verifCert = false;
-            for (Competence competence : this.possessionManagement.getPossessionBySecouriste(secouriste).getCompetencesSec()) {
-                if (competence.getIntitule().equals(this.certComboBox.getSelectionModel().getSelectedItem())
-                        || this.certComboBox.getSelectionModel().getSelectedItem().equals("Certification")) {
-                    System.out.println(this.certComboBox.getSelectionModel().getSelectedItem());
-                    verifCert = true;
+            if (this.certComboBox.getSelectionModel().getSelectedItem() != null && this.certComboBox.getSelectionModel().getSelectedItem().equals("Certification")) {
+                verifCert = true;
+            } else {
+                for (Competence competence : this.possessionManagement.getPossessionBySecouriste(secouriste).getCompetencesSec()) {
+                    if (competence.getIntitule().equals(this.certComboBox.getSelectionModel().getSelectedItem())) {
+                        System.out.println(this.certComboBox.getSelectionModel().getSelectedItem());
+                        verifCert = true;
+                    }
                 }
             }
 
             boolean verifGrp = false;
-            for (Affectation affectation : this.affectationManagement.getAffectationsByRescuer(secouriste)) {
-                if (affectation.getDPSAffect().getName().equals(this.grpComboBox.getSelectionModel().getSelectedItem())
-                        || this.grpComboBox.getSelectionModel().getSelectedItem().equals("Groupe d'affectation")) {
-                    System.out.println(this.grpComboBox.getSelectionModel().getSelectedItem());
-                    verifGrp = true;
+            if (this.grpComboBox.getSelectionModel().getSelectedItem() != null && this.grpComboBox.getSelectionModel().getSelectedItem().equals("Groupe d'affectation")) {
+                verifGrp = true;
+            } else {
+                for (Affectation affectation : this.affectationManagement.getAffectationsByRescuer(secouriste)) {
+                    if (affectation.getDPSAffect().getName().equals(this.grpComboBox.getSelectionModel().getSelectedItem())) {
+                        System.out.println(this.grpComboBox.getSelectionModel().getSelectedItem());
+                        verifGrp = true;
+                    }
                 }
             }
 
