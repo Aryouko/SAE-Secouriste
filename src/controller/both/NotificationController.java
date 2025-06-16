@@ -62,7 +62,7 @@ public class NotificationController {
             Notification notification = listNotification.get(i);
 
             Label label = new Label(notification.getTitle());
-            label.setStyle("-fx-text-fill: white; -fx-font-size: 16px");
+            label.setStyle("-fx-text-fill: white; -fx-font-size: 16px; -fx-font-family: 'Poppins';");
 
             // Ajout du nom du DPS concerné
 
@@ -73,14 +73,14 @@ public class NotificationController {
             Label date = new Label(notification.getDate());
 
             Label infosLabel = new Label(dpsName + " à " + notification.getDate());
-            infosLabel.setStyle("-fx-text-fill: rgba(255, 255, 255, 0.26); " +
+            infosLabel.setStyle("-fx-text-fill: #EDF2F66F; " +
                     "-fx-font-family: 'Poppins'; " +
                     "-fx-font-size: 14px; " +
                     "-fx-font-weight: 300; " +
                     "-fx-letter-spacing: -0.56px;");
 
             Circle circle = new Circle();
-            circle.setRadius(15);
+            circle.setRadius(20);
             circle.setFill(javafx.scene.paint.Color.web("#4A4AE4"));
 
 
@@ -122,7 +122,7 @@ public class NotificationController {
 
             circle.setFill(javafx.scene.paint.Color.web("#4A4AE4")); // Color:
             if (notification.getIsViewed()) {
-                pane.setStyle("-fx-background-color: rgba(249, 252, 255, 0.07);; -fx-background-radius: 50");
+                pane.setStyle("-fx-background-color: rgba(249, 252, 255, 0.07); -fx-background-radius: 50");
             } else {
                 pane.setStyle("-fx-background-color: #46484C; -fx-background-radius: 50");
             }
@@ -135,6 +135,14 @@ public class NotificationController {
             pane.setOnMouseClicked(event -> {
                 try {
                     pane.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 50");
+                    label.setStyle("-fx-text-fill: #000000; -fx-font-size: 16px; -fx-font-family: 'Poppins';");
+
+                    infosLabel.setStyle("-fx-text-fill: rgb(0,0,0); " +
+                            "-fx-font-family: 'Poppins'; " +
+                            "-fx-font-size: 14px; " +
+                            "-fx-font-weight: 300; " +
+                            "-fx-letter-spacing: -0.56px;");
+
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/both/ReadNotification.fxml"));
                     Parent root = loader.load();
                     ReadNotificationController controller = loader.getController();
@@ -151,8 +159,14 @@ public class NotificationController {
                     e.printStackTrace();
                 }
 
-                pane.setStyle("-fx-background-color: #2A2B2D; -fx-background-radius: 25");
+                pane.setStyle("-fx-background-color: #2A2B2D; -fx-background-radius: 50");
+                label.setStyle("-fx-text-fill: #ffffff; -fx-font-size: 16px; -fx-font-family: 'Poppins';");
 
+                infosLabel.setStyle("-fx-text-fill: #EDF2F66F ; " +
+                        "-fx-font-family: 'Poppins'; " +
+                        "-fx-font-size: 14px; " +
+                        "-fx-font-weight: 300; " +
+                        "-fx-letter-spacing: -0.56px;");
             });
 
 

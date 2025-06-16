@@ -29,6 +29,68 @@
 }
 
 
+/* DARK COMBO BOX */
+
+.dark-combo-box {
+    -fx-background-color: #1e1e1e;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-font-family: 'Poppins';
+    -fx-font-weight: 300;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.7);
+}
+
+.dark-combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-family: 'Poppins';
+    -fx-font-weight: 300;
+}
+
+.dark-combo-box .combo-box-popup .list-view {
+    -fx-background-color: #2d2d2d;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
+}
+
+.dark-combo-box .combo-box-popup .list-view .list-cell {
+    -fx-background-color: #2d2d2d;
+    -fx-text-fill: white;
+}
+
+.dark-combo-box .combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: #3a3a3a;
+}
+
+.dark-combo-box .combo-box-popup .list-view .list-cell:selected {
+    -fx-background-color: #3a86ff;
+}
+
+.dark-combo-box .arrow {
+    -fx-background-color: white;
+}
+
+.dark-combo-box:showing .arrow {
+    -fx-background-color: #3a86ff;
+    -fx-translate-y: 2;
+    -fx-rotate: 180;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* WHITE COMBO BOX */
+
 .jfx-combo-box {
     -fx-background-color: #EBF0F6;
     -fx-background-radius: 5;
@@ -36,6 +98,8 @@
     -fx-font-weight: 300;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 0);
 }
+
+
 
 .jfx-combo-box:hover {
     -fx-background-color: #B9D9FF;

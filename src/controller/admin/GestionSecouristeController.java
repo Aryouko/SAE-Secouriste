@@ -128,11 +128,11 @@ public class GestionSecouristeController {
                 scrollPane.setMaxWidth(Double.MAX_VALUE);
                 GridPane.setVgrow(scrollPane, Priority.ALWAYS);
                 GridPane.setHgrow(scrollPane, Priority.ALWAYS);
-                scrollPane.setStyle("-fx-background: #FF4747; -fx-background-color: #FF4747; -fx-border-color: transparent; -fx-background-insets: 0; -fx-padding: 0;");
+                scrollPane.setStyle("-fx-background: trensparent; -fx-background-color: trensparent; -fx-border-color: transparent; -fx-background-insets: 0; -fx-padding: 0;");
 
                 GridPane subSubGridPane2 = new GridPane();
                 subSubGridPane2.setMinSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
-                subSubGridPane2.setStyle("-fx-background-color: #FF4747;");
+                subSubGridPane2.setStyle("-fx-background-color: trensparent;");
 
                 Label affect = new Label("Affectations :");
                 affect.setStyle("-fx-text-fill: #FFFFFF;");
@@ -154,7 +154,7 @@ public class GestionSecouristeController {
                 GridPane subGridPane1 = new GridPane();
                 subGridPane1.setPrefSize(354, 305);
                 subGridPane1.setMaxSize(354, 305);
-                subGridPane1.setStyle("-fx-background-color: #FF4747; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10;");
+                subGridPane1.setStyle("-fx-background-color: rgb(231,94,94); -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10;");
 
                 Region spacer = new Region();
                 spacer.setMinHeight(20);
@@ -178,7 +178,7 @@ public class GestionSecouristeController {
                 adminButton.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10; -fx-font-size: 15; -fx-border-color: #000000; -fx-border-width: 2px; -fx-text-fill: #000000;");
                 Button supprButton = new Button("Suppression");
                 supprButton.setMinWidth(125);
-                supprButton.setStyle("-fx-background-color: #FF004D; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10; -fx-font-size: 15; -fx-border-color: #000000; -fx-border-width: 2px; -fx-text-fill: #FFFFFF;");
+                supprButton.setStyle("-fx-background-color: rgb(231,94,94); -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10; -fx-font-size: 15; -fx-text-fill: #FFFFFF;");
 
                 adminButton.setOnAction(event -> setAdmin(secouriste));
                 supprButton.setOnAction(event -> supprSecouriste(secouriste));
