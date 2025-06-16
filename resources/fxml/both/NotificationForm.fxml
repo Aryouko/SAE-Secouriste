@@ -64,7 +64,7 @@
                   <Insets left="18.0" />
                </GridPane.margin>
             </Text>
-            <TextArea fx:id="messageTextArea" prefHeight="0.0" prefWidth="0.0" promptText="Entrer votre message ..." style="-fx-background-color: trensparent;" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="3">
+            <TextArea fx:id="messageTextArea" prefHeight="0.0" prefWidth="0.0" promptText="Entrer votre message ..." style="-fx-background-color: trensparent;" wrapText="true" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="3">
                <font>
                   <Font name="Poppins Regular" size="24.0" />
                </font>
