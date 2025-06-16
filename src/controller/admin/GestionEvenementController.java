@@ -71,6 +71,10 @@ public class GestionEvenementController {
 
     private void tileInitialize(List<DPS> listDPS) {
 
+        String cssPath = getClass().getResource("/css/button.css").toExternalForm();
+        gestionEvenement.getStylesheets().add(cssPath);
+
+
         String[] months = {"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"};
 
         for (DPS dps : listDPS) {
@@ -172,12 +176,16 @@ public class GestionEvenementController {
             subGridPane2.setPrefSize(354, 71);
             subGridPane2.setMaxSize(354, 71);
 
+
             Button majButton = new Button("Mise à jour  ");
             majButton.setMinWidth(125);
-            majButton.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10; -fx-font-size: 15; -fx-border-color: #000000; -fx-border-width: 2px; -fx-text-fill: #000000;");
+            majButton.setStyle("-fx-background-radius: 20, 19; -fx-padding: 10; -fx-font-size: 15; -fx-background-color: #000000, white; -fx-background-insets: 0, 1; -fx-border-width: 0; -fx-text-fill: #000000;");
+            majButton.getStyleClass().add("button");
+
             Button supprButton = new Button("Suppression");
             supprButton.setMinWidth(125);
-            supprButton.setStyle("-fx-background-color: #FF004D; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10; -fx-font-size: 15; -fx-border-color: #000000; -fx-border-width: 2px; -fx-text-fill: #FFFFFF;");
+            supprButton.setStyle("-fx-background-color: #FF004D; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10; -fx-font-size: 15; -fx-border-width: 2px; -fx-text-fill: #FFFFFF;");
+            supprButton.getStyleClass().add("button");
 
             majButton.setOnAction(event -> majAffect(dps));
             supprButton.setOnAction(event -> supprDps(dps));

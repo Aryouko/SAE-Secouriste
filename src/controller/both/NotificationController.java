@@ -69,10 +69,15 @@ public class NotificationController {
             String dpsName = dpsManagement.getDpsById(notification.getIdDPS()).getName();
 
             Label dpsLabel = new Label(dpsName);
-            dpsLabel.setStyle("-fx-text-fill: #ffffff47; -fx-font-size: 12px; -fx-font-weight: bold; -fx-padding: 0 10 0 0;");
 
             Label date = new Label(notification.getDate());
-            date.setStyle("-fx-text-fill: #ffffff47; -fx-font-size: 12px");
+
+            Label infosLabel = new Label(dpsName + " à " + notification.getDate());
+            infosLabel.setStyle("-fx-text-fill: rgba(255, 255, 255, 0.26); " +
+                    "-fx-font-family: 'Poppins'; " +
+                    "-fx-font-size: 14px; " +
+                    "-fx-font-weight: 300; " +
+                    "-fx-letter-spacing: -0.56px;");
 
             Circle circle = new Circle();
             circle.setRadius(15);
@@ -83,7 +88,7 @@ public class NotificationController {
             GridPane pane = new GridPane();
             GridPane subPane = new GridPane();
 
-
+            subPane.setPadding(new Insets(0, 0, 0, 15));
 
             ColumnConstraints col = new ColumnConstraints();
             col.setMaxWidth(500);
@@ -91,8 +96,7 @@ public class NotificationController {
             pane.getColumnConstraints().addAll(col);
 
             subPane.add(label, 0, 0);
-            subPane.add(dpsLabel, 0, 1);
-            subPane.add(date, 1, 1);
+            subPane.add(infosLabel, 0, 1);
             pane.add(subPane,0,0);
             pane.add(circle,1,0);
 
@@ -109,16 +113,18 @@ public class NotificationController {
                 badge.toFront(); // S'assurer que la pastille est au-dessus
             }
 
+
+
             pane.setPrefHeight(60);
+            pane.setMaxHeight(60);
             pane.setPadding(new Insets(10));
             VBox.setMargin(pane, new Insets(0,10,0,0));
 
             circle.setFill(javafx.scene.paint.Color.web("#4A4AE4")); // Color:
             if (notification.getIsViewed()) {
-                pane.setStyle("-fx-background-color: #2A2B2D; -fx-background-radius: 25");
+                pane.setStyle("-fx-background-color: rgba(249, 252, 255, 0.07);; -fx-background-radius: 50");
             } else {
-                pane.setStyle("-fx-background-color: #46484C; -fx-background-radius: 25");
-
+                pane.setStyle("-fx-background-color: #46484C; -fx-background-radius: 50");
             }
 
             label.setLayoutX(10);
@@ -128,6 +134,7 @@ public class NotificationController {
 
             pane.setOnMouseClicked(event -> {
                 try {
+                    pane.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 50");
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/both/ReadNotification.fxml"));
                     Parent root = loader.load();
                     ReadNotificationController controller = loader.getController();
