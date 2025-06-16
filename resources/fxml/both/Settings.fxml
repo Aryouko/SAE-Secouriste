@@ -181,7 +181,7 @@
                </children>
             </VBox>
          </children></FlowPane>
-      <AnchorPane layoutX="441.0" layoutY="25.0" prefHeight="950.0" prefWidth="1460.0" style="-fx-background-color: white; -fx-background-radius: 30;">
+      <AnchorPane layoutX="441.0" layoutY="25.0" prefHeight="950.0" prefWidth="1306.0" style="-fx-background-color: white; -fx-background-radius: 30;">
          <children>
             <Pane prefHeight="200.0" prefWidth="1460.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #FEB0B0, #A80037); -fx-background-radius: 30 30 0 0;">
                <children>
