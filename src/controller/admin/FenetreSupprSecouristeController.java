@@ -7,6 +7,7 @@ import model.data.persistence.*;
 import model.data.service.*;
 
 import static controller.admin.FenetreGestionController.removeOverlay;
+import static controller.admin.FenetreGestionController.showOverlay;
 
 public class FenetreSupprSecouristeController {
 

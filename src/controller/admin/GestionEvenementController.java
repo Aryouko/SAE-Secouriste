@@ -378,8 +378,6 @@ public class GestionEvenementController {
 
             overlayPane.getChildren().add(overlayContent);
             StackPane.setAlignment(overlayContent, Pos.CENTER);
-
-            this.gestionEvenement.getChildren().add(overlayPane);
         } catch (IOException e) {
             e.printStackTrace();
         }

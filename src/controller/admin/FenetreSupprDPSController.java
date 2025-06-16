@@ -3,11 +3,15 @@ package controller.admin;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.data.persistence.Affectation;
 import model.data.persistence.DPS;
 import model.data.service.AffectationManagement;
 import model.data.service.BesoinManagement;
 import model.data.service.DPSManagement;
+
+import static controller.admin.FenetreGestionController.removeOverlay;
+import static controller.admin.FenetreGestionController.showOverlay;
 
 public class FenetreSupprDPSController {
 
@@ -27,9 +31,11 @@ public class FenetreSupprDPSController {
     private BesoinManagement besoinManagement = new BesoinManagement();
 
     public void initializeDPS(DPS dps, GestionEvenementController gestionEvenementController, EvenementController evenementController) {
+
         this.dps = dps;
         this.gestionEvenementController = gestionEvenementController;
         this.evenementController = evenementController;
+        showOverlay();
     }
 
     @FXML
@@ -55,5 +61,8 @@ public class FenetreSupprDPSController {
             AnchorPane fenetreGestion = (AnchorPane) overlayPane.getParent();
             fenetreGestion.getChildren().remove(overlayPane);
         }
+
+        removeOverlay();
+        rootPane.getChildren().removeAll();
     }
 }
