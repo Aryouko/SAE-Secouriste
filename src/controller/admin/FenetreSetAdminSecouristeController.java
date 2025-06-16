@@ -1,15 +1,13 @@
 package controller.admin;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import model.data.persistence.*;
 import model.data.service.*;
 
 import static controller.admin.FenetreGestionController.removeOverlay;
-import static controller.admin.FenetreGestionController.showOverlay;
 
-public class FenetreSupprSecouristeController {
+public class FenetreSetAdminSecouristeController {
 
     @FXML
     private AnchorPane rootPane;
@@ -22,17 +20,22 @@ public class FenetreSupprSecouristeController {
 
     private final DisponibiliteManagement disponibiliteManagement = new DisponibiliteManagement();
 
+    private final AdministrateurManagement administrateurManagement = new AdministrateurManagement();
+
     private Secouriste secouriste;
 
     private GestionSecouristeController gestionSecouristeController;
 
-    public void initializeSupprSecouriste(Secouriste secouriste, GestionSecouristeController gestionSecouristeController) {
+    public void initializeSetAdminSecouriste(Secouriste secouriste, GestionSecouristeController gestionSecouristeController) {
         this.secouriste = secouriste;
         this.gestionSecouristeController = gestionSecouristeController;
     }
 
     @FXML
-    public void supprSecouriste() {
+    public void setAdmin() {
+        Administrateur newAdmin = new Administrateur(this.secouriste.getIdSecouriste(), this.secouriste.getNom(), this.secouriste.getPrenom(), this.secouriste.getDateNaissance(), this.secouriste.getTel(), this.secouriste.getAdresse());
+        this.administrateurManagement.addAdministrateur(newAdmin);
+
         for (Affectation affectation : this.affectationManagement.getAffectationsByRescuer(this.secouriste)) {
             this.affectationManagement.removeAffectation(affectation);
         }
@@ -47,11 +50,11 @@ public class FenetreSupprSecouristeController {
         this.secouristeManagement.removeSecouriste(this.secouriste);
         this.gestionSecouristeController.retirerList(secouriste);
         this.gestionSecouristeController.filtreUpdate();
-        annuleSecouriste();
+        annuleAdmin();
     }
 
     @FXML
-    public void annuleSecouriste() {
+    public void annuleAdmin() {
         removeOverlay();
         rootPane.getChildren().removeAll();
     }

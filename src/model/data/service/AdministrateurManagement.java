@@ -15,4 +15,8 @@ public class AdministrateurManagement {
     public Administrateur getAdministrateurById(long idAdministrateur) {
         return administrateurDAO.findById(idAdministrateur);
     }
+
+    public void addAdministrateur(Administrateur administrateur) {
+        administrateurDAO.insert(administrateur);
+    }
 }

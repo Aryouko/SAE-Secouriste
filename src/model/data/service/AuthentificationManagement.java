@@ -180,7 +180,7 @@ public class AuthentificationManagement {
             return false;
         }
         this.secouriste = new Secouriste(id, nom, prenom, dateNaissance, tel, adresse, photo);
-        boolean ok = DAOFactory.getSecouristeDAO().addSecouriste(this.secouriste);
+        boolean ok = DAOFactory.getSecouristeDAO().insert(this.secouriste);
         if (ok) {
             System.out.println("Rescuer created successfully.");
         } else {

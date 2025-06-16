@@ -53,15 +53,6 @@ public class FenetreSupprDPSController {
 
     @FXML
     public void annuleDPS() {
-        // Le parent de rootPane est overlayPane (StackPane)
-        Node overlayPane = rootPane.getParent();
-
-        // Le parent de overlayPane est fenetreGestion (AnchorPane)
-        if (overlayPane != null && overlayPane.getParent() instanceof AnchorPane) {
-            AnchorPane fenetreGestion = (AnchorPane) overlayPane.getParent();
-            fenetreGestion.getChildren().remove(overlayPane);
-        }
-
         removeOverlay();
         rootPane.getChildren().removeAll();
     }

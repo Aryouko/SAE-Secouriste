@@ -1,12 +1,32 @@
 package model.dao;
 
 import model.data.persistence.Administrateur;
+import model.data.persistence.Secouriste;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdministrateurDAO {
+
+    public void insert(Administrateur administrateur) {
+        String query = "INSERT INTO Administrateur (idAdministrateur, nom, prenom, date_naissance, adresse, tel) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setLong(1, administrateur.getIdAdministrateur());
+            stmt.setString(2, administrateur.getNom());
+            stmt.setString(3, administrateur.getPrenom());
+            stmt.setString(4, administrateur.getDateNaissance());
+            stmt.setString(5, administrateur.getAdresse());
+            stmt.setString(6, administrateur.getTel());
+
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public List<Administrateur> findAll() {
         List<Administrateur> administrateurs = new ArrayList<>();

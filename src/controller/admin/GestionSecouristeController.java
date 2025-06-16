@@ -180,12 +180,13 @@ public class GestionSecouristeController {
                 supprButton.setMinWidth(125);
                 supprButton.setStyle("-fx-background-color: rgb(231,94,94); -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10; -fx-font-size: 15; -fx-text-fill: #FFFFFF;");
 
-                adminButton.setOnAction(event -> setAdmin(secouriste));
+                adminButton.setOnAction(event -> setAdminSecouriste(secouriste));
                 supprButton.setOnAction(event -> supprSecouriste(secouriste));
 
                 GridPane buttonGridPane = new GridPane();
                 buttonGridPane.setAlignment(Pos.CENTER_RIGHT);
                 buttonGridPane.setHgap(10);
+                buttonGridPane.add(adminButton, 0, 0);
                 buttonGridPane.add(supprButton, 1, 0);
 
                 subGridPane2.add(buttonGridPane, 0, 0);
@@ -216,20 +217,35 @@ public class GestionSecouristeController {
         }
     }
 
+    private void setAdminSecouriste(Secouriste secouriste) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/FenetreSetAdminSecouriste.fxml"));
+            Parent overlayContent = loader.load();
+
+            FenetreSetAdminSecouristeController controller = loader.getController();
+            controller.initializeSetAdminSecouriste(secouriste, this);
+
+            StackPane overlayPane = showOverlay();
+
+            overlayPane.getChildren().add(overlayContent);
+            StackPane.setAlignment(overlayContent, Pos.CENTER);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void supprSecouriste(Secouriste secouriste) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/FenetreSupprSecouriste.fxml"));
             Parent overlayContent = loader.load();
 
             FenetreSupprSecouristeController controller = loader.getController();
-            controller.initializeSecouriste(secouriste, this);
+            controller.initializeSupprSecouriste(secouriste, this);
 
             StackPane overlayPane = showOverlay();
 
             overlayPane.getChildren().add(overlayContent);
             StackPane.setAlignment(overlayContent, Pos.CENTER);
-
-            this.gestionSecouriste.getChildren().add(overlayPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
