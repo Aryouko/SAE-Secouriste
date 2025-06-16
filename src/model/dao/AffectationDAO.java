@@ -31,7 +31,7 @@ public class AffectationDAO {
     }
 
     public boolean rescuerThisDay(long idJournee, long idSecouriste) {
-        boolean ret;
+        boolean ret = false;
         String query = "SELECT 1 FROM Affectation a JOIN DPS d ON a.DPSAffect = d.id WHERE d.journee = ? AND a.secouristeAffect = ? LIMIT 1";
         System.out.println("Query check: journee=" + idJournee + ", secouriste=" + idSecouriste);
 
@@ -41,13 +41,16 @@ public class AffectationDAO {
             stmt.setLong(1, idJournee);
             stmt.setLong(2, idSecouriste);
 
-            try (ResultSet rs = stmt.executeQuery()) {
-                ret = rs.next(); // true si déjà affecté ce jour
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                ret = true;
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
             ret = true;
         }
+        System.out.println("Return : " + ret);
         return ret;
     }
 

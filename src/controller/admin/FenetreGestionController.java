@@ -23,6 +23,8 @@ public class FenetreGestionController {
     @FXML
     private AnchorPane fenetreGestion;
 
+    private static AnchorPane staticFenetreGestion;
+
     private GestionEvenementController gestionEvenementController;
 
     private GestionSecouristeController gestionSecouristeController;
@@ -31,6 +33,7 @@ public class FenetreGestionController {
 
     @FXML
     public void initialize() {
+        staticFenetreGestion = fenetreGestion;
         loadContent1("/fxml/both/MenuParallele.fxml");
         if (getInstanceAuthentificationManagement().isAdmin()) {
             loadContent2("/fxml/admin/GestionEvenement.fxml");
@@ -110,5 +113,23 @@ public class FenetreGestionController {
             System.err.println(e.getMessage());
             e.printStackTrace();
         }
+    }
+
+
+    public static void showOverlay() {
+        StackPane overlayPane = new StackPane();
+        overlayPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
+        overlayPane.setId("fenetreGestionOverlay");
+        AnchorPane.setTopAnchor(overlayPane, 0.0);
+        AnchorPane.setBottomAnchor(overlayPane, 0.0);
+        AnchorPane.setLeftAnchor(overlayPane, 0.0);
+        AnchorPane.setRightAnchor(overlayPane, 0.0);
+        staticFenetreGestion.getChildren().add(overlayPane);
+    }
+
+    public static void removeOverlay() {
+        staticFenetreGestion.getChildren().removeIf(node ->
+            node instanceof StackPane && "fenetreGestionOverlay".equals(node.getId())
+        );
     }
 }
