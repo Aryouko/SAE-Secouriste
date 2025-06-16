@@ -63,13 +63,19 @@ public class SettingsController {
             populateCalendar(this.annee, mois);
             prenomNomProfile.setText(sec.getPrenom() + " " + sec.getNom());
             prenomNomParam.setText(sec.getPrenom() + " " + sec.getNom());
-            Image image = new Image(new ByteArrayInputStream(sec.getPhoto()));
-            if (image.isError()) {
+            if (sec.getPhoto() != null) {
+                Image image = new Image(new ByteArrayInputStream(sec.getPhoto()));
+                if (image.isError()) {
+                    pdpProfileCircle.setFill(new ImagePattern(new Image("/images/anonyme.png", false)));
+                    pdpParamCircle.setFill(new ImagePattern(new Image("/images/anonyme.png", false)));
+                } else {
+                    pdpProfileCircle.setFill(new ImagePattern(image));
+                    pdpParamCircle.setFill(new ImagePattern(image));
+                }
+            } else {
+                // Image par défaut si aucun byte n'est enregistré
                 pdpProfileCircle.setFill(new ImagePattern(new Image("/images/anonyme.png", false)));
                 pdpParamCircle.setFill(new ImagePattern(new Image("/images/anonyme.png", false)));
-            } else {
-                pdpProfileCircle.setFill(new ImagePattern(image));
-                pdpParamCircle.setFill(new ImagePattern(image));
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
