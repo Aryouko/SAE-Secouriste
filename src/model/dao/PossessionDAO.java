@@ -36,4 +36,19 @@ public class PossessionDAO {
         }
         return ret;
     }
+
+    public void deletePossession(long idSecouriste, String intituleCompetence) {
+        String query = "DELETE FROM Possession WHERE secouriste = ? AND competence = ?";
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setLong(1, idSecouriste);
+            stmt.setString(2, intituleCompetence);
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

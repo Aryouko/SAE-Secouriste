@@ -35,4 +35,8 @@ public class SecouristeManagement {
     public Image recupererPhoto(long idSecouriste) {
         return secouristeDAO.recupererPhoto(idSecouriste);
     }
+
+    public void removeSecouriste(Secouriste secouriste) {
+        this.secouristeDAO.delete(secouriste);
+    }
 }

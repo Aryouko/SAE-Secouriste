@@ -419,7 +419,6 @@ public class FenetreAjoutDPSController {
     public void annuleDPS() {
         removeOverlay();
         rootPane.getChildren().removeAll();
-
     }
 
     public void initializeGestionEvenementController(GestionEvenementController gestionEvenementController) {

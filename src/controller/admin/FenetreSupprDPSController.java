@@ -36,7 +36,7 @@ public class FenetreSupprDPSController {
     public void supprDps() {
         this.besoinManagement.removeByDps(this.dps);
         for (Affectation affectation : this.affectationManagement.getAffectationsByDps(this.dps)) {
-            this.affectationManagement.removeByDps(affectation);
+            this.affectationManagement.removeAffectation(affectation);
         }
         this.dpsManagement.removeDps(this.dps);
         this.gestionEvenementController.retirerDpsList(dps);
