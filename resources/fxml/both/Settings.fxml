@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.SettingsController">
+<AnchorPane fx:id="settingsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.SettingsController">
    <children>
       <FlowPane prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -59,7 +59,7 @@
                         </VBox>
                         <AnchorPane prefHeight="98.0" prefWidth="109.0">
                            <children>
-                              <Button layoutY="20.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: black; -fx-background-radius: 100;">
+                              <Button layoutY="20.0" mnemonicParsing="false" onAction="#notifClicked" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: black; -fx-background-radius: 100;">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -99,7 +99,7 @@
                      </VBox.margin>
                   </Text>
                   <Pane prefHeight="200.0" prefWidth="200.0">
-                     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="400.0" style="-fx-background-color: #121215; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+                     <AnchorPane fx:id="notifPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="400.0" style="-fx-background-color: #121215; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
                         <children>
                            <Label fx:id="jourLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" textFill="WHITE" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="27.0">
                               <font>
@@ -163,7 +163,7 @@
                         <Insets left="20.0" top="20.0" />
                      </VBox.margin>
                   </Pane>
-                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="186.0" style="-fx-background-color: black;" text=" Calendrier" textFill="WHITE" textOverrun="CLIP">
+                  <Button mnemonicParsing="false" onAction="#calendrierClicked" prefHeight="51.0" prefWidth="186.0" style="-fx-background-color: black;" text=" Calendrier" textFill="WHITE" textOverrun="CLIP">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -186,7 +186,7 @@
             <Pane prefHeight="200.0" prefWidth="1460.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #FEB0B0, #A80037); -fx-background-radius: 30 30 0 0;">
                <children>
                   <Button layoutX="1280.0" layoutY="53.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-radius: 100; -fx-background-radius: 100;" />
-                  <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="1365.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="1365.0" layoutY="36.0" onDragDetected="#fermerClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/Croix.png" />
                      </image>
@@ -247,8 +247,8 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="1064.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #CCCCCC; -fx-background-radius: 5;" text="Annuler" />
-            <Button layoutX="1148.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="Enregistrer" textFill="WHITE" />
+            <Button layoutX="1064.0" layoutY="350.0" mnemonicParsing="false" onAction="#annulerClicked" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #CCCCCC; -fx-background-radius: 5;" text="Annuler" />
+            <Button layoutX="1148.0" layoutY="350.0" mnemonicParsing="false" onAction="#enregistrerClicked" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="Enregistrer" textFill="WHITE" />
             <Text layoutX="166.0" layoutY="750.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supprimer le compte">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -259,7 +259,7 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <Button layoutX="500.0" layoutY="741.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #A80037; -fx-background-radius: 5;" text="Supprimer le compte" textFill="WHITE">
+            <Button layoutX="500.0" layoutY="741.0" mnemonicParsing="false" onAction="#supprimerClicked" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #A80037; -fx-background-radius: 5;" text="Supprimer le compte" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
