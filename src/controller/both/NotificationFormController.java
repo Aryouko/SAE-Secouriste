@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+import static controller.admin.FenetreGestionController.removeOverlay;
+import static controller.admin.FenetreGestionController.showOverlay;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
 
@@ -42,6 +44,7 @@ public class NotificationFormController {
 
     @FXML
     public void initialize() {
+        showOverlay();
         notificationFormAnchorPane.getStylesheets().add(getClass().getResource("/css/errors.css").toExternalForm());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH'h'mm d MMMM", Locale.FRENCH);
@@ -53,6 +56,7 @@ public class NotificationFormController {
         fromTextlabel.setText(UserName);
 
         dpsComboBox.setItems(FXCollections.observableArrayList(dpsMana.getDpsName()));
+
     }
 
     /**
@@ -94,11 +98,13 @@ public class NotificationFormController {
         if (!valid) return;
 
         String title = subjectTextField.getText();
+        messageTextArea.setWrapText(true);
         String message = messageTextArea.getText();
         String date = dateTextlabel.getText();
         String DPSName = dpsComboBox.getValue();
 
         notificationManagement.createNotification(title, message, date, DPSName);
+
 
         closeNotificationForm();
     }
@@ -109,5 +115,6 @@ public class NotificationFormController {
     private void closeNotificationForm() {
         Stage stage = (Stage) closeButtonNotificationForm.getScene().getWindow();
         stage.close();
+        removeOverlay();
     }
 }
