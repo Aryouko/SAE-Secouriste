@@ -16,7 +16,7 @@
 
 <AnchorPane fx:id="gestionEvenement" prefHeight="990.0" prefWidth="1444.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.GestionEvenementController">
    <children>
-      <GridPane alignment="CENTER" prefHeight="996.0" prefWidth="1438.0" style="-fx-background-radius: 30;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane alignment="CENTER" prefHeight="996.0" prefWidth="1438.0" style="-fx-background-radius: 0 0 30 30;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -34,7 +34,7 @@
                   </ScrollPane>
                </children>
             </AnchorPane>
-            <GridPane style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0.3, 0, 2); -fx-background-color: #FFFFFF; -fx-background-radius: 30;">
+            <GridPane style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0.3, 0, 2); -fx-background-color: #FFFFFF; -fx-background-radius: 30 30 0 0;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="991.0" minWidth="10.0" prefWidth="955.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="719.0" minWidth="10.0" prefWidth="503.0" />
@@ -55,14 +55,6 @@
                         <Insets left="75.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button mnemonicParsing="false" onAction="#GestionSecouristeButton" prefHeight="59.0" prefWidth="346.0" style="-fx-background-color: #EBF0F6; -fx-background-radius: 10;" text="Gestion des secouristes" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets right="35.0" top="35.0" />
-                     </GridPane.margin>
-                  </Button>
                   <Button mnemonicParsing="false" onAction="#CreationDPSButton" style="-fx-background-color: #121315; -fx-background-radius: 10;" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font size="18.0" />
@@ -83,7 +75,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                              <ImageView fitHeight="21.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                  <image>
                                     <Image url="@../../images/plus.png" />
                                  </image>
@@ -115,6 +107,33 @@
                            </GridPane.margin>
                         </ComboBox>
                      </children>
+                  </GridPane>
+                  <GridPane GridPane.columnIndex="1">
+                    <rowConstraints>
+                      <RowConstraints maxHeight="147.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#GestionSecouristeButton" prefHeight="59.0" prefWidth="346.0" style="-fx-background-color: #EBF0F6; -fx-background-radius: 10;" text="Gestion des secouristes" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="35.0" top="15.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#calendarAssignment" prefHeight="59.0" prefWidth="346.0" style="-fx-background-color: #EBF0F6; -fx-background-radius: 10;" text="Planning des évènements" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="5.0" right="35.0" />
+                           </GridPane.margin>
+                        </Button>
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints />
+                     </columnConstraints>
                   </GridPane>
                </children>
             </GridPane>

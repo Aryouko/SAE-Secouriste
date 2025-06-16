@@ -300,6 +300,11 @@ public class GestionEvenementController {
     }
 
     @FXML
+    private void calendarAssignment() {
+        this.fenetreGestionController.loadContent2("/fxml/both/calendarAssignment.fxml");
+    }
+
+    @FXML
     public void CreationDPSButton() {
         StackPane overlay = showOverlay();
         try {
