@@ -9,6 +9,9 @@ import model.data.persistence.Notification;
 import model.data.service.AdministrateurManagement;
 import model.data.service.DPSManagement;
 
+import static controller.admin.FenetreGestionController.removeOverlay;
+import static controller.admin.FenetreGestionController.showOverlay;
+
 public class ReadNotificationController {
 
     @FXML
@@ -37,11 +40,12 @@ public class ReadNotificationController {
 
     @FXML
     private void initialize() {
-
+        showOverlay();
     }
 
     @FXML
     private void closeNotificationForm() {
+        removeOverlay();
         Stage stage = (Stage) closeButtonNotificationForm.getScene().getWindow();
         stage.close();
     }
