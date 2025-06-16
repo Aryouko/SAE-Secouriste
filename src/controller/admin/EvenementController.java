@@ -63,14 +63,19 @@ public class EvenementController {
         for (int i = 0; i < listDPS.size(); i++) {
             DPS dps = listDPS.get(i);
             Label label = new Label(dps.getName());
-            label.setStyle("-fx-text-fill: white; -fx-font-size: 16px");
+            label.setStyle("-fx-text-fill: #ffffff; -fx-font-size: 16px; -fx-font-family: 'Poppins';");
+
             String[] months = { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
 
             Label date = new Label(dps.getJournee().getJour() + " " + months[dps.getJournee().getMois() - 1] + " de " + dps.getHoraireDepart() + "h à " + dps.getHoraireFin() + "h");
-            date.setStyle("-fx-text-fill: white; -fx-font-size: 12px");
+            date.setStyle("-fx-text-fill: #EDF2F66F ; " +
+                    "-fx-font-family: 'Poppins'; " +
+                    "-fx-font-size: 14px; " +
+                    "-fx-font-weight: 300; " +
+                    "-fx-letter-spacing: -0.56px;");
 
             Circle circle = new Circle();
-            circle.setRadius(15);
+            circle.setRadius(20);
             LocalDate today = LocalDate.now();
             LocalDate eventDate = LocalDate.of(dps.getJournee().getAnnee(), dps.getJournee().getMois(), dps.getJournee().getJour());
             long daysBetween = ChronoUnit.DAYS.between(today, eventDate);
@@ -83,6 +88,8 @@ public class EvenementController {
             GridPane pane = new GridPane();
             GridPane subPane = new GridPane();
 
+            subPane.setPadding(new Insets(0, 0, 0, 15));
+
             ColumnConstraints col = new ColumnConstraints();
             col.setMaxWidth(500);
             col.setPrefWidth(500);
@@ -93,9 +100,10 @@ public class EvenementController {
             pane.add(subPane,0,0);
             pane.add(circle,1,0);
             pane.setPrefHeight(60);
+            pane.setMaxHeight(60);
             pane.setPadding(new Insets(10));
             VBox.setMargin(pane, new Insets(0,10,0,0));
-            pane.setStyle("-fx-background-color: rgba(249, 252, 255, 0.07); -fx-background-radius: 15");
+            pane.setStyle("-fx-background-color: rgba(249, 252, 255, 0.07); -fx-background-radius: 50");
             label.setLayoutX(10);
             label.setLayoutY(10);
             list.add(pane);
