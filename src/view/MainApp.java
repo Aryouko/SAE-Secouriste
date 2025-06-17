@@ -15,10 +15,6 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/both/Connexion.fxml")));
 
-        javafx.scene.text.Font.loadFont(
-                getClass().getResourceAsStream("/fonts/JetBrainsMono-Regular.ttf"), 19
-        );
-
         stage.getIcons().add(new Image("/images/logo.png"));
         stage.setTitle("SAE Secouriste");
         stage.setMaximized(true);

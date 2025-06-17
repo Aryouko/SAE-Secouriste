@@ -8,7 +8,7 @@
 - @c0w5lip: Vue mensuelle calendrier + keybinds pour le calendrier
 - ?: faire des keybinds pour les controllers
 - ?: rendre évident ce qui est cliquable ou pas avec deso onHover sur les boutons etc
-
+- @c0w5lip: font global
 
 # RENDU!
 
@@ -103,4 +103,5 @@ et on comprend par derriere. je suis parti sur une structure claire et pas un tr
 3) Dans GraphAlgorithms
 
     - isOriented() verif si la matrice est orienté
+
 
