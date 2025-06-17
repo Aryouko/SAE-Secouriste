@@ -4,7 +4,6 @@ import controller.both.CalendarAssignmentController;
 import controller.both.MenuParalleleController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -13,27 +12,37 @@ import java.io.IOException;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
+/**
+ * Controller class for managing the main administration window.
+ * Handles loading and switching of embedded views (menus, event management, calendar assignment).
+ *
+ * @author C.Brocart, T.Brami-Coatual, L.Carré, G.Potay
+ * @version 1.0
+ */
 public class FenetreGestionController {
 
+    /** Pane for including the parallel menu content */
     @FXML
     private StackPane includePane1;
 
+    /** Pane for including the main content (event management, calendar, etc.) */
     @FXML
     private StackPane includePane2;
 
+    /** The root pane of the management window */
     @FXML
     private AnchorPane fenetreGestion;
 
+    /** Static reference to the root pane for overlay management */
     private static AnchorPane staticFenetreGestion;
 
-    private GestionEvenementController gestionEvenementController;
-
-    private GestionSecouristeController gestionSecouristeController;
-
-    private CalendarAssignmentController calendarAssignmentController;
-
+    /** Controller for the parallel menu view */
     private MenuParalleleController menuParalleleController;
 
+    /**
+     * Initializes the controller by loading the menu and appropriate main content
+     * based on the user's admin status.
+     */
     @FXML
     public void initialize() {
         staticFenetreGestion = fenetreGestion;
@@ -45,6 +54,12 @@ public class FenetreGestionController {
         }
     }
 
+    /**
+     * Loads and sets the content of the first include pane with the specified FXML file.
+     * Also sets the controller for the loaded content, if applicable.
+     *
+     * @param fxmlFile - the path to the FXML file to load into includePane1
+     */
     public void loadContent1(String fxmlFile) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
@@ -57,12 +72,16 @@ public class FenetreGestionController {
             ((MenuParalleleController)controller).setFenetreGestionController(this);
 
         } catch (IOException e) {
-            System.err.println("Erreur lors du chargement de " + fxmlFile + " : " + e.getMessage());
-            e.printStackTrace();
             controller.UtilsController.showError("Erreur lors du chargement de " + fxmlFile + " : " + e.getMessage());
         }
     }
 
+    /**
+     * Loads and sets the content of the second include pane with the specified FXML file.
+     * Passes a reference to this controller to the loaded content's controller if supported.
+     *
+     * @param fxmlFile - the path to the FXML file to load into includePane2
+     */
     public void loadContent2(String fxmlFile) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
@@ -70,29 +89,35 @@ public class FenetreGestionController {
             this.includePane2.getChildren().setAll(newContent);
 
             Object controller = loader.getController();
-            if (controller instanceof GestionEvenementController) {
-                this.gestionEvenementController = (GestionEvenementController) controller;
-                ((GestionEvenementController) controller).setFenetreGestionController(this);
-                ((GestionEvenementController) controller).setEvenementController(this.menuParalleleController.getEvenementController());
-            } else if (controller instanceof GestionSecouristeController) {
-                this.gestionSecouristeController = (GestionSecouristeController) controller;
-                ((GestionSecouristeController)controller).setFenetreGestionController(this);
-            } else if (controller instanceof CalendarAssignmentController) {
-                this.calendarAssignmentController = (CalendarAssignmentController) controller;
-                ((CalendarAssignmentController)controller).setFenetreGestionController(this);
+            if (controller instanceof GestionEvenementController gestionEvenementController) {
+                gestionEvenementController.setFenetreGestionController(this);
+                gestionEvenementController.setEvenementController(this.menuParalleleController.getEvenementController());
+            } else if (controller instanceof GestionSecouristeController gestionSecouristeController) {
+                gestionSecouristeController.setFenetreGestionController(this);
+            } else if (controller instanceof CalendarAssignmentController calendarAssignmentController) {
+                calendarAssignmentController.setFenetreGestionController(this);
             }
 
         } catch (IOException e) {
-            System.err.println("Erreur lors du chargement de " + fxmlFile + " : " + e.getMessage());
-            e.printStackTrace();
+            controller.UtilsController.showError("Erreur lors du chargement de " + fxmlFile + " : " + e.getMessage());
         }
     }
 
+    /**
+     * Returns the root AnchorPane of the management window.
+     *
+     * @return the root AnchorPane
+     */
     public AnchorPane getFenetreGestion() {
         return this.fenetreGestion;
     }
 
-
+    /**
+     * Creates and shows a semi-transparent overlay pane on top of the management window.
+     * Useful for modal dialogs or disabling interaction with underlying UI.
+     *
+     * @return the overlay StackPane that was added
+     */
     public static StackPane showOverlay() {
         StackPane overlayPane = new StackPane();
         overlayPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
@@ -105,6 +130,9 @@ public class FenetreGestionController {
         return overlayPane;
     }
 
+    /**
+     * Removes the previously shown overlay pane from the management window.
+     */
     public static void removeOverlay() {
         staticFenetreGestion.getChildren().removeIf(node ->
             node instanceof StackPane && "fenetreGestionOverlay".equals(node.getId())

@@ -4,7 +4,6 @@ import controller.admin.FenetreGestionController;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.scene.control.Label;
@@ -20,40 +19,61 @@ import java.util.Map;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
+/**
+ * Controller class for managing calendar assignments of DPS events.
+ * Handles the display and navigation of a weekly calendar view,
+ * including the visualization of DPS events and their associated rescuers.
+ *
+ * @author C.Brocart, T.Brami-Coatual, L.Carré, G.Potay
+ * @version 1.0
+ */
 public class CalendarAssignmentController {
 
+    /** Pane displaying the calendar grid and events */
     @FXML
     private Pane calendarPane;
 
+    /** List of DPS events relevant to the current user */
     private List<DPS> dpsList ;
 
+    /** GridPane representing the week days header */
     @FXML
     private GridPane gridPaneWeek;
 
+    /** Service managing assignments (Affectations) */
     private final AffectationManagement affectationManagement =  new AffectationManagement();
 
+    /** Service managing rescuers (Secouristes) */
     private final SecouristeManagement secouristeManagement = new SecouristeManagement();
 
+    /** Service managing DPS events */
     private final DPSManagement dpsManagement = new DPSManagement();
 
+    /** Service managing days (Journee) */
     private final JourneeManagement journeeManagement = new JourneeManagement();
 
+    /** Reference to the parent management window controller */
     private FenetreGestionController fenetreGestionController;
 
+    /** Label showing the current displayed month and year */
     @FXML
     private Label dateLabel;
 
+    /** Label showing the current week description (e.g. "This week") */
     @FXML
     private Label weekLabel;
 
-    @FXML
-    private ScrollPane scrollPane;
-
+    /** The current date used as a reference for the calendar display */
     private LocalDate date;
 
+    /** Button to open the management interface, visible only for admins */
     @FXML
     private Button gestionButton;
 
+    /**
+     * Initializes the controller: loads DPS list based on user role,
+     * sets up the calendar view, draws grid lines and DPS events.
+     */
     @FXML
     public void initialize() {
         this.dpsList = new ArrayList<>();
@@ -72,6 +92,9 @@ public class CalendarAssignmentController {
         drawDPS();
     }
 
+    /**
+     * Sets up the week grid with days of the week, including styling for the current day.
+     */
     private void setGridPaneWeek() {
         String[] daysOfWeek = new String[]{"Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"};
         String[] months = new String[]{"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"};
@@ -115,6 +138,9 @@ public class CalendarAssignmentController {
         }
     }
 
+    /**
+     * Draws horizontal lines and hour labels on the calendar pane.
+     */
     private void drawLines() {
         calendarPane.setPrefWidth(1431);
         calendarPane.setPrefHeight(1600);
@@ -141,7 +167,8 @@ public class CalendarAssignmentController {
     }
 
     /**
-     * Show event for
+     * Draws the DPS events on the calendar for each day of the week.
+     * Displays event details and highlights the rescuer's assigned competence if applicable.
      */
     private void drawDPS() {
         double width = 1431;
@@ -246,27 +273,28 @@ public class CalendarAssignmentController {
         }
     }
 
+    /**
+     * Advances the calendar view by one week.
+     */
     @FXML
     public void nextWeek() {
         this.date = this.date.plusDays(7);
-        if (LocalDate.now().equals(this.date)) {
-            weekLabel.setText("Cette semaine");
-        } else if (LocalDate.now().equals(this.date.minusDays(7))) {
-            weekLabel.setText("Semaine prochaine");
-        } else if (LocalDate.now().equals(this.date.plusDays(7))) {
-            weekLabel.setText("Semaine précédente");
-        } else {
-            weekLabel.setText("Autre semaine");
-        }
-        this.calendarPane.getChildren().clear();
-        setGridPaneWeek();
-        drawLines();
-        drawDPS();
+        refreshTile();
     }
 
+    /**
+     * Moves the calendar view back by one week.
+     */
     @FXML
     public void previousWeek() {
         this.date = this.date.minusDays(7);
+        refreshTile();
+    }
+
+    /**
+     * Refreshes the calendar display tiles: updates week label, grid, lines, and events.
+     */
+    public void refreshTile() {
         if (LocalDate.now().equals(this.date)) {
             weekLabel.setText("Cette semaine");
         } else if (LocalDate.now().equals(this.date.minusDays(7))) {
@@ -282,10 +310,18 @@ public class CalendarAssignmentController {
         drawDPS();
     }
 
+    /**
+     * Sets the controller for the management window, allowing navigation control.
+     *
+     * @param fenetreGestionController - the management window controller
+     */
     public void setFenetreGestionController(FenetreGestionController fenetreGestionController) {
         this.fenetreGestionController = fenetreGestionController;
     }
 
+    /**
+     * Returns to the event management view.
+     */
     @FXML
     private void retourGestion() {
         this.fenetreGestionController.loadContent2("/fxml/admin/gestionEvenement.fxml");

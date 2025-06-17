@@ -23,20 +23,38 @@ import model.data.service.SecouristeManagement;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
+/**
+ * Controller for managing and displaying the list of events (DPS).
+ * Loads events based on the current user’s rights (admin or rescuer).
+ * Formats and displays each event in a styled GridPane within a VBox.
+ *
+ * @author C.Brocart, T.Brami-Coatual, L.Carré, G.Potay
+ * @version 1.0
+ */
 public class EvenementController {
 
+    /** VBox container where event entries are displayed */
     @FXML
     private VBox listEvent;
 
+    /** Label displaying the count of displayed events */
     @FXML
     private Label countLabel;
 
+    /** Service to manage DPS data */
     private final DPSManagement dpsManagement = new DPSManagement();
 
+    /** Service to manage affectations */
     private final AffectationManagement  affectationManagement = new AffectationManagement();
 
+    /** Service to manage rescuers (secouristes) */
     private final SecouristeManagement secouristeManagement = new SecouristeManagement();
 
+    /**
+     * Initializes the controller by loading the list of events (DPS).
+     * Admin users see all events; rescuers see only their assigned events.
+     * Converts the DPS list into styled GridPanes and adds them to the VBox.
+     */
     @FXML
     public void initialize() {
         List<DPS> listDPS = new ArrayList<>();
@@ -58,6 +76,13 @@ public class EvenementController {
         countLabel.setText(String.valueOf(listEvent.getChildren().size()));
     }
 
+    /**
+     * Converts a list of DPS events into a list of styled GridPane nodes
+     * representing each event with its name, date, and a colored status circle.
+     *
+     * @param listDPS List of DPS events to convert
+     * @return ArrayList of GridPane nodes, each representing an event
+     */
     private ArrayList<GridPane> listDPSToListGridPane(List<DPS> listDPS) {
         ArrayList<GridPane> list = new ArrayList<>();
         for (int i = 0; i < listDPS.size(); i++) {
