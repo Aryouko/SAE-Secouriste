@@ -8,8 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-import javafx.scene.paint.Color;
-import javafx.stage.StageStyle;
 import model.data.persistence.DPS;
 import model.data.service.AffectationManagement;
 import model.data.service.BesoinManagement;
@@ -34,6 +32,11 @@ public class GestionEvenementController {
 
     @FXML
     private AnchorPane gestionEvenement;
+
+
+
+
+
 
     private ArrayList<String> sports;
 
@@ -302,6 +305,11 @@ public class GestionEvenementController {
     @FXML
     private void calendarAssignment() {
         this.fenetreGestionController.loadContent2("/fxml/both/calendarAssignment.fxml");
+    }
+
+    @FXML
+    private void carteLink() {
+        this.fenetreGestionController.loadContent2("/fxml/both/GestionMap.fxml");
     }
 
     @FXML
