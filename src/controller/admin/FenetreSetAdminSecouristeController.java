@@ -22,6 +22,8 @@ public class FenetreSetAdminSecouristeController {
 
     private final AdministrateurManagement administrateurManagement = new AdministrateurManagement();
 
+    private final AuthentificationManagement authentificationManagement = AuthentificationManagement.getInstanceAuthentificationManagement();;
+
     private Secouriste secouriste;
 
     private GestionSecouristeController gestionSecouristeController;
@@ -47,6 +49,8 @@ public class FenetreSetAdminSecouristeController {
         for (Competence competence : this.possessionManagement.getPossessionBySecouriste(this.secouriste).getCompetencesSec()) {
             this.possessionManagement.removePossession(secouriste, competence);
         }
+
+        this.authentificationManagement.changeRole(this.secouristeManagement.getUserBySecouriste(this.secouriste), "administrator");
         this.secouristeManagement.removeSecouriste(this.secouriste);
         this.gestionSecouristeController.retirerList(secouriste);
         this.gestionSecouristeController.filtreUpdate();

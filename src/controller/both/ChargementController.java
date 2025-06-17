@@ -24,6 +24,7 @@ public class ChargementController {
      */
     @FXML
     public void initialize() {
+
         System.out.println("ChargementController initialized");
         PauseTransition pause = new PauseTransition(Duration.seconds((Math.random() * 3) + 2));
         pause.setOnFinished(event -> linkToPage(pageChargement, "/fxml/both/Connexion.fxml"));

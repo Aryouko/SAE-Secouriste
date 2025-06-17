@@ -229,5 +229,10 @@ public class AuthentificationManagement {
         }
         return "";
     }
+
+    public void changeRole(User currentUser, String role) {
+        currentUser.setRole(role);
+        this.userDAO.changeRoleById(currentUser.getIdUser(), role);
+    }
 }
 
