@@ -328,44 +328,7 @@ public class GestionEvenementController {
             System.out.println(e.getMessage());
         }
         if (!this.besoinManagement.getBesoinByDPS(dps).getCompetences().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Affectation partielle");
-            alert.setHeaderText("Certaines compétences n'ont pas été affectées");
-            alert.setContentText("Il sera possible de mettre à jour l'affectation plus tard.");
-
-            alert.initStyle(StageStyle.UNDECORATED);
-            alert.setGraphic(null);
-
-            DialogPane dialogPane = alert.getDialogPane();
-            dialogPane.getScene().setFill(Color.TRANSPARENT);
-
-            Label headerLabel = (Label) dialogPane.lookup(".header-panel .label");
-            if (headerLabel != null) {
-                headerLabel.setStyle(
-                        "-fx-font-size: 18px; " +
-                                "-fx-font-weight: bold; " +
-                                "-fx-text-fill: #2C3E50; " +
-                                "-fx-padding: 20 0 10 0;"
-                );
-            }
-
-            Label contentLabel = (Label) dialogPane.lookup(".content");
-            if (contentLabel != null) {
-                contentLabel.setStyle(
-                        "-fx-font-size: 14px; " +
-                                "-fx-text-fill: #34495E; " +
-                                "-fx-padding: 10 20 20 20; " +
-                                "-fx-line-spacing: 2px;"
-                );
-            }
-
-            dialogPane.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 35; -fx-border-width: 3; border-radius: 35; -fx-border-color: #000000");
-
-            dialogPane.getStylesheets().add("data:text/css,.dialog-pane {-fx-background-radius: 20; -fx-border-radius: 20; } " +
-                    ".dialog-pane .header-panel {-fx-background-radius: 20 20 0 0; } " +
-                    ".dialog-pane .button-bar {-fx-background-radius: 0 0 20 20; }");
-
-            dialogPane.lookupButton(ButtonType.OK).setStyle("-fx-background-color: #0C0D0F; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius : 15;");
+            Alert alert = FenetreAjoutDPSController.alertBox();
             alert.showAndWait();
         }
         filtreUpdate();

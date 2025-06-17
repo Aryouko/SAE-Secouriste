@@ -43,11 +43,11 @@ public class ProfilController {
         AuthentificationManagement auth = getInstanceAuthentificationManagement();
         if (auth.getCurrentUser().getRole().equals("rescuer")) {
             Secouriste secouriste = secouristeManagement.getSecouristeById(auth.getCurrentUser().getIdUser());
-            nomLabel.setText(secouriste.getPrenom() + "  " + secouriste.getNom());
+            nomLabel.setText(secouriste.getPrenom() + " " + secouriste.getNom());
             adminSecourLabel.setText("Secouriste");
         } else {
             Administrateur administrateur = administrateurManagement.getAdministrateurById(auth.getCurrentUser().getIdUser());
-            nomLabel.setText(administrateur.getPrenom() + "  " + administrateur.getNom());
+            nomLabel.setText(administrateur.getPrenom() + " " + administrateur.getNom());
             adminSecourLabel.setText("Administrateur");
         }
 

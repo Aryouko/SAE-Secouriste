@@ -16,51 +16,51 @@ DELETE FROM User;
 DELETE FROM Site;
 ALTER TABLE User AUTO_INCREMENT = 1;
 
+-- Insertion des vrais sites JO 2030 Alpes françaises
+-- Coordonnées GPS réelles des sites olympiques
+INSERT INTO Site (code, nom, latitude, longitude) VALUES
+                                                      (1, 'La Clusaz - Ski nordique/Biathlon', 45.9044, 6.4231),
+                                                      (2, 'Le Grand-Bornand - Ski nordique/Biathlon', 45.9403, 6.4278),
+                                                      (3, 'Courchevel - Saut à ski', 45.4147, 6.6342),
+                                                      (4, 'Méribel - Ski alpin (Roc de Fer)', 45.3864, 6.5658),
+                                                      (5, 'Val d''Isère - Ski alpin', 45.4487, 6.9792),
+                                                      (6, 'La Plagne - Bobsleigh/Skeleton', 45.5547, 6.6797),
+                                                      (7, 'Serre-Chevalier - Ski alpin', 44.9428, 6.5506),
+                                                      (8, 'Montgenèvre - Ski freestyle', 44.9311, 6.7275),
+                                                      (9, 'Isola 2000 - Snowboard/Ski-cross', 44.1842, 6.9719),
+                                                      (10, 'Nice - Patinage artistique/Hockey', 43.7102, 7.2620),
+                                                      (11, 'Briançon - Half-pipe ski/snowboard', 44.8978, 6.6408);
 
--- Insertion sites JO 2030
-/*
-INSERT INTO Site (code, nom, longitude, latitude) VALUES
-                                                      (1, 'Centre de ski alpin', 45.9, 6.6),
-                                                      (2, 'Patinoire olympique', 45.9, 6.7),
-                                                      (3, 'Stade de biathlon', 45.95, 6.65),
-                                                      (4, 'Piste de ski de fond', 45.85, 6.7),
-                                                      (5, 'Arène de hockey sur glace', 45.88, 6.68),
-                                                      (6, 'Centre de saut à ski', 45.92, 6.63),
-                                                      (7, 'Village olympique', 45.87, 6.64);
-*/
-
-INSERT INTO site (code, nom, latitude, longitude) VALUES
-                                                      (1, 'Eiffel Tower', 48.8584, 2.2945),
-                                                      (2, 'Louvre Museum', 48.8606, 2.3376),
-                                                      (3, 'Mont Saint-Michel', 48.6361, -1.5115),
-                                                      (4, 'Château de Chambord', 47.6169, 1.5161),
-                                                      (5, 'Nice Old Town', 43.6961, 7.2655);
-
-
--- Sports JO 2030
+-- Sports JO d'hiver 2030 (disciplines olympiques réelles)
 INSERT INTO Sport (code, nom) VALUES
                                   (1, 'Ski alpin'),
-                                  (2, 'Patinage artistique'),
+                                  (2, 'Ski nordique'),
                                   (3, 'Biathlon'),
-                                  (4, 'Ski de fond'),
-                                  (5, 'Hockey sur glace'),
-                                  (6, 'Saut à ski'),
+                                  (4, 'Saut à ski'),
+                                  (5, 'Combiné nordique'),
+                                  (6, 'Ski freestyle'),
                                   (7, 'Snowboard'),
-                                  (8, 'Curling');
+                                  (8, 'Patinage artistique'),
+                                  (9, 'Patinage de vitesse'),
+                                  (10, 'Hockey sur glace'),
+                                  (11, 'Curling'),
+                                  (12, 'Bobsleigh'),
+                                  (13, 'Skeleton'),
+                                  (14, 'Luge');
 
--- Journées pour plusieurs jours d’épreuves
-INSERT INTO Journee (jour, mois, annee) VALUES (1, 2, 2026);
+-- Journées pour les JO 2030 (du 8 au 24 février)
+INSERT INTO Journee (jour, mois, annee) VALUES (8, 2, 2030);
 SET @idJournee1 = LAST_INSERT_ID();
-INSERT INTO Journee (jour, mois, annee) VALUES (2, 2, 2026);
+INSERT INTO Journee (jour, mois, annee) VALUES (15, 2, 2030);
 SET @idJournee2 = LAST_INSERT_ID();
-INSERT INTO Journee (jour, mois, annee) VALUES (3, 2, 2026);
+INSERT INTO Journee (jour, mois, annee) VALUES (22, 2, 2030);
 SET @idJournee3 = LAST_INSERT_ID();
 
--- Compétences
+-- Compétences (identiques à l'original)
 INSERT INTO Competence (intitule) VALUES
                                       ('PSE1'), ('PSE2'), ('CE'), ('CP'), ('CO'), ('SSA'), ('VPSP'), ('PBC'), ('PBF');
 
--- Graphe des nécessités
+-- Graphe des nécessités (identique à l'original)
 INSERT INTO Necessite VALUES ('PSE1', 'PSE2');
 INSERT INTO Necessite VALUES ('PSE2', 'CE');
 INSERT INTO Necessite VALUES ('CE', 'CP');
@@ -69,92 +69,105 @@ INSERT INTO Necessite VALUES ('SSA', 'PSE1');
 INSERT INTO Necessite VALUES ('VPSP', 'PSE2');
 INSERT INTO Necessite VALUES ('PBF', 'PBC');
 
--- Insertion de secouristes (User + Secouriste)
-
 INSERT INTO User (login, password, role) VALUES
                                              ('admin@secouriste.fr', '$2a$12$kd.N0.jMwDU8lPta7XBt2OneFnJn.rwUSlUV4Esli4hm5WuGnK2uK', 'administrator'),
-                                             ('sec1@example.com', 'pass1', 'rescuer'),
-                                             ('sec2@example.com', 'pass2', 'rescuer'),
-                                             ('sec3@example.com', 'pass3', 'rescuer'),
-                                             ('sec4@example.com', 'pass4', 'rescuer'),
-                                             ('sec5@example.com', 'pass5', 'rescuer'),
-                                             ('sec6@example.com', 'pass6', 'rescuer'),
-                                             ('sec7@example.com', 'pass7', 'rescuer'),
-                                             ('sec8@example.com', 'pass8', 'rescuer'),
-                                             ('sec9@example.com', 'pass9', 'rescuer'),
-                                             ('sec10@example.com', 'pass10', 'rescuer');
+                                             ('sec1@jo2030.fr', '$2a$12$XeQoOhvEDt6usRMrJJ6eDO7zx4Jd85hoDRCyk7VYzNncRoDE9jEtG', 'rescuer'),
+                                             ('sec2@jo2030.fr', '$2a$12$gyrUBh43ZLkuoX0Z/KBtN.VR70yUxrZIMSVHMMbxdHNnIDQ3AwCp6', 'rescuer'),
+                                             ('sec3@jo2030.fr', '$2a$12$/GZ1VSzSL2Xt564XSiM0q.laOANnc3zOisV.4f3ziMjzMfPBjt2vC', 'rescuer'),
+                                             ('sec4@jo2030.fr', '$2a$12$MatsrruuEXbWMnUDQgXUauAwxMT/cKDBP1Yhxyeg.qZB0a8v/Qw8i', 'rescuer'),
+                                             ('sec5@jo2030.fr', '$2a$12$VB0RIcWcPiJzqMWFinUl1e8P1fxIU6geN2FdwpNADq4oxPsi03d6m', 'rescuer'),
+                                             ('sec6@jo2030.fr', '$2a$12$QUyO9EJgmDReADmR2KY8x.aZZ/3EaPlbWfhdivAccAcqkm5GpXqoi', 'rescuer'),
+                                             ('sec7@jo2030.fr', '$2a$12$AjAYlwnmXwbUx4yiacdNn.P6k30cUx0CDR3acQZ5LMrCtJ0SeFg5a', 'rescuer'),
+                                             ('sec8@jo2030.fr', '$2a$12$BsKa4Nh5KdRLT5ExTIt39.0qvyo3HERGEPaUXRVDHvHjsGiB2rjfi', 'rescuer'),
+                                             ('sec9@jo2030.fr', '$2a$12$NhYxnZORtwhE.UqLD8gfWu0wqgjdUuGBtAQZUiIRI4gNz//pzD9g2', 'rescuer'),
+                                             ('sec10@jo2030.fr', '$2a$12$MVREpYB08j4SyWnPbfWPSOsfghsYMM9ZN8XTX210SytS0uyD620ZS', 'rescuer'),
+                                             ('sec11@jo2030.fr', '$2a$12$MzTaci45ecQlYvANfQr.welG884Im/7EFkwnWfbgwpG5E9SL0IMB6', 'rescuer'),
+                                             ('sec12@jo2030.fr', '$2a$12$AlY7Jct8vvZvzfTJQevDPOTEYf50EwiP68qbaJ/r43yKkibtC6Tca', 'rescuer');
 
 -- Récupération des IDs User insérés
-SELECT @idSec1 := idUser FROM User WHERE login = 'sec1@example.com';
-SELECT @idSec2 := idUser FROM User WHERE login = 'sec2@example.com';
-SELECT @idSec3 := idUser FROM User WHERE login = 'sec3@example.com';
-SELECT @idSec4 := idUser FROM User WHERE login = 'sec4@example.com';
-SELECT @idSec5 := idUser FROM User WHERE login = 'sec5@example.com';
-SELECT @idSec6 := idUser FROM User WHERE login = 'sec6@example.com';
-SELECT @idSec7 := idUser FROM User WHERE login = 'sec7@example.com';
-SELECT @idSec8 := idUser FROM User WHERE login = 'sec8@example.com';
-SELECT @idSec9 := idUser FROM User WHERE login = 'sec9@example.com';
-SELECT @idSec10 := idUser FROM User WHERE login = 'sec10@example.com';
+SELECT @idSec1 := idUser FROM User WHERE login = 'sec1@jo2030.fr';
+SELECT @idSec2 := idUser FROM User WHERE login = 'sec2@jo2030.fr';
+SELECT @idSec3 := idUser FROM User WHERE login = 'sec3@jo2030.fr';
+SELECT @idSec4 := idUser FROM User WHERE login = 'sec4@jo2030.fr';
+SELECT @idSec5 := idUser FROM User WHERE login = 'sec5@jo2030.fr';
+SELECT @idSec6 := idUser FROM User WHERE login = 'sec6@jo2030.fr';
+SELECT @idSec7 := idUser FROM User WHERE login = 'sec7@jo2030.fr';
+SELECT @idSec8 := idUser FROM User WHERE login = 'sec8@jo2030.fr';
+SELECT @idSec9 := idUser FROM User WHERE login = 'sec9@jo2030.fr';
+SELECT @idSec10 := idUser FROM User WHERE login = 'sec10@jo2030.fr';
+SELECT @idSec11 := idUser FROM User WHERE login = 'sec11@jo2030.fr';
+SELECT @idSec12 := idUser FROM User WHERE login = 'sec12@jo2030.fr';
 
--- Insertion dans Secouriste avec les bons IDs (idSecouriste = idUser)
+-- Insertion dans Secouriste avec profils réalistes pour JO 2030
 INSERT INTO Secouriste (idSecouriste, nom, prenom, date_naissance, tel, adresse) VALUES
-                                                                                     (@idSec1, 'Nom1', 'Prenom1', '010101', '1111111111', 'adresse1'),
-                                                                                     (@idSec2, 'Nom2', 'Prenom2', '020202', '2222222222', 'adresse2'),
-                                                                                     (@idSec3, 'Nom3', 'Prenom3', '030303', '3333333333', 'adresse3'),
-                                                                                     (@idSec4, 'Nom4', 'Prenom4', '040404', '4444444444', 'adresse4'),
-                                                                                     (@idSec5, 'Nom5', 'Prenom5', '050505', '5555555555', 'adresse5'),
-                                                                                     (@idSec6, 'Nom6', 'Prenom6', '060606', '6666666666', 'adresse6'),
-                                                                                     (@idSec7, 'Nom7', 'Prenom7', '070707', '7777777777', 'adresse7'),
-                                                                                     (@idSec8, 'Nom8', 'Prenom8', '080808', '8888888888', 'adresse8'),
-                                                                                     (@idSec9, 'Nom9', 'Prenom9', '090909', '9999999999', 'adresse9'),
-                                                                                     (@idSec10, 'Nom10', 'Prenom10', '101010', '0000000000', 'adresse10');
+                                                                                     (@idSec1, 'Martin', 'Pierre', '1985-03-15', '0645123456', '12 rue des Alpes, 74220 La Clusaz'),
+                                                                                     (@idSec2, 'Durand', 'Sophie', '1990-07-22', '0656234567', '25 avenue Mont-Blanc, 74450 Le Grand-Bornand'),
+                                                                                     (@idSec3, 'Moreau', 'Lucas', '1988-11-08', '0667345678', '8 impasse des Neiges, 73120 Courchevel'),
+                                                                                     (@idSec4, 'Bernard', 'Emma', '1992-01-30', '0678456789', '15 chemin des Pistes, 73550 Méribel'),
+                                                                                     (@idSec5, 'Petit', 'Julien', '1987-05-12', '0689567890', '3 rue de la Montagne, 73150 Val d''Isère'),
+                                                                                     (@idSec6, 'Robert', 'Camille', '1991-09-25', '0690678901', '22 route Olympique, 73210 La Plagne'),
+                                                                                     (@idSec7, 'Richard', 'Thomas', '1986-12-03', '0601789012', '7 place des Écrins, 05240 Serre-Chevalier'),
+                                                                                     (@idSec8, 'Garcia', 'Léa', '1993-04-18', '0612890123', '14 avenue des Sports, 05100 Montgenèvre'),
+                                                                                     (@idSec9, 'Martinez', 'Antoine', '1989-08-07', '0623901234', '9 chemin Isola, 06420 Isola 2000'),
+                                                                                     (@idSec10, 'Lopez', 'Marine', '1994-02-14', '0634012345', '18 promenade des Anglais, 06000 Nice'),
+                                                                                     (@idSec11, 'Gonzalez', 'Maxime', '1990-06-21', '0645123456', '11 rue Vauban, 05100 Briançon'),
+                                                                                     (@idSec12, 'Perez', 'Clara', '1988-10-09', '0656234567', '5 boulevard des Alpes, 73000 Chambéry');
 
+-- Administrateur
 SELECT @idAdm1 := idUser FROM User WHERE login = 'admin@secouriste.fr';
-INSERT INTO Administrateur VALUES (@idAdm1, 'Dupont', 'Martin', '12/03/1980', 0645783219, '45 rue des Lilas, 69003 Lyon, France');
+INSERT INTO Administrateur VALUES
+    (@idAdm1, 'Dupont', 'Martin', '1975-03-12', '0645783219', 'COJO Alpes Françaises 2030, Lyon, France');
 
--- Disponibilités sur les trois jours
-INSERT INTO Disponibilite VALUES (@idSec1, @idJournee1);
-INSERT INTO Disponibilite VALUES (@idSec1, @idJournee2);
-INSERT INTO Disponibilite VALUES (@idSec1, @idJournee3);
+-- Disponibilités réparties sur les trois journées clés des JO
+INSERT INTO Disponibilite VALUES
+                              (@idSec1, @idJournee1), (@idSec1, @idJournee2), (@idSec1, @idJournee3),
+                              (@idSec2, @idJournee1), (@idSec2, @idJournee2),
+                              (@idSec3, @idJournee1), (@idSec3, @idJournee3),
+                              (@idSec4, @idJournee2), (@idSec4, @idJournee3),
+                              (@idSec5, @idJournee1), (@idSec5, @idJournee2),
+                              (@idSec6, @idJournee2), (@idSec6, @idJournee3),
+                              (@idSec7, @idJournee1), (@idSec7, @idJournee3),
+                              (@idSec8, @idJournee1), (@idSec8, @idJournee2), (@idSec8, @idJournee3),
+                              (@idSec9, @idJournee2), (@idSec9, @idJournee3),
+                              (@idSec10, @idJournee1), (@idSec10, @idJournee2),
+                              (@idSec11, @idJournee1), (@idSec11, @idJournee3),
+                              (@idSec12, @idJournee2), (@idSec12, @idJournee3);
 
-INSERT INTO Disponibilite VALUES (@idSec2, @idJournee1);
-INSERT INTO Disponibilite VALUES (@idSec3, @idJournee1);
-INSERT INTO Disponibilite VALUES (@idSec4, @idJournee2);
-INSERT INTO Disponibilite VALUES (@idSec5, @idJournee2);
-INSERT INTO Disponibilite VALUES (@idSec6, @idJournee3);
-INSERT INTO Disponibilite VALUES (@idSec7, @idJournee3);
-INSERT INTO Disponibilite VALUES (@idSec8, @idJournee1);
-INSERT INTO Disponibilite VALUES (@idSec9, @idJournee2);
-INSERT INTO Disponibilite VALUES (@idSec10, @idJournee3);
+-- Possessions compétences respectant le graphe des prérequis
+-- Secouristes spécialisés selon leur affectation prévue
+INSERT INTO Possession VALUES
+                           -- Secouriste 1 (La Clusaz) - Compétences avancées
+                           (@idSec1, 'PSE1'), (@idSec1, 'PSE2'), (@idSec1, 'CE'), (@idSec1, 'SSA'),
 
--- Possessions compétences respectant le graphe, exemples :
-INSERT INTO Possession VALUES (@idSec1, 'PSE1');
-INSERT INTO Possession VALUES (@idSec1, 'PSE2');
-INSERT INTO Possession VALUES (@idSec1, 'SSA');
+                           -- Secouriste 2 (Le Grand-Bornand) - PSE2 + spécialisation
+                           (@idSec2, 'PSE1'), (@idSec2, 'PSE2'), (@idSec2, 'VPSP'),
 
-INSERT INTO Possession VALUES (@idSec2, 'PSE2');
-INSERT INTO Possession VALUES (@idSec2, 'PSE1');
+                           -- Secouriste 3 (Courchevel) - Chef d'équipe
+                           (@idSec3, 'PSE1'), (@idSec3, 'PSE2'), (@idSec3, 'CE'), (@idSec3, 'CP'),
 
-INSERT INTO Possession VALUES (@idSec3, 'CE');
-INSERT INTO Possession VALUES (@idSec3, 'PSE2');
+                           -- Secouriste 4 (Méribel) - Coordinateur
+                           (@idSec4, 'PSE1'), (@idSec4, 'PSE2'), (@idSec4, 'CE'), (@idSec4, 'CP'), (@idSec4, 'CO'),
 
-INSERT INTO Possession VALUES (@idSec4, 'CP');
-INSERT INTO Possession VALUES (@idSec4, 'CE');
+                           -- Secouriste 5 (Val d'Isère) - PSE2 + SSA
+                           (@idSec5, 'PSE1'), (@idSec5, 'PSE2'), (@idSec5, 'SSA'),
 
-INSERT INTO Possession VALUES (@idSec5, 'CO');
-INSERT INTO Possession VALUES (@idSec5, 'CP');
+                           -- Secouriste 6 (La Plagne) - Spécialiste piste
+                           (@idSec6, 'PSE1'), (@idSec6, 'PSE2'), (@idSec6, 'VPSP'),
 
-INSERT INTO Possession VALUES (@idSec6, 'VPSP');
-INSERT INTO Possession VALUES (@idSec6, 'PSE2');
+                           -- Secouriste 7 (Serre-Chevalier) - Base nautique
+                           (@idSec7, 'PBC'), (@idSec7, 'PBF'),
 
-INSERT INTO Possession VALUES (@idSec7, 'PBC');
-INSERT INTO Possession VALUES (@idSec7, 'PBF');
+                           -- Secouriste 8 (Montgenèvre) - PSE1 + SSA
+                           (@idSec8, 'PSE1'), (@idSec8, 'SSA'),
 
-INSERT INTO Possession VALUES (@idSec8, 'PSE1');
-INSERT INTO Possession VALUES (@idSec8, 'SSA');
+                           -- Secouriste 9 (Isola 2000) - PSE2 + Base nautique
+                           (@idSec9, 'PSE1'), (@idSec9, 'PSE2'), (@idSec9, 'PBC'),
 
-INSERT INTO Possession VALUES (@idSec9, 'PSE2');
-INSERT INTO Possession VALUES (@idSec9, 'PBC');
+                           -- Secouriste 10 (Nice) - Base nautique complète
+                           (@idSec10, 'PBC'), (@idSec10, 'PBF'),
 
-INSERT INTO Possession VALUES (@idSec10, 'PBF');
-INSERT INTO Possession VALUES (@idSec10, 'PBC');
+                           -- Secouriste 11 (Briançon) - Chef d'équipe
+                           (@idSec11, 'PSE1'), (@idSec11, 'PSE2'), (@idSec11, 'CE'),
+
+                           -- Secouriste 12 (Chambéry) - Coordinateur général
+                           (@idSec12, 'PSE1'), (@idSec12, 'PSE2'), (@idSec12, 'CE'), (@idSec12, 'CP'), (@idSec12, 'CO');
