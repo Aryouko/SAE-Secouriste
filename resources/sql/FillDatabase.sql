@@ -72,17 +72,17 @@ INSERT INTO Necessite VALUES ('PBF', 'PBC');
 -- Insertion de secouristes (User + Secouriste)
 
 INSERT INTO User (login, password, role) VALUES
- ('admin@secouriste.fr', '$2a$12$kd.N0.jMwDU8lPta7XBt2OneFnJn.rwUSlUV4Esli4hm5WuGnK2uK', 'administrator'),
- ('sec1@example.com', 'pass1', 'rescuer'),
- ('sec2@example.com', 'pass2', 'rescuer'),
- ('sec3@example.com', 'pass3', 'rescuer'),
- ('sec4@example.com', 'pass4', 'rescuer'),
- ('sec5@example.com', 'pass5', 'rescuer'),
- ('sec6@example.com', 'pass6', 'rescuer'),
- ('sec7@example.com', 'pass7', 'rescuer'),
- ('sec8@example.com', 'pass8', 'rescuer'),
- ('sec9@example.com', 'pass9', 'rescuer'),
- ('sec10@example.com', 'pass10', 'rescuer');
+                                             ('admin@secouriste.fr', '$2a$12$kd.N0.jMwDU8lPta7XBt2OneFnJn.rwUSlUV4Esli4hm5WuGnK2uK', 'administrator'),
+                                             ('sec1@example.com', 'pass1', 'rescuer'),
+                                             ('sec2@example.com', 'pass2', 'rescuer'),
+                                             ('sec3@example.com', 'pass3', 'rescuer'),
+                                             ('sec4@example.com', 'pass4', 'rescuer'),
+                                             ('sec5@example.com', 'pass5', 'rescuer'),
+                                             ('sec6@example.com', 'pass6', 'rescuer'),
+                                             ('sec7@example.com', 'pass7', 'rescuer'),
+                                             ('sec8@example.com', 'pass8', 'rescuer'),
+                                             ('sec9@example.com', 'pass9', 'rescuer'),
+                                             ('sec10@example.com', 'pass10', 'rescuer');
 
 -- Récupération des IDs User insérés
 SELECT @idSec1 := idUser FROM User WHERE login = 'sec1@example.com';

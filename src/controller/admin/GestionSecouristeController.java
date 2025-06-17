@@ -252,7 +252,7 @@ public class GestionSecouristeController {
     }
 
     private void setAdmin(Secouriste secouriste) {
-     }
+    }
 
     private void comboBoxInitialize() {
         this.grpComboBox.getItems().add("Groupe d'affectation");
