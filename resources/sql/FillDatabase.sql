@@ -115,7 +115,7 @@ INSERT INTO Secouriste (idSecouriste, nom, prenom, date_naissance, tel, adresse)
 
 -- Administrateur
 SELECT @idAdm1 := idUser FROM User WHERE login = 'admin@secouriste.fr';
-INSERT INTO Administrateur VALUES
+INSERT INTO Administrateur (idAdministrateur, nom, prenom, date_naissance, tel, adresse) VALUES
     (@idAdm1, 'Dupont', 'Martin', '1975-03-12', '0645783219', 'COJO Alpes Françaises 2030, Lyon, France');
 
 -- Disponibilités réparties sur les trois journées clés des JO
