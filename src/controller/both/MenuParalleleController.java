@@ -17,6 +17,8 @@ public class MenuParalleleController {
 
     private EvenementController evenementController;
 
+    private boolean isOpenSettings = false;
+
     @FXML
     private GridPane composentGrid;
 
@@ -30,7 +32,21 @@ public class MenuParalleleController {
 
     @FXML
     public void linkToSettings() {
-        UtilsController.linkToPage(fenetreGestionController.getFenetreGestion(), "/fxml/both/Settings.fxml");
+        if (!isOpenSettings) {
+            isOpenSettings = true;
+            if (getInstanceAuthentificationManagement().isAdmin()){
+                fenetreGestionController.loadContent2("/fxml/both/SettingsTemp.fxml");
+                setRow(0, "/fxml/both/Profil.fxml");
+                setRow(1, "/fxml/both/CalendarDisponibilites.fxml");
+                setRow(2, "/fxml/admin/Evenement.fxml");
+            } else {
+
+            }
+        } else {
+            fenetreGestionController.loadContent2("/fxml/both/GestionEvent.fxml");
+            setRow(1, "/fxml/both/Calendar.fxml");
+            setRow(2, "/fxml/admin/Evenement.fxml");
+        }
     }
 
     public void setFenetreGestionController(FenetreGestionController fenetreGestionController) {
@@ -42,20 +58,21 @@ public class MenuParalleleController {
             composentGrid.getChildren().removeIf(node ->
                     GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) == rowIndex
             );
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Node node = loader.load();
-            Object controller = loader.getController();
-            if (controller instanceof ProfilController) {
-                ((ProfilController) controller).setMenuParalleleController(this);
-            } else if (controller instanceof EvenementController) {
-                this.evenementController = (EvenementController) controller;
+            if(fxmlPath != null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+                Node node = loader.load();
+                Object controller = loader.getController();
+                if (controller instanceof ProfilController) {
+                    ((ProfilController) controller).setMenuParalleleController(this);
+                } else if (controller instanceof EvenementController) {
+                    this.evenementController = (EvenementController) controller;
+                }
+                composentGrid.add(node, 0, rowIndex);
+                GridPane.setHalignment(node, javafx.geometry.HPos.CENTER);
+                GridPane.setValignment(node, javafx.geometry.VPos.BOTTOM);
+                GridPane.setHgrow(node, javafx.scene.layout.Priority.ALWAYS);
+                GridPane.setVgrow(node, javafx.scene.layout.Priority.ALWAYS);
             }
-            composentGrid.add(node, 0, rowIndex);
-            GridPane.setHalignment(node, javafx.geometry.HPos.CENTER);
-            GridPane.setValignment(node, javafx.geometry.VPos.BOTTOM);
-            GridPane.setHgrow(node, javafx.scene.layout.Priority.ALWAYS);
-            GridPane.setVgrow(node, javafx.scene.layout.Priority.ALWAYS);
         } catch (IOException e) {
             e.printStackTrace();
         }
