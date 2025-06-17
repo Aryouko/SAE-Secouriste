@@ -133,7 +133,23 @@ public class UserDAO {
         } catch (SQLException e) {
             throw new SQLException("Erreur lors de l'ajout de l'utilisateur : " + e.getMessage(), e);
         }
+    }
 
+    public void changeRoleById(long idUser, String role) {
+
+        String updateQuery = "UPDATE user SET role = ? WHERE idUser = ?";
+
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(updateQuery)) {
+
+            stmt.setString(1, role);
+            stmt.setLong(2, idUser);
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
 
