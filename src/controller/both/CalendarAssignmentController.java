@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
@@ -13,6 +14,7 @@ import model.data.persistence.Affectation;
 import model.data.persistence.DPS;
 import model.data.service.*;
 
+import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,9 +63,11 @@ public class CalendarAssignmentController {
     @FXML
     private Label dateLabel;
 
-    /** Label showing the current week description (e.g. "This week") */
+    /**
+     * ChoiceBox for selecting the view type.
+     */
     @FXML
-    private Label weekLabel;
+    private ChoiceBox<String> calendarViewChoiceBox;
 
     @FXML
     private Button todayButton;
@@ -98,6 +102,9 @@ public class CalendarAssignmentController {
         setGridPaneWeek();
         drawLines();
         drawDPS();
+
+        this.calendarViewChoiceBox.setValue("Semaine (S)");
+        this.calendarViewChoiceBox.getItems().addAll("Semaine (S)", "Mois (M)");
     }
 
     /**
@@ -303,15 +310,18 @@ public class CalendarAssignmentController {
      * Refreshes the calendar display tiles: updates week label, grid, lines, and events.
      */
     public void refreshTile() {
+        /*
         if (LocalDate.now().equals(this.date)) {
-            weekLabel.setText("Cette semaine");
+            calendarViewChoiceBox.setValue("Cette semaine");
         } else if (LocalDate.now().equals(this.date.minusDays(7))) {
-            weekLabel.setText("Semaine prochaine");
+            calendarViewChoiceBox.setValue("Semaine prochaine");
         } else if (LocalDate.now().equals(this.date.plusDays(7))) {
-            weekLabel.setText("Semaine précédente");
+            calendarViewChoiceBox.setValue("Semaine précédente");
         } else {
-            weekLabel.setText("Autre semaine");
+            calendarViewChoiceBox.setValue("Autre semaine");
         }
+        */
+
         this.calendarPane.getChildren().clear();
         setGridPaneWeek();
         drawLines();
@@ -344,18 +354,24 @@ public class CalendarAssignmentController {
      */
     public void TodayButtonClicked(ActionEvent actionEvent) {
         this.date = LocalDate.now();
+        /*
         if (LocalDate.now().equals(this.date)) {
-            weekLabel.setText("Cette semaine");
+            calendarViewChoiceBox.setValue("Cette semaine");
         } else if (LocalDate.now().equals(this.date.minusDays(7))) {
-            weekLabel.setText("Semaine prochaine");
+            calendarViewChoiceBox.setValue("Semaine prochaine");
         } else if (LocalDate.now().equals(this.date.plusDays(7))) {
-            weekLabel.setText("Semaine précédente");
+            calendarViewChoiceBox.setValue("Semaine précédente");
         } else {
-            weekLabel.setText("Autre semaine");
+            calendarViewChoiceBox.setValue("Autre semaine");
         }
-        this.calendarPane.getChildren().clear();
-        setGridPaneWeek();
-        drawLines();
-        drawDPS();
+        */
+        refreshTile();
+    }
+
+
+    @FXML
+    private void calendarViewChoiceBoxChanged(ActionEvent event) {
+        String selected = calendarViewChoiceBox.getValue();
+        System.out.println("Selected: " + selected);
     }
 }
