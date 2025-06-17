@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pageRegistrationForm" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.RegistrationFormController">
+<AnchorPane fx:id="pageRegistrationForm" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.auth.RegistrationFormController">
     <children>
         <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" layoutX="-1.6" prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: #F5F5F5;" styleClass="windowed" stylesheets="@../../css/style.css" AnchorPane.bottomAnchor="-0.40000000000009095" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -109,7 +109,7 @@
                               </DropShadow>
                            </effect>
                            <center>
-                              <TextField fx:id="birthdateTextField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Date Naissance" stylesheets="@../../css/button.css" BorderPane.alignment="CENTER">
+                              <TextField fx:id="birthdateTextField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Date Naissance JJ/MM/AAAA" stylesheets="@../../css/button.css" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Poppins Light" size="18.0" />
                                  </font>

@@ -24,8 +24,8 @@ public class MenuParalleleController {
     @FXML
     public void initialize() {
         System.out.println("MenuParalleleController initialized");
-        setRow(0, "/fxml/commonwindow/Profil.fxml");
-        setRow(1, "/fxml/commonwindow/Calendar.fxml");
+        setRow(0, "/fxml/commonwindow/DisplayProfil.fxml");
+        setRow(1, "/fxml/commonwindow/DisplayCalendar.fxml");
         setRow(2, "/fxml/commonwindow/DisplayUpComingEvent.fxml");
     }
 
@@ -36,13 +36,13 @@ public class MenuParalleleController {
             if (getInstanceAuthentificationManagement().isAdmin()) {
 
                 fenetreGestionController.loadContent2("/fxml/commonwindow/SettingsTemp.fxml");
-                setRow(2, "/fxml/commonwindow/CalendarDisponibilites.fxml");
+                setRow(2, "/fxml/commonwindow/DisplayCalendarDisponibilites.fxml");
                 setRow(1, null);
             } else {
 
                 fenetreGestionController.loadContent2("/fxml/commonwindow/SettingsTemp.fxml");
                 setRow(1, null);
-                setRow(2, "/fxml/commonwindow/CalendarDisponibilites.fxml");
+                setRow(2, "/fxml/commonwindow/DisplayCalendarDisponibilites.fxml");
 
             }
         } else {
@@ -52,10 +52,10 @@ public class MenuParalleleController {
                 if (getInstanceAuthentificationManagement().isAdmin()) {
                     fenetreGestionController.loadContent2("/fxml/adminwindow/DashboardEvent.fxml");
                 } else {
-                    fenetreGestionController.loadContent2("/fxml/commonwindow/CalendarAssignment.fxml");
+                    fenetreGestionController.loadContent2("/fxml/commonwindow/DashboardCalendarAssignment.fxml");
                 }
             }
-            setRow(1, "/fxml/commonwindow/Calendar.fxml");
+            setRow(1, "/fxml/commonwindow/DisplayCalendar.fxml");
             setRow(2, "/fxml/commonwindow/DisplayUpComingEvent.fxml");
         }
     }

@@ -309,7 +309,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
 
     @FXML
     private void carteLink() {
-        this.fenetreGestionController.loadContent2("/fxml/commonwindow/map/GestionMap.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/commonwindow/map/DashboardMap.fxml");
     }
 
     @FXML

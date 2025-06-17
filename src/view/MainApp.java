@@ -13,7 +13,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/auth/Connexion.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/auth/Connection.fxml")));
 
         stage.getIcons().add(new Image("/images/logo.png"));
         stage.setTitle("SAE Secouriste");

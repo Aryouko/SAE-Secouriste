@@ -82,6 +82,9 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
     @FXML
     private Button gestionButton;
 
+    @FXML
+    private Button planButton;
+
     /**
      * Initializes the controller: loads DPS list based on user role,
      * sets up the calendar view, draws grid lines and DPS events.
@@ -94,6 +97,8 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
             gestionButton.disableProperty().set(false);
             this.dpsList = dpsManagement.getDps();
         } else {
+            planButton.setVisible(true);
+            planButton.disableProperty().set(false);
             for (Affectation affectation : affectationManagement.getAffectationsByRescuer(secouristeManagement.getSecouristeById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser()))) {
                 this.dpsList.add(affectation.getDPSAffect());
             }
@@ -106,6 +111,9 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
         this.calendarViewChoiceBox.setValue("Semaine (S)");
         this.calendarViewChoiceBox.getItems().addAll("Semaine (S)", "Mois (M)");
     }
+
+
+
 
     /**
      * Sets up the week grid with days of the week, including styling for the current day.
@@ -342,7 +350,15 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
      */
     @FXML
     private void retourGestion() {
-        this.fenetreGestionController.loadContent2("/fxml/adminwindow/gestionEvenement.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/adminwindow/DashboardEvent.fxml");
+    }
+
+    /**
+     * Returns to the event management view.
+     */
+    @FXML
+    private void showPlan() {
+        this.fenetreGestionController.loadContent2("/fxml/commonwindow/map/DashboardMap.fxml");
     }
 
 

@@ -1,4 +1,4 @@
-package controller.both;
+package controller.auth;
 
 import controller.UtilsController;
 import javafx.scene.control.TextField;
@@ -13,24 +13,27 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
  * to recover their password by entering their email address.
  * It provides functionality to send a code to the user's email and navigate to the password recovery page.
  */
-public class EnvoiCodeController {
+public class SendCodeController {
+
     /**
      * The AnchorPane that serves as the page for sending the code.
      */
     @FXML
     private AnchorPane pageCode;
+
     /**
      * The TextField for entering the user's email address.
      */
     @FXML
     private TextField mailTextField;
+
     /**
      * Initializes the EnvoiCodeController by setting up the page.
      * This method is called automatically when the FXML file is loaded.
      */
     @FXML
     private void linkToConnexion() {
-        linkToPage(pageCode, "/fxml/auth/Connexion.fxml");
+        linkToPage(pageCode, "/fxml/auth/Connection.fxml");
     }
 
     /**
@@ -42,7 +45,7 @@ public class EnvoiCodeController {
     private void ButtonGetCode() {
         if (getInstanceAuthentificationManagement().ReceiveCode(mailTextField.getText())) {
             showInfo("Code envoyé avec succès !");
-            linkToPage(pageCode, "/fxml/auth/MotDePasseOublie.fxml");
+            linkToPage(pageCode, "/fxml/auth/ForgottenPassword.fxml");
         } else {
             UtilsController.showError("Mail inexistant");
         }

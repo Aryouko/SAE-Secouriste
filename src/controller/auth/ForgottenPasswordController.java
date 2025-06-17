@@ -1,4 +1,4 @@
-package controller.both;
+package controller.auth;
 
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -13,7 +13,7 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
  * MotDePasseOublieController is responsible for handling the page where users can change their forgotten password.
  * It provides functionality to validate the code sent to the user's email and change the password accordingly.
  */
-public class MotDePasseOublieController {
+public class ForgottenPasswordController {
     /**
      * The AnchorPane that serves as the page for changing the forgotten password.
      */
@@ -36,7 +36,7 @@ public class MotDePasseOublieController {
      */
     @FXML
     private void linkToConnexion() {
-        linkToPage(pageForgotPassword, "/fxml/auth/Connexion.fxml");
+        linkToPage(pageForgotPassword, "/fxml/auth/Connection.fxml");
     }
 
     /**
