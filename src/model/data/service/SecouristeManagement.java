@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import model.dao.DAOFactory;
 import model.dao.SecouristeDAO;
 import model.data.persistence.Secouriste;
+import model.data.persistence.User;
 
 import java.io.File;
 import java.util.List;
@@ -37,5 +38,9 @@ public class SecouristeManagement {
 
     public void removeSecouriste(Secouriste secouriste) {
         this.secouristeDAO.delete(secouriste);
+    }
+
+    public User getUserBySecouriste(Secouriste secouriste) {
+        return this.secouristeDAO.findUserBySecouriste(secouriste);
     }
 }

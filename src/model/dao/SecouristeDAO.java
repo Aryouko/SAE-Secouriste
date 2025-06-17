@@ -9,6 +9,7 @@ import java.util.*;
 
 import javafx.scene.image.Image;
 import model.data.persistence.Secouriste;
+import model.data.persistence.User;
 
 import static model.dao.ConnectionBDD.getConnection;
 
@@ -208,5 +209,22 @@ public class SecouristeDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public User findUserBySecouriste(Secouriste secouriste) {
+        String query = "SELECT * FROM Secouriste JOIN User ON idUser = idSecouriste WHERE idSecouriste = ?";
+        try (Connection con = getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setLong(1, secouriste.getIdSecouriste());
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                User user = new User(rs.getLong("idUser"), rs.getString("login"), rs.getString("password"), rs.getString("role"));
+                return user;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
