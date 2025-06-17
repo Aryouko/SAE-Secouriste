@@ -2,7 +2,6 @@ package controller.admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -14,93 +13,202 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static controller.admin.FenetreGestionController.removeOverlay;
-import static controller.admin.FenetreGestionController.showOverlay;
 
+/**
+ * Controller class for the DPS Addition Window.
+ * Responsible for managing the UI and logic to create a new DPS event,
+ * including input validation, competence assignment, and updating related data.
+ *
+ * Authors: C.Brocart, T.Brami-Coatual, L.Carré, G.Potay
+ * Version: 1.0
+ */
 public class FenetreAjoutDPSController {
 
+
+    /**
+     * The root layout pane of the DPS addition window.
+     */
     @FXML
     private AnchorPane rootPane;
 
+    /**
+     * ComboBox to select the sport for the DPS.
+     */
     @FXML
     private ComboBox<String> sportComboBox;
 
+    /**
+     * ComboBox to select the site for the DPS.
+     */
     @FXML
     private ComboBox<String> siteComboBox;
 
+    /**
+     * ComboBox to select the start hour of the DPS.
+     */
     @FXML
     private ComboBox<Integer> horaireDebComboBox;
 
+    /**
+     * ComboBox to select the end hour of the DPS.
+     */
     @FXML
     private ComboBox<Integer> horaireFinComboBox;
 
+    /**
+     * ComboBox to select the day of the DPS date.
+     */
     @FXML
     private ComboBox<Integer> jourComboBox;
 
+    /**
+     * ComboBox to select the month of the DPS date.
+     */
     @FXML
     private ComboBox<String> moisComboBox;
 
+    /**
+     * ComboBox to select the year of the DPS date.
+     */
     @FXML
     private ComboBox<Integer> anneeComboBox;
 
+    /**
+     * ComboBox to select number of required PSE1 competencies.
+     */
     @FXML
     private ComboBox<Integer> comboBoxPSE1;
 
+    /**
+     * ComboBox to select number of required PSE2 competencies.
+     */
     @FXML
     private ComboBox<Integer> comboBoxPSE2;
 
+    /**
+     * ComboBox to select number of required SSA competencies.
+     */
     @FXML
     private ComboBox<Integer> comboBoxSSA;
 
+    /**
+     * ComboBox to select number of required CE competencies.
+     */
     @FXML
     private ComboBox<Integer> comboBoxCE;
 
+    /**
+     * ComboBox to select number of required VPSP competencies.
+     */
     @FXML
     private ComboBox<Integer> comboBoxVPSP;
 
+    /**
+     * ComboBox to select number of required CP competencies.
+     */
     @FXML
     private ComboBox<Integer> comboBoxCP;
 
+    /**
+     * ComboBox to select number of required PBC competencies.
+     */
     @FXML
     private ComboBox<Integer> comboBoxPBC;
 
+    /**
+     * ComboBox to select number of required CO competencies.
+     */
     @FXML
     private ComboBox<Integer> comboBoxCO;
 
+    /**
+     * ComboBox to select number of required PBF competencies.
+     */
     @FXML
     private ComboBox<Integer> comboBoxPBF;
 
+    /**
+     * TextField to enter the name of the DPS event.
+     */
     @FXML
     private TextField nomTextField;
 
+    /**
+     * Label used to display information or error messages.
+     */
     @FXML
     private Label infosLabel;
 
+    /**
+     * The date of the DPS event.
+     */
     LocalDate date;
 
+    /**
+     * The starting hour of the DPS event.
+     */
     private int horaireDeb;
 
+    /**
+     * The ending hour of the DPS event.
+     */
     private int horaireFin;
 
+    /**
+     * Array of month names in French, used for month selection.
+     */
     private final String[] months = {"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"};
 
+    /**
+     * The selected site for the DPS.
+     */
     private Site site;
 
+    /**
+     * The selected sport for the DPS.
+     */
     private Sport sport;
 
+    /**
+     * Reference to the event management controller (not injected here).
+     */
     private GestionEvenementController gestionEvenementController;
 
+    /**
+     * Reference to the main event controller (not injected here).
+     */
     private EvenementController evenementController;
 
+    /**
+     * Service managing sports data.
+     */
     private final SportManagement sportManagement = new SportManagement();
 
+    /**
+     * Service managing sites data.
+     */
     private final SiteManagement siteManagement = new SiteManagement();
 
+    /**
+     * Service managing DPS events data.
+     */
     private final DPSManagement dpsManagement = new DPSManagement();
 
+    /**
+     * Service managing competency needs data.
+     */
     private final BesoinManagement besoinManagement = new BesoinManagement();
 
+    /**
+     * Service managing assignments data.
+     */
     private final AffectationManagement  affectationManagement = new AffectationManagement();
 
+    /**
+     * Initializes the controller after the FXML is loaded.
+     * Sets default values for date, sport, site, and initializes all ComboBoxes.
+     * Also configures the info label style.
+     */
     @FXML
     public void initialize() {
         LocalDate today = LocalDate.now();
@@ -122,6 +230,10 @@ public class FenetreAjoutDPSController {
         initializeComboBoxDate();
     }
 
+    /**
+     * Initializes all competence ComboBoxes with integer values from 0 to 50.
+     * Default selection is 0 for all.
+     */
     private void initializeComboBoxCompetences() {
         this.comboBoxCE.getItems().clear();
         this.comboBoxPSE1.getItems().clear();
@@ -155,6 +267,10 @@ public class FenetreAjoutDPSController {
         this.comboBoxPBF.getSelectionModel().select(0);
     }
 
+    /**
+     * Initializes the sport ComboBox with the list of available sports.
+     * Selects the current sport by default.
+     */
     private void initializeComboBoxSport() {
         this.sportComboBox.getItems().clear();
 
@@ -167,6 +283,10 @@ public class FenetreAjoutDPSController {
         }
     }
 
+    /**
+     * Initializes the site ComboBox with the list of available sites.
+     * Selects the current site by default.
+     */
     private void initializeComboBoxSite() {
 
         this.siteComboBox.getItems().clear();
@@ -180,6 +300,10 @@ public class FenetreAjoutDPSController {
         }
     }
 
+    /**
+     * Initializes the start and end hour ComboBoxes with values from 0 to 24.
+     * Sets the default selection for start and end hours.
+     */
     private void initializeComboBoxHoraire() {
         initializeComboBoxHoraireDeb();
         this.horaireDebComboBox.getSelectionModel().select(this.horaireDeb);
@@ -187,6 +311,9 @@ public class FenetreAjoutDPSController {
         this.horaireFinComboBox.getSelectionModel().select(this.horaireFin);
     }
 
+    /**
+     * Initializes the start hour ComboBox with integer values from 0 to 24.
+     */
     private void initializeComboBoxHoraireDeb() {
         this.horaireDebComboBox.getItems().clear();
 
@@ -195,6 +322,9 @@ public class FenetreAjoutDPSController {
         }
     }
 
+    /**
+     * Initializes the end hour ComboBox with integer values from 0 to 24.
+     */
     private void initializeComboBoxHoraireFin() {
         this.horaireFinComboBox.getItems().clear();
 
@@ -203,6 +333,10 @@ public class FenetreAjoutDPSController {
         }
     }
 
+    /**
+     * Initializes the date ComboBoxes for day, month, and year.
+     * Ensures days before a limit date (7 days from now) are excluded.
+     */
     private void initializeComboBoxDate() {
         this.jourComboBox.getItems().clear();
         this.moisComboBox.getItems().clear();
@@ -236,6 +370,12 @@ public class FenetreAjoutDPSController {
         this.anneeComboBox.getSelectionModel().select((Integer) this.date.getYear());
     }
 
+    /**
+     * Handles updates to the filter ComboBoxes when the user changes selections.
+     * Updates the internal state for sport, site, date, and hours accordingly.
+     *
+     * @param event the ActionEvent triggered by a ComboBox value change.
+     */
     @FXML
     public void filterUpdate(ActionEvent event) {
         Object source = event.getSource();
@@ -285,6 +425,13 @@ public class FenetreAjoutDPSController {
         }
     }
 
+    /**
+     * Attempts to create a DPS instance from the current input fields.
+     * Performs validation on time range and DPS name uniqueness.
+     * Updates the info label with error messages if validation fails.
+     *
+     * @return a new DPS object if inputs are valid, otherwise null.
+     */
     public DPS ajoutDPS() {
         DPS dps = null;
         if (this.horaireDeb >= this.horaireFin) {
@@ -316,6 +463,12 @@ public class FenetreAjoutDPSController {
         return dps;
     }
 
+    /**
+     * Assigns a DPS (personnel) with selected competences.
+     * The method retrieves the selected values from various combo boxes,
+     * constructs a list of competences, and adds the DPS to the system if valid.
+     * An alert is shown if some competences could not be assigned.
+     */
     public void affectDPS() {
         DPS dps = this.ajoutDPS();
         if (dps != null) {
@@ -361,44 +514,7 @@ public class FenetreAjoutDPSController {
                 this.infosLabel.setText("Erreur : Aucune compétences renseignées");
             } else {
                 this.dpsManagement.addDps(dps);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Affectation partielle");
-                alert.setHeaderText("Certaines compétences n'ont pas été affectées");
-                alert.setContentText("Il sera possible de mettre à jour l'affectation plus tard.");
-
-                alert.initStyle(StageStyle.UNDECORATED);
-                alert.setGraphic(null);
-
-                DialogPane dialogPane = alert.getDialogPane();
-                dialogPane.getScene().setFill(Color.TRANSPARENT);
-
-                Label headerLabel = (Label) dialogPane.lookup(".header-panel .label");
-                if (headerLabel != null) {
-                    headerLabel.setStyle(
-                            "-fx-font-size: 18px; " +
-                                    "-fx-font-weight: bold; " +
-                                    "-fx-text-fill: #2C3E50; " +
-                                    "-fx-padding: 20 0 10 0;"
-                    );
-                }
-
-                Label contentLabel = (Label) dialogPane.lookup(".content");
-                if (contentLabel != null) {
-                    contentLabel.setStyle(
-                            "-fx-font-size: 14px; " +
-                                    "-fx-text-fill: #34495E; " +
-                                    "-fx-padding: 10 20 20 20; " +
-                                    "-fx-line-spacing: 2px;"
-                    );
-                }
-
-                dialogPane.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 35; -fx-border-width: 3; border-radius: 35; -fx-border-color: #000000");
-
-                dialogPane.getStylesheets().add("data:text/css,.dialog-pane {-fx-background-radius: 20; -fx-border-radius: 20; } " +
-                        ".dialog-pane .header-panel {-fx-background-radius: 20 20 0 0; } " +
-                        ".dialog-pane .button-bar {-fx-background-radius: 0 0 20 20; }");
-
-                dialogPane.lookupButton(ButtonType.OK).setStyle("-fx-background-color: #0C0D0F; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius : 15;");
+                Alert alert = alertBox();
                 try {
                     this.besoinManagement.addBesoin(new Besoin(dps, competences));
                     this.affectationManagement.launchAffectation(dps);
@@ -416,15 +532,76 @@ public class FenetreAjoutDPSController {
         }
     }
 
+    /**
+     * Creates and configures an information alert to notify the user
+     * when some competences were not assigned.
+     *
+     * @return a styled Alert object
+     */
+    static Alert alertBox() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Affectation partielle");
+        alert.setHeaderText("Certaines compétences n'ont pas été affectées");
+        alert.setContentText("Il sera possible de mettre à jour l'affectation plus tard.");
+
+        alert.initStyle(StageStyle.UNDECORATED);
+        alert.setGraphic(null);
+
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getScene().setFill(Color.TRANSPARENT);
+
+        Label headerLabel = (Label) dialogPane.lookup(".header-panel .label");
+        if (headerLabel != null) {
+            headerLabel.setStyle(
+                    "-fx-font-size: 18px; " +
+                            "-fx-font-weight: bold; " +
+                            "-fx-text-fill: #2C3E50; " +
+                            "-fx-padding: 20 0 10 0;"
+            );
+        }
+
+        Label contentLabel = (Label) dialogPane.lookup(".content");
+        if (contentLabel != null) {
+            contentLabel.setStyle(
+                    "-fx-font-size: 14px; " +
+                            "-fx-text-fill: #34495E; " +
+                            "-fx-padding: 10 20 20 20; " +
+                            "-fx-line-spacing: 2px;"
+            );
+        }
+
+        dialogPane.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 35; -fx-border-width: 3; border-radius: 35; -fx-border-color: #000000");
+
+        dialogPane.getStylesheets().add("data:text/css,.dialog-pane {-fx-background-radius: 20; -fx-border-radius: 20; } " +
+                ".dialog-pane .header-panel {-fx-background-radius: 20 20 0 0; } " +
+                ".dialog-pane .button-bar {-fx-background-radius: 0 0 20 20; }");
+
+        dialogPane.lookupButton(ButtonType.OK).setStyle("-fx-background-color: #0C0D0F; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius : 15;");
+        return alert;
+    }
+
+    /**
+     * Cancels the DPS creation process and removes any overlay from the UI.
+     */
     public void annuleDPS() {
         removeOverlay();
         rootPane.getChildren().removeAll();
     }
 
+    /**
+     * Initializes the controller used to manage event-related DPS actions.
+     *
+     * @param gestionEvenementController the controller managing event operations
+     */
     public void initializeGestionEvenementController(GestionEvenementController gestionEvenementController) {
         this.gestionEvenementController = gestionEvenementController;
     }
 
+    /**
+     * Initializes the controller responsible for general event handling.
+     *
+     * @param evenementController the main event controller
+     */
     public void initializeEvenementController(EvenementController evenementController) {
         this.evenementController = evenementController;
     }

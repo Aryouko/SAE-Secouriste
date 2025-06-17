@@ -225,14 +225,14 @@ public class AssignmentGreedy {
         ArrayList<ArrayList<Long>> secouristes = secouristesSelectionnes(tabSecouComp, competencesUtiles);
 
         Secouriste ret;
-        if (secouristes.isEmpty() || secouristes.getFirst().isEmpty()) {
+        if (secouristes.isEmpty() || secouristes.get(0).isEmpty()) {
             ret = null;
         } else {
-            long idMin = secouristes.getFirst().getFirst();
+            long idMin = secouristes.get(0).get(0);
             long valMin = Long.MAX_VALUE;
 
             for (ArrayList<Long> list : secouristes) {
-                long id = list.getFirst();
+                long id = list.get(0);
                 int somme = 0;
                 for (int x = 1; x < list.size(); x++) {
                     somme += list.get(x);
@@ -264,7 +264,7 @@ public class AssignmentGreedy {
         }
 
         for (int i = 0; i < tabSecouComp.size(); i++) {
-            if (tabSecouComp.get(i).getFirst() == secouriste.getIdSecouriste()) {
+            if (tabSecouComp.get(i).get(0) == secouriste.getIdSecouriste()) {
                 tabSecouComp.remove(i);
                 break;
             }
