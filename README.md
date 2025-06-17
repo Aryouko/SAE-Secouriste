@@ -2,10 +2,14 @@
 
 
 
+```
+-Dglass.win.uiScale=1 --module-path "D:\home\BUT\S2\Secouriste\SAE-Secouriste\lib\javafx\lib" --add-modules javafx.controls,javafx.fxml,javafx.web --add-exports=javafx.graphics/com.sun.javafx.scene=ALL-UNNAMED --add-exports=javafx.graphics/com.sun.javafx.sg.prism=ALL-UNNAMED --add-exports=javafx.graphics/com.sun.javafx.util=ALL-UNNAMED --add-exports=javafx.base/com.sun.javafx.logging=ALL-UNNAMED --add-exports=javafx.graphics/com.sun.prism=ALL-UNNAMED --add-exports=javafx.graphics/com.sun.glass.ui=ALL-UNNAMED --add-exports=javafx.graphics/com.sun.javafx.geom.transform=ALL-UNNAMED
+```
+
 
 # TO-DO
 
-- @c0w5lip: Vue mensuelle calendrier + keybinds pour le calendrier
+- @c0w5lip: Map + Vue mensuelle calendrier + keybinds pour le calendrier
 - ?: faire des keybinds pour les controllers
 - ?: rendre évident ce qui est cliquable ou pas avec deso onHover sur les boutons etc
 - @c0w5lip: font global
