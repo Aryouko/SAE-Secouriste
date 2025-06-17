@@ -220,8 +220,8 @@ public class FenetreAjoutDPSController {
         this.horaireDeb = 8;
         this.horaireFin = 12;
 
-        this.sport = this.sportManagement.getSports().getFirst();
-        this.site = this.siteManagement.getSites().getFirst();
+        this.sport = this.sportManagement.getSports().get(0);
+        this.site = this.siteManagement.getSites().get(0);
 
         initializeComboBoxCompetences();
         initializeComboBoxSport();
