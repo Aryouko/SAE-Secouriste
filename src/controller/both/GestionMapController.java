@@ -1,6 +1,7 @@
 package controller.both;
 
 import controller.UtilsController;
+import controller.admin.FenetreGestionController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -10,11 +11,14 @@ import static controller.UtilsController.linkToPage;
 
 public class GestionMapController {
 
+
     @FXML
     private FlowPane carteFlowPane;
 
     @FXML
     private AnchorPane gestionCarte;
+
+    private FenetreGestionController fenetreGestionController;
 
     @FXML
     public void initialize() {
@@ -31,15 +35,22 @@ public class GestionMapController {
         }
     }
 
+
+
     // ////// BUTTON
 
+    @FXML
     public void evenementButton() {
-        linkToPage(gestionCarte, "fxml/admin/GestionEvenement.fxml");
+        fenetreGestionController.loadContent2("/fxml/admin/GestionEvenement.fxml");
     }
 
+    @FXML
     public void calendarAssignment() {
-        linkToPage(gestionCarte, "fxml/both/CalendarAssignment.fxml");
+        fenetreGestionController.loadContent2("/fxml/both/CalendarAssignment.fxml");
     }
 
 
+    public void setFenetreGestionController(FenetreGestionController fenetreGestionController) {
+        this.fenetreGestionController = fenetreGestionController;
+    }
 }

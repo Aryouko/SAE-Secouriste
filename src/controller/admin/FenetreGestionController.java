@@ -1,6 +1,7 @@
 package controller.admin;
 
 import controller.both.CalendarAssignmentController;
+import controller.both.GestionMapController;
 import controller.both.MenuParalleleController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -96,6 +97,8 @@ public class FenetreGestionController {
                 gestionSecouristeController.setFenetreGestionController(this);
             } else if (controller instanceof CalendarAssignmentController calendarAssignmentController) {
                 calendarAssignmentController.setFenetreGestionController(this);
+            } else if (controller instanceof GestionMapController gestionMapController) {
+                gestionMapController.setFenetreGestionController(this);
             }
 
         } catch (IOException e) {
