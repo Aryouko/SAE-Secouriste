@@ -185,8 +185,10 @@
                               <Image url="@../../images/Croix.png" />
                            </image>
                         </ImageView>
-                     </graphic></Button>
-               </children></Pane>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
             <Text fx:id="prenomNomParam" layoutX="409.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom Nom">
                <font>
                   <Font name="System Bold" size="32.0" />
@@ -239,17 +241,17 @@
             </Button>
             <Button layoutX="1064.0" layoutY="350.0" mnemonicParsing="false" onAction="#annulerClicked" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #CCCCCC; -fx-background-radius: 5;" text="Annuler" />
             <Button layoutX="1148.0" layoutY="350.0" mnemonicParsing="false" onAction="#enregistrerClicked" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="Enregistrer" textFill="WHITE" />
-            <Text layoutX="166.0" layoutY="750.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supprimer le compte">
+            <Text layoutX="168.0" layoutY="822.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supprimer le compte">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <Text layoutX="166.0" layoutY="772.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attention, cette opération est définitive">
+            <Text layoutX="168.0" layoutY="844.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attention, cette opération est définitive">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Button layoutX="500.0" layoutY="741.0" mnemonicParsing="false" onAction="#supprimerClicked" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #A80037; -fx-background-radius: 5;" text="Supprimer le compte" textFill="WHITE">
+            <Button layoutX="502.0" layoutY="813.0" mnemonicParsing="false" onAction="#supprimerClicked" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #A80037; -fx-background-radius: 5;" text="Supprimer le compte" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -264,6 +266,21 @@
             <CheckBox fx:id="checkPBC" layoutX="516.0" layoutY="627.0" mnemonicParsing="false" text="PBC" />
             <CheckBox fx:id="checkPBF" layoutX="586.0" layoutY="627.0" mnemonicParsing="false" text="PBF" />
             <Circle fx:id="pdpParamCircle" fill="#962424" layoutX="304.0" layoutY="217.0" radius="68.0" stroke="WHITE" strokeType="INSIDE" />
+            <Text layoutX="168.0" layoutY="743.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se déconnecter">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="168.0" layoutY="765.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se déconnecter de l'application">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Button layoutX="502.0" layoutY="734.0" mnemonicParsing="false" onAction="#supprimerClicked" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #A80037; -fx-background-radius: 5;" text="Se déconnecter" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <Line endX="580.0" endY="420.0" startX="1700.0" startY="420.0" />
