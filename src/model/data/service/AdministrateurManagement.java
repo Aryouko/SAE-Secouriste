@@ -1,5 +1,6 @@
 package model.data.service;
 
+import javafx.scene.image.Image;
 import model.dao.AdministrateurDAO;
 import model.data.persistence.Administrateur;
 
@@ -14,6 +15,14 @@ public class AdministrateurManagement {
 
     public Administrateur getAdministrateurById(long idAdministrateur) {
         return administrateurDAO.findById(idAdministrateur);
+    }
+
+    public boolean updatePhoto(long idSecouriste, byte[] image) {
+        return administrateurDAO.insererPhoto(idSecouriste, image);
+    }
+
+    public Image recupererPhoto(long idSecouriste) {
+        return administrateurDAO.recupererPhoto(idSecouriste);
     }
 
     public void addAdministrateur(Administrateur administrateur) {

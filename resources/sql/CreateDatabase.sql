@@ -60,6 +60,7 @@ CREATE TABLE Administrateur (
     date_naissance VARCHAR(32),
     tel VARCHAR(10),
     adresse VARCHAR(64),
+    photo LONGBLOB,
     CONSTRAINT pk_Administrateur PRIMARY KEY (idAdministrateur),
     CONSTRAINT fk_Administrateur_User FOREIGN KEY (idAdministrateur) REFERENCES User(idUser)
 );
