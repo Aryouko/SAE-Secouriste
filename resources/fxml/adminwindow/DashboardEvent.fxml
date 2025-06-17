@@ -99,6 +99,9 @@
                                  <font>
                                     <Font size="24.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets right="35.0" />
+                                 </HBox.margin>
                               </Button>
                            </children>
                         </HBox>

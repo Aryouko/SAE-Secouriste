@@ -250,18 +250,18 @@ public class SettingsController {
 
     @FXML
     private void calendrierClicked() {
-        UtilsController.linkToPage(settingsPane, "/fxml/layout/FenetreGestion.fxml");
+        UtilsController.linkToPage(settingsPane, "/fxml/layoutmanager/FenetreGestion.fxml");
     }
 
     @FXML
     private void fermerClicked() {
-        UtilsController.linkToPage(settingsPane, "/fxml/layout/FenetreGestion.fxml");
+        UtilsController.linkToPage(settingsPane, "/fxml/layoutmanager/FenetreGestion.fxml");
     }
 
     @FXML
     private void supprimerClicked() {
         Secouriste sec = secouristeManagement.getSecouristeById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
-        UtilsController.linkToPage(settingsPane, "/fxml/auth/Connexion.fxml");
+        UtilsController.linkToPage(settingsPane, "/fxml/auth/Connection.fxml");
         PossessionDAO possessionDAO = new PossessionDAO();
         DisponibiliteDAO disponibiliteDAO = new DisponibiliteDAO();
         long idSec = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
@@ -272,7 +272,7 @@ public class SettingsController {
 
     @FXML
     private void deconnecterClicked() {
-        UtilsController.linkToPage(settingsPane, "/fxml/auth/Connexion.fxml");
+        UtilsController.linkToPage(settingsPane, "/fxml/auth/Connection.fxml");
     }
 }
 

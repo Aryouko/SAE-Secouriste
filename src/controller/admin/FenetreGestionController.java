@@ -45,11 +45,11 @@ public class FenetreGestionController {
     @FXML
     public void initialize() {
         staticFenetreGestion = fenetreGestion;
-        loadContent1("/fxml/layout/MenuParallele.fxml");
+        loadContent1("/fxml/layoutmanager/MenuParallele.fxml");
         if (getInstanceAuthentificationManagement().isAdmin()) {
             loadContent2("/fxml/adminwindow/DashboardEvent.fxml");
         } else {
-            loadContent2("/fxml/commonwindow/CalendarAssignment.fxml");
+            loadContent2("/fxml/commonwindow/DashboardCalendarAssignment.fxml");
         }
     }
 

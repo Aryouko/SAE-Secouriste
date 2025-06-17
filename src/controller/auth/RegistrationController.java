@@ -1,4 +1,4 @@
-package controller.both;
+package controller.auth;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -12,7 +12,11 @@ import static controller.UtilsController.showError;
 import static controller.UtilsController.showInfo;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
-public class InscriptionController {
+/**
+ * RegistrationController is responsible for handling the registration page of the application.
+ * It provides functionality to register a new user by entering their email and password.
+ */
+public class RegistrationController {
 
     /**
      * The AnchorPane that serves as the registration page.
@@ -60,10 +64,10 @@ public class InscriptionController {
     }
 
     /**
-     * Links to the login page when the "Already have an account? Log in" link is clicked.
+     * Links to the login page when the "connexion" link is clicked.
      */
     @FXML
     private void linkToConnexion() {
-        linkToPage(pageRegister, "/fxml/auth/Connexion.fxml");
+        linkToPage(pageRegister, "/fxml/auth/Connection.fxml");
     }
 }

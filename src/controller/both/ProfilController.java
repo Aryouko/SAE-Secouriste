@@ -88,7 +88,7 @@ public class ProfilController {
                 menuParalleleController.setRow(1, "/fxml/notif/Notification.fxml");
                 isNotif = true ;
             } else {
-                menuParalleleController.setRow(1, "/fxml/commonwindow/Calendar.fxml");
+                menuParalleleController.setRow(1, "/fxml/commonwindow/DisplayCalendar.fxml");
                 isNotif = false ;
             }
         }

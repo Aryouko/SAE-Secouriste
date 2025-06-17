@@ -1,44 +1,76 @@
-package controller.both;
+package controller.auth;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-import static controller.UtilsController.linkToPage;
-import static controller.UtilsController.showError;
+import static controller.UtilsController.*;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
+/**
+ * RegistrationFormController is responsible for handling the registration form page.
+ * It provides functionality to validate user input and create a rescuer profile.
+ */
 public class RegistrationFormController {
 
+    /**
+     * The AnchorPane that serves as the registration form page.
+     */
     @FXML
     private AnchorPane pageRegistrationForm;
+
+    /**
+     * The TextField for entering the user's last name.
+     */
     @FXML
     private TextField nameTextField;
+
+    /**
+     * The TextField for entering the user's first name.
+     */
     @FXML
     private TextField forenameTextField;
+
+    /**
+     * The TextField for entering the user's birthdate in the format JJ/MM/AAAA.
+     */
     @FXML
     private TextField birthdateTextField;
+
+    /**
+     * The TextField for entering the user's address.
+     */
     @FXML
     private TextField addressTextField;
+
+    /**
+     * The TextField for entering the user's phone number.
+     * It should contain exactly 10 digits.
+     */
     @FXML
     private TextField phoneNumberTextField;
 
+    /**
+     * This method is called when the button to register is clicked.
+     * it validates the input fields and creates a rescuer profile if all fields are valid.
+     */
     @FXML
     private void buttonVerifyClicked() {
+        // Initialisation of the validation flag
         boolean isValid = true;
 
-        // Vérification du nom (non vide et uniquement des lettres)
+        // Validate the name field
         String name = nameTextField.getText().trim();
-        if (name.isEmpty() || !name.matches("[a-zA-ZÀ-ÿ\\s-]+")) {
-            nameTextField.setStyle("-fx-prompt-text-fill: #FF004D;");
-            nameTextField.setText("");
-            nameTextField.setPromptText("Nom invalide");
+        if (name.isEmpty() || !name.matches("[a-zA-ZÀ-ÿ\\s-]+")) { // Regex to allow letters, accented characters, spaces, and hyphens but not numbers or special characters
+            nameTextField.setStyle("-fx-prompt-text-fill: #FF004D;"); // Set the prompt text color to red
+            nameTextField.setText(""); // Clear the text field
+            nameTextField.setPromptText("Nom invalide"); // Set the prompt text to indicate the error
             isValid = false;
         } else {
             nameTextField.setStyle("");
         }
 
-        // Vérification du prénom (non vide et uniquement des lettres)
+        // Validate the forename field
         String forename = forenameTextField.getText().trim();
         if (forename.isEmpty() || !forename.matches("[a-zA-ZÀ-ÿ\\s-]+")) {
             forenameTextField.setStyle("-fx-prompt-text-fill: #FF004D;");
@@ -49,18 +81,18 @@ public class RegistrationFormController {
             forenameTextField.setStyle("");
         }
 
-        // Vérification de la date de naissance (format JJ/MM/AA)
+        // Validate the birthdate field
         String birthdate = birthdateTextField.getText().trim();
-        if (!birthdate.matches("\\d{2}/\\d{2}/\\d{2}")) {
+        if (!birthdate.matches("\\d{2}/\\d{2}/\\d{4}")) {
             birthdateTextField.setStyle("-fx-prompt-text-fill: #FF004D;");
             birthdateTextField.setText("");
-            birthdateTextField.setPromptText("Format JJ/MM/AA requis");
+            birthdateTextField.setPromptText("Format JJ/MM/AAAA requis");
             isValid = false;
         } else {
             birthdateTextField.setStyle("");
         }
 
-        // Vérification de l'adresse (non vide)
+        // Validate the address field
         String address = addressTextField.getText().trim();
         if (address.isEmpty()) {
             addressTextField.setStyle("-fx-prompt-text-fill: #FF004D;");
@@ -71,7 +103,7 @@ public class RegistrationFormController {
             addressTextField.setStyle("");
         }
 
-        // Vérification du numéro de téléphone (10 chiffres)
+        // Validate the phone number field
         String phoneNumber = phoneNumberTextField.getText().trim();
         if (!phoneNumber.matches("\\d{10}")) {
             phoneNumberTextField.setStyle("-fx-prompt-text-fill: #FF004D;");
@@ -82,11 +114,12 @@ public class RegistrationFormController {
             phoneNumberTextField.setStyle("");
         }
 
-        // Si tous les champs sont valides, on crée le secouriste
+        // If all fields are valid, create the rescuer profile
         if (isValid) {
             if (getInstanceAuthentificationManagement().createRescuer(getInstanceAuthentificationManagement().getCurrentUser().getIdUser(), name, forename, birthdate, phoneNumber, address,  null)) {
-                System.out.println("Rescuer created successfully.");
-                linkToPage(pageRegistrationForm, "/fxml/auth/Connexion.fxml");
+                // Show success message
+                showInfo("Informations du secouriste enregistrées avec succès !");
+                linkToPage(pageRegistrationForm, "/fxml/auth/Connection.fxml");
             } else {
                 showError("Impossible de créer le secouriste. Veuillez vérifier vos informations.");
             }

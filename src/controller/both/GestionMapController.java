@@ -44,7 +44,7 @@ public class GestionMapController implements FenetreGestionInjectable {
 
     @FXML
     public void calendarAssignment() {
-        fenetreGestionController.loadContent2("/fxml/commonwindow/CalendarAssignment.fxml");
+        fenetreGestionController.loadContent2("/fxml/commonwindow/DashboardCalendarAssignment.fxml");
     }
 
 

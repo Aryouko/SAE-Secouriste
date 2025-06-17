@@ -4,6 +4,14 @@
     font-weight: 300;
 }
 
+
+.choice-box {
+    -fx-font-family: 'Poppins';
+    -fx-font-weight: 300;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.7);
+}
+
 .button:pressed {
     -fx-background-color: #3a86ff;
     -fx-effect: dropshadow(gaussian, #222, 8, 0.3, 0, 2);

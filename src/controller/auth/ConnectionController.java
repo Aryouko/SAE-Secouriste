@@ -1,4 +1,4 @@
-package controller.both;
+package controller.auth;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -15,18 +15,20 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
  * ConnexionController is responsible for handling the login page of the application.
  * It provides functionality to log in, navigate to the registration page, and recover forgotten passwords.
  */
-public class ConnexionController {
+public class ConnectionController {
 
     /**
      * The AnchorPane that serves as the login page.
      */
     @FXML
     private TextField mailTextField;
+
     /**
      * The PasswordField for entering the password.
      */
     @FXML
     private PasswordField passwordPasswordField;
+
     /**
      * The AnchorPane that contains the login page layout.
      */
@@ -47,7 +49,7 @@ public class ConnexionController {
      */
     @FXML
     public void linkToRegister() {
-        linkToPage(pageConnexion, "/fxml/auth/Inscription.fxml");
+        linkToPage(pageConnexion, "/fxml/auth/Registration.fxml");
     }
 
     /**
@@ -55,23 +57,28 @@ public class ConnexionController {
      */
     @FXML
     public void linkToReceiveCode() {
-        linkToPage(pageConnexion, "/fxml/auth/EnvoiCode.fxml");
+        linkToPage(pageConnexion, "/fxml/auth/SendCode.fxml");
     }
 
+    /**
+     * This method is called when the "Quick Login" button is clicked.
+     * It retrieves the last logged-in user's email and password from preferences
+     */
     @FXML
     public void quickLogin() {
-        // Récupérer le dernier utilisateur connecté depuis les préférences
-        java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(ConnexionController.class);
+        // Takes the last email and password from the preferences
+        java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(ConnectionController.class);
         String lastEmail = prefs.get("lastEmail", "");
         String lastPW = prefs.get("lastPW", "");
 
+        // if the last email and password are not empty, fill the text fields
         if (!lastEmail.isEmpty() && (!lastPW.isEmpty())) {
-            // Remplir le champ email avec la dernière adresse utilisée
             mailTextField.setText(lastEmail);
             passwordPasswordField.setText(lastPW);
 
+
         } else {
-            // Si aucun utilisateur précédent, afficher un message
+            // If no previous connection, set the prompt text to "Aucune connexion précédente"
             mailTextField.setPromptText("Aucune connexion précédente");
         }
     }
@@ -80,29 +87,39 @@ public class ConnexionController {
     /**
      * Handles the login button click event.
      * It attempts to log in with the provided email and password.
-     * If successful, it navigates to the event page; otherwise, it shows an error message.
+     * If successful, it navigates to the event page; otherwise, it shows an error message popUp created in the utilsController.
      */
     @FXML
     public void ButtonConnexionClicked() {
-        System.out.println("Connexion button clicked");
         try {
+
+            // Verification of email and password fields with the methode login from AuthentificationManagement
+            // If the login is successful, it will return SUCCESS, otherwise it will return INVALID_LOGIN, INVALID_PASSWORD or INVALID_RESCUER
+            // this method will also save the email and password in the preferences for quick login next time
             AuthentificationManagement.LoginResult result = getInstanceAuthentificationManagement().login(mailTextField.getText(), passwordPasswordField.getText());
+
+            // Check the result of the login attempt
             if (result == SUCCESS) {
-                // Sauvegarder l'email de l'utilisateur qui vient de se connecter
-                java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(ConnexionController.class);
+                // Save the email and password in preferences for quick login next time
+                java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(ConnectionController.class);
                 prefs.put("lastEmail", mailTextField.getText());
                 prefs.put("lastPW", passwordPasswordField.getText());
 
-                linkToPage(pageConnexion, "/fxml/layout/FenetreGestion.fxml");
+                // Navigate to the menu
+                linkToPage(pageConnexion, "/fxml/layoutmanager/FenetreGestion.fxml");
+
+            // This result indicate that the rescuer didn't complete the registration form yet after the creation of the account
             } else if (result == INVALID_RESCUER) {
-                // Sauvegarder également dans ce cas car l'utilisateur existe
-                java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(ConnexionController.class);
+                //
+                java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(ConnectionController.class);
                 prefs.put("lastEmail", mailTextField.getText());
                 prefs.put("lastPW", passwordPasswordField.getText());
 
+                // Navigate to the registration form for rescuers to take the necessary information
                 linkToPage(pageConnexion, "/fxml/auth/RegistrationForm.fxml");
             } else {
-                // Reste du code inchangé pour les erreurs
+
+                // Login failed, show error messages based on the result
                 if (result == INVALID_LOGIN) {
                     mailTextField.clear();
                     mailTextField.setPromptText("Adresse mail inconnue");
@@ -123,6 +140,12 @@ public class ConnexionController {
         }
     }
 
+    /**
+     * Handles the Enter key press event to trigger the login action.
+     * If the Enter key is pressed, it calls the ButtonConnexionClicked method.
+     *
+     * @param keyEvent The KeyEvent triggered by the key press.
+     */
     @FXML
     public void enterConnectionClicked(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
