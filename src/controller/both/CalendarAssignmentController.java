@@ -1,6 +1,7 @@
 package controller.both;
 
 import controller.admin.FenetreGestionController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -45,6 +46,9 @@ public class CalendarAssignmentController {
 
     @FXML
     private Label weekLabel;
+
+    @FXML
+    private Button todayButton;
 
     @FXML
     private ScrollPane scrollPane;
@@ -289,5 +293,29 @@ public class CalendarAssignmentController {
     @FXML
     private void retourGestion() {
         this.fenetreGestionController.loadContent2("/fxml/admin/gestionEvenement.fxml");
+    }
+
+
+    /**
+     * Handles the action when the "Today" button is clicked.
+     * This method resets the calendar to the current date and updates the display accordingly.
+     *
+     * @param actionEvent The ActionEvent triggered by the button click.
+     */
+    public void TodayButtonClicked(ActionEvent actionEvent) {
+        this.date = LocalDate.now();
+        if (LocalDate.now().equals(this.date)) {
+            weekLabel.setText("Cette semaine");
+        } else if (LocalDate.now().equals(this.date.minusDays(7))) {
+            weekLabel.setText("Semaine prochaine");
+        } else if (LocalDate.now().equals(this.date.plusDays(7))) {
+            weekLabel.setText("Semaine précédente");
+        } else {
+            weekLabel.setText("Autre semaine");
+        }
+        this.calendarPane.getChildren().clear();
+        setGridPaneWeek();
+        drawLines();
+        drawDPS();
     }
 }
