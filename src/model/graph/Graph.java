@@ -1,4 +1,4 @@
-package model.graphCelianTest.samedia17h30.graph;
+package model.graph;
 
 public interface Graph<N> {
     void addNode(N node);
