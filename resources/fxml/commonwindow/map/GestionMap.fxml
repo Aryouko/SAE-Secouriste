@@ -56,7 +56,7 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="91.0" prefWidth="690.0" spacing="15.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#calendarAssignment" prefHeight="60.0" prefWidth="127.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" styleClass="dark-combo-box" stylesheets="@../../css/button.css" text="Planning">
+                              <Button mnemonicParsing="false" onAction="#calendarAssignment" prefHeight="60.0" prefWidth="127.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" styleClass="dark-combo-box" stylesheets="@../../../css/button.css" text="Planning">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
