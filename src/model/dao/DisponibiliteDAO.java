@@ -61,6 +61,19 @@ public class DisponibiliteDAO {
         }
     }
 
+    public void deleteAllDisponibilites(long idSecouriste) {
+        String query = "DELETE FROM Disponibilite WHERE secouristeDisp = ?";
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setLong(1, idSecouriste);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void insert(long idSecouriste, long idJournee) {
         String insertDisponibilite = "INSERT INTO Disponibilite (secouristeDisp, journeeDisp) VALUES (?, ?)";
         try (Connection con = ConnectionBDD.getConnection();
