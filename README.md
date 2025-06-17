@@ -5,14 +5,9 @@
 
 # TO-DO
 
-- @c0w5lip: Vue mensuelle calendrier
-- @Aryouko: Gestion des DPS/Secouristes / backend global 
-- Célian: Profil / Notofications / Peaufinage frontend
-- Glen: Graphes / Assignments
-
-?:
-- faire des keybinds pour les controllers
-- rendre évident ce qui est cliquable ou pas avec deso onHover sur les boutons etc
+- @c0w5lip: Vue mensuelle calendrier + keybinds pour le calendrier
+- ?: faire des keybinds pour les controllers
+- ?: rendre évident ce qui est cliquable ou pas avec deso onHover sur les boutons etc
 
 
 # RENDU!
