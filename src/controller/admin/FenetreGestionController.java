@@ -1,7 +1,5 @@
 package controller.admin;
 
-import controller.both.CalendarAssignmentController;
-import controller.both.GestionMapController;
 import controller.both.MenuParalleleController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,11 +45,11 @@ public class FenetreGestionController {
     @FXML
     public void initialize() {
         staticFenetreGestion = fenetreGestion;
-        loadContent1("/fxml/both/MenuParallele.fxml");
+        loadContent1("/fxml/layout/MenuParallele.fxml");
         if (getInstanceAuthentificationManagement().isAdmin()) {
-            loadContent2("/fxml/admin/GestionEvenement.fxml");
+            loadContent2("/fxml/adminwindow/GestionEvenement.fxml");
         } else {
-            loadContent2("/fxml/both/CalendarAssignment.fxml");
+            loadContent2("/fxml/commonwindow/CalendarAssignment.fxml");
         }
     }
 
@@ -90,15 +88,13 @@ public class FenetreGestionController {
             this.includePane2.getChildren().setAll(newContent);
 
             Object controller = loader.getController();
+            // Injection générique via l'interface
+            if (controller instanceof FenetreGestionInjectable injectable) {
+                injectable.setFenetreGestionController(this);
+            }
+            // Cas particulier pour GestionEvenementController (double injection)
             if (controller instanceof GestionEvenementController gestionEvenementController) {
-                gestionEvenementController.setFenetreGestionController(this);
                 gestionEvenementController.setEvenementController(this.menuParalleleController.getEvenementController());
-            } else if (controller instanceof GestionSecouristeController gestionSecouristeController) {
-                gestionSecouristeController.setFenetreGestionController(this);
-            } else if (controller instanceof CalendarAssignmentController calendarAssignmentController) {
-                calendarAssignmentController.setFenetreGestionController(this);
-            } else if (controller instanceof GestionMapController gestionMapController) {
-                gestionMapController.setFenetreGestionController(this);
             }
 
         } catch (Exception e) {

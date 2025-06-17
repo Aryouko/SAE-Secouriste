@@ -3,7 +3,6 @@ package controller.both;
 import controller.UtilsController;
 import controller.admin.FenetreGestionController;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -241,28 +240,28 @@ public class SettingsController {
     @FXML
     private void notifClicked() {
         if (!affichageNotif) {
-            UtilsController.linkToPage(notifPane, "/fxml/both/NotificationResized.fxml");
+            UtilsController.linkToPage(notifPane, "/fxml/commonwindow/NotificationResized.fxml");
             affichageNotif = true;
         } else {
-            UtilsController.linkToPage(settingsPane, "/fxml/both/Settings.fxml");
+            UtilsController.linkToPage(settingsPane, "/fxml/commonwindow/Settings.fxml");
             affichageNotif = false;
         }
     }
 
     @FXML
     private void calendrierClicked() {
-        UtilsController.linkToPage(settingsPane, "/fxml/admin/FenetreGestion.fxml");
+        UtilsController.linkToPage(settingsPane, "/fxml/layout/FenetreGestion.fxml");
     }
 
     @FXML
     private void fermerClicked() {
-        UtilsController.linkToPage(settingsPane, "/fxml/admin/FenetreGestion.fxml");
+        UtilsController.linkToPage(settingsPane, "/fxml/layout/FenetreGestion.fxml");
     }
 
     @FXML
     private void supprimerClicked() {
         Secouriste sec = secouristeManagement.getSecouristeById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
-        UtilsController.linkToPage(settingsPane, "/fxml/both/Connexion.fxml");
+        UtilsController.linkToPage(settingsPane, "/fxml/auth/Connexion.fxml");
         PossessionDAO possessionDAO = new PossessionDAO();
         DisponibiliteDAO disponibiliteDAO = new DisponibiliteDAO();
         long idSec = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
@@ -273,7 +272,7 @@ public class SettingsController {
 
     @FXML
     private void deconnecterClicked() {
-        UtilsController.linkToPage(settingsPane, "/fxml/both/Connexion.fxml");
+        UtilsController.linkToPage(settingsPane, "/fxml/auth/Connexion.fxml");
     }
 }
 

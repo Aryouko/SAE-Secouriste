@@ -7,8 +7,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.stage.StageStyle;
 import model.data.persistence.*;
 import model.data.service.AffectationManagement;
 import model.data.service.PossessionManagement;
@@ -20,7 +18,7 @@ import java.util.List;
 
 import static controller.admin.FenetreGestionController.showOverlay;
 
-public class GestionSecouristeController {
+public class GestionSecouristeController implements FenetreGestionInjectable {
 
     @FXML
     private TilePane evenementTile;
@@ -219,7 +217,7 @@ public class GestionSecouristeController {
 
     private void setAdminSecouriste(Secouriste secouriste) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/FenetreSetAdminSecouriste.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/FenetreSetAdminSecouriste.fxml"));
             Parent overlayContent = loader.load();
 
             FenetreSetAdminSecouristeController controller = loader.getController();
@@ -236,7 +234,7 @@ public class GestionSecouristeController {
 
     private void supprSecouriste(Secouriste secouriste) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/FenetreSupprSecouriste.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/FenetreSupprSecouriste.fxml"));
             Parent overlayContent = loader.load();
 
             FenetreSupprSecouristeController controller = loader.getController();
@@ -309,7 +307,7 @@ public class GestionSecouristeController {
 
     @FXML
     public void GestionEvenementButton() {
-        this.fenetreGestionController.loadContent2("/fxml/admin/GestionEvenement.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/adminwindow/GestionEvenement.fxml");
     }
 
     public void retirerList(Secouriste secouriste) {

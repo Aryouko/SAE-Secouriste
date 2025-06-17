@@ -19,7 +19,7 @@ import java.util.List;
 
 import static controller.admin.FenetreGestionController.showOverlay;
 
-public class GestionEvenementController {
+public class GestionEvenementController implements FenetreGestionInjectable {
 
     @FXML
     private TilePane evenementTile;
@@ -299,24 +299,24 @@ public class GestionEvenementController {
 
     @FXML
     public void GestionSecouristeButton() {
-        this.fenetreGestionController.loadContent2("/fxml/admin/GestionSecouriste.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/adminwindow/GestionSecouriste.fxml");
     }
 
     @FXML
     private void calendarAssignment() {
-        this.fenetreGestionController.loadContent2("/fxml/both/calendarAssignment.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/commonwindow/calendarAssignment.fxml");
     }
 
     @FXML
     private void carteLink() {
-        this.fenetreGestionController.loadContent2("/fxml/both/GestionMap.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/commonwindow/GestionMap.fxml");
     }
 
     @FXML
     public void CreationDPSButton() {
         StackPane overlay = showOverlay();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/FenetreAjoutDPS.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/FenetreAjoutDPS.fxml"));
             Parent overlayContent = loader.load();
             FenetreAjoutDPSController controller = loader.getController();
             controller.initializeGestionEvenementController(this);
@@ -344,7 +344,7 @@ public class GestionEvenementController {
 
     private void supprDps(DPS dps) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/FenetreSupprDPS.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/FenetreSupprDPS.fxml"));
             Parent overlayContent = loader.load();
 
             FenetreSupprDPSController controller = loader.getController();

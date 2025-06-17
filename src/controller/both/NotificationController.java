@@ -143,7 +143,7 @@ public class NotificationController {
                             "-fx-font-weight: 300; " +
                             "-fx-letter-spacing: -0.56px;");
 
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/both/ReadNotification.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/notif/ReadNotification.fxml"));
                     Parent root = loader.load();
                     ReadNotificationController controller = loader.getController();
                     controller.setNotification(notification);
@@ -194,7 +194,7 @@ public class NotificationController {
      * openForm
      */
     public void openForm() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/both/NotificationForm.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/notif/NotificationForm.fxml"));
         Parent root = loader.load();
 
         Stage popupStage = new Stage();

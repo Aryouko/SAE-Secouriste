@@ -36,7 +36,7 @@ public class MotDePasseOublieController {
      */
     @FXML
     private void linkToConnexion() {
-        linkToPage(pageForgotPassword, "/fxml/both/Connexion.fxml");
+        linkToPage(pageForgotPassword, "/fxml/auth/Connexion.fxml");
     }
 
     /**

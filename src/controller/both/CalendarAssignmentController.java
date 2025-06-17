@@ -1,6 +1,7 @@
 package controller.both;
 
 import controller.admin.FenetreGestionController;
+import controller.admin.FenetreGestionInjectable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -14,7 +15,6 @@ import model.data.persistence.Affectation;
 import model.data.persistence.DPS;
 import model.data.service.*;
 
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
  * @author C.Brocart, T.Brami-Coatual, L.Carré, G.Potay
  * @version 1.0
  */
-public class CalendarAssignmentController {
+public class CalendarAssignmentController implements FenetreGestionInjectable  {
 
     /** Pane displaying the calendar grid and events */
     @FXML
@@ -342,7 +342,7 @@ public class CalendarAssignmentController {
      */
     @FXML
     private void retourGestion() {
-        this.fenetreGestionController.loadContent2("/fxml/admin/gestionEvenement.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/adminwindow/gestionEvenement.fxml");
     }
 
 

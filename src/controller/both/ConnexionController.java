@@ -47,7 +47,7 @@ public class ConnexionController {
      */
     @FXML
     public void linkToRegister() {
-        linkToPage(pageConnexion, "/fxml/both/Inscription.fxml");
+        linkToPage(pageConnexion, "/fxml/auth/Inscription.fxml");
     }
 
     /**
@@ -55,7 +55,7 @@ public class ConnexionController {
      */
     @FXML
     public void linkToReceiveCode() {
-        linkToPage(pageConnexion, "/fxml/both/EnvoiCode.fxml");
+        linkToPage(pageConnexion, "/fxml/auth/EnvoiCode.fxml");
     }
 
     @FXML
@@ -93,14 +93,14 @@ public class ConnexionController {
                 prefs.put("lastEmail", mailTextField.getText());
                 prefs.put("lastPW", passwordPasswordField.getText());
 
-                linkToPage(pageConnexion, "/fxml/admin/FenetreGestion.fxml");
+                linkToPage(pageConnexion, "/fxml/layout/FenetreGestion.fxml");
             } else if (result == INVALID_RESCUER) {
                 // Sauvegarder également dans ce cas car l'utilisateur existe
                 java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(ConnexionController.class);
                 prefs.put("lastEmail", mailTextField.getText());
                 prefs.put("lastPW", passwordPasswordField.getText());
 
-                linkToPage(pageConnexion, "/fxml/both/RegistrationForm.fxml");
+                linkToPage(pageConnexion, "/fxml/auth/RegistrationForm.fxml");
             } else {
                 // Reste du code inchangé pour les erreurs
                 if (result == INVALID_LOGIN) {
