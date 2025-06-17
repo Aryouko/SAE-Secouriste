@@ -47,7 +47,9 @@ Int´egration dans l’application finale
 – Une analyse critique des avantages et inconv´enients de chaque approche.
 
 
-
+# AUTRE
+- faire des keybinds pour les controllers
+- rendre évident ce qui est cliquable ou pas avec deso onHover sur les boutons etc
 
 
 
