@@ -1,8 +1,8 @@
-package model.graphCelianTest.samedia17h30.graph.test;
+package model.graph.test;
 
 import model.dao.DPSDAO;
 import model.data.persistence.Secouriste;
-import model.graphCelianTest.samedia17h30.graph.AssignmentGreedy;
+import model.graph.AssignmentGreedy;
 
 import java.util.ArrayList;
 

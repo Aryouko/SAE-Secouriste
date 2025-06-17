@@ -1,8 +1,5 @@
 package model.dao;
 
-import model.data.persistence.Competence;
-import model.data.persistence.Secouriste;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

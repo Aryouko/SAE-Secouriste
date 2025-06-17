@@ -1,4 +1,4 @@
-package model.graphCelianTest.samedia17h30.graph.test;
+package model.graph.test;
 
 /**
  * Tests of competence methode

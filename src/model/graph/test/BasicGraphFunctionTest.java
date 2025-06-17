@@ -1,9 +1,9 @@
-package model.graphCelianTest.samedia17h30.graph.test;
+package model.graph.test;
 
 import model.data.persistence.Necessite;
 import model.dao.DAOFactory;
-import model.graphCelianTest.samedia17h30.graph.GraphAlgorithms;
-import model.graphCelianTest.samedia17h30.graph.MatrixUtils;
+import model.graph.GraphAlgorithms;
+import model.graph.MatrixUtils;
 
 import java.util.List;
 import java.util.Map;

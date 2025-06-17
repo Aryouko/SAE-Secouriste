@@ -1,4 +1,4 @@
-package model.graphCelianTest.samedia17h30.graph;
+package model.graph;
 
 import model.dao.CompetenceDAO;
 import model.data.persistence.*;
