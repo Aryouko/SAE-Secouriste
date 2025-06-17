@@ -2,7 +2,6 @@ package controller.both;
 
 import controller.admin.EvenementController;
 import controller.admin.FenetreGestionController;
-import controller.UtilsController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -25,9 +24,9 @@ public class MenuParalleleController {
     @FXML
     public void initialize() {
         System.out.println("MenuParalleleController initialized");
-        setRow(0, "/fxml/both/Profil.fxml");
-        setRow(1, "/fxml/both/Calendar.fxml");
-        setRow(2, "/fxml/admin/Evenement.fxml");
+        setRow(0, "/fxml/commonwindow/Profil.fxml");
+        setRow(1, "/fxml/commonwindow/Calendar.fxml");
+        setRow(2, "/fxml/adminwindow/Evenement.fxml");
     }
 
     @FXML
@@ -35,29 +34,29 @@ public class MenuParalleleController {
         if (!isOpenSettings) {
             isOpenSettings = true;
             if (getInstanceAuthentificationManagement().isAdmin()) {
-                // Affichage du panneau de paramètres pour l'admin
-                fenetreGestionController.loadContent2("/fxml/both/SettingsTemp.fxml");
-                setRow(2, "/fxml/both/CalendarDisponibilites.fxml");
+
+                fenetreGestionController.loadContent2("/fxml/commonwindow/SettingsTemp.fxml");
+                setRow(2, "/fxml/commonwindow/CalendarDisponibilites.fxml");
                 setRow(1, null);
             } else {
-                // Affichage du panneau de paramètres pour un secouriste
-                fenetreGestionController.loadContent2("/fxml/both/SettingsTemp.fxml");
+
+                fenetreGestionController.loadContent2("/fxml/commonwindow/SettingsTemp.fxml");
                 setRow(1, null);
-                setRow(2, "/fxml/both/CalendarDisponibilites.fxml");
+                setRow(2, "/fxml/commonwindow/CalendarDisponibilites.fxml");
 
             }
         } else {
             isOpenSettings = false;
-            // Retour à la vue principale selon le profil
+
             if (fenetreGestionController != null) {
                 if (getInstanceAuthentificationManagement().isAdmin()) {
-                    fenetreGestionController.loadContent2("/fxml/admin/GestionEvenement.fxml");
+                    fenetreGestionController.loadContent2("/fxml/adminwindow/GestionEvenement.fxml");
                 } else {
-                    fenetreGestionController.loadContent2("/fxml/both/CalendarAssignment.fxml");
+                    fenetreGestionController.loadContent2("/fxml/commonwindow/CalendarAssignment.fxml");
                 }
             }
-            setRow(1, "/fxml/both/Calendar.fxml");
-            setRow(2, "/fxml/admin/Evenement.fxml");
+            setRow(1, "/fxml/commonwindow/Calendar.fxml");
+            setRow(2, "/fxml/adminwindow/Evenement.fxml");
         }
     }
 

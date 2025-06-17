@@ -49,7 +49,7 @@ public class InscriptionController {
             System.out.println("Email: " + labelMail.getText());
             if (getInstanceAuthentificationManagement().register(labelMail.getText(), labelPassword.getText(), newPasswordConfirmation.getText())) {
                 showInfo("L'inscription a réussi. Vous pouvez maintenant vous connecter.");
-                linkToPage(pageRegister, "/fxml/both/RegistrationForm.fxml");
+                linkToPage(pageRegister, "/fxml/auth/RegistrationForm.fxml");
             } else {
                 showError("L'inscription a échoué. Veuillez vérifier vos informations.");
             }
@@ -64,6 +64,6 @@ public class InscriptionController {
      */
     @FXML
     private void linkToConnexion() {
-        linkToPage(pageRegister, "/fxml/both/Connexion.fxml");
+        linkToPage(pageRegister, "/fxml/auth/Connexion.fxml");
     }
 }

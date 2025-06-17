@@ -30,7 +30,7 @@ public class EnvoiCodeController {
      */
     @FXML
     private void linkToConnexion() {
-        linkToPage(pageCode, "/fxml/both/Connexion.fxml");
+        linkToPage(pageCode, "/fxml/auth/Connexion.fxml");
     }
 
     /**
@@ -42,7 +42,7 @@ public class EnvoiCodeController {
     private void ButtonGetCode() {
         if (getInstanceAuthentificationManagement().ReceiveCode(mailTextField.getText())) {
             showInfo("Code envoyé avec succès !");
-            linkToPage(pageCode, "/fxml/both/MotDePasseOublie.fxml");
+            linkToPage(pageCode, "/fxml/auth/MotDePasseOublie.fxml");
         } else {
             UtilsController.showError("Mail inexistant");
         }
