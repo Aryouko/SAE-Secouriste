@@ -287,7 +287,7 @@ public class CalendarAssignmentController {
     @FXML
     public void nextWeek() {
         this.date = this.date.plusDays(7);
-        refreshTile();
+        alertDPS();
     }
 
     /**
@@ -296,13 +296,13 @@ public class CalendarAssignmentController {
     @FXML
     public void previousWeek() {
         this.date = this.date.minusDays(7);
-        refreshTile();
+        alertDPS();
     }
 
     /**
      * Refreshes the calendar display tiles: updates week label, grid, lines, and events.
      */
-    public void refreshTile() {
+    public void alertDPS() {
         if (LocalDate.now().equals(this.date)) {
             weekLabel.setText("Cette semaine");
         } else if (LocalDate.now().equals(this.date.minusDays(7))) {
