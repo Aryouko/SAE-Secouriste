@@ -11,6 +11,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Class responsible for assigning rescuers to DPS by allocating the least represented skill
+ * to the DPS that requires this skill and has the fewest skills.
+ *
+ * @author C.Brocart, T.Brami-Coatual, L.Carré, G.Potay
+ * @version 1.0
+ */
 public class AssignmentGreedy {
 
     private final ArrayList<String> competences = new ArrayList<>(Arrays.asList("PSE1", "PSE2", "SSA", "CE", "VPSP", "CP", "CO", "PBC", "PBF"));
@@ -26,10 +33,11 @@ public class AssignmentGreedy {
     private final PossessionManagement possessionManagement = new PossessionManagement();
 
     /**
-     * Constructeur permettant d'assigner les secouristes
-     * @param dps - a DPS
+     * Assigns rescuers to a DPS (First Aid Post) in the most optimal way.
+     *
+     * @param dps - a DPS (First Aid Post)
      */
-    public ArrayList<Secouriste> AssignmentRescuersGreedy(DPS dps) throws Exception {
+    public ArrayList<Secouriste> AssignmentRescuersGreedy(DPS dps){
 
         if (dps == null) {
             throw new IllegalArgumentException("L'argument est null");
@@ -82,9 +90,10 @@ public class AssignmentGreedy {
     }
 
     /**
-     * Permettant de récupérer tout les secouristes disponibles
-     * @param journee - A day
-     * @return rescuer list available
+     * Retrieves all available rescuers.
+     *
+     * @param journee - a day
+     * @return a list of available rescuers
      */
     private List<Secouriste> secouristesDisponible(Journee journee) {
         List<Secouriste> secouristesJour = this.secouristeManagement.findByIdJournee(this.journeeManagement.getJourneeByJour(journee.getJour(), journee.getMois(), journee.getAnnee()));
@@ -101,10 +110,12 @@ public class AssignmentGreedy {
     }
 
     /**
-     * Permettant d'avoi un tableau avec comme 1ère colonne : l'id du secouriste et les autres : les compétences
-     * Il y a 1 quand le secouriste à la compétence et 0 si non
-     * @param secouristes - rescuer
-     * @return tab of rescuer with skills
+     * Creates a table where the first column contains the rescuer ID,
+     * and the following columns represent skills.
+     * A value of 1 indicates that the rescuer has the skill, and 0 otherwise.
+     *
+     * @param secouristes - list of rescuers
+     * @return a table of rescuers and their associated skills
      */
     private ArrayList<ArrayList<Long>> tabSecouComp(List<Secouriste> secouristes) throws IllegalArgumentException {
         ArrayList<ArrayList<Long>> ret = new ArrayList<>();
@@ -133,10 +144,12 @@ public class AssignmentGreedy {
     }
 
     /**
-     * On récupère l'indice de la competence avec le moins de secouristes assignés dans l'attribut competence
-     * @param tabSecouComp
-     * @param competencesUtiles
-     * @return
+     * Retrieves the index of the skill with the fewest rescuers assigned
+     * in the 'competencesUtiles' attribute.
+     *
+     * @param tabSecouComp - cross-referenced table of rescuers and skills
+     * @param competencesUtiles - required skills
+     * @return the index of the skill with the fewest rescuers assigned
      */
     private int indiceCompetenceSelectionne(ArrayList<ArrayList<Long>> tabSecouComp, ArrayList<Competence> competencesUtiles) {
         long[] compNombre = nombreCompetences(tabSecouComp);
@@ -160,10 +173,11 @@ public class AssignmentGreedy {
     }
 
     /**
-     * Permet de créer un tableau avec pour chaque indices de compétences
-     * le nombre d'occurences qu'il apparait chez les secouristes
-     * @param tabSecouComp
-     * @return
+     * Creates an array where each index corresponds to a skill and contains
+     * the number of times it appears among the rescuers.
+     *
+     * @param tabSecouComp - cross-referenced table of rescuers and skills
+     * @return a list where each skill is associated with its occurrence count
      */
     private long[] nombreCompetences(ArrayList<ArrayList<Long>> tabSecouComp) {
         long[] ret = new long[competences.size()];
@@ -178,10 +192,11 @@ public class AssignmentGreedy {
     }
 
     /**
-     * Sélectionne les secouristes qui ont la compétence la moins présente
-     * @param tabSecouComp
-     * @param competencesUtiles
-     * @return
+     * Selects the rescuers who have the least common skill.
+     *
+     * @param tabSecouComp - cross-referenced table of rescuers and skills
+     * @param competencesUtiles - required skills
+     * @return a list of rescuers
      */
     private ArrayList<ArrayList<Long>> secouristesSelectionnes(ArrayList<ArrayList<Long>> tabSecouComp, ArrayList<Competence> competencesUtiles) {
         ArrayList<ArrayList<Long>> ret = new ArrayList<>();
@@ -197,23 +212,24 @@ public class AssignmentGreedy {
     }
 
     /**
-     * Permet de Récupéré le secouriste qui a le moins de compétence dans les secouristes séléctionnés
-     * @param tabSecouComp
-     * @param competencesUtiles
-     * @return
+     * Retrieves the rescuer with the fewest skills among the selected rescuers.
+     *
+     * @param tabSecouComp - cross-referenced table of rescuers and skills
+     * @param competencesUtiles - required skills
+     * @return the rescuer with the fewest skills and one of the required skills
      */
     private Secouriste SecouristeSelectionne(ArrayList<ArrayList<Long>> tabSecouComp, ArrayList<Competence> competencesUtiles) {
         ArrayList<ArrayList<Long>> secouristes = secouristesSelectionnes(tabSecouComp, competencesUtiles);
 
         Secouriste ret;
-        if (secouristes.isEmpty() || secouristes.get(0).isEmpty()) {
+        if (secouristes.isEmpty() || secouristes.getFirst().isEmpty()) {
             ret = null;
         } else {
-            long idMin = secouristes.get(0).get(0);
+            long idMin = secouristes.getFirst().getFirst();
             long valMin = Long.MAX_VALUE;
 
             for (ArrayList<Long> list : secouristes) {
-                long id = list.get(0);
+                long id = list.getFirst();
                 int somme = 0;
                 for (int x = 1; x < list.size(); x++) {
                     somme += list.get(x);
@@ -229,11 +245,12 @@ public class AssignmentGreedy {
     }
 
     /**
-     * Permet après avoir trouvé le secouriste de le supprimer de la liste et d'enlever
-     * la competence utile qui a été attribué
-     * @param secouriste
-     * @param competencesUtiles
-     * @param tabSecouComp
+     * Allows, after finding the rescuer, to remove them from the list and
+     * remove the useful skill that was assigned.
+     *
+     * @param secouriste - the assigned rescuer
+     * @param competencesUtiles - the required skills
+     * @param tabSecouComp - cross-referenced table of rescuers and skills
      */
     private void retirerSecouristeComp (Secouriste secouriste, ArrayList<Competence> competencesUtiles, ArrayList<ArrayList<Long>> tabSecouComp, Competence competenceASuppr) {
         for (int i = 0; i < competencesUtiles.size(); i++) {
@@ -244,7 +261,7 @@ public class AssignmentGreedy {
         }
 
         for (int i = 0; i < tabSecouComp.size(); i++) {
-            if (tabSecouComp.get(i).get(0) == secouriste.getIdSecouriste()) {
+            if (tabSecouComp.get(i).getFirst() == secouriste.getIdSecouriste()) {
                 tabSecouComp.remove(i);
                 break;
             }
