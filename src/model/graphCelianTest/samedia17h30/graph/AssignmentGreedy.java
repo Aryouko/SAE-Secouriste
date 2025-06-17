@@ -1,5 +1,6 @@
 package model.graphCelianTest.samedia17h30.graph;
 
+import model.dao.CompetenceDAO;
 import model.data.persistence.*;
 import model.data.service.AffectationManagement;
 import model.data.service.BesoinManagement;
@@ -13,7 +14,9 @@ import java.util.List;
 
 public class AssignmentGreedy {
 
-    private final ArrayList<String> competences = new ArrayList<>(Arrays.asList("PSE1", "PSE2", "SSA", "CE", "VPSP", "CP", "CO", "PBC", "PBF"));
+    private final CompetenceDAO competenceDAO = new CompetenceDAO() ;
+
+    private ArrayList<String> competences = (ArrayList<String>) competenceDAO.findAllIntitule();
 
     private final BesoinManagement besoinManagement = new BesoinManagement();
 
