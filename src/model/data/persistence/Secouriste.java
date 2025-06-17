@@ -3,6 +3,8 @@ package model.data.persistence;
 import javafx.scene.image.Image;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -39,13 +41,17 @@ public class Secouriste {
         this.dateNaissance = dateNaissance;
         this.tel = tel;
         this.adresse = adresse;
-        if  (photo == null) {
-            try {
-                Path path = Paths.get("src/main/resources/images/anonyme.png");
-                byte[] imageBytes = Files.readAllBytes(path);
-                this.photo = imageBytes;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+        if (photo == null) {
+            try (InputStream is = getClass().getClassLoader().getResourceAsStream("images/anonyme.png")) {
+                if (is == null) {
+                    System.out.println("Image par défaut introuvable !");
+                    this.photo = null;
+                } else {
+                    this.photo = is.readAllBytes();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                this.photo = null;
             }
         } else {
             this.photo = photo;
