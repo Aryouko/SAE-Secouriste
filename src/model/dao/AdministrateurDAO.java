@@ -1,11 +1,15 @@
 package model.dao;
 
+import javafx.scene.image.Image;
 import model.data.persistence.Administrateur;
-import model.data.persistence.Secouriste;
+import model.data.persistence.Administrateur;
 
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static model.dao.ConnectionBDD.getConnection;
 
 public class AdministrateurDAO {
 
@@ -78,6 +82,49 @@ public class AdministrateurDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    public boolean insererPhoto(long idAdministrateur, byte[] photoBytes) {
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement("UPDATE Administrateur SET photo = ? WHERE idAdministrateur = ?")) {
+
+            stmt.setBytes(1, photoBytes);
+            stmt.setLong(2, idAdministrateur);
+            int rowsUpdated = stmt.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    /**
+     * recuperer une photo pour un Administrateur existant
+     *
+     * @param id - id du Administrateur
+     * @return la photo de profil
+     */
+    public Image recupererPhoto(long id) {
+        String sql = "SELECT photo FROM Administrateur WHERE idAdministrateur = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                InputStream is = rs.getBinaryStream("photo");
+                if (is != null) {
+                    return new Image(is);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 }
