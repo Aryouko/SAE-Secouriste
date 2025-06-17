@@ -1,7 +1,7 @@
-package model.graphCelianTest.samedia17h30.graph;
+package model.graph;
 
-import static model.graphCelianTest.samedia17h30.graph.GraphAlgorithms.isOriented;
-import static model.graphCelianTest.samedia17h30.graph.GraphAlgorithms.cycleDetected;
+import static model.graph.GraphAlgorithms.isOriented;
+import static model.graph.GraphAlgorithms.cycleDetected;
 
 public class DirectedGraph {
 

@@ -1,4 +1,4 @@
-package model.graphCelianTest.samedia17h30.graph;
+package model.graph;
 
 import model.data.persistence.Competence;
 import model.data.persistence.Necessite;
