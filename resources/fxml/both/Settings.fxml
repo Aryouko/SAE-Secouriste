@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="settingsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.SettingsController">
+<AnchorPane fx:id="settingsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1026.0" prefWidth="1824.0" stylesheets="@../../css/button.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.SettingsController">
    <children>
       <FlowPane prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -52,7 +52,7 @@
                         </VBox>
                         <AnchorPane prefHeight="98.0" prefWidth="109.0">
                            <children>
-                              <Button layoutY="20.0" mnemonicParsing="false" onAction="#notifClicked" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: black; -fx-background-radius: 100;">
+                              <Button layoutY="20.0" mnemonicParsing="false" onAction="#notifClicked" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: black; -fx-background-radius: 100;" stylesheets="@../../css/button.css">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -61,18 +61,6 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <FlowPane layoutX="30.0" layoutY="10.0" prefHeight="27.0" prefWidth="27.0" style="-fx-background-color: #FF004D; -fx-background-radius: 100;">
-                                 <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="13.668701171875">
-                                       <FlowPane.margin>
-                                          <Insets left="7.0" top="5.0" />
-                                       </FlowPane.margin>
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </FlowPane>
                            </children>
                            <HBox.margin>
                               <Insets left="50.0" />
@@ -121,7 +109,7 @@
                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               </rowConstraints>
                            </GridPane>
-                           <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#moisPrecedent" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" AnchorPane.leftAnchor="238.0" AnchorPane.topAnchor="27.0">
+                           <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#moisPrecedent" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" stylesheets="@../../css/button.css" AnchorPane.leftAnchor="238.0" AnchorPane.topAnchor="27.0">
                               <graphic>
                                  <ImageView fitHeight="21.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -133,7 +121,7 @@
                                  <Insets right="10.0" />
                               </padding>
                            </Button>
-                           <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#moisSuivant" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="27.0">
+                           <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#moisSuivant" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" stylesheets="@../../css/button.css" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="27.0">
                               <graphic>
                                  <ImageView fitHeight="21.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                                     <image>
@@ -156,7 +144,7 @@
                         <Insets left="20.0" top="20.0" />
                      </VBox.margin>
                   </Pane>
-                  <Button mnemonicParsing="false" onAction="#calendrierClicked" prefHeight="51.0" prefWidth="186.0" style="-fx-background-color: black;" text=" Calendrier" textFill="WHITE" textOverrun="CLIP">
+                  <Button mnemonicParsing="false" onAction="#calendrierClicked" prefHeight="51.0" prefWidth="186.0" style="-fx-background-color: black;" stylesheets="@../../css/button.css" text=" Calendrier" textFill="WHITE" textOverrun="CLIP">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -174,11 +162,11 @@
                </children>
             </VBox>
          </children></FlowPane>
-      <AnchorPane layoutX="441.0" layoutY="25.0" prefHeight="950.0" prefWidth="1460.0" style="-fx-background-color: white; -fx-background-radius: 30;">
+      <AnchorPane layoutX="441.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1460.0" style="-fx-background-color: white; -fx-background-radius: 30;">
          <children>
-            <Pane prefHeight="200.0" prefWidth="1460.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #FEB0B0, #A80037); -fx-background-radius: 30 30 0 0;">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1460.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #FEB0B0, #A80037); -fx-background-radius: 30 30 0 0;">
                <children>
-                  <Button layoutX="1374.0" layoutY="26.0" mnemonicParsing="false" onAction="#fermerClicked" style="-fx-background-color: transparent; -fx-border-radius: 100; -fx-background-radius: 100;">
+                  <Button layoutX="1381.0" layoutY="18.0" mnemonicParsing="false" onAction="#fermerClicked" style="-fx-background-color: transparent; -fx-border-radius: 100; -fx-background-radius: 100;" stylesheets="@../../css/button.css">
                      <graphic>
                         <ImageView fitHeight="43.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -239,8 +227,8 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="1064.0" layoutY="350.0" mnemonicParsing="false" onAction="#annulerClicked" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #CCCCCC; -fx-background-radius: 5;" text="Annuler" />
-            <Button layoutX="1148.0" layoutY="350.0" mnemonicParsing="false" onAction="#enregistrerClicked" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="Enregistrer" textFill="WHITE" />
+            <Button layoutX="1064.0" layoutY="350.0" mnemonicParsing="false" onAction="#annulerClicked" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #CCCCCC; -fx-background-radius: 5;" stylesheets="@../../css/button.css" text="Annuler" />
+            <Button layoutX="1148.0" layoutY="350.0" mnemonicParsing="false" onAction="#enregistrerClicked" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: black; -fx-background-radius: 5;" stylesheets="@../../css/button.css" text="Enregistrer" textFill="WHITE" />
             <Text layoutX="168.0" layoutY="822.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supprimer le compte">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -251,7 +239,7 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <Button layoutX="502.0" layoutY="813.0" mnemonicParsing="false" onAction="#supprimerClicked" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #A80037; -fx-background-radius: 5;" text="Supprimer le compte" textFill="WHITE">
+            <Button layoutX="502.0" layoutY="813.0" mnemonicParsing="false" onAction="#supprimerClicked" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #A80037; -fx-background-radius: 5;" stylesheets="@../../css/button.css" text="Supprimer le compte" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -276,7 +264,7 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <Button layoutX="502.0" layoutY="734.0" mnemonicParsing="false" onAction="#supprimerClicked" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #A80037; -fx-background-radius: 5;" text="Se déconnecter" textFill="WHITE">
+            <Button layoutX="502.0" layoutY="734.0" mnemonicParsing="false" onAction="#deconnecterClicked" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #A80037; -fx-background-radius: 5;" stylesheets="@../../css/button.css" text="Se déconnecter" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

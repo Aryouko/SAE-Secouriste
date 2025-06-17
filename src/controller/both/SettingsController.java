@@ -14,6 +14,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import model.dao.DisponibiliteDAO;
 import model.dao.PossessionDAO;
 import model.data.persistence.Competence;
 import model.data.persistence.Possession;
@@ -37,7 +38,6 @@ public class SettingsController {
     private FenetreGestionController fenetreGestionController;
     private final SecouristeManagement secouristeManagement = new SecouristeManagement();
     private final DisponibiliteManagement disponibiliteManagement = new DisponibiliteManagement();
-    private final JourneeManagement journeeManagement = new JourneeManagement();
     Secouriste sec;
     private final Map<CheckBox, List<CheckBox>> dependances = new HashMap<>();
     private final Map<CheckBox, List<CheckBox>> reverseDependances = new HashMap<>();
@@ -317,11 +317,19 @@ public class SettingsController {
 
     @FXML
     private void supprimerClicked(){
+        Secouriste sec = secouristeManagement.getSecouristeById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
         UtilsController.linkToPage(settingsPane, "/fxml/both/Connexion.fxml");
         PossessionDAO possessionDAO = new PossessionDAO();
+        DisponibiliteDAO disponibiliteDAO = new DisponibiliteDAO();
         long idSec = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
         possessionDAO.deleteAllPossessionsForSecouriste(idSec);
+        disponibiliteDAO.deleteAllDisponibilites(idSec);
         secouristeManagement.removeSecouriste(sec);
+    }
+
+    @FXML
+    private void deconnecterClicked(){
+        UtilsController.linkToPage(settingsPane, "/fxml/both/Connexion.fxml");
     }
 
     @FXML
