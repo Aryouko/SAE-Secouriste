@@ -113,8 +113,8 @@ public class NotificationFormController {
 
     @FXML
     private void closeNotificationForm() {
+        removeOverlay();
         Stage stage = (Stage) closeButtonNotificationForm.getScene().getWindow();
         stage.close();
-        removeOverlay();
     }
 }
