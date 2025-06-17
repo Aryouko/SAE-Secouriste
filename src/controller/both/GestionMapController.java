@@ -19,17 +19,16 @@ public class GestionMapController {
     @FXML
     public void initialize() {
         try {
-            FXMLLoader loader = new FXMLLoader(UtilsController.class.getResource("fxml/both/GestionMap.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/both/Map.fxml"));
             AnchorPane page = loader.load();
             carteFlowPane.getChildren().setAll(page);
-            AnchorPane.setTopAnchor(page, 0.0);
-            AnchorPane.setBottomAnchor(page, 0.0);
-            AnchorPane.setLeftAnchor(page, 0.0);
-            AnchorPane.setRightAnchor(page, 0.0);
+
+            // Forcer la carte à prendre toute la taille du FlowPane
+            page.prefWidthProperty().bind(carteFlowPane.widthProperty());
+            page.prefHeightProperty().bind(carteFlowPane.heightProperty());
         } catch(Exception e) {
             System.out.print(e.getMessage());
         }
-
     }
 
     // ////// BUTTON
@@ -39,7 +38,7 @@ public class GestionMapController {
     }
 
     public void calendarAssignment() {
-        linkToPage(gestionCarte, "fxml/admin/CalendarAssignment.fxml");
+        linkToPage(gestionCarte, "fxml/both/CalendarAssignment.fxml");
     }
 
 
