@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 public class DisponibiliteDAO {
 
-
     public ArrayList<Disponibilite> findById(Secouriste secouriste) {
         ArrayList<Disponibilite> disponibilites = new ArrayList<>();
         long id = secouriste.getIdSecouriste();
@@ -62,4 +61,17 @@ public class DisponibiliteDAO {
         }
     }
 
+    public void insert(long idSecouriste, long idJournee) {
+        String insertDisponibilite = "INSERT INTO Disponibilite (secouristeDisp, journeeDisp) VALUES (?, ?)";
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmtInsert = con.prepareStatement(insertDisponibilite)) {
+
+            stmtInsert.setLong(1, idSecouriste);
+            stmtInsert.setLong(2, idJournee);
+            stmtInsert.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
