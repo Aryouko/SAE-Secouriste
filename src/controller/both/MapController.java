@@ -64,10 +64,10 @@ public class MapController {
              ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
-                double lat = rs.getDouble("latitude");
-                double lng = rs.getDouble("longitude");
-                String name = rs.getString("nom");
-                locations.add(new Location(lat, lng, name));
+                double latitude = rs.getDouble("latitude");
+                double longitude = rs.getDouble("longitude");
+                String nom = rs.getString("nom");
+                locations.add(new Location(latitude, longitude, nom));
             }
 
         } catch (SQLException e) {
