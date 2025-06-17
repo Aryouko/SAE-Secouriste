@@ -101,7 +101,8 @@ public class FenetreGestionController {
                 gestionMapController.setFenetreGestionController(this);
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
             controller.UtilsController.showError("Erreur lors du chargement de " + fxmlFile + " : " + e.getMessage());
         }
     }
@@ -141,4 +142,5 @@ public class FenetreGestionController {
             node instanceof StackPane && "fenetreGestionOverlay".equals(node.getId())
         );
     }
+
 }
