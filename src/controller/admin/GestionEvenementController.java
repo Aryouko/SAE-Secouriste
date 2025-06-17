@@ -299,7 +299,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
 
     @FXML
     public void GestionSecouristeButton() {
-        this.fenetreGestionController.loadContent2("/fxml/adminwindow/GestionSecouriste.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/adminwindow/DashboardRescuer.fxml");
     }
 
     @FXML
@@ -309,14 +309,14 @@ public class GestionEvenementController implements FenetreGestionInjectable {
 
     @FXML
     private void carteLink() {
-        this.fenetreGestionController.loadContent2("/fxml/commonwindow/GestionMap.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/commonwindow/map/GestionMap.fxml");
     }
 
     @FXML
     public void CreationDPSButton() {
         StackPane overlay = showOverlay();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/FenetreAjoutDPS.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/PopupAddDps.fxml"));
             Parent overlayContent = loader.load();
             FenetreAjoutDPSController controller = loader.getController();
             controller.initializeGestionEvenementController(this);
@@ -344,7 +344,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
 
     private void supprDps(DPS dps) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/FenetreSupprDPS.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/PopupDeleteDps.fxml"));
             Parent overlayContent = loader.load();
 
             FenetreSupprDPSController controller = loader.getController();

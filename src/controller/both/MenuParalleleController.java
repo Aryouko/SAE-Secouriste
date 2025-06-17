@@ -26,7 +26,7 @@ public class MenuParalleleController {
         System.out.println("MenuParalleleController initialized");
         setRow(0, "/fxml/commonwindow/Profil.fxml");
         setRow(1, "/fxml/commonwindow/Calendar.fxml");
-        setRow(2, "/fxml/adminwindow/Evenement.fxml");
+        setRow(2, "/fxml/commonwindow/DisplayUpComingEvent.fxml");
     }
 
     @FXML
@@ -50,13 +50,13 @@ public class MenuParalleleController {
 
             if (fenetreGestionController != null) {
                 if (getInstanceAuthentificationManagement().isAdmin()) {
-                    fenetreGestionController.loadContent2("/fxml/adminwindow/GestionEvenement.fxml");
+                    fenetreGestionController.loadContent2("/fxml/adminwindow/DashboardEvent.fxml");
                 } else {
                     fenetreGestionController.loadContent2("/fxml/commonwindow/CalendarAssignment.fxml");
                 }
             }
             setRow(1, "/fxml/commonwindow/Calendar.fxml");
-            setRow(2, "/fxml/adminwindow/Evenement.fxml");
+            setRow(2, "/fxml/commonwindow/DisplayUpComingEvent.fxml");
         }
     }
 

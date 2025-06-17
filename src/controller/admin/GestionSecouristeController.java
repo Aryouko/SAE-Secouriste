@@ -217,7 +217,7 @@ public class GestionSecouristeController implements FenetreGestionInjectable {
 
     private void setAdminSecouriste(Secouriste secouriste) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/FenetreSetAdminSecouriste.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/PopupRescuerSetAdmin.fxml"));
             Parent overlayContent = loader.load();
 
             FenetreSetAdminSecouristeController controller = loader.getController();
@@ -234,7 +234,7 @@ public class GestionSecouristeController implements FenetreGestionInjectable {
 
     private void supprSecouriste(Secouriste secouriste) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/FenetreSupprSecouriste.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/PopupDeleteRescuer.fxml"));
             Parent overlayContent = loader.load();
 
             FenetreSupprSecouristeController controller = loader.getController();
@@ -307,7 +307,7 @@ public class GestionSecouristeController implements FenetreGestionInjectable {
 
     @FXML
     public void GestionEvenementButton() {
-        this.fenetreGestionController.loadContent2("/fxml/adminwindow/GestionEvenement.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/adminwindow/DashboardEvent.fxml");
     }
 
     public void retirerList(Secouriste secouriste) {
