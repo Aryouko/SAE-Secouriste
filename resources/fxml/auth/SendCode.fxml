@@ -25,7 +25,7 @@
             <children>
                 <HBox depthTest="DISABLE" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
                     <children>
-                  <VBox alignment="CENTER" prefHeight="1000.0" prefWidth="800.0" stylesheets="@../../css/style.css">
+                  <VBox alignment="CENTER" prefHeight="1000.0" prefWidth="800.0" stylesheets="@../../css/main.css">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -107,7 +107,7 @@
                         </Hyperlink>
                      </children>
                   </VBox>
-                  <GridPane prefHeight="1000.0" prefWidth="800.0" styleClass="root" stylesheets="@../../css/style.css">
+                  <GridPane prefHeight="1000.0" prefWidth="800.0" styleClass="root" stylesheets="@../../css/main.css">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

@@ -21,7 +21,6 @@ import model.data.persistence.Secouriste;
 import model.data.service.AdministrateurManagement;
 import model.data.service.PossessionManagement;
 import model.data.service.SecouristeManagement;
-import model.data.service.DisponibiliteManagement;
 
 import java.io.*;
 import java.util.*;
@@ -232,7 +231,7 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
     private void fermerClicked() {
 
         if (fenetreGestionController != null) {
-            fenetreGestionController.loadContent2("/fxml/commonwindow/DashboardCalendarAssignment.fxml");
+            fenetreGestionController.loadContent2("/fxml/common/DashboardCalendarAssignment.fxml");
         }
 
         if (menuParalleleController != null) {
@@ -245,11 +244,11 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
     @FXML
     private void supprimerClicked() {
         if(getInstanceAuthentificationManagement().isAdmin()){
-            UtilsController.linkToPage(settingsPane, "/fxml/auth/Connection.fxml");
+            UtilsController.linkToPage(settingsPane, "/fxml/auth/Login.fxml");
             long idAdmin = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
             administrateurManagement.removeAdministrateur(admin);
         } else {
-            UtilsController.linkToPage(settingsPane, "/fxml/auth/Connection.fxml");
+            UtilsController.linkToPage(settingsPane, "/fxml/auth/Login.fxml");
             PossessionDAO possessionDAO = new PossessionDAO();
             DisponibiliteDAO disponibiliteDAO = new DisponibiliteDAO();
             long idSec = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
@@ -261,7 +260,7 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
 
     @FXML
     private void deconnecterClicked() {
-        UtilsController.linkToPage(settingsPane, "/fxml/auth/Connection.fxml");
+        UtilsController.linkToPage(settingsPane, "/fxml/auth/Login.fxml");
     }
 
     public void setFenetreGestionController(FenetreGestionController fenetreGestionController) {

@@ -27,7 +27,7 @@ public class ChargementController {
 
         System.out.println("ChargementController initialized");
         PauseTransition pause = new PauseTransition(Duration.seconds((Math.random() * 3) + 2));
-        pause.setOnFinished(event -> linkToPage(pageChargement, "/fxml/auth/Connection.fxml"));
+        pause.setOnFinished(event -> linkToPage(pageChargement, "/fxml/auth/Login.fxml"));
         pause.play();
     }
 }

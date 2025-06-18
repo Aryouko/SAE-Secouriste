@@ -28,7 +28,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F9FCFF; -fx-background-radius: 30;" GridPane.rowIndex="1">
                <children>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #F9FCFF;" stylesheets="@../../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #F9FCFF;" stylesheets="@../../css/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                      <content>
                         <TilePane fx:id="evenementTile" alignment="CENTER" prefColumns="3" prefHeight="728.0" prefWidth="1431.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #F9FCFF;" />
                      </content>
