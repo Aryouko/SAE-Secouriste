@@ -15,9 +15,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="calendarAssignmentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="380.0" stylesheets="@../../css/button.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.CalendarDisponibilitesController">
+<AnchorPane fx:id="calendarAssignmentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="380.0" stylesheets="@../../css/button.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.CalendarDisponibilitesController">
     <children>
-        <FlowPane prefHeight="0.0" prefWidth="380.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="463.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <FlowPane prefHeight="0.0" prefWidth="380.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="380.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <VBox prefHeight="465.0" prefWidth="376.0" style="-fx-background-color: trensparent;">
                     <children>
@@ -95,7 +95,4 @@
                 </VBox>
             </children></FlowPane>
     </children>
-   <padding>
-      <Insets top="85.0" />
-   </padding>
 </AnchorPane>
