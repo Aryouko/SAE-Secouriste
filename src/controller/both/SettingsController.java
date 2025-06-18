@@ -219,7 +219,7 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
             } else {
                 System.out.println("Aucune nouvelle photo à enregistrer.");
             }
-
+            menuParalleleController.setRow(0, "/fxml/common/DisplayProfil.fxml");
             initialize();
         } else {
             long idSec = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
@@ -236,7 +236,7 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
             PossessionDAO possessionDAO = new PossessionDAO();
             possessionDAO.deleteAllPossessionsForSecouriste(idSec);
             possessionDAO.insert(possession);
-
+            menuParalleleController.setRow(0, "/fxml/common/DisplayProfil.fxml");
             initialize();
         }
     }
@@ -264,11 +264,11 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
     @FXML
     private void supprimerClicked() {
         if(getInstanceAuthentificationManagement().isAdmin()){
-            UtilsController.linkToPage(settingsPane, "/fxml/auth/Login.fxml");
+            UtilsController.linkToPage(fenetreGestionController.getFenetreGestion(), "/fxml/auth/Login.fxml");
             long idAdmin = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
             administrateurManagement.removeAdministrateur(admin);
         } else {
-            UtilsController.linkToPage(settingsPane, "/fxml/auth/Login.fxml");
+            UtilsController.linkToPage(fenetreGestionController.getFenetreGestion(), "/fxml/auth/Login.fxml");
             PossessionDAO possessionDAO = new PossessionDAO();
             DisponibiliteDAO disponibiliteDAO = new DisponibiliteDAO();
             long idSec = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
@@ -280,7 +280,7 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
 
     @FXML
     private void deconnecterClicked() {
-        UtilsController.linkToPage(settingsPane, "/fxml/auth/Login.fxml");
+        UtilsController.linkToPage(fenetreGestionController.getFenetreGestion(), "/fxml/auth/Login.fxml");
     }
 
     public void setFenetreGestionController(FenetreGestionController fenetreGestionController) {

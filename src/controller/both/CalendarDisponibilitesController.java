@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.control.Label;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.layout.Pane;
 import model.data.persistence.Disponibilite;
 import model.data.persistence.Journee;
 import model.data.service.SecouristeManagement;
@@ -43,6 +44,7 @@ public class CalendarDisponibilitesController {
     private final Set<LocalDate> tempSelection = new HashSet<>();
     private LocalDate selectionStart = null;
     private LocalDate selectionEnd = null;
+    @FXML private Pane calendarAssignmentPane;
 
     @FXML
     private Label jourLabel;
