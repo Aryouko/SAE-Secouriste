@@ -1,4 +1,4 @@
-package model.graph;
+package model.graph.utils;
 
 
 public class GraphUtils {
@@ -57,7 +57,7 @@ public class GraphUtils {
      * @param matrix - the matrix given
      * @return true is the adjacency matrix is valid, false otherwise
      */
-    public boolean adjMatrixValid(int[][] matrix) {
+    public static boolean adjMatrixValid(int[][] matrix) {
 
         if(matrix == null) {
             return false;
@@ -70,6 +70,31 @@ public class GraphUtils {
                     if (matrix[i][j] != 0 && matrix[i][j] != 1) {
                         return false;
                     }
+                }
+            }
+        }
+        return true;
+    }
+
+
+    /**
+     * It checks if the graph is a DAG (Directed acyclic graph)
+     * @param adjMatrix - the adjacency matrix given
+     * @return true if the graph is a DAG, false otherwise
+     */
+    public boolean isDAG(int[][] adjMatrix){
+
+        if (!isOriented(adjMatrix)) {
+            return false;
+        }
+
+        boolean[] visited = new boolean[adjMatrix.length];
+        boolean[] inProcess = new boolean[adjMatrix.length];
+
+        for (int i = 0; i < adjMatrix.length; i++) {
+            if (!visited[i]) {
+                if (cycleDetected(adjMatrix, i, visited, inProcess)) {
+                    return false;
                 }
             }
         }

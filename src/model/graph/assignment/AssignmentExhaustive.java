@@ -1,7 +1,8 @@
-package model.graph;
+package model.graph.assignment;
 
 import model.dao.*;
 import model.data.persistence.*;
+import model.graph.utils.MatrixUtils;
 
 import java.util.*;
 
@@ -175,14 +176,4 @@ public class AssignmentExhaustive {
 
         return ret;
     }
-
-    /**
-     * Crée une instance de Competence à partir d’un nom.
-     * @param nom - Nom de la compétence
-     * @return L’objet Competence correspondant
-     */
-    private Competence getCompetence(String nom) {
-        return new Competence(nom);
-    }
-
 }
