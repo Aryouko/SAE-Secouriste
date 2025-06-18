@@ -21,6 +21,7 @@ public class Scenario {
 
 
         // 1. Connexion à l'application en tant qu'admin
+        /*
             AuthentificationManagement auth = AuthentificationManagement.getInstanceAuthentificationManagement();
             AuthentificationManagement.LoginResult result = auth.login("admin@mail.com", "motdepasseAdmin");
             if (result != AuthentificationManagement.LoginResult.SUCCESS || !auth.isAdmin()) {
@@ -44,5 +45,8 @@ public class Scenario {
             } else {
                 System.out.println("Erreur lors de la création du DPS.");
             }
-        }
+
+
+         */
+    }
 }
