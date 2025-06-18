@@ -96,7 +96,8 @@ public class AffectationManagement {
         if (useGreedy()) {
             new AssignmentGreedy().AssignmentRescuersGreedy(dps);
         } else {
-            new AssignmentExhaustive().AssignmentRescuersExhaustive(dps);
+
+            // new AssignmentExhaustive().AssignmentRescuersExhaustive(dps);
         }
     }
 
