@@ -5,8 +5,6 @@ import model.data.persistence.DPS;
 import model.data.persistence.Secouriste;
 import model.graph.assignment.AssignmentExhaustive;
 import model.graph.assignment.AssignmentGreedy;
-import model.utils.Settings;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
