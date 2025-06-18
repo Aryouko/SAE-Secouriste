@@ -27,4 +27,8 @@ public class BesoinManagement {
     public void removeByDps(DPS dps) {
         besoinDAO.deleteByDps(dps.getId());
     }
+
+    public void removeBesoin(Besoin besoin) {
+        this.besoinDAO.deleteBesoin(besoin);
+    }
 }
