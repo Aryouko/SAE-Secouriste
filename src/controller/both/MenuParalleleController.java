@@ -100,4 +100,8 @@ public class MenuParalleleController {
     public EvenementController getEvenementController() {
         return evenementController;
     }
+
+    public boolean isOpenSettings() {
+        return isOpenSettings;
+    }
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TestAssignmentExhaustive {
-
+    /*
     public static void main(String[] args) {
         DPS dps = new DPSDAO().findById(1); // même DPS que dans le test Greedy
         ArrayList<Competence> competences = new BesoinDAO().findByDPS(dps).getCompetences();
@@ -28,4 +28,5 @@ public class TestAssignmentExhaustive {
             System.out.println("- " + comp.getIntitule() + " => " + s.getNom() + " " + s.getPrenom());
         }
     }
+    */
 }
