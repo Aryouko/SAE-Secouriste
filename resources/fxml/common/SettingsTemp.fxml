@@ -14,11 +14,11 @@
 
 <AnchorPane fx:id="settingsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="961.0" prefWidth="1444.0" style="-fx-background-radius: 30; -fx-background-color: white; -fx-border-radius: 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.SettingsController">
     <children>
-        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1444.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #FEB0B0, #A80037); -fx-background-radius: 30 30 0 0;">
+        <Pane fx:id="colorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1444.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #FEB0B0, #A80037); -fx-background-radius: 30 30 0 0;">
             <children>
                 <Button layoutX="1359.0" layoutY="29.0" mnemonicParsing="false" onAction="#fermerClicked" style="-fx-background-color: transparent; -fx-border-radius: 100; -fx-background-radius: 100;" stylesheets="@../../css/button.css">
                <graphic>
-                        <ImageView fitHeight="43.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="croix" fitHeight="43.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../images/Croix.png" />
                             </image>
