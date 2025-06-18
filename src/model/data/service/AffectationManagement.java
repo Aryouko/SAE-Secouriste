@@ -92,10 +92,9 @@ public class AffectationManagement {
      */
     public void launchAffectation(DPS dps) {
         if (useGreedy()) {
-            new AssignmentGreedy().AssignmentRescuersGreedy(dps);
+            new AssignmentGreedy().assignmentRescuersGreedy(dps);
         } else {
-
-            // new AssignmentExhaustive().AssignmentRescuersExhaustive(dps);
+            new AssignmentExhaustive().assignmentRescuersExhaustive(dps);
         }
     }
 

@@ -7,7 +7,7 @@ public class DAOFactory {
     private static DPSDAO dpsDAO;
     private static JourneeDAO journeeDAO;
     private static UserDAO userDAO;
-    private static NecessiteDAO NecessiteDAO;
+    public static NecessiteDAO NecessiteDAO;
 
     /**
      * Returns a singleton instance of SecouristeDAO.
