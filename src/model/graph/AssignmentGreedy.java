@@ -19,7 +19,7 @@ import java.util.List;
  * @author C.Brocart, T.Brami-Coatual, L.Carré, G.Potay
  * @version 1.0
  */
-public class AssignmentGreedy {
+public class   AssignmentGreedy {
 
     private final CompetenceDAO competenceDAO = new CompetenceDAO() ;
 
