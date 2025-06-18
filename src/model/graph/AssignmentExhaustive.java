@@ -18,7 +18,6 @@ public class AssignmentExhaustive {
 
     private final MatrixUtils matrixUtils = new MatrixUtils();
 
-
     /**
      * Dépendances entre compétences, indiquant quelles compétences sont supérieures à d'autres.
      */
@@ -37,11 +36,8 @@ public class AssignmentExhaustive {
     /**
      * Initialise les dépendances entre compétences (compétences "supérieures" pour chaque compétence).
      */
-    private void initDependencies() {
-        List<Necessite> necessites = new NecessiteDAO().findAll();
-        List<Competence> competences = new CompetenceDAO().findAll();
-
-        this.dependencies = matrixUtils.buildAllSuperiorDependencies(competences, necessites);
+    private void initDependencies(List<Competence> competences, List<Necessite> necessites) {
+        dependencies = matrixUtils.buildAllSuperiorDependencies(competences, necessites);
     }
 
     /**
@@ -51,9 +47,9 @@ public class AssignmentExhaustive {
      * @throws IllegalArgumentException si les arguments sont null ou si aucun secouriste disponible
      * @throws IllegalStateException si aucune affectation possible n'a pu être trouvée
      */
-    public AssignmentExhaustive(DPS dps, ArrayList<Competence> competences) {
+    public AssignmentExhaustive(DPS dps, List<Competence> competences, List<Necessite> necessites ) {
         this.affectation = new HashMap<>();
-        initDependencies();
+        initDependencies(competences, necessites);
 
         if (dps == null || competences == null) {
             throw new IllegalArgumentException("Arguments null");

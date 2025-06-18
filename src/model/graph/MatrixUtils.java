@@ -24,8 +24,8 @@ public class MatrixUtils {
      * This method takes a list of Necessite elements, which represent dependencies between skills (Competence).
      * It constructs a map where each key is an integer representing a skill, and the value is a list of integers representing the skills that depend on it.
      *
-     * @param elements
-     * @return
+     * @param elements List of Necessite elements representing skill dependencies
+     * @return A map where each key is an integer representing a skill and the value is a list of integers representing the skills that depend on it
      */
     public Map<Integer, List<Integer>> createSkillDependencyMap(List<Necessite> elements) {
         Map<Integer, List<Integer>> skillDependencies = new HashMap<>();
@@ -98,7 +98,7 @@ public class MatrixUtils {
             for (int column : line) {
                 text+= column + " ";
             }
-            text+="\n";
+            text+="\n"; // Add a newline after each row
         }
         return text ;
     }
@@ -114,7 +114,7 @@ public class MatrixUtils {
 
 
 
-    // /////////////// // Superior dependencies /////////////// //
+// /////////////// // Superior dependencies /////////////// //
 
     /**
      * Build all superior dependencies for each competence
