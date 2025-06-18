@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
+
 public class CalendarDisponibilitesController {
 
     @FXML
@@ -67,6 +69,38 @@ public class CalendarDisponibilitesController {
             LocalDate date = LocalDate.of(journee.getAnnee(), journee.getMois(), journee.getJour());
             disponibilites.add(date);
         }
+    }
+
+    private void sauvegarderDisponibilites() {
+        long idSec = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
+
+        // Récupérer les disponibilités actuelles en base
+        ArrayList<Disponibilite> dispoCourantes = disponibiliteManagement.getDisponibilites(sec);
+        Set<LocalDate> datesCourantes = new HashSet<>();
+
+        for (Disponibilite dispo : dispoCourantes) {
+            Journee journee = dispo.getJourDisp();
+            LocalDate date = LocalDate.of(journee.getAnnee(), journee.getMois(), journee.getJour());
+            datesCourantes.add(date);
+        }
+
+        // Supprimer les disponibilités qui ne sont plus sélectionnées
+        for (LocalDate date : datesCourantes) {
+            if (!disponibilites.contains(date)) {
+                Journee journee = new Journee(date.getDayOfMonth(), date.getMonthValue(), date.getYear());
+                disponibiliteManagement.removeDisponibilite(sec, journee);
+            }
+        }
+
+        // Ajouter les nouvelles disponibilités
+        for (LocalDate date : disponibilites) {
+            if (!datesCourantes.contains(date)) {
+                Journee journee = new Journee(date.getDayOfMonth(), date.getMonthValue(), date.getYear());
+                disponibiliteManagement.addDisponibilite(sec, journee);
+            }
+        }
+
+        System.out.println("Disponibilités sauvegardées : " + disponibilites.size() + " jours");
     }
 
     @FXML
@@ -209,6 +243,7 @@ public class CalendarDisponibilitesController {
             System.out.println("Période ajoutée : " + start + " -> " + end);
         }
         updateCalendarDisplay();
+        sauvegarderDisponibilites();
     }
 
     private void updateSelectionVisuals() {
