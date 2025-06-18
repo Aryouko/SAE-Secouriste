@@ -1,7 +1,7 @@
 package model.graph;
 
-import static model.graph.GraphAlgorithms.isOriented;
-import static model.graph.GraphAlgorithms.cycleDetected;
+import static model.graph.GraphUtils.isOriented;
+import static model.graph.GraphUtils.cycleDetected;
 
 public class DirectedGraph {
 

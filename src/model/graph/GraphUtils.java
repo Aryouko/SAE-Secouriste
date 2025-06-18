@@ -1,7 +1,7 @@
 package model.graph;
 
 
-public class GraphAlgorithms {
+public class GraphUtils {
 
 
     public static boolean isOriented(int[][] matrix) {
