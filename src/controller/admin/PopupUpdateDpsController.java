@@ -563,26 +563,21 @@ public class PopupUpdateDpsController {
             for (int i = 0; i < - this.comboBoxVPSP.getSelectionModel().getSelectedItem(); i++) {
                 competencesRemove.add(new Competence("VPSP"));
             }
-
-            if (competencesRemove.isEmpty() && competencesAdd.isEmpty()) {
-                this.infosLabel.setText("Erreur : Aucune compétences renseignées");
-            } else {
-                Alert alert = alertBox();
-                try {
-                    this.besoinManagement.removeBesoin(new Besoin(dps, competencesRemove));
-                    this.besoinManagement.addBesoin(new Besoin(dps, competencesAdd));
-                    this.affectationManagement.launchAffectation(dps);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                if (!this.besoinManagement.getBesoinByDPS(dps).getCompetences().isEmpty()) {
-                    alert.showAndWait();
-                }
-                this.gestionEvenementController.ajouterDpsList(dps);
-                this.gestionEvenementController.filtreUpdate();
-                this.evenementController.initialize();
-                annuleDPS();
+            Alert alert = alertBox();
+            try {
+                this.besoinManagement.removeBesoin(new Besoin(dps, competencesRemove));
+                this.besoinManagement.addBesoin(new Besoin(dps, competencesAdd));
+                this.affectationManagement.launchAffectation(dps);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
+            if (!this.besoinManagement.getBesoinByDPS(dps).getCompetences().isEmpty()) {
+                alert.showAndWait();
+            }
+            this.gestionEvenementController.ajouterDpsList(dps);
+            this.gestionEvenementController.filtreUpdate();
+            this.evenementController.initialize();
+            annuleDPS();
         }
     }
 
