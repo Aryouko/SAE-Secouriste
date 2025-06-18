@@ -12,10 +12,10 @@
 
 - Thomas:
   - graphes (tests + rapport)
-  - switch pour choisir la stratégie d'affectation (exhaustive ou gloutonne)
+  - togglebutton pour switch pour choisir la stratégie d'affectation (exhaustive ou gloutonne)
   - Vue mensuelle calendrier ( + keybinds pour le calendrier)
-  - Peaufiner Map
-  - Focus de la carte mon gars
+  
+- le bouffon du grp qui veut s'y coller:
   - font global
   - Pop up settings
   - btn setting à switch
