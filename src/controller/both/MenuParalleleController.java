@@ -24,9 +24,9 @@ public class MenuParalleleController {
     @FXML
     public void initialize() {
         System.out.println("MenuParalleleController initialized");
-        setRow(0, "/fxml/commonwindow/DisplayProfil.fxml");
-        setRow(1, "/fxml/commonwindow/DisplayCalendar.fxml");
-        setRow(2, "/fxml/commonwindow/DisplayUpComingEvent.fxml");
+        setRow(0, "/fxml/common/DisplayProfil.fxml");
+        setRow(1, "/fxml/common/DisplayCalendar.fxml");
+        setRow(2, "/fxml/common/DisplayUpComingEvent.fxml");
     }
 
     @FXML
@@ -35,13 +35,13 @@ public class MenuParalleleController {
             isOpenSettings = true;
             if (getInstanceAuthentificationManagement().isAdmin()) {
 
-                fenetreGestionController.loadContent2("/fxml/commonwindow/SettingsTemp.fxml");
-                setRow(2, "/fxml/commonwindow/DisplayCalendarDisponibilites.fxml");
+                fenetreGestionController.loadContent2("/fxml/common/SettingsTemp.fxml");
+                setRow(2, "/fxml/common/DisplayCalendarDisponibilites.fxml");
                 setRow(1, null);
             } else {
 
-                fenetreGestionController.loadContent2("/fxml/commonwindow/SettingsTemp.fxml");
-                setRow(1, "/fxml/commonwindow/DisplayCalendarDisponibilites.fxml");
+                fenetreGestionController.loadContent2("/fxml/common/SettingsTemp.fxml");
+                setRow(1, "/fxml/common/DisplayCalendarDisponibilites.fxml");
                 setRow(2, null);
             }
         } else {
@@ -49,13 +49,13 @@ public class MenuParalleleController {
 
             if (fenetreGestionController != null) {
                 if (getInstanceAuthentificationManagement().isAdmin()) {
-                    fenetreGestionController.loadContent2("/fxml/adminwindow/DashboardEvent.fxml");
+                    fenetreGestionController.loadContent2("/fxml/admin/DashboardEvent.fxml");
                 } else {
-                    fenetreGestionController.loadContent2("/fxml/commonwindow/DashboardCalendarAssignment.fxml");
+                    fenetreGestionController.loadContent2("/fxml/common/DashboardCalendarAssignment.fxml");
                 }
             }
-            setRow(1, "/fxml/commonwindow/DisplayCalendar.fxml");
-            setRow(2, "/fxml/commonwindow/DisplayUpComingEvent.fxml");
+            setRow(1, "/fxml/common/DisplayCalendar.fxml");
+            setRow(2, "/fxml/common/DisplayUpComingEvent.fxml");
         }
     }
 

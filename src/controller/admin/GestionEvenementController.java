@@ -179,27 +179,33 @@ public class GestionEvenementController implements FenetreGestionInjectable {
             subGridPane2.setPrefSize(354, 71);
             subGridPane2.setMaxSize(354, 71);
 
+            Button modifButton = new Button("Modification");
+            modifButton.setMinWidth(110);
+            modifButton.setStyle("-fx-background-radius: 20, 19; -fx-padding: 10; -fx-font-size: 15; -fx-background-color: #000000, white; -fx-background-insets: 0, 1; -fx-border-width: 0; -fx-text-fill: #000000;");
+            modifButton.getStyleClass().add("button");
 
             Button majButton = new Button("Mise à jour");
-            majButton.setMinWidth(125);
+            majButton.setMinWidth(110);
             majButton.setStyle("-fx-background-radius: 20, 19; -fx-padding: 10; -fx-font-size: 15; -fx-background-color: #000000, white; -fx-background-insets: 0, 1; -fx-border-width: 0; -fx-text-fill: #000000;");
             majButton.getStyleClass().add("button");
 
             Button supprButton = new Button("Suppression");
-            supprButton.setMinWidth(125);
+            supprButton.setMinWidth(110);
             supprButton.setStyle("-fx-background-color: #FF004D; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10; -fx-font-size: 15; -fx-border-width: 2px; -fx-text-fill: #FFFFFF;");
             supprButton.getStyleClass().add("button");
 
+            modifButton.setOnAction(event -> modifAffect(dps));
             majButton.setOnAction(event -> majAffect(dps));
             supprButton.setOnAction(event -> supprDps(dps));
 
             GridPane buttonGridPane = new GridPane();
             buttonGridPane.setAlignment(Pos.CENTER_RIGHT);
             buttonGridPane.setHgap(10);
-            buttonGridPane.add(supprButton, 1, 0);
+            buttonGridPane.add(modifButton, 0, 0);
+            buttonGridPane.add(supprButton, 2, 0);
 
             if (!this.besoinManagement.getBesoinByDPS(dps).getCompetences().isEmpty()) {
-                buttonGridPane.add(majButton, 0, 0);
+                buttonGridPane.add(majButton, 1, 0);
             }
 
             subGridPane2.add(buttonGridPane, 0, 0);
@@ -299,24 +305,24 @@ public class GestionEvenementController implements FenetreGestionInjectable {
 
     @FXML
     public void GestionSecouristeButton() {
-        this.fenetreGestionController.loadContent2("/fxml/adminwindow/DashboardRescuer.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/admin/DashboardRescuer.fxml");
     }
 
     @FXML
     private void calendarAssignment() {
-        this.fenetreGestionController.loadContent2("/fxml/commonwindow/calendarAssignment.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/common/calendarAssignment.fxml");
     }
 
     @FXML
     private void carteLink() {
-        this.fenetreGestionController.loadContent2("/fxml/commonwindow/map/DashboardMap.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/common/map/DashboardMap.fxml");
     }
 
     @FXML
     public void CreationDPSButton() {
         StackPane overlay = showOverlay();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/PopupAddDps.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupAddDps.fxml"));
             Parent overlayContent = loader.load();
             FenetreAjoutDPSController controller = loader.getController();
             controller.initializeGestionEvenementController(this);
@@ -344,7 +350,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
 
     private void supprDps(DPS dps) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/PopupDeleteDps.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupDeleteDps.fxml"));
             Parent overlayContent = loader.load();
 
             FenetreSupprDPSController controller = loader.getController();
@@ -355,6 +361,26 @@ public class GestionEvenementController implements FenetreGestionInjectable {
             overlayPane.getChildren().add(overlayContent);
             StackPane.setAlignment(overlayContent, Pos.CENTER);
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void modifAffect(DPS dps) {
+        StackPane overlay = showOverlay();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupUpdateDps.fxml"));
+            Parent overlayContent = loader.load();
+            PopupUpdateDpsController controller = loader.getController();
+
+            controller.initializeDpsUpdate(dps);
+            controller.initializeGestionEvenementController(this);
+            controller.initializeEvenementController(this.evenementController);
+            controller.initialize();
+
+            overlay.getChildren().add(overlayContent);
+            StackPane.setAlignment(overlayContent, javafx.geometry.Pos.CENTER);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
             e.printStackTrace();
         }
     }

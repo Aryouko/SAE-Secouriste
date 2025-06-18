@@ -22,11 +22,11 @@
 
 <AnchorPane fx:id="pageRegister" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="1026.0" prefWidth="1824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.auth.RegistrationController">
     <children>
-        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: #F5F5F5;" styleClass="windowed" stylesheets="@../../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <FlowPane alignment="CENTER" cache="true" columnHalignment="CENTER" prefHeight="1026.0" prefWidth="1824.0" style="-fx-background-color: #F5F5F5;" styleClass="windowed" stylesheets="@../../css/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox alignment="CENTER" depthTest="DISABLE" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25;">
                     <children>
-                        <VBox alignment="CENTER" fillWidth="false" stylesheets="@../../css/style.css" HBox.hgrow="ALWAYS">
+                        <VBox alignment="CENTER" fillWidth="false" stylesheets="@../../css/main.css" HBox.hgrow="ALWAYS">
                             <children>
                                 <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                                     <image>
@@ -150,7 +150,7 @@
                         </Hyperlink>
                             </children>
                         </VBox>
-                        <GridPane prefHeight="979.0" prefWidth="802.0" styleClass="root" stylesheets="@../../css/style.css">
+                        <GridPane prefHeight="979.0" prefWidth="802.0" styleClass="root" stylesheets="@../../css/main.css">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

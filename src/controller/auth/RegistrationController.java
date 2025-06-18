@@ -68,6 +68,6 @@ public class RegistrationController {
      */
     @FXML
     private void linkToConnexion() {
-        linkToPage(pageRegister, "/fxml/auth/Connection.fxml");
+        linkToPage(pageRegister, "/fxml/auth/Login.fxml");
     }
 }

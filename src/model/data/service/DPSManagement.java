@@ -5,6 +5,9 @@ import java.util.List;
 
 import model.dao.DPSDAO;
 import model.data.persistence.DPS;
+import model.data.persistence.Journee;
+import model.data.persistence.Site;
+import model.data.persistence.Sport;
 
 public class DPSManagement {
     private final DPSDAO dpsDAO = new DPSDAO();
@@ -25,6 +28,10 @@ public class DPSManagement {
         return this.dpsDAO.findById(id);
     }
 
+    public DPS getDpsByName(String nom) {
+        return this.dpsDAO.findByName(nom);
+    }
+
     public long numberOfDps(){
         return this.dpsDAO.findAll().size();
     }
@@ -39,5 +46,9 @@ public class DPSManagement {
 
     public ArrayList<DPS> getDpsByDay(long idDay) {
         return this.dpsDAO.findByDay(idDay);
+    }
+
+    public void updateDps(DPS dps) {
+        this.dpsDAO.updateDps(dps);
     }
 }

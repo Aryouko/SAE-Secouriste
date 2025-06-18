@@ -48,9 +48,9 @@ public class FenetreGestionController {
         staticFenetreGestion = fenetreGestion;
         loadContent1("/fxml/layoutmanager/MenuParallele.fxml");
         if (getInstanceAuthentificationManagement().isAdmin()) {
-            loadContent2("/fxml/adminwindow/DashboardEvent.fxml");
+            loadContent2("/fxml/admin/DashboardEvent.fxml");
         } else {
-            loadContent2("/fxml/commonwindow/DashboardCalendarAssignment.fxml");
+            loadContent2("/fxml/common/DashboardCalendarAssignment.fxml");
         }
     }
 
