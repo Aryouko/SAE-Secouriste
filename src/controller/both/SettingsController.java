@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import model.dao.AdministrateurDAO;
@@ -52,6 +53,9 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
     @FXML private CheckBox checkVPSP;
     @FXML private CheckBox checkPBC;
     @FXML private CheckBox checkPBF;
+    @FXML private Line line;
+    @FXML private Text compText;
+    @FXML private Text certifText;
     private byte[] nouvellePhoto;
 
 
@@ -62,6 +66,22 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
             admin = administrateurDAO.findById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
             if(getInstanceAuthentificationManagement().isAdmin()){
                 prenomNomParam.setText(admin.getPrenom() + " " + admin.getNom());
+                if (admin.getPhoto() != null) {
+                    Image image = new Image(new ByteArrayInputStream(admin.getPhoto()));
+                    pdpParamCircle.setFill(new ImagePattern(image));
+                }
+                checkPSE1.setVisible(false);
+                checkPSE2.setVisible(false);
+                checkCE.setVisible(false);
+                checkCP.setVisible(false);
+                checkCO.setVisible(false);
+                checkSSA.setVisible(false);
+                checkVPSP.setVisible(false);
+                checkPBC.setVisible(false);
+                checkPBF.setVisible(false);
+                line.setVisible(false);
+                compText.setVisible(false);
+                certifText.setVisible(false);
             } else {
                 prenomNomParam.setText(sec.getPrenom() + " " + sec.getNom());
                 if (sec.getPhoto() != null) {
@@ -82,7 +102,7 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
                 checkVPSP.setSelected(possession.getCompetencesSec().stream().anyMatch(c -> "VPSP".equals(c.getIntitule())));
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+
         }
 
         // Définir les dépendances "vers le bas" (cocher les prérequis)

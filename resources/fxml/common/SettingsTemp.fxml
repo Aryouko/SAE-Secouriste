@@ -12,9 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="settingsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1444.0" style="-fx-background-radius: 25; -fx-background-color: white; -fx-border-radius: 25;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.SettingsController">
+<AnchorPane fx:id="settingsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="961.0" prefWidth="1444.0" style="-fx-background-radius: 30; -fx-background-color: white; -fx-border-radius: 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.SettingsController">
     <children>
-        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1444.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #FEB0B0, #A80037); -fx-background-radius: 25 25 0 0;">
+        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1444.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #FEB0B0, #A80037); -fx-background-radius: 30 30 0 0;">
             <children>
                 <Button layoutX="1359.0" layoutY="29.0" mnemonicParsing="false" onAction="#fermerClicked" style="-fx-background-color: transparent; -fx-border-radius: 100; -fx-background-radius: 100;" stylesheets="@../../css/button.css">
                <graphic>
@@ -58,12 +58,12 @@
                 <Font size="14.0" />
             </font>
         </Text>
-        <Text layoutX="166.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Certifications">
+        <Text fx:id="certifText" layoutX="166.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Certifications">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Text>
-        <Text layoutX="166.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quelles sont vos compétences ?">
+        <Text fx:id="compText" layoutX="166.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quelles sont vos compétences ?">
             <font>
                 <Font size="14.0" />
             </font>
@@ -121,7 +121,7 @@
         </Button>
         <Line endX="1260.0" endY="400.0" startX="166.0" startY="400.0" />
       <Line endX="1260.0" endY="520.0" startX="166.0" startY="520.0" />
-      <Line endX="1260.0" endY="700.0" startX="166.0" startY="700.0" />
+      <Line fx:id="line" endX="1260.0" endY="700.0" startX="166.0" startY="700.0" />
       <Line endX="1260.0" endY="900.0" startX="166.0" startY="900.0" />
     </children>
 </AnchorPane>
