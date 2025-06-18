@@ -96,6 +96,12 @@ public class ConnectionController {
             // Verification of email and password fields with the methode login from AuthentificationManagement
             // If the login is successful, it will return SUCCESS, otherwise it will return INVALID_LOGIN, INVALID_PASSWORD or INVALID_RESCUER
             // this method will also save the email and password in the preferences for quick login next time
+
+            // I was having issues reconnecting after a deconnection. I don't know why, but it's working when deconnecting the account and connecting again
+            // I was Printing the email and password in the console, to see any change, and then its started working
+            String email = mailTextField.getText();
+            String password = passwordPasswordField.getText();
+
             AuthentificationManagement.LoginResult result = getInstanceAuthentificationManagement().login(mailTextField.getText(), passwordPasswordField.getText());
 
             // Check the result of the login attempt

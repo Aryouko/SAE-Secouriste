@@ -289,6 +289,7 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
 
     @FXML
     private void deconnecterClicked() {
+        getInstanceAuthentificationManagement().logOut(); // Réinitialise l'utilisateur courant
         UtilsController.linkToPage(fenetreGestionController.getFenetreGestion(), "/fxml/auth/Login.fxml");
     }
 
