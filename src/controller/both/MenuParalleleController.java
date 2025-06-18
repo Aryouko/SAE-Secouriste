@@ -2,8 +2,6 @@ package controller.both;
 
 import controller.admin.EvenementController;
 import controller.admin.FenetreGestionController;
-import controller.admin.FenetreGestionInjectable;
-import controller.both.MenuParalleleInjectable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -45,8 +43,6 @@ public class MenuParalleleController {
                 fenetreGestionController.loadContent2("/fxml/commonwindow/SettingsTemp.fxml");
                 setRow(1, "/fxml/commonwindow/DisplayCalendarDisponibilites.fxml");
                 setRow(2, null);
-
-
             }
         } else {
             isOpenSettings = false;
@@ -85,12 +81,8 @@ public class MenuParalleleController {
                     injectable.setMenuParalleleController(this);
                 }
 
-                if (controller instanceof ProfilController) {
-                    ((ProfilController) controller).setMenuParalleleController(this);
-                } else if (controller instanceof EvenementController) {
+                if (controller instanceof EvenementController) {
                     this.evenementController = (EvenementController) controller;
-                } else if (controller instanceof SettingsController) {
-                    ((SettingsController) controller).setMenuParalleleController(this);
                 }
 
                 composentGrid.add(node, 0, rowIndex);
@@ -102,10 +94,6 @@ public class MenuParalleleController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public GridPane getComposentGrid() {
-        return composentGrid;
     }
 
     public EvenementController getEvenementController() {

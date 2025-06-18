@@ -1,5 +1,6 @@
 package model.graph;
 
+import model.dao.CompetenceDAO;
 import model.data.persistence.Competence;
 import model.data.persistence.Necessite;
 
@@ -46,6 +47,12 @@ public class MatrixUtils {
     }
 
 
+
+
+
+
+
+
     /**
      * Create the Adjacency Matrix of a Map
      *
@@ -57,8 +64,6 @@ public class MatrixUtils {
         int n = MapSkillToHisInt.size();
         int[][] matrix = new int[n][n];
 
-        // Flemme d'écrire la suite en Anglais :
-        // ForEach renvoie type BiConsumer : En gros, on interagit avec une methode sur une deux arguments (par exemple key, values). c'est une boucle forEach pour un dico
         skillDependencies.forEach((key, values) -> {
             for (int val : values) {
                 matrix[key][val] = 1 ;
@@ -82,5 +87,44 @@ public class MatrixUtils {
 
     public Map<Competence, Integer> getMapSkillToHisInt() {
         return this.MapSkillToHisInt ;
+    }
+
+    /**
+     * Build all superior dependencies for each competence
+     *
+     * @param competences List of competences
+     * @param necessites  List of necessites defining dependencies
+     * @return Map where each competence is associated with a list of its superior competences
+     */
+    public Map<Competence, List<Competence>> buildAllSuperiorDependencies(List<Competence> competences, List<Necessite> necessites) {
+        Map<Competence, List<Competence>> result = new HashMap<>();
+        for (Competence c : competences) {
+            Set<Competence> visited = new HashSet<>();
+            List<Competence> superiors = getAllSuperiors(c, necessites, visited);
+            result.put(c, superiors);
+        }
+        return result;
+    }
+
+    /**
+     * Recursively retrieves all superiors of a competence.
+     *
+     * @param c         The competence for which to find superiors
+     * @param necessites List of dependencies (necessites)
+     * @param visited   Set to track already visited competences to avoid cycles
+     * @return List of all superiors of the given competence
+     */
+    private List<Competence> getAllSuperiors(Competence c, List<Necessite> necessites, Set<Competence> visited) {
+        List<Competence> superiors = new ArrayList<>();
+        for (Necessite n : necessites) {
+            if (n.getComp1().equals(c)) {
+                Competence sup = n.getComp2();
+                if (visited.add(sup)) { // évite les cycles
+                    superiors.add(sup);
+                    superiors.addAll(getAllSuperiors(sup, necessites, visited));
+                }
+            }
+        }
+        return superiors;
     }
 }

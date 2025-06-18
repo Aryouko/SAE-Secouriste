@@ -1,4 +1,4 @@
-package controller.both;
+package controller.notif;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -18,45 +18,93 @@ import static controller.admin.FenetreGestionController.removeOverlay;
 import static controller.admin.FenetreGestionController.showOverlay;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
+/**
+ * Controller for the popup notification form.
+ * This class handles the creation of new notifications.
+ */
+public class PopupNotificationFormController {
 
-public class NotificationFormController {
-
+    /**
+     * Current date and time, used for the notification timestamp.
+     */
     private LocalDateTime now = LocalDateTime.now();
+
+    // Services
+
+    /**
+     * Instance of AuthentificationManagement to handle user authentication.
+     */
     private final AuthentificationManagement auth = getInstanceAuthentificationManagement();;
+
+    /**
+     * Instance of DPSManagement to manage DPS-related data.
+     */
     private final DPSManagement dpsMana = new DPSManagement();
+
+    /**
+     * Instance of NotificationManagement to handle notification operations.
+     */
     private final NotificationManagement notificationManagement = new NotificationManagement();
 
-    // FORM
+    /**
+     * FXML elements for the notification form.
+     */
     @FXML
     private TextField subjectTextField;
+
+    /**
+     * Label to display the current date and time.
+     */
     @FXML
     private Label dateTextlabel;
+
+    /**
+     * Label to display the sender's name.
+     */
     @FXML
     private Label fromTextlabel;
+
+    /**
+     * Text area for the notification message.
+     */
     @FXML
     private TextArea messageTextArea;
+
+    /**
+     * ComboBox to select the DPS to which the notification will be sent.
+     */
     @FXML
     private ComboBox<String> dpsComboBox;
+
+    /**
+     * AnchorPane for the notification form layout.
+     */
     @FXML
     private AnchorPane notificationFormAnchorPane;
+
+    /**
+     * Button to close the notification form.
+     */
     @FXML
     private Button closeButtonNotificationForm;
 
+    /**
+     * Initializes the notification form by setting up the date, sender, and DPS options.
+     */
     @FXML
     public void initialize() {
-        showOverlay();
-        notificationFormAnchorPane.getStylesheets().add(getClass().getResource("/css/errors.css").toExternalForm());
+        showOverlay(); // Show the overlay when the form is initialized ( background dimming )
+        notificationFormAnchorPane.getStylesheets().add(getClass().getResource("/css/errors.css").toExternalForm()); // Load the CSS for error styling
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH'h'mm d MMMM", Locale.FRENCH);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH'h'mm d MMMM", Locale.FRENCH); // Define the date format for the notification timestamp
         String formatted = now.format(formatter);
         dateTextlabel.setText(formatted);
 
-        String UserName = auth.getCurrentUserName();
+        String UserName = auth.getCurrentUserName(); // Get the current user's name from the authentication management
         System.out.println("UserName: " + UserName);
         fromTextlabel.setText(UserName);
 
-        dpsComboBox.setItems(FXCollections.observableArrayList(dpsMana.getDpsName()));
-
+        dpsComboBox.setItems(FXCollections.observableArrayList(dpsMana.getDpsName())); // Populate the ComboBox with DPS names from the DPS management service
     }
 
     /**
@@ -65,7 +113,7 @@ public class NotificationFormController {
     public void sendMessage() {
         boolean valid = true;
 
-        // Sujet
+        // Subject
         if (subjectTextField.getText() == null || subjectTextField.getText().trim().isEmpty()) {
             if (!subjectTextField.getStyleClass().contains("field-error")) {
                 subjectTextField.getStyleClass().add("field-error");
@@ -110,7 +158,9 @@ public class NotificationFormController {
     }
 
 
-
+    /**
+     * Closes the notification form and removes the overlay.
+     */
     @FXML
     private void closeNotificationForm() {
         removeOverlay();

@@ -1,10 +1,7 @@
 package model.graph;
 
 import model.dao.*;
-import model.data.persistence.Competence;
-import model.data.persistence.DPS;
-import model.data.persistence.Journee;
-import model.data.persistence.Secouriste;
+import model.data.persistence.*;
 
 import java.util.*;
 
@@ -19,26 +16,22 @@ public class AssignmentExhaustive {
      */
     private final HashMap<Competence, Secouriste> affectation;
 
+    private final MatrixUtils matrixUtils = new MatrixUtils();
+
+
     /**
      * Dépendances entre compétences, indiquant quelles compétences sont supérieures à d'autres.
      */
-    private final Map<Competence, List<Competence>> dependencies = new HashMap<>();
+    private Map<Competence, List<Competence>> dependencies;
 
     /**
      * Initialise les dépendances entre compétences (compétences "supérieures" pour chaque compétence).
      */
     private void initDependencies() {
-        // Pour chaque compétence, on liste ses compétences "supérieures"
-        dependencies.put(getCompetence("PSE1"), List.of(getCompetence("PSE2"), getCompetence("SSA")));
-        dependencies.put(getCompetence("PSE2"), List.of(getCompetence("CE"), getCompetence("VPSP")));
-        dependencies.put(getCompetence("CE"), List.of(getCompetence("CP")));
-        dependencies.put(getCompetence("CP"), List.of(getCompetence("CO")));
-        dependencies.put(getCompetence("PBC"), List.of(getCompetence("PBF")));
-        // Les compétences max sans supérieures
-        dependencies.put(getCompetence("SSA"), List.of());
-        dependencies.put(getCompetence("VPSP"), List.of());
-        dependencies.put(getCompetence("CO"), List.of());
-        dependencies.put(getCompetence("PBF"), List.of());
+        List<Necessite> necessites = new NecessiteDAO().findAll();
+        List<Competence> competences = new CompetenceDAO().findAll();
+
+        this.dependencies = matrixUtils.buildAllSuperiorDependencies(competences, necessites);
     }
 
     /**

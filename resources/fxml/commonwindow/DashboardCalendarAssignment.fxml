@@ -53,21 +53,21 @@
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <GridPane alignment="CENTER" vgap="10.0">
+                        <GridPane alignment="CENTER" prefHeight="40.0" vgap="10.0" GridPane.vgrow="ALWAYS">
                           <columnConstraints>
-                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button fx:id="todayButton1" mnemonicParsing="false" onAction="#TodayButtonClicked" prefHeight="55.0" prefWidth="166.0" style="-fx-background-color: #EBF0F6; -fx-background-radius: 10;" stylesheets="@../../css/button.css" text="Aujourd'hui">
+                              <Button fx:id="todayButton1" mnemonicParsing="false" onAction="#TodayButtonClicked" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #EBF0F6; -fx-background-radius: 10;" styleClass="light-button" stylesheets="@../../css/button.css" text="Aujourd'hui">
                                  <font>
-                                    <Font name="Poppins Regular" size="23.0" />
+                                    <Font name="Poppins Regular" size="15.0" />
                                  </font>
                               </Button>
                               <Button fx:id="gestionButton" disable="true" mnemonicParsing="false" onAction="#retourGestion" prefHeight="55.0" prefWidth="170.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" text="Gestion" textFill="WHITE" visible="false" GridPane.rowIndex="1">
@@ -75,9 +75,9 @@
                                     <Font name="Poppins Regular" size="24.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="planButton" mnemonicParsing="false" onAction="#showPlan" prefHeight="55.0" prefWidth="166.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" stylesheets="@../../css/button.css" text="Plan" textFill="WHITE" GridPane.rowIndex="1">
+                              <Button fx:id="planButton" mnemonicParsing="false" onAction="#showPlan" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" stylesheets="@../../css/button.css" text="Plan" textFill="WHITE" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Poppins Regular" size="23.0" />
+                                    <Font name="Poppins Regular" size="15.0" />
                                  </font>
                               </Button>
                            </children>
