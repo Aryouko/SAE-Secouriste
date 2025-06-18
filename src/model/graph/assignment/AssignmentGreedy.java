@@ -36,7 +36,7 @@ public class   AssignmentGreedy {
      *
      * @param dps - a DPS (First Aid Post)
      */
-    public ArrayList<Secouriste> AssignmentRescuersGreedy(DPS dps){
+    public void AssignmentRescuersGreedy(DPS dps){
 
         if (dps == null) {
             throw new IllegalArgumentException("L'argument est null");
@@ -47,7 +47,7 @@ public class   AssignmentGreedy {
             throw new IllegalArgumentException("L'argument est null");
         }
 
-        ArrayList<Secouriste> secouristesAssignement = new ArrayList<>();
+
         Journee journee = dps.getJournee();
         List<Secouriste> secouristes = secouristesDisponible(journee);
 
@@ -72,7 +72,10 @@ public class   AssignmentGreedy {
                         }
                     }
                 } else {
+                    /*
+                    ArrayList<Secouriste> secouristesAssignement = new ArrayList<>();
                     secouristesAssignement.add(secouristeSelect);
+                    */
 
                     Affectation affectation = new Affectation(secouristeSelect, dps, competenceSelect);
                     if (!this.affectationManagement.isExist(affectation)) {
@@ -85,7 +88,6 @@ public class   AssignmentGreedy {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return secouristesAssignement;
     }
 
     /**

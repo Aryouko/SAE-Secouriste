@@ -3,6 +3,7 @@ import model.dao.AffectationDAO;
 import model.data.persistence.Affectation;
 import model.data.persistence.DPS;
 import model.data.persistence.Secouriste;
+import model.graph.assignment.AssignmentExhaustive;
 import model.graph.assignment.AssignmentGreedy;
 
 import java.io.FileWriter;
@@ -89,8 +90,12 @@ public class AffectationManagement {
      *
      * @param dps The DPS for which the assignment is to be made.
      */
-    public void launchAffectation(DPS dps) {
-        new AssignmentGreedy().AssignmentRescuersGreedy(dps);
+    public void launchAffectation(DPS dps, boolean greedy) {
+        if (greedy) {
+            new AssignmentGreedy().AssignmentRescuersGreedy(dps);
+        } else {
+            new AssignmentExhaustive().AssignmentRescuersExhaustive(dps);
+        }
     }
 
     /**
