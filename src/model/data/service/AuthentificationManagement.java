@@ -24,7 +24,7 @@ public class AuthentificationManagement {
     /**
      * This class manages the authentication of users.
      */
-    private final UserDAO userDAO;
+    private UserDAO userDAO;
 
     /**
      * Code for password recovery.
@@ -101,6 +101,11 @@ public class AuthentificationManagement {
      * @return LoginResult indicating the result of the login attempt.
      */
     public LoginResult login(String mail, String password) {
+        // Toujours réinitialiser l'état avant une tentative de connexion
+        this.user = null;
+        this.secouriste = null;
+
+
         try {
             User user = userDAO.getUserByLogin(mail);
             if (user == null) {
@@ -109,9 +114,7 @@ public class AuthentificationManagement {
             if (!verifyPassword(password, user.getPassword())) {
                 return LoginResult.INVALID_PASSWORD;
             }
-
             this.user = user; // Affecte l'utilisateur courant avant de vérifier le secouriste
-
             if( "administrator".equals(user.getRole())) {
                 return LoginResult.SUCCESS;
             } else {
@@ -119,12 +122,14 @@ public class AuthentificationManagement {
                     this.secouriste = getSecouristeDAO().findById(this.user.getIdUser());
                     return LoginResult.SUCCESS;
                 } else {
+                    this.user = null;
+                    this.secouriste = null;
                     return LoginResult.INVALID_RESCUER;
                 }
             }
-
         } catch (Exception e) {
             this.user = null;
+            this.secouriste = null;
             System.err.println("Erreur lors de la connexion : " + e.getMessage());
             return LoginResult.ERROR;
         }
@@ -211,6 +216,20 @@ public class AuthentificationManagement {
     }
 
 
+    /**
+     * Get the current rescuer loaded
+     *
+     * @return the rescuer
+     */
+    public void logOut() {
+        this.user = null;
+        this.secouriste = null;
+    }
+
+
+
+
+
     public String getCurrentUserName() {
         if (user == null) {
             return "Vous n'êtes pas connecté";
@@ -235,4 +254,3 @@ public class AuthentificationManagement {
         this.userDAO.changeRoleById(currentUser.getIdUser(), role);
     }
 }
-
