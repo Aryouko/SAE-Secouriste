@@ -9,7 +9,6 @@ import model.data.service.SecouristeManagement;
 import model.data.service.PossessionManagement;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,7 +22,7 @@ public class   AssignmentGreedy {
 
     private final CompetenceDAO competenceDAO = new CompetenceDAO() ;
 
-    private ArrayList<String> competences = (ArrayList<String>) competenceDAO.findAllIntitule();
+    private final ArrayList<String> competences = competenceDAO.findAllIntitule();
 
     private final BesoinManagement besoinManagement = new BesoinManagement();
 
@@ -40,7 +39,7 @@ public class   AssignmentGreedy {
      *
      * @param dps - a DPS (First Aid Post)
      */
-    public ArrayList<Secouriste> AssignmentRescuersGreedy(DPS dps){
+    public void assignmentRescuersGreedy(DPS dps){
 
         if (dps == null) {
             throw new IllegalArgumentException("L'argument est null");
@@ -89,7 +88,6 @@ public class   AssignmentGreedy {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return secouristesAssignement;
     }
 
     /**
