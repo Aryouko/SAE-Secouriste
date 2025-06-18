@@ -21,7 +21,7 @@ public class GestionMapController implements FenetreGestionInjectable {
     @FXML
     public void initialize() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/commonwindow/map/Map.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/common/map/Map.fxml"));
             AnchorPane page = loader.load();
             carteFlowPane.getChildren().setAll(page);
 
@@ -39,12 +39,12 @@ public class GestionMapController implements FenetreGestionInjectable {
 
     @FXML
     public void evenementButton() {
-        fenetreGestionController.loadContent2("/fxml/adminwindow/DashboardEvent.fxml");
+        fenetreGestionController.loadContent2("/fxml/admin/DashboardEvent.fxml");
     }
 
     @FXML
     public void calendarAssignment() {
-        fenetreGestionController.loadContent2("/fxml/commonwindow/DashboardCalendarAssignment.fxml");
+        fenetreGestionController.loadContent2("/fxml/common/DashboardCalendarAssignment.fxml");
     }
 
 

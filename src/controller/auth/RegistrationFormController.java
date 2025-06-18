@@ -119,7 +119,7 @@ public class RegistrationFormController {
             if (getInstanceAuthentificationManagement().createRescuer(getInstanceAuthentificationManagement().getCurrentUser().getIdUser(), name, forename, birthdate, phoneNumber, address,  null)) {
                 // Show success message
                 showInfo("Informations du secouriste enregistrées avec succès !");
-                linkToPage(pageRegistrationForm, "/fxml/auth/Connection.fxml");
+                linkToPage(pageRegistrationForm, "/fxml/auth/Login.fxml");
             } else {
                 showError("Impossible de créer le secouriste. Veuillez vérifier vos informations.");
             }

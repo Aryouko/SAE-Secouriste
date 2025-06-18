@@ -13,9 +13,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 35; -fx-border-width: 3; -fx-border-radius: 35;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.PopupUpdateDpsController">
+<AnchorPane  fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 35; -fx-border-width: 3; -fx-border-radius: 35;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.FenetreAjoutDPSController">
    <children>
-      <Label layoutX="25.0" layoutY="21.0" prefHeight="54.0" prefWidth="389.0" stylesheets="@../../css/style.css" text="Modification d'un DPS">
+      <Label layoutX="25.0" layoutY="21.0" prefHeight="47.0" prefWidth="324.0" stylesheets="@../../css/main.css" text="Création d'un DPS">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -38,27 +38,27 @@
                   <Insets left="15.0" />
                </GridPane.margin>
             </TextField>
-            <Label prefHeight="34.0" prefWidth="134.0" stylesheets="@../../css/style.css" text="Nom :" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+            <Label prefHeight="34.0" prefWidth="134.0" stylesheets="@../../css/main.css" text="Nom :" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label prefHeight="34.0" prefWidth="134.0" stylesheets="@../../css/style.css" text="Horaires :" GridPane.rowIndex="1">
+            <Label prefHeight="34.0" prefWidth="134.0" stylesheets="@../../css/main.css" text="Horaires :" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label prefHeight="34.0" prefWidth="134.0" stylesheets="@../../css/style.css" text="Site :" GridPane.rowIndex="2">
+            <Label prefHeight="34.0" prefWidth="134.0" stylesheets="@../../css/main.css" text="Site :" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label prefHeight="34.0" prefWidth="134.0" stylesheets="@../../css/style.css" text="Sport :" GridPane.rowIndex="3">
+            <Label prefHeight="34.0" prefWidth="134.0" stylesheets="@../../css/main.css" text="Sport :" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label prefHeight="34.0" prefWidth="134.0" stylesheets="@../../css/style.css" text="Jour :" GridPane.rowIndex="4">
+            <Label prefHeight="34.0" prefWidth="134.0" stylesheets="@../../css/main.css" text="Jour :" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -92,7 +92,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label prefHeight="34.0" prefWidth="0.0" stylesheets="@../../css/style.css" text="à" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                  <Label prefHeight="34.0" prefWidth="0.0" stylesheets="@../../css/main.css" text="à" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -126,7 +126,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#updateDPS" prefHeight="63.0" prefWidth="179.0" style="-fx-background-color: #0C0D0F; -fx-background-radius: 15;" stylesheets="@../../css/button.css" text="Valider" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#affectDPS" prefHeight="63.0" prefWidth="179.0" style="-fx-background-color: #0C0D0F; -fx-background-radius: 15;" stylesheets="@../../css/button.css" text="Ajouter" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -250,7 +250,7 @@
             </ComboBox>
          </children>
       </GridPane>
-      <Label layoutX="385.0" layoutY="141.0" prefHeight="35.0" prefWidth="375.0" text="Compétences à retirer/ajouter">
+      <Label layoutX="420.0" layoutY="141.0" text="Compétences requises : ">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

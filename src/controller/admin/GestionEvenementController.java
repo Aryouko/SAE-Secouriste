@@ -305,24 +305,24 @@ public class GestionEvenementController implements FenetreGestionInjectable {
 
     @FXML
     public void GestionSecouristeButton() {
-        this.fenetreGestionController.loadContent2("/fxml/adminwindow/DashboardRescuer.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/admin/DashboardRescuer.fxml");
     }
 
     @FXML
     private void calendarAssignment() {
-        this.fenetreGestionController.loadContent2("/fxml/commonwindow/calendarAssignment.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/common/calendarAssignment.fxml");
     }
 
     @FXML
     private void carteLink() {
-        this.fenetreGestionController.loadContent2("/fxml/commonwindow/map/DashboardMap.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/common/map/DashboardMap.fxml");
     }
 
     @FXML
     public void CreationDPSButton() {
         StackPane overlay = showOverlay();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/PopupAddDps.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupAddDps.fxml"));
             Parent overlayContent = loader.load();
             FenetreAjoutDPSController controller = loader.getController();
             controller.initializeGestionEvenementController(this);
@@ -350,7 +350,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
 
     private void supprDps(DPS dps) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/PopupDeleteDps.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupDeleteDps.fxml"));
             Parent overlayContent = loader.load();
 
             FenetreSupprDPSController controller = loader.getController();
@@ -368,7 +368,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
     private void modifAffect(DPS dps) {
         StackPane overlay = showOverlay();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminwindow/PopupUpdateDps.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupUpdateDps.fxml"));
             Parent overlayContent = loader.load();
             PopupUpdateDpsController controller = loader.getController();
 

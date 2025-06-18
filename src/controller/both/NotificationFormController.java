@@ -45,7 +45,7 @@ public class NotificationFormController {
     @FXML
     public void initialize() {
         showOverlay();
-        notificationFormAnchorPane.getStylesheets().add(getClass().getResource("/css/errors.css").toExternalForm());
+        notificationFormAnchorPane.getStylesheets().add(getClass().getResource("/css/error.css").toExternalForm());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH'h'mm d MMMM", Locale.FRENCH);
         String formatted = now.format(formatter);

@@ -36,7 +36,7 @@ public class ForgottenPasswordController {
      */
     @FXML
     private void linkToConnexion() {
-        linkToPage(pageForgotPassword, "/fxml/auth/Connection.fxml");
+        linkToPage(pageForgotPassword, "/fxml/auth/Login.fxml");
     }
 
     /**
