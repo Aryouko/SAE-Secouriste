@@ -1,6 +1,7 @@
 package controller.admin;
 
 import controller.both.MenuParalleleController;
+import controller.both.MenuParalleleInjectable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -88,11 +89,15 @@ public class FenetreGestionController {
             this.includePane2.getChildren().setAll(newContent);
 
             Object controller = loader.getController();
-            // Injection générique via l'interface
-            if (controller instanceof FenetreGestionInjectable injectable) {
-                injectable.setFenetreGestionController(this);
+
+            if (controller instanceof FenetreGestionInjectable fenetreGestioninjectable) {
+                fenetreGestioninjectable.setFenetreGestionController(this);
             }
-            // Cas particulier pour GestionEvenementController (double injection)
+
+            if (controller instanceof MenuParalleleInjectable menuParalleleInjectable) {
+                menuParalleleInjectable.setMenuParalleleController(this.menuParalleleController);
+            }
+
             if (controller instanceof GestionEvenementController gestionEvenementController) {
                 gestionEvenementController.setEvenementController(this.menuParalleleController.getEvenementController());
             }

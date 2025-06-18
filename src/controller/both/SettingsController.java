@@ -25,9 +25,10 @@ import java.util.*;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
-public class SettingsController implements FenetreGestionInjectable {
+public class SettingsController implements FenetreGestionInjectable, MenuParalleleInjectable {
 
     private FenetreGestionController fenetreGestionController;
+
     private final SecouristeManagement secouristeManagement = new SecouristeManagement();
     private final DisponibiliteManagement disponibiliteManagement = new DisponibiliteManagement();
     Secouriste sec;
@@ -251,8 +252,15 @@ public class SettingsController implements FenetreGestionInjectable {
 
     @FXML
     private void fermerClicked() {
+
+        if (fenetreGestionController != null) {
+            fenetreGestionController.loadContent2("/fxml/commonwindow/DashboardCalendarAssignment.fxml");
+        }
+
         if (menuParalleleController != null) {
             menuParalleleController.linkToSettings();
+        } else {
+            System.out.println("menuParalleleController est null !");
         }
     }
 
@@ -281,4 +289,3 @@ public class SettingsController implements FenetreGestionInjectable {
         this.menuParalleleController = menuParalleleController;
     }
 }
-
