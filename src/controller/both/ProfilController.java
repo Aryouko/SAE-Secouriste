@@ -18,7 +18,7 @@ import java.io.ByteArrayInputStream;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
-public class ProfilController {
+public class ProfilController implements MenuParalleleInjectable {
 
     @FXML
     Circle myCircle;
