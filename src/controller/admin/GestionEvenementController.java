@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static controller.admin.FenetreGestionController.showOverlay;
+import static model.utils.Settings.useGreedy;
 
 public class GestionEvenementController implements FenetreGestionInjectable {
 
@@ -337,7 +338,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
 
     private void majAffect(DPS dps) {
         try {
-            this.affectationManagement.launchAffectation(dps);
+            this.affectationManagement.launchAffectation(dps, useGreedy());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

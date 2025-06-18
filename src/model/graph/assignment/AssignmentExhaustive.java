@@ -2,178 +2,117 @@ package model.graph.assignment;
 
 import model.dao.*;
 import model.data.persistence.*;
+import model.data.service.*;
 import model.graph.utils.MatrixUtils;
 
 import java.util.*;
 
 /**
- * Classe AssignmentExhaustive - Cette classe réalise une affectation exhaustive des secouristes
- * aux compétences demandées dans un DPS donné, en tenant compte des compétences supérieures.
+ * Classe AssignmentExhaustive - Réalise une affectation exhaustive des secouristes aux compétences requises pour un DPS.
  */
 public class AssignmentExhaustive {
 
-    /**
-     * Map qui associe chaque compétence à un secouriste affecté.
-     */
-    private final HashMap<Competence, Secouriste> affectation;
-
-    private final MatrixUtils matrixUtils = new MatrixUtils();
-
-    /**
-     * Dépendances entre compétences, indiquant quelles compétences sont supérieures à d'autres.
-     */
+    private final Map<Competence, Secouriste> affectation = new HashMap<>();
+    private final Map<Competence, Secouriste> bestAffectation = new HashMap<>();
     private Map<Competence, List<Competence>> dependencies;
-
-    /**
-     * La meilleure affectation
-     */
-    private HashMap<Competence, Secouriste> bestAffectation = new HashMap<>();
-
-    /**
-     * Le max assigné
-     */
     private int maxAssigned = 0;
 
-    /**
-     * Initialise les dépendances entre compétences (compétences "supérieures" pour chaque compétence).
-     */
-    private void initDependencies(List<Competence> competences, List<Necessite> necessites) {
-        dependencies = matrixUtils.buildAllSuperiorDependencies(competences, necessites);
-    }
+    private final MatrixUtils matrixUtils = new MatrixUtils();
+    private final BesoinManagement besoinManagement = new BesoinManagement();
+    private final AffectationManagement affectationManagement = new AffectationManagement();
+    private final SecouristeManagement secouristeManagement = new SecouristeManagement();
+    private final JourneeManagement journeeManagement = new JourneeManagement();
+    private final PossessionManagement possessionManagement = new PossessionManagement();
+    private final NecessiteDAO necessiteDAO = new NecessiteDAO();
 
     /**
-     * Constructeur AssignmentExhaustive qui effectue l'affectation des secouristes aux compétences du DPS.
-     * @param dps - Le DPS à traiter (doit être non null)
-     * @param competences - Liste des compétences à affecter (doit être non null)
-     * @throws IllegalArgumentException si les arguments sont null ou si aucun secouriste disponible
-     * @throws IllegalStateException si aucune affectation possible n'a pu être trouvée
+     * Effectue l'affectation exhaustive.
+     * @param dps - Le DPS ciblé.
      */
-    public AssignmentExhaustive(DPS dps, List<Competence> competences, List<Necessite> necessites ) {
-        this.affectation = new HashMap<>();
+    public void AssignmentRescuersExhaustive(DPS dps) {
+        if (dps == null) throw new IllegalArgumentException("DPS null");
+
+        List<Competence> competences = besoinManagement.getBesoinByDPS(dps).getCompetences();
+        List<Necessite> necessites = necessiteDAO.findAll();
         initDependencies(competences, necessites);
-
-        if (dps == null || competences == null) {
-            throw new IllegalArgumentException("Arguments null");
-        }
 
         Journee journee = dps.getJournee();
         List<Secouriste> secouristes = secouristesDisponible(journee);
-        if (secouristes.isEmpty()) {
-            throw new IllegalArgumentException("Aucun secouriste disponible");
-        }
+        if (secouristes.isEmpty()) throw new IllegalArgumentException("Aucun secouriste disponible");
 
         HashSet<Secouriste> dejaAffectes = new HashSet<>();
 
         boolean success = backtrack(0, competences, secouristes, affectation, dejaAffectes);
 
-        if (!success || affectation.size() < competences.size()) {
-            if (bestAffectation.isEmpty()) {
-                throw new IllegalStateException("Aucune affectation possible");
-            } else {
-                affectation.clear();
-                affectation.putAll(bestAffectation);
+        Map<Competence, Secouriste> solution = success ? affectation : bestAffectation;
+        for (Map.Entry<Competence, Secouriste> entry : solution.entrySet()) {
+            Affectation a = new Affectation(entry.getValue(), dps, entry.getKey());
+            if (!affectationManagement.isExist(a)) {
+                affectationManagement.addAffectation(a);
+                besoinManagement.deleteBesoinByDPSAndCompetence(dps, entry.getKey());
             }
         }
     }
 
-    /**
-     * Algorithme de backtracking pour affecter récursivement chaque compétence à un secouriste disponible.
-     * @param index - Index courant dans la liste des compétences à affecter
-     * @param competences - Liste des compétences à affecter
-     * @param secouristes - Liste des secouristes disponibles
-     * @param affectationActuelle - Affectation en cours des compétences aux secouristes
-     * @param dejaAffectes - Ensemble des secouristes déjà affectés
-     * @return true si une affectation complète est trouvée, false sinon
-     */
-    private boolean backtrack(int index, List<Competence> competences, List<Secouriste> secouristes, HashMap<Competence, Secouriste> affectationActuelle, HashSet<Secouriste> dejaAffectes) {
+    private void initDependencies(List<Competence> competences, List<Necessite> necessites) {
+        dependencies = matrixUtils.buildAllSuperiorDependencies(competences, necessites);
+    }
 
+    private boolean backtrack(int index, List<Competence> competences, List<Secouriste> secouristes,
+                              Map<Competence, Secouriste> affectationActuelle, Set<Secouriste> dejaAffectes) {
         if (index == competences.size()) {
-            // Solution complète
             if (affectationActuelle.size() > maxAssigned) {
-                bestAffectation = new HashMap<>(affectationActuelle);
+                bestAffectation.clear();
+                bestAffectation.putAll(affectationActuelle);
                 maxAssigned = affectationActuelle.size();
             }
             return true;
         }
 
-        boolean foundAtLeastOne = false;
+        boolean found = false;
         Competence competence = competences.get(index);
 
         for (Secouriste s : secouristes) {
-            if (!dejaAffectes.contains(s)) {
-                List<Competence> competencesDuSecouriste = new PossessionDAO().find(s).getCompetencesSec();
-                if (possede(competencesDuSecouriste, competence)) {
-                    affectationActuelle.put(competence, s);
-                    dejaAffectes.add(s);
+            if (dejaAffectes.contains(s)) continue;
+            List<Competence> compSec = possessionManagement.getPossessionBySecouriste(s).getCompetencesSec();
+            if (possede(compSec, competence)) {
+                affectationActuelle.put(competence, s);
+                dejaAffectes.add(s);
 
-                    boolean result = backtrack(index + 1, competences, secouristes, affectationActuelle, dejaAffectes);
-                    foundAtLeastOne = result || foundAtLeastOne;
+                found |= backtrack(index + 1, competences, secouristes, affectationActuelle, dejaAffectes);
 
-                    affectationActuelle.remove(competence);
-                    dejaAffectes.remove(s);
-                }
+                affectationActuelle.remove(competence);
+                dejaAffectes.remove(s);
             }
         }
 
-        // Même si on n’a trouvé aucun secouriste pour cette compétence, on continue sans l’affecter
-        boolean result = backtrack(index + 1, competences, secouristes, affectationActuelle, dejaAffectes);
-        foundAtLeastOne = result || foundAtLeastOne;
-
-        return foundAtLeastOne;
+        found |= backtrack(index + 1, competences, secouristes, affectationActuelle, dejaAffectes);
+        return found;
     }
 
-    /**
-     * Vérifie si un secouriste possède une compétence donnée ou une compétence supérieure.
-     * @param competencesSec - Liste des compétences du secouriste
-     * @param cible - Compétence ciblée à vérifier
-     * @return true si la compétence ciblée ou une compétence supérieure est possédée, false sinon
-     */
     private boolean possede(List<Competence> competencesSec, Competence cible) {
-        // Si le secouriste possède exactement la compétence ciblée
-        if (competencesSec.contains(cible)) {
-            return true;
+        if (competencesSec.contains(cible)) return true;
+        List<Competence> sup = dependencies.getOrDefault(cible, new ArrayList<>());
+        for (Competence c : sup) {
+            if (possede(competencesSec, c)) return true;
         }
-
-        // Sinon, on regarde si le secouriste possède une compétence supérieure
-        List<Competence> compSup = dependencies.get(cible);
-        if (compSup != null) {
-            for (Competence sup : compSup) {
-                // Recursion : si la compétence supérieure elle-même a des superclasses
-                if (possede(competencesSec, sup)) {
-                    return true;
-                }
-            }
-        }
-
         return false;
     }
 
-    /**
-     * Retourne la map actuelle des affectations compétences -> secouristes.
-     * @return la map des affectations
-     */
-    public HashMap<Competence, Secouriste> getAffectation() {
-        return affectation;
-    }
-
-
-    /**
-     * Récupère la liste des secouristes disponibles pour une journée donnée, c’est-à-dire ceux
-     * qui ne sont pas déjà affectés ce jour-là.
-     * @param journee - la journée concernée
-     * @return la liste des secouristes disponibles
-     */
     private List<Secouriste> secouristesDisponible(Journee journee) {
-        List<Secouriste> secouristesJour = new SecouristeDAO().findByDay(new JourneeDAO().findIdByJour(journee.getJour(), journee.getMois(), journee.getAnnee()));
-        List<Secouriste> ret = new ArrayList<>();
-        for (Secouriste secouriste : secouristesJour) {
-            long idJournee = new JourneeDAO().findIdByJour(journee.getJour(), journee.getMois(), journee.getAnnee());
-            long idSecouriste = secouriste.getIdSecouriste();
-            if (!new AffectationDAO().rescuerThisDay(idJournee, idSecouriste)) {
-                ret.add(secouriste);
+        long idJournee = journeeManagement.getJourneeByJour(journee.getJour(), journee.getMois(), journee.getAnnee());
+        List<Secouriste> secouristesJour = secouristeManagement.findByIdJournee(idJournee);
+        List<Secouriste> disponibles = new ArrayList<>();
+
+        for (Secouriste s : secouristesJour) {
+            if (affectationManagement.rescuerAvailable(idJournee, s.getIdSecouriste())) {
+                disponibles.add(s);
             }
         }
+        return disponibles;
+    }
 
-        return ret;
+    public Map<Competence, Secouriste> getAffectation() {
+        return new HashMap<>(affectation);
     }
 }
