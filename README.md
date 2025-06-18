@@ -16,6 +16,8 @@
   - Vue mensuelle calendrier ( + keybinds pour le calendrier)
   - Peaufiner Map
   - font global
+  - Pop up settings
+  - btn setting à switch
 
 si on a le temps:
   - faire des keybinds pour les controllers
