@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 public class TestComparatifAffectation {
 
+    /*
     public static void main(String[] args) {
         int[] idsDps = {1, 2, 3}; // différents scénarios
 
@@ -47,4 +48,6 @@ public class TestComparatifAffectation {
             System.out.println("\n");
         }
     }
+    */
+
 }
