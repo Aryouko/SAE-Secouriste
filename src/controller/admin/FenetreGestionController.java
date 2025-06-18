@@ -138,5 +138,4 @@ public class FenetreGestionController {
             node instanceof StackPane && "fenetreGestionOverlay".equals(node.getId())
         );
     }
-
 }

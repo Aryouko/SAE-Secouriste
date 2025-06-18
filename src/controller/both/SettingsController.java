@@ -2,9 +2,9 @@ package controller.both;
 
 import controller.UtilsController;
 import controller.admin.FenetreGestionController;
+import controller.admin.FenetreGestionInjectable;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
@@ -25,7 +25,7 @@ import java.util.*;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
-public class SettingsController {
+public class SettingsController implements FenetreGestionInjectable {
 
     private FenetreGestionController fenetreGestionController;
     private final SecouristeManagement secouristeManagement = new SecouristeManagement();
@@ -38,8 +38,6 @@ public class SettingsController {
     private AnchorPane settingsPane;
     @FXML
     private AnchorPane notifPane;
-    @FXML
-    private Label jourLabel;
     @FXML
     private Text prenomNomProfile;
     @FXML
@@ -68,6 +66,7 @@ public class SettingsController {
     private CheckBox checkPBF;
     private byte[] nouvellePhoto;
     private boolean affichageNotif = false;
+    private MenuParalleleController menuParalleleController;
 
     private ArrayList<Competence> getSelectedCompetences() {
         ArrayList<Competence> competences = new ArrayList<>();
@@ -222,10 +221,7 @@ public class SettingsController {
         // Récupérer compétences sélectionnées
         ArrayList<Competence> competencesSelectionnees = getSelectedCompetences();
         Possession possession = new Possession(competencesSelectionnees, sec);
-
-        // Appeler la DAO pour insérer les compétences dans la table Possession
         PossessionDAO possessionDAO = new PossessionDAO();
-
         possessionDAO.deleteAllPossessionsForSecouriste(idSec);
         possessionDAO.insert(possession);
 
@@ -255,7 +251,9 @@ public class SettingsController {
 
     @FXML
     private void fermerClicked() {
-        UtilsController.linkToPage(settingsPane, "/fxml/layoutmanager/FenetreGestion.fxml");
+        if (menuParalleleController != null) {
+            menuParalleleController.linkToSettings();
+        }
     }
 
     @FXML
@@ -273,6 +271,14 @@ public class SettingsController {
     @FXML
     private void deconnecterClicked() {
         UtilsController.linkToPage(settingsPane, "/fxml/auth/Connection.fxml");
+    }
+
+    public void setFenetreGestionController(FenetreGestionController fenetreGestionController) {
+        this.fenetreGestionController = fenetreGestionController;
+    }
+
+    public void setMenuParalleleController(MenuParalleleController menuParalleleController) {
+        this.menuParalleleController = menuParalleleController;
     }
 }
 
