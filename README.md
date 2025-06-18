@@ -9,9 +9,17 @@
 
 # TO-DO
 
-- @c0w5lip: Peaufiner Map + Vue mensuelle calendrier ( + keybinds pour le calendrier) + font global + tests graphes
-- ?: faire des keybinds pour les controllers
-- ?: rendre évident ce qui est cliquable ou pas avec deso onHover sur les boutons etc
+
+- Thomas:
+  - graphes (tests + rapport)
+  - switch pour choisir la stratégie d'affectation (exhaustive ou gloutonne)
+  - Vue mensuelle calendrier ( + keybinds pour le calendrier)
+  - Peaufiner Map
+  - font global
+
+si on a le temps:
+  - faire des keybinds pour les controllers
+  - rendre évident ce qui est cliquable ou pas avec deso onHover sur les boutons etc
 
 # RENDU!
 
@@ -52,12 +60,9 @@ Int´egration dans l’application finale
 
 
 
+  
 
-
-
-
-
-DAO :
+# DAO :
 
 A quoi ca sert :
 Effectue les opérations CRUD (Create, Read, Update, Delete)

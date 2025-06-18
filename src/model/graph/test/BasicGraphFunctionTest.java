@@ -2,7 +2,7 @@ package model.graph.test;
 
 import model.data.persistence.Necessite;
 import model.dao.DAOFactory;
-import model.graph.GraphAlgorithms;
+import model.graph.GraphUtils;
 import model.graph.MatrixUtils;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class BasicGraphFunctionTest {
 
 
         // Teste si le graphe est orienté
-        boolean oriented = GraphAlgorithms.isOriented(adjacencyMatrix);
+        boolean oriented = GraphUtils.isOriented(adjacencyMatrix);
         System.out.println("Le graphe est orienté ? " + oriented);
     }
 }

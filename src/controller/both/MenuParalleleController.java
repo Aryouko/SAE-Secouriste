@@ -36,8 +36,9 @@ public class MenuParalleleController {
             if (getInstanceAuthentificationManagement().isAdmin()) {
 
                 fenetreGestionController.loadContent2("/fxml/common/SettingsTemp.fxml");
-                setRow(2, "/fxml/common/DisplayCalendarDisponibilites.fxml");
-                setRow(1, null);
+                setRow(0, "/fxml/common/DisplayProfil.fxml");
+                setRow(1, "/fxml/common/DisplayCalendar.fxml");
+                setRow(2, "/fxml/common/DisplayUpComingEvent.fxml");
             } else {
 
                 fenetreGestionController.loadContent2("/fxml/common/SettingsTemp.fxml");
