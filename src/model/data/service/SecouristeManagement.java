@@ -10,6 +10,9 @@ import java.io.File;
 import java.util.List;
 
 public class SecouristeManagement {
+
+    private static final SecouristeManagement instance = new SecouristeManagement();
+
     private final SecouristeDAO secouristeDAO = new SecouristeDAO();
 
     public List<Secouriste> getSecouristes() {
@@ -42,5 +45,9 @@ public class SecouristeManagement {
 
     public User getUserBySecouriste(Secouriste secouriste) {
         return this.secouristeDAO.findUserBySecouriste(secouriste);
+    }
+
+    public static SecouristeManagement getInstanceSecouristeManagement() {
+        return instance;
     }
 }

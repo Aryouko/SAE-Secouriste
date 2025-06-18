@@ -6,13 +6,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.scene.control.Label;
 import model.data.persistence.Affectation;
 import model.data.persistence.DPS;
+import model.data.persistence.Secouriste;
 import model.data.service.*;
 
 import java.time.LocalDate;
@@ -21,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static controller.UtilsController.showInfo;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
 /**
@@ -67,7 +69,7 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
      * ChoiceBox for selecting the view type.
      */
     @FXML
-    private ChoiceBox<String> calendarViewChoiceBox;
+    private ComboBox<String> calendarViewChoiceBox;
 
     @FXML
     private Button todayButton;
@@ -84,6 +86,9 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
 
     @FXML
     private Button planButton;
+
+    @FXML
+    private Button exportButton;
 
     /**
      * Initializes the controller: loads DPS list based on user role,
@@ -389,5 +394,12 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
     private void calendarViewChoiceBoxChanged(ActionEvent event) {
         String selected = calendarViewChoiceBox.getValue();
         System.out.println("Selected: " + selected);
+    }
+
+
+    @FXML
+    private void exportButtonClicked() {
+        affectationManagement.exportYourAffectationToCSV(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
+        showInfo("Exportation réussie");
     }
 }
