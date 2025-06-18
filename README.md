@@ -15,6 +15,7 @@
   - switch pour choisir la stratégie d'affectation (exhaustive ou gloutonne)
   - Vue mensuelle calendrier ( + keybinds pour le calendrier)
   - Peaufiner Map
+  - Focus de la carte mon gars
   - font global
 
 si on a le temps:
@@ -38,7 +39,7 @@ associations, des types des attributs lorsque ceux-ci ne sont pas ´evidents, et
 -  fichier texte contenant les commandes de compilation et d’ex´ecution de l’application. Ces
    commandes devront placer les fichiers compil´es dans un dossier nomm´e classes et les fichiers
    sources doivent ˆetre plac´es dans un dossier nomm´e sources
-- Un PDF justifiant les changements appliqu´es `a la maquette, s’il y en a
+- [x] Un PDF justifiant les changements appliqu´es `a la maquette, s’il y en a
 - Une courte vid´eo de d´emonstration de l’application, montrant un exemple pour chacune des
   op´erations CRUD, une d´emonstration de l’export de fichier et, ´eventuellement, une d´emonstration
   de l’affichage d’un graphique.
