@@ -6,7 +6,9 @@ import controller.admin.FenetreGestionInjectable;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -56,15 +58,22 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
     @FXML private Line line;
     @FXML private Text compText;
     @FXML private Text certifText;
+    @FXML private Pane colorPane;
+    @FXML private ImageView croix;
     private byte[] nouvellePhoto;
 
-
+    // linear-gradient(from 0% 0% to 100% 0%,  #FEB0B0, #A80037)
     @FXML
     public void initialize() {
         try {
             sec = secouristeManagement.getSecouristeById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
             admin = administrateurDAO.findById(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());
             if(getInstanceAuthentificationManagement().isAdmin()){
+                // Appliquer le fond dégradé pour l'admin
+                colorPane.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #BFB0FE, #3636E1); -fx-background-radius:  30 30 0 0;");
+                croix.setImage(new Image("../../images/CercleCroixBleue.png"));
+
+
                 prenomNomParam.setText(admin.getPrenom() + " " + admin.getNom());
                 if (admin.getPhoto() != null) {
                     Image image = new Image(new ByteArrayInputStream(admin.getPhoto()));
