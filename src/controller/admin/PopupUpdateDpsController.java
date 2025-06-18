@@ -15,7 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static controller.admin.FenetreGestionController.removeOverlay;
-import static model.utils.Settings.useGreedy;
 
 /**
  * Controller class for the DPS Addition Window.
@@ -572,7 +571,7 @@ public class PopupUpdateDpsController {
                 try {
                     this.besoinManagement.removeBesoin(new Besoin(dps, competencesRemove));
                     this.besoinManagement.addBesoin(new Besoin(dps, competencesAdd));
-                    this.affectationManagement.launchAffectation(dps, useGreedy());
+                    this.affectationManagement.launchAffectation(dps);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }

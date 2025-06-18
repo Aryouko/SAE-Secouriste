@@ -13,7 +13,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static controller.admin.FenetreGestionController.removeOverlay;
-import static model.utils.Settings.useGreedy;
 
 /**
  * Controller class for the DPS Addition Window.
@@ -518,7 +517,7 @@ public class FenetreAjoutDPSController {
                 Alert alert = alertBox();
                 try {
                     this.besoinManagement.addBesoin(new Besoin(dps, competences));
-                    this.affectationManagement.launchAffectation(dps, useGreedy());
+                    this.affectationManagement.launchAffectation(dps);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }

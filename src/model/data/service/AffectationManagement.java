@@ -5,6 +5,7 @@ import model.data.persistence.DPS;
 import model.data.persistence.Secouriste;
 import model.graph.assignment.AssignmentExhaustive;
 import model.graph.assignment.AssignmentGreedy;
+import model.utils.Settings;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 import static model.data.service.SecouristeManagement.getInstanceSecouristeManagement;
+import static model.utils.Settings.useGreedy;
 
 /**
  * Class allow to collect all affectation
@@ -90,8 +92,8 @@ public class AffectationManagement {
      *
      * @param dps The DPS for which the assignment is to be made.
      */
-    public void launchAffectation(DPS dps, boolean greedy) {
-        if (greedy) {
+    public void launchAffectation(DPS dps) {
+        if (useGreedy()) {
             new AssignmentGreedy().AssignmentRescuersGreedy(dps);
         } else {
             new AssignmentExhaustive().AssignmentRescuersExhaustive(dps);
