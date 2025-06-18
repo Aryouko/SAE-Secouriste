@@ -3,7 +3,7 @@ import model.dao.AffectationDAO;
 import model.data.persistence.Affectation;
 import model.data.persistence.DPS;
 import model.data.persistence.Secouriste;
-import model.graph.AssignmentGreedy;
+import model.graph.assignment.AssignmentGreedy;
 
 import java.util.List;
 
