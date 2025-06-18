@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -70,12 +69,12 @@
                                     <Font name="Poppins Regular" size="15.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="gestionButton" disable="true" mnemonicParsing="false" onAction="#retourGestion" prefHeight="55.0" prefWidth="170.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" text="Gestion" textFill="WHITE" visible="false" GridPane.rowIndex="1">
+                              <Button fx:id="gestionButton" disable="true" mnemonicParsing="false" onAction="#retourGestion" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" stylesheets="@../../css/button.css" text="Gestion" textFill="WHITE" visible="false" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Poppins Regular" size="24.0" />
+                                    <Font name="Poppins Regular" size="15.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="planButton" mnemonicParsing="false" onAction="#showPlan" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" stylesheets="@../../css/button.css" text="Plan" textFill="WHITE" GridPane.rowIndex="1">
+                              <Button fx:id="planButton" disable="true" mnemonicParsing="false" onAction="#showPlan" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" stylesheets="@../../css/button.css" text="Plan" textFill="WHITE" visible="false" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Poppins Regular" size="15.0" />
                                  </font>
@@ -93,10 +92,10 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <GridPane GridPane.columnIndex="1">
+                        <GridPane prefHeight="118.0" prefWidth="676.0" GridPane.columnIndex="1">
                           <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.80006408691406" minWidth="10.0" prefWidth="377.599951171875" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="439.400146484375" minWidth="10.0" prefWidth="247.2001953125" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="439.400146484375" minWidth="10.0" prefWidth="247.2001953125" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.7999267578125" minWidth="10.0" prefWidth="95.99980468750005" />
                           </columnConstraints>
                           <rowConstraints>
@@ -121,11 +120,15 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <ChoiceBox fx:id="calendarViewChoiceBox" onAction="#calendarViewChoiceBoxChanged" prefHeight="40.0" prefWidth="265.0" stylesheets="@../../css/button.css" GridPane.columnIndex="1">
-                                 <styleClass>
-                                    <String fx:value="dark-combo-box" />
-                                    <String fx:value="choice-box" />
-                                 </styleClass></ChoiceBox>
+                              <ComboBox fx:id="calendarViewChoiceBox" prefHeight="42.0" prefWidth="122.0" style="-fx-background-color: trensparent;" stylesheets="@../../css/button.css" GridPane.columnIndex="1" />
+                              <Button fx:id="exportButton" mnemonicParsing="false" onAction="#exportButtonClicked" prefHeight="40.0" prefWidth="226.0" style="-fx-background-color: #EBF0F6; -fx-background-radius: 10;" styleClass="light-button" stylesheets="@../../css/button.css" text="Exporter le calendrier">
+                                 <font>
+                                    <Font name="Poppins Regular" size="15.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="50.0" />
+                                 </GridPane.margin>
+                              </Button>
                            </children>
                         </GridPane>
                         <Label fx:id="dateLabel" prefHeight="63.0" prefWidth="478.0" GridPane.halignment="LEFT" GridPane.valignment="CENTER">

@@ -6,6 +6,9 @@ import javafx.scene.web.WebView;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 import static model.utils.FetchDatabaseCredentials.*;
 
@@ -52,22 +55,35 @@ public class MapController {
     private ArrayList<Location> fetchLocationsFromDB() {
         ArrayList<Location> locations = new ArrayList<>();
 
-        // Your MySQL connection settings here
         String url = getUrl();
         String user = getUsername();
         String password = getPassword();
 
-        String query = "SELECT nom, latitude, longitude FROM site";
+        String query = "SELECT name, latitude, longitude FROM site, dps WHERE site.code = dps.site";
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
+            Set<String> seenCoordinates = new HashSet<>();
+            Random rand = new Random();
+
             while (rs.next()) {
+                String name = rs.getString("name");
                 double latitude = rs.getDouble("latitude");
                 double longitude = rs.getDouble("longitude");
-                String nom = rs.getString("nom");
-                locations.add(new Location(latitude, longitude, nom));
+
+                String coordKey = latitude + "," + longitude;
+
+                // laisser un peu d'espace entre les coordonnées pour éviter la superposition
+                while (seenCoordinates.contains(coordKey)) {
+                    latitude += (rand.nextDouble() - 0.5) * 0.001;
+                    longitude += (rand.nextDouble() - 0.5) * 0.001;
+                    coordKey = latitude + "," + longitude;
+                }
+
+                seenCoordinates.add(coordKey);
+                locations.add(new Location(latitude, longitude, name));
             }
 
         } catch (SQLException e) {

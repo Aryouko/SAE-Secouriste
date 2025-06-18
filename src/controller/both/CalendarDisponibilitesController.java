@@ -51,8 +51,6 @@ public class CalendarDisponibilitesController {
 
     @FXML
     private void initialize() {
-        calendarAssignmentPane.setVisible(true);
-        calendarAssignmentPane.setMouseTransparent(true);
         LocalDate today = LocalDate.now();
         this.mois = today.getMonthValue();
         this.annee = today.getYear();

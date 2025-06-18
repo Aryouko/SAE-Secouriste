@@ -24,7 +24,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F9FCFF; -fx-background-radius: 30;" GridPane.rowIndex="1">
                <children>
-                  <FlowPane fx:id="carteFlowPane" layoutX="6.0" layoutY="-3.0" prefHeight="746.0" prefWidth="1434.0" />
+                  <FlowPane fx:id="carteFlowPane" columnHalignment="CENTER" layoutX="6.0" layoutY="-3.0" prefHeight="734.0" prefWidth="1426.0" prefWrapLength="390.0" />
                </children>
             </AnchorPane>
             <GridPane alignment="BOTTOM_CENTER" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0.3, 0, 2); -fx-background-color: #FFFFFF; -fx-background-radius: 30 30 0 0;">
@@ -56,12 +56,12 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="91.0" prefWidth="690.0" spacing="15.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#calendarAssignment" prefHeight="60.0" prefWidth="127.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" styleClass="dark-combo-box" stylesheets="@../../../css/button.css" text="Planning">
+                              <Button fx:id="planningButton" disable="true" mnemonicParsing="false" onAction="#calendarAssignment" prefHeight="60.0" prefWidth="127.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" styleClass="dark-combo-box" stylesheets="@../../../css/button.css" text="Planning" visible="false">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#evenementButton" prefHeight="59.0" prefWidth="346.0" style="-fx-background-color: #EBF0F6; -fx-background-radius: 10;" text="Gestion des événements">
+                              <Button fx:id="gestionButton" mnemonicParsing="false" onAction="#evenementButton" prefHeight="59.0" prefWidth="346.0" style="-fx-background-color: #EBF0F6; -fx-background-radius: 10;" text="Gestion des événements">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
