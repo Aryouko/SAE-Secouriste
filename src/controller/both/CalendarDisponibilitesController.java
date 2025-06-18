@@ -1,6 +1,8 @@
 package controller.both;
 
+import controller.admin.EvenementController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -12,6 +14,7 @@ import model.data.persistence.Journee;
 import model.data.service.SecouristeManagement;
 import model.data.service.DisponibiliteManagement;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -161,7 +164,7 @@ public class CalendarDisponibilitesController {
         boolean isToday = date.equals(today);
         boolean isDisponible = disponibilites.contains(date);
         if (isToday && isDisponible) {
-            dayLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: white; -fx-background-radius: 5;-fx-background-insets: 1; -fx-background-color: #30308f; -fx-font-size: 16px");
+            dayLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: white; -fx-background-radius: 5;-fx-background-insets: 1; -fx-background-color: #262673; -fx-font-size: 16px");
         } else if (isToday) {
             dayLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: white; -fx-background-radius: 5;-fx-background-insets: 1; -fx-background-color: #4A4AE4; -fx-font-size: 16px");
         } else if (isDisponible) {
@@ -224,11 +227,10 @@ public class CalendarDisponibilitesController {
                 Label l = entry.getKey();
                 LocalDate today = LocalDate.now();
                 boolean isToday = date.equals(today);
-                boolean isDisponible = disponibilites.contains(date);
                 if (isToday) {
-                    l.setStyle("-fx-font-weight: bold; -fx-text-fill: white; -fx-background-radius: 5; -fx-background-color: #7272ff; -fx-font-size: 16px");
+                    l.setStyle("-fx-font-weight: bold; -fx-text-fill: white; -fx-background-radius: 5; -fx-background-color: #777777; -fx-font-size: 16px");
                 } else {
-                    l.setStyle("-fx-padding: 0; -fx-background-color: #18191b; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 16px");
+                    l.setStyle("-fx-padding: 0; -fx-background-color: #777777; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 16px");
                 }
                 selectedLabels.add(l);
             }

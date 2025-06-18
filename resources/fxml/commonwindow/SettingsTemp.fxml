@@ -14,9 +14,9 @@
 
 <AnchorPane fx:id="settingsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1444.0" style="-fx-background-radius: 25; -fx-background-color: white; -fx-border-radius: 25;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.SettingsController">
     <children>
-        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1444.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #FEB0B0, #A80037); -fx-background-radius: 30 30 0 0;">
+        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1444.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #FEB0B0, #A80037); -fx-background-radius: 25 25 0 0;">
             <children>
-                <Button layoutX="1349.0" layoutY="45.0" mnemonicParsing="false" onAction="#fermerClicked" style="-fx-background-color: transparent; -fx-border-radius: 100; -fx-background-radius: 100;" stylesheets="@../../css/button.css">
+                <Button layoutX="1359.0" layoutY="29.0" mnemonicParsing="false" onAction="#fermerClicked" style="-fx-background-color: transparent; -fx-border-radius: 100; -fx-background-radius: 100;" stylesheets="@../../css/button.css">
                <graphic>
                         <ImageView fitHeight="43.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -68,7 +68,7 @@
                 <Font size="14.0" />
             </font>
         </Text>
-        <Button layoutX="500.0" layoutY="420.0" mnemonicParsing="false" onAction="#importerPdp" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #CCCCCC; -fx-background-radius: 100; -fx-border-radius: 100;">
+        <Button layoutX="500.0" layoutY="420.0" mnemonicParsing="false" onAction="#importerPdp" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #CCCCCC; -fx-background-radius: 100; -fx-border-radius: 100;" stylesheets="@../../css/button.css">
             <graphic>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>

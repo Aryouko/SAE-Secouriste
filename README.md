@@ -9,10 +9,9 @@
 
 # TO-DO
 
-- @c0w5lip: Map + Vue mensuelle calendrier + keybinds pour le calendrier
+- @c0w5lip: Peaufiner Map + Vue mensuelle calendrier ( + keybinds pour le calendrier) + font global + tests graphes
 - ?: faire des keybinds pour les controllers
 - ?: rendre évident ce qui est cliquable ou pas avec deso onHover sur les boutons etc
-- @c0w5lip: font global
 
 # RENDU!
 

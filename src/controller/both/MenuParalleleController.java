@@ -2,6 +2,8 @@ package controller.both;
 
 import controller.admin.EvenementController;
 import controller.admin.FenetreGestionController;
+import controller.admin.FenetreGestionInjectable;
+import controller.both.MenuParalleleInjectable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -41,8 +43,9 @@ public class MenuParalleleController {
             } else {
 
                 fenetreGestionController.loadContent2("/fxml/commonwindow/SettingsTemp.fxml");
-                setRow(1, null);
-                setRow(2, "/fxml/commonwindow/DisplayCalendarDisponibilites.fxml");
+                setRow(1, "/fxml/commonwindow/DisplayCalendarDisponibilites.fxml");
+                setRow(2, null);
+
 
             }
         } else {
@@ -71,14 +74,25 @@ public class MenuParalleleController {
             );
 
             if(fxmlPath != null) {
+
+
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
                 Node node = loader.load();
+
                 Object controller = loader.getController();
+                if (controller instanceof MenuParalleleInjectable injectable) {
+                    injectable.setMenuParalleleController(this);
+                }
+
                 if (controller instanceof ProfilController) {
                     ((ProfilController) controller).setMenuParalleleController(this);
                 } else if (controller instanceof EvenementController) {
                     this.evenementController = (EvenementController) controller;
+                } else if (controller instanceof SettingsController) {
+                    ((SettingsController) controller).setMenuParalleleController(this);
                 }
+
                 composentGrid.add(node, 0, rowIndex);
                 GridPane.setHalignment(node, javafx.geometry.HPos.CENTER);
                 GridPane.setValignment(node, javafx.geometry.VPos.BOTTOM);

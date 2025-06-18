@@ -35,7 +35,7 @@ public class FenetreSetAdminSecouristeController {
 
     @FXML
     public void setAdmin() {
-        Administrateur newAdmin = new Administrateur(this.secouriste.getIdSecouriste(), this.secouriste.getNom(), this.secouriste.getPrenom(), this.secouriste.getDateNaissance(), this.secouriste.getTel(), this.secouriste.getAdresse());
+        Administrateur newAdmin = new Administrateur(this.secouriste.getIdSecouriste(), this.secouriste.getNom(), this.secouriste.getPrenom(), this.secouriste.getDateNaissance(), this.secouriste.getTel(), this.secouriste.getAdresse(), this.secouriste.getPhoto());
         this.administrateurManagement.addAdministrateur(newAdmin);
 
         for (Affectation affectation : this.affectationManagement.getAffectationsByRescuer(this.secouriste)) {
