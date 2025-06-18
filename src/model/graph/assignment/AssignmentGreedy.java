@@ -1,4 +1,4 @@
-package model.graph;
+package model.graph.assignment;
 
 import model.dao.CompetenceDAO;
 import model.data.persistence.*;
@@ -9,7 +9,6 @@ import model.data.service.SecouristeManagement;
 import model.data.service.PossessionManagement;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -20,10 +19,7 @@ import java.util.List;
  * @version 1.0
  */
 public class   AssignmentGreedy {
-
-    private final CompetenceDAO competenceDAO = new CompetenceDAO() ;
-
-    private ArrayList<String> competences = (ArrayList<String>) competenceDAO.findAllIntitule();
+    private final ArrayList<String> competences = new CompetenceDAO().findAllIntitule();
 
     private final BesoinManagement besoinManagement = new BesoinManagement();
 
