@@ -4,8 +4,11 @@ import controller.admin.FenetreGestionController;
 import controller.admin.FenetreGestionInjectable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+
+import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
 public class GestionMapController implements FenetreGestionInjectable {
 
@@ -16,11 +19,26 @@ public class GestionMapController implements FenetreGestionInjectable {
     @FXML
     private AnchorPane gestionCarte;
 
+    @FXML
+    private Button planningButton;
+
+    @FXML
+    private Button gestionButton;
+
+
     private FenetreGestionController fenetreGestionController;
 
     @FXML
     public void initialize() {
         try {
+            if (getInstanceAuthentificationManagement().isAdmin()) {
+                planningButton.setVisible(true);
+                planningButton.disableProperty().set(false);
+            } else {
+                gestionButton.setText("Retour au planning");
+            }
+
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/common/map/Map.fxml"));
             AnchorPane page = loader.load();
             carteFlowPane.getChildren().setAll(page);
@@ -39,7 +57,11 @@ public class GestionMapController implements FenetreGestionInjectable {
 
     @FXML
     public void evenementButton() {
-        fenetreGestionController.loadContent2("/fxml/admin/DashboardEvent.fxml");
+        if (getInstanceAuthentificationManagement().isAdmin()) {
+            fenetreGestionController.loadContent2("/fxml/admin/DashboardEvent.fxml");
+        } else {
+            calendarAssignment();
+        }
     }
 
     @FXML
