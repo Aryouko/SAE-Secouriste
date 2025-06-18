@@ -258,4 +258,66 @@ public class DPSDAO {
         }
         return dpsList;
     }
+
+    public void updateDps(DPS dps) {
+        String updateQuery = "UPDATE DPS SET NAME = ?, HORAIRE_DEPART = ?, HORAIRE_FIN = ?, SITE = ?, SPORT = ?, JOURNEE = ? WHERE ID = ?";
+        String checkJourneeQuery = "SELECT id FROM Journee WHERE jour = ? AND mois = ? AND annee = ?";
+        String insertJourneeQuery = "INSERT INTO Journee (jour, mois, annee) VALUES (?, ?, ?)";
+
+        try (Connection con = ConnectionBDD.getConnection()) {
+            con.setAutoCommit(false); // Début de transaction
+
+            int journeeId;
+
+            // Vérifie si la journée existe
+            try (PreparedStatement checkStmt = con.prepareStatement(checkJourneeQuery)) {
+                checkStmt.setInt(1, dps.getJournee().getJour());
+                checkStmt.setInt(2, dps.getJournee().getMois());
+                checkStmt.setInt(3, dps.getJournee().getAnnee());
+
+                try (ResultSet rs = checkStmt.executeQuery()) {
+                    if (rs.next()) {
+                        journeeId = rs.getInt("id");
+                    } else {
+                        try (PreparedStatement insertStmt = con.prepareStatement(insertJourneeQuery, Statement.RETURN_GENERATED_KEYS)) {
+                            insertStmt.setInt(1, dps.getJournee().getJour());
+                            insertStmt.setInt(2, dps.getJournee().getMois());
+                            insertStmt.setInt(3, dps.getJournee().getAnnee());
+                            insertStmt.executeUpdate();
+
+                            try (ResultSet generatedKeys = insertStmt.getGeneratedKeys()) {
+                                if (generatedKeys.next()) {
+                                    journeeId = generatedKeys.getInt(1);
+                                } else {
+                                    con.rollback();
+                                    throw new SQLException("Échec de la récupération de l'ID de la journée pour mise à jour.");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Mise à jour de la ligne DPS
+            try (PreparedStatement stmt = con.prepareStatement(updateQuery)) {
+                stmt.setString(1, dps.getName());
+                stmt.setInt(2, dps.getHoraireDepart());
+                stmt.setInt(3, dps.getHoraireFin());
+                stmt.setLong(4, dps.getSite().getCode());
+                stmt.setLong(5, dps.getSport().getCode());
+                stmt.setInt(6, journeeId);
+                stmt.setLong(7, dps.getId());
+
+                int affectedRows = stmt.executeUpdate();
+                if (affectedRows == 0) {
+                    con.rollback();
+                    throw new SQLException("La mise à jour de DPS a échoué, aucun enregistrement affecté.");
+                }
+            }
+
+            con.commit(); // Fin de transaction
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

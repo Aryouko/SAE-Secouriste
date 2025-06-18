@@ -3,6 +3,8 @@ package model.data.persistence;
 import javafx.scene.image.Image;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Secouriste class
@@ -29,13 +31,28 @@ public class Administrateur {
      * @param tel the phone number of the secouriste
      * @param adresse the address of the secouriste
      */
-    public Administrateur(long id, String nom, String prenom, String dateNaissance, String tel, String adresse) {
+    public Administrateur(long id, String nom, String prenom, String dateNaissance, String tel, String adresse, byte[] photo) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.tel = tel;
         this.adresse = adresse;
+        if (photo == null) {
+            try (InputStream is = getClass().getClassLoader().getResourceAsStream("images/anonyme.png")) {
+                if (is == null) {
+                    System.out.println("Image par défaut introuvable !");
+                    this.photo = null;
+                } else {
+                    this.photo = is.readAllBytes();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                this.photo = null;
+            }
+        } else {
+            this.photo = photo;
+        }
     }
 
     /**

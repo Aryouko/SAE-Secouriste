@@ -350,7 +350,7 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
      */
     @FXML
     private void retourGestion() {
-        this.fenetreGestionController.loadContent2("/fxml/adminwindow/DashboardEvent.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/admin/DashboardEvent.fxml");
     }
 
     /**
@@ -358,7 +358,7 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
      */
     @FXML
     private void showPlan() {
-        this.fenetreGestionController.loadContent2("/fxml/commonwindow/map/DashboardMap.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/common/map/DashboardMap.fxml");
     }
 
 

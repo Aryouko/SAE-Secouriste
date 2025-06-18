@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="500.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 35; -fx-border-width: 3; -fx-border-radius: 35;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.FenetreSupprDPSController">
    <children>
-      <Label layoutX="25.0" layoutY="21.0" prefHeight="54.0" prefWidth="358.0" stylesheets="@../../css/style.css" text="Suppression du DPS">
+      <Label layoutX="25.0" layoutY="21.0" prefHeight="54.0" prefWidth="358.0" stylesheets="@../../css/main.css" text="Suppression du DPS">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>

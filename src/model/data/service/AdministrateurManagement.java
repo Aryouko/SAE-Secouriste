@@ -3,6 +3,7 @@ package model.data.service;
 import javafx.scene.image.Image;
 import model.dao.AdministrateurDAO;
 import model.data.persistence.Administrateur;
+import model.data.persistence.Secouriste;
 
 import java.util.List;
 
@@ -27,5 +28,9 @@ public class AdministrateurManagement {
 
     public void addAdministrateur(Administrateur administrateur) {
         administrateurDAO.insert(administrateur);
+    }
+
+    public void removeAdministrateur(Administrateur administrateur) {
+        this.administrateurDAO.delete(administrateur);
     }
 }

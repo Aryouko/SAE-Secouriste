@@ -15,7 +15,7 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <ScrollPane fx:id="scrollPaneNotification" fitToWidth="true" layoutX="15.2" layoutY="100.0" prefHeight="287.0" prefWidth="351.0" style="-fx-background-color: transparent; -fx-background: transparent;" stylesheets="@../../css/style.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="100.0">
+      <ScrollPane fx:id="scrollPaneNotification" fitToWidth="true" layoutX="15.2" layoutY="100.0" prefHeight="287.0" prefWidth="351.0" style="-fx-background-color: transparent; -fx-background: transparent;" stylesheets="@../../css/main.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="100.0">
          <content>
             <VBox fx:id="VBoxlistNotification" style="-fx-background-color: #121215;" />
          </content></ScrollPane>

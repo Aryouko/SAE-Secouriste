@@ -33,7 +33,7 @@ public class SendCodeController {
      */
     @FXML
     private void linkToConnexion() {
-        linkToPage(pageCode, "/fxml/auth/Connection.fxml");
+        linkToPage(pageCode, "/fxml/auth/Login.fxml");
     }
 
     /**

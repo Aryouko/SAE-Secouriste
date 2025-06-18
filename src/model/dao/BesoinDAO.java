@@ -89,4 +89,20 @@ public class BesoinDAO {
             ex.printStackTrace();
         }
     }
+
+    public void deleteBesoin(Besoin besoin) {
+        for (Competence competence : besoin.getCompetences()) {
+            String query = "DELETE FROM Besoin WHERE DPS = ? AND COMPETENCE = ? LIMIT 1";
+
+            try (Connection con = ConnectionBDD.getConnection();
+                 PreparedStatement stmt = con.prepareStatement(query)) {
+
+                stmt.setLong(1, besoin.getDps().getId());
+                stmt.setString(2, competence.getIntitule());
+                stmt.executeUpdate();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 }
