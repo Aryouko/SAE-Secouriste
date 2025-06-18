@@ -310,7 +310,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
 
     @FXML
     private void calendarAssignment() {
-        this.fenetreGestionController.loadContent2("/fxml/common/calendarAssignment.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/common/DashboardCalendarAssignment.fxml");
     }
 
     @FXML

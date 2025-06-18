@@ -39,6 +39,25 @@ public class PossessionDAO {
         return ret;
     }
 
+    public Possession findCompetencesBySecouriste (Secouriste secouriste) {
+        Possession ret = null;
+        try (Connection con = ConnectionBDD.getConnection();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM Possession WHERE SECOURISTE = " + secouriste.getIdSecouriste() + "")) {
+            ArrayList<Competence> competences = new ArrayList<>();
+            while (rs.next()) {
+                String intitule = rs.getString("Competence");
+
+                competences.add(new Competence(intitule));
+            }
+            ret = new Possession(competences, secouriste);
+        } catch (SQLException ex) {
+            ex.printStackTrace ();
+        }
+        return ret;
+    }
+
+
     public void deletePossession(long idSecouriste, String intituleCompetence) {
         String query = "DELETE FROM Possession WHERE secouriste = ? AND competence = ?";
         try (Connection con = ConnectionBDD.getConnection();

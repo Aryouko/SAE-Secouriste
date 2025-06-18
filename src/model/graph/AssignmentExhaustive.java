@@ -18,20 +18,26 @@ public class AssignmentExhaustive {
 
     private final MatrixUtils matrixUtils = new MatrixUtils();
 
-
     /**
      * Dépendances entre compétences, indiquant quelles compétences sont supérieures à d'autres.
      */
     private Map<Competence, List<Competence>> dependencies;
 
     /**
+     * La meilleure affectation
+     */
+    private HashMap<Competence, Secouriste> bestAffectation = new HashMap<>();
+
+    /**
+     * Le max assigné
+     */
+    private int maxAssigned = 0;
+
+    /**
      * Initialise les dépendances entre compétences (compétences "supérieures" pour chaque compétence).
      */
-    private void initDependencies() {
-        List<Necessite> necessites = new NecessiteDAO().findAll();
-        List<Competence> competences = new CompetenceDAO().findAll();
-
-        this.dependencies = matrixUtils.buildAllSuperiorDependencies(competences, necessites);
+    private void initDependencies(List<Competence> competences, List<Necessite> necessites) {
+        dependencies = matrixUtils.buildAllSuperiorDependencies(competences, necessites);
     }
 
     /**
@@ -41,9 +47,9 @@ public class AssignmentExhaustive {
      * @throws IllegalArgumentException si les arguments sont null ou si aucun secouriste disponible
      * @throws IllegalStateException si aucune affectation possible n'a pu être trouvée
      */
-    public AssignmentExhaustive(DPS dps, ArrayList<Competence> competences) {
+    public AssignmentExhaustive(DPS dps, List<Competence> competences, List<Necessite> necessites ) {
         this.affectation = new HashMap<>();
-        initDependencies();
+        initDependencies(competences, necessites);
 
         if (dps == null || competences == null) {
             throw new IllegalArgumentException("Arguments null");
@@ -59,8 +65,13 @@ public class AssignmentExhaustive {
 
         boolean success = backtrack(0, competences, secouristes, affectation, dejaAffectes);
 
-        if (!success) {
-            throw new IllegalStateException("Aucune affectation possible");
+        if (!success || affectation.size() < competences.size()) {
+            if (bestAffectation.isEmpty()) {
+                throw new IllegalStateException("Aucune affectation possible");
+            } else {
+                affectation.clear();
+                affectation.putAll(bestAffectation);
+            }
         }
     }
 
@@ -76,30 +87,38 @@ public class AssignmentExhaustive {
     private boolean backtrack(int index, List<Competence> competences, List<Secouriste> secouristes, HashMap<Competence, Secouriste> affectationActuelle, HashSet<Secouriste> dejaAffectes) {
 
         if (index == competences.size()) {
-            return true; // toutes les compétences ont été assignées
+            // Solution complète
+            if (affectationActuelle.size() > maxAssigned) {
+                bestAffectation = new HashMap<>(affectationActuelle);
+                maxAssigned = affectationActuelle.size();
+            }
+            return true;
         }
 
+        boolean foundAtLeastOne = false;
         Competence competence = competences.get(index);
 
         for (Secouriste s : secouristes) {
             if (!dejaAffectes.contains(s)) {
-
                 List<Competence> competencesDuSecouriste = new PossessionDAO().find(s).getCompetencesSec();
                 if (possede(competencesDuSecouriste, competence)) {
                     affectationActuelle.put(competence, s);
                     dejaAffectes.add(s);
 
-                    if (backtrack(index + 1, competences, secouristes, affectationActuelle, dejaAffectes)) {
-                        return true;
-                    }
+                    boolean result = backtrack(index + 1, competences, secouristes, affectationActuelle, dejaAffectes);
+                    foundAtLeastOne = result || foundAtLeastOne;
 
-                    // backtrack
                     affectationActuelle.remove(competence);
                     dejaAffectes.remove(s);
                 }
             }
         }
-        return false;
+
+        // Même si on n’a trouvé aucun secouriste pour cette compétence, on continue sans l’affecter
+        boolean result = backtrack(index + 1, competences, secouristes, affectationActuelle, dejaAffectes);
+        foundAtLeastOne = result || foundAtLeastOne;
+
+        return foundAtLeastOne;
     }
 
     /**
