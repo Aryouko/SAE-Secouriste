@@ -3,6 +3,7 @@ package model.dao;
 import javafx.scene.image.Image;
 import model.data.persistence.Administrateur;
 import model.data.persistence.Administrateur;
+import model.data.persistence.Secouriste;
 
 import java.io.InputStream;
 import java.sql.*;
@@ -46,7 +47,8 @@ public class AdministrateurDAO {
                         rs.getString("prenom"),
                         rs.getString("dateNaissance"),
                         rs.getString("tel"),
-                        rs.getString("adresse")
+                        rs.getString("adresse"),
+                        rs.getBytes("photo")
                 );
                 administrateurs.add(s);
             }
@@ -75,7 +77,8 @@ public class AdministrateurDAO {
                         rs.getString("prenom"),
                         rs.getString("date_naissance"),
                         rs.getString("tel"),
-                        rs.getString("adresse")
+                        rs.getString("adresse"),
+                        rs.getBytes("photo")
                 );
                 return administrateur;
             }
@@ -126,5 +129,18 @@ public class AdministrateurDAO {
         }
 
         return null;
+    }
+
+    public void delete(Administrateur administrateur) {
+        System.out.println("ID à supprimer : " + administrateur.getIdAdministrateur());
+        String query = "DELETE FROM Secouriste WHERE idAdministrateur = ?";
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(query)) {
+
+            pstmt.setLong(1, administrateur.getIdAdministrateur());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
