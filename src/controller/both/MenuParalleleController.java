@@ -41,8 +41,9 @@ public class MenuParalleleController {
             } else {
 
                 fenetreGestionController.loadContent2("/fxml/commonwindow/SettingsTemp.fxml");
-                setRow(1, null);
-                setRow(2, "/fxml/commonwindow/DisplayCalendarDisponibilites.fxml");
+                setRow(1, "/fxml/commonwindow/DisplayCalendarDisponibilites.fxml");
+                setRow(2, null);
+
 
             }
         } else {
@@ -78,6 +79,8 @@ public class MenuParalleleController {
                     ((ProfilController) controller).setMenuParalleleController(this);
                 } else if (controller instanceof EvenementController) {
                     this.evenementController = (EvenementController) controller;
+                } else if (controller instanceof SettingsController) {
+                    ((SettingsController) controller).setMenuParalleleController(this);
                 }
                 composentGrid.add(node, 0, rowIndex);
                 GridPane.setHalignment(node, javafx.geometry.HPos.CENTER);
