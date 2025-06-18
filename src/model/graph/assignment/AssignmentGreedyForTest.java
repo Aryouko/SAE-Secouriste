@@ -1,8 +1,6 @@
-package model.graph.test;
+package model.graph.assignment;
 
-import model.dao.CompetenceDAO;
 import model.data.persistence.*;
-import model.data.service.*;
 
 import java.util.ArrayList;
 import java.util.List;
