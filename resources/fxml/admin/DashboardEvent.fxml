@@ -85,17 +85,17 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="91.0" prefWidth="659.0" spacing="15.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#calendarAssignment" prefHeight="60.0" prefWidth="127.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" styleClass="dark-combo-box" stylesheets="@../../css/button.css" text="Planning">
+                              <Button mnemonicParsing="false" onAction="#calendarAssignment" prefHeight="60.0" prefWidth="127.0" style="-fx-background-color: #121315; -fx-background-radius: 10; -fx-text-fill: white;" stylesheets="@../../css/button.css" text="Planning">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#carteLink" prefHeight="60.0" prefWidth="127.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" styleClass="dark-combo-box" stylesheets="@../../css/button.css" text="Carte">
+                              <Button mnemonicParsing="false" onAction="#carteLink" prefHeight="60.0" prefWidth="127.0" style="-fx-background-color: #121315; -fx-background-radius: 10; -fx-text-fill: white;" stylesheets="@../../css/button.css" text="Carte">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#GestionSecouristeButton" prefHeight="59.0" prefWidth="346.0" style="-fx-background-color: #EBF0F6; -fx-background-radius: 10;" text="Gestion des secouristes">
+                              <Button mnemonicParsing="false" onAction="#GestionSecouristeButton" prefHeight="59.0" prefWidth="346.0" style="-fx-background-color: #EBF0F6; -fx-background-radius: 10;" styleClass="light-button" stylesheets="@../../css/button.css" text="Gestion des secouristes">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -127,7 +127,7 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label prefHeight="25.0" prefWidth="148.0" text="Créer un évènement" textFill="WHITE" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                    <Label prefHeight="25.0" prefWidth="148.0" stylesheets="@../../css/button.css" text="Créer un évènement" textFill="WHITE" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                        <font>
                                           <Font size="16.0" />
                                        </font>

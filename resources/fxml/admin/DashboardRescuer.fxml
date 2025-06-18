@@ -53,7 +53,7 @@
                         <Insets left="75.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button mnemonicParsing="false" onAction="#GestionEvenementButton" prefHeight="59.0" prefWidth="346.0" style="-fx-background-color: #EBF0F6; -fx-background-radius: 10;" text="Gestion des évènements" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                  <Button mnemonicParsing="false" onAction="#GestionEvenementButton" prefHeight="59.0" prefWidth="346.0" style="-fx-background-color: #EBF0F6; -fx-background-radius: 10;" styleClass="light-button" stylesheets="@../../css/button.css" text="Gestion des évènements" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font size="24.0" />
                      </font>
