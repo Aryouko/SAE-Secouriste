@@ -217,7 +217,6 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
                     filteredDPS.add(dps);
                 }
             }
-            System.out.println(filteredDPS);
 
             dpsByDate.put(newDate, filteredDPS);
         }
@@ -374,8 +373,7 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
      * @param actionEvent The ActionEvent triggered by the button click.
      */
     public void TodayButtonClicked(ActionEvent actionEvent) {
-        this.date = LocalDate.now();
-        /*
+        /*this.date = LocalDate.now();
         if (LocalDate.now().equals(this.date)) {
             calendarViewChoiceBox.setValue("Cette semaine");
         } else if (LocalDate.now().equals(this.date.minusDays(7))) {
@@ -384,8 +382,7 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
             calendarViewChoiceBox.setValue("Semaine précédente");
         } else {
             calendarViewChoiceBox.setValue("Autre semaine");
-        }
-        */
+        }*/
         refreshTile();
     }
 
