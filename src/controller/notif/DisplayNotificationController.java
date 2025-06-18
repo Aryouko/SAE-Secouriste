@@ -1,4 +1,4 @@
-package controller.both;
+package controller.notif;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,38 +14,61 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import model.data.persistence.Notification;
 import model.data.service.AuthentificationManagement;
+import model.data.service.DPSManagement;
 import model.data.service.NotificationManagement;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotificationController {
+public class DisplayNotificationController {
 
-    // NOTIFICATION VIEW
+    /**
+     * FXML elements for the notification view.
+     */
     @FXML
     private ScrollPane scrollPaneNotification ;
+
+    /**
+     * Button to open the notification form.
+     */
     @FXML
     private Button openFormButton ;
+
+    /**
+     * VBox to list notifications.
+     */
     @FXML
     private VBox VBoxlistNotification;
 
+    /**
+     * Instance of NotificationManagement to handle notification operations.
+     */
     private final NotificationManagement notificationManagement = new NotificationManagement();
+
+    /**
+     * Instance of AuthentificationManagement to manage user authentication.
+     */
     private final AuthentificationManagement auth = AuthentificationManagement.getInstanceAuthentificationManagement();
 
-
-    // NOTIFICATION VIEW
+    /**
+     * Initializes the controller and loads notifications for the current user.
+     * Sets up the UI elements based on user permissions (admin or rescuer).
+     */
     @FXML
     public void initialize() {
+        // Get the current user ID
         long id = auth.getCurrentUser().getIdUser() ;
 
         // Delete the possibilities to send message if you are a rescuer
         openFormButton.setVisible(auth.isAdmin());
         openFormButton.setDisable(!auth.isAdmin());
 
+        // Load notifications for the current user - admin or rescuer
+        // Admins see all notifications, rescuers see only their own
         List<Notification> listNotification = this.notificationManagement.getNotificationByIdSender(id);
-        System.out.println("Nombre de notifications récupérées : " + listNotification.size());
 
+        // Convert the list of notifications to a list of GridPanes for display
         ArrayList<GridPane> list = listNotificationToListGridPane(listNotification);
         VBoxlistNotification.getChildren().clear();
         VBoxlistNotification.getChildren().addAll(list);
@@ -54,26 +77,32 @@ public class NotificationController {
     }
 
 
+    /**
+     * Creates a list of GridPanes from a list of Notification objects.
+     * Each GridPane represents a notification with its title, date, and associated DPS.
+     *
+     * @param listNotification List of Notification objects to convert into GridPanes.
+     * @return ArrayList of GridPane objects, each representing a notification.
+     */
     private ArrayList<GridPane> listNotificationToListGridPane(List<Notification> listNotification) {
 
         ArrayList<GridPane> list = new ArrayList<>();
-        model.data.service.DPSManagement dpsManagement = new model.data.service.DPSManagement();
-        for (int i = 0; i < listNotification.size(); i++) {
+        DPSManagement dpsManagement = new model.data.service.DPSManagement(); // Instance to manage DPS data
+
+        for (int i = 0; i < listNotification.size(); i++) { // Loop through each notification
             Notification notification = listNotification.get(i);
 
-            Label label = new Label(notification.getTitle());
-            label.setStyle("-fx-text-fill: white; -fx-font-size: 16px; -fx-font-family: 'Poppins';");
+            Label title = new Label(notification.getTitle()); // Create a label for the notification title
+            title.setStyle("-fx-text-fill: white; -fx-font-size: 16px; -fx-font-family: 'Poppins';");
 
-            // Ajout du nom du DPS concerné
+            String dpsName = dpsManagement.getDpsById(notification.getIdDPS()).getName(); // Get the name of the DPS associated with the notification
 
-            String dpsName = dpsManagement.getDpsById(notification.getIdDPS()).getName();
+            Label dpsLabel = new Label(dpsName); // Create a label for the DPS name
 
-            Label dpsLabel = new Label(dpsName);
+            Label date = new Label(notification.getDate()); // Create a label for the notification date
 
-            Label date = new Label(notification.getDate());
-
-            Label infosLabel = new Label(dpsName + " à " + notification.getDate());
-            infosLabel.setStyle("-fx-text-fill: #EDF2F66F; " +
+            Label infosLabel = new Label(dpsName + " à " + notification.getDate()); // Create a label for additional information (DPS name and date)
+            infosLabel.setStyle("-fx-text-fill: #EDF2F66F; " + // Style the label with a specific color and font
                     "-fx-font-family: 'Poppins'; " +
                     "-fx-font-size: 14px; " +
                     "-fx-font-weight: 300; " +
@@ -85,7 +114,7 @@ public class NotificationController {
 
 
 
-            GridPane pane = new GridPane();
+            GridPane pane = new GridPane(); // Create a GridPane to hold the notification elements
             GridPane subPane = new GridPane();
 
             subPane.setPadding(new Insets(0, 0, 0, 15));
@@ -95,25 +124,10 @@ public class NotificationController {
             col.setPrefWidth(500);
             pane.getColumnConstraints().addAll(col);
 
-            subPane.add(label, 0, 0);
+            subPane.add(title, 0, 0);
             subPane.add(infosLabel, 0, 1);
             pane.add(subPane,0,0);
             pane.add(circle,1,0);
-
-            // Ajout de la pastille pour nouvelle notif non lue
-            Circle badge = null;
-            if (!notification.getIsViewed()) {
-                badge = new Circle();
-                badge.setRadius(6);
-                badge.setFill(javafx.scene.paint.Color.web("#FF004D"));
-                badge.setTranslateX(290); // décalage à droite
-                badge.setTranslateY(-15); // décalage vers le haut
-                // Ajout dans le même parent que le cercle
-                pane.getChildren().add(badge);
-                badge.toFront(); // S'assurer que la pastille est au-dessus
-            }
-
-
 
             pane.setPrefHeight(60);
             pane.setMaxHeight(60);
@@ -127,15 +141,15 @@ public class NotificationController {
                 pane.setStyle("-fx-background-color: #46484C; -fx-background-radius: 50");
             }
 
-            label.setLayoutX(10);
-            label.setLayoutY(10);
+            title.setLayoutX(10);
+            title.setLayoutY(10);
 
 
-
+            // Set up mouse click event handlers for the pane and circle
             pane.setOnMouseClicked(event -> {
                 try {
                     pane.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 50");
-                    label.setStyle("-fx-text-fill: #000000; -fx-font-size: 16px; -fx-font-family: 'Poppins';");
+                    title.setStyle("-fx-text-fill: #000000; -fx-font-size: 16px; -fx-font-family: 'Poppins';");
 
                     infosLabel.setStyle("-fx-text-fill: rgb(0,0,0); " +
                             "-fx-font-family: 'Poppins'; " +
@@ -143,9 +157,9 @@ public class NotificationController {
                             "-fx-font-weight: 300; " +
                             "-fx-letter-spacing: -0.56px;");
 
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/notif/ReadNotification.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/notif/PopupNotificationReader.fxml"));
                     Parent root = loader.load();
-                    ReadNotificationController controller = loader.getController();
+                    PopupNotificationReaderController controller = loader.getController();
                     controller.setNotification(notification);
 
                     Stage popupStage = new Stage();
@@ -160,7 +174,7 @@ public class NotificationController {
                 }
 
                 pane.setStyle("-fx-background-color: #2A2B2D; -fx-background-radius: 50");
-                label.setStyle("-fx-text-fill: #ffffff; -fx-font-size: 16px; -fx-font-family: 'Poppins';");
+                title.setStyle("-fx-text-fill: #ffffff; -fx-font-size: 16px; -fx-font-family: 'Poppins';");
 
                 infosLabel.setStyle("-fx-text-fill: #EDF2F66F ; " +
                         "-fx-font-family: 'Poppins'; " +
@@ -169,32 +183,26 @@ public class NotificationController {
                         "-fx-letter-spacing: -0.56px;");
             });
 
-
+            // Circle click event to delete the notification
             circle.setOnMouseClicked(event -> {
 
                 notificationManagement.deleteNotification(notification);
-
                 VBoxlistNotification.getChildren().remove(pane);
-                event.consume(); // Empêche la propagation du clic au pane
+                event.consume(); // Prevent further propagation of the event
             });
-
-
-
-            list.add(pane);
-
-
+            list.add(pane); // Add the pane to the list of GridPanes
         }
         return list;
     }
 
 
-
-
     /**
-     * openForm
+     * Opens a popup form for creating a new notification.
+     *
+     * @throws IOException If there is an error loading the FXML file for the popup form.
      */
     public void openForm() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/notif/NotificationForm.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/notif/PopupNotificationForm.fxml"));
         Parent root = loader.load();
 
         Stage popupStage = new Stage();

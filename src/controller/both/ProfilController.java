@@ -85,7 +85,7 @@ public class ProfilController implements MenuParalleleInjectable {
     private void switchNotifCalendar() {
         if (menuParalleleController != null) {
             if (!isNotif) {
-                menuParalleleController.setRow(1, "/fxml/notif/Notification.fxml");
+                menuParalleleController.setRow(1, "/fxml/notif/DisplayNotification.fxml");
                 isNotif = true ;
             } else {
                 menuParalleleController.setRow(1, "/fxml/commonwindow/DisplayCalendar.fxml");
