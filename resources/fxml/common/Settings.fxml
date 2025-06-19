@@ -123,5 +123,6 @@
       <Line endX="1260.0" endY="520.0" startX="166.0" startY="520.0" />
       <Line fx:id="line" endX="1260.0" endY="700.0" startX="166.0" startY="700.0" />
       <Line endX="1260.0" endY="900.0" startX="166.0" startY="900.0" />
+      <CheckBox fx:id="greedyCheckBox" onAction="#greedyCheckBoxToggled" layoutX="858.0" layoutY="567.0" mnemonicParsing="false" text="use Greedy algorithm for assignment" visible="false" />
     </children>
 </AnchorPane>

@@ -3,8 +3,10 @@ package controller.both;
 import controller.UtilsController;
 import controller.admin.FenetreGestionController;
 import controller.admin.FenetreGestionInjectable;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -193,6 +195,12 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
      */
     private byte[] nouvellePhoto;
 
+
+    /**
+     * CheckBox for enabling greedy mode.
+     */
+    @FXML private CheckBox greedyCheckBox;
+
     /**
      * Initializes the SettingsController by setting up the user profile and competencies.
      * This method is called automatically when the FXML file is loaded.
@@ -223,6 +231,8 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
                 line.setVisible(false);
                 compText.setVisible(false);
                 certifText.setVisible(false);
+
+                greedyCheckBox.setVisible(true);
             } else {
                 prenomNomParam.setText(sec.getPrenom() + " " + sec.getNom());
                 if (sec.getPhoto() != null) {
@@ -488,5 +498,16 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
      */
     public void setMenuParalleleController(MenuParalleleController menuParalleleController) {
         this.menuParalleleController = menuParalleleController;
+    }
+
+    public void greedyCheckBoxToggled(ActionEvent actionEvent) {
+        boolean isGreedy = greedyCheckBox.isSelected();
+        System.out.println("[*] Settings useGreedy: " + isGreedy);
+        model.utils.Settings.setUseGreedy(isGreedy);
+        if (isGreedy) {
+            System.out.println("[*] Greedy mode enabled.");
+        } else {
+            System.out.println("[*] Greedy mode disabled.");
+        }
     }
 }
