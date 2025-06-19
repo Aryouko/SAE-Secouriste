@@ -1,4 +1,4 @@
-package controller.both;
+package controller.common;
 import java.time.LocalDate;
 import java.time.YearMonth;
 
@@ -8,13 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 /**
- * CalendarController is responsible for managing the calendar view in the application.
+ * DisplayCalendarController is responsible for managing the calendar view in the application.
  * It allows users to navigate through months and displays the days of the selected month.
  * The current day is highlighted in the calendar.
  * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
-public class CalendarController {
+public class DisplayCalendarController {
 
     /**
      * The GridPane that serves as the calendar layout.
@@ -39,7 +39,7 @@ public class CalendarController {
     private int annee;
 
     /**
-     * Initializes the CalendarController by setting up the calendar view.
+     * Initializes the DisplayCalendarController by setting up the calendar view.
      * This method is called automatically when the FXML file is loaded.
      */
     @FXML

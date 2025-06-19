@@ -1,7 +1,7 @@
-package controller.both;
+package controller.map;
 
-import controller.admin.FenetreGestionController;
-import controller.admin.FenetreGestionInjectable;
+import controller.layoutmanager.FenetreGestionController;
+import controller.layoutmanager.FenetreGestionInjectable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -73,7 +73,7 @@ public class GestionMapController implements FenetreGestionInjectable {
             }
 
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/common/map/Map.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/map/Map.fxml"));
             AnchorPane page = loader.load();
             carteAnchorPane.getChildren().setAll(page);
 

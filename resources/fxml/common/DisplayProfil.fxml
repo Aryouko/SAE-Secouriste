@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="82.0" prefWidth="380.0" style="-fx-background-radius: 25; -fx-background-color: #121215;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.ProfilController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="82.0" prefWidth="380.0" style="-fx-background-radius: 25; -fx-background-color: #121215;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.common.DisplayProfilController">
    <children>
       <GridPane alignment="CENTER" prefHeight="82.0" prefWidth="380.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>

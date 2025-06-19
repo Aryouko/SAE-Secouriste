@@ -1,13 +1,11 @@
 package controller.admin;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import model.data.persistence.*;
 import model.data.service.*;
 
-import static controller.admin.FenetreGestionController.removeOverlay;
-import static controller.admin.FenetreGestionController.showOverlay;
+import static controller.layoutmanager.FenetreGestionController.removeOverlay;
 
 /**
  * Controller for the rescuer deletion confirmation window.
@@ -15,7 +13,7 @@ import static controller.admin.FenetreGestionController.showOverlay;
  * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
-public class FenetreSupprSecouristeController {
+public class PopupDeleteRescuerController {
 
     /**
      * The root pane of the window, used to manage the overlay.
@@ -51,17 +49,17 @@ public class FenetreSupprSecouristeController {
     /**
      * The controller for managing rescuers, used to update the rescuer list after deletion.
      */
-    private GestionSecouristeController gestionSecouristeController;
+    private DashboardRescuerController dashboardRescuerController;
 
     /**
      * Initializes the controller with the necessary data.
      *
      * @param secouriste The rescuer to be deleted.
-     * @param gestionSecouristeController The controller for managing rescuers.
+     * @param dashboardRescuerController The controller for managing rescuers.
      */
-    public void initializeSupprSecouriste(Secouriste secouriste, GestionSecouristeController gestionSecouristeController) {
+    public void initializeSupprSecouriste(Secouriste secouriste, DashboardRescuerController dashboardRescuerController) {
         this.secouriste = secouriste;
-        this.gestionSecouristeController = gestionSecouristeController;
+        this.dashboardRescuerController = dashboardRescuerController;
     }
 
     /**
@@ -81,8 +79,8 @@ public class FenetreSupprSecouristeController {
             this.possessionManagement.removePossession(secouriste, competence);
         }
         this.secouristeManagement.removeSecouriste(this.secouriste);
-        this.gestionSecouristeController.retirerList(secouriste);
-        this.gestionSecouristeController.filtreUpdate();
+        this.dashboardRescuerController.retirerList(secouriste);
+        this.dashboardRescuerController.filtreUpdate();
         annuleSecouriste();
     }
 

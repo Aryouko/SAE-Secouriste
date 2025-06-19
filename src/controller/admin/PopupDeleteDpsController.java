@@ -1,17 +1,16 @@
 package controller.admin;
 
+import controller.common.DisplayUpComingEventController;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import model.data.persistence.Affectation;
 import model.data.persistence.DPS;
 import model.data.service.AffectationManagement;
 import model.data.service.BesoinManagement;
 import model.data.service.DPSManagement;
 
-import static controller.admin.FenetreGestionController.removeOverlay;
-import static controller.admin.FenetreGestionController.showOverlay;
+import static controller.layoutmanager.FenetreGestionController.removeOverlay;
+import static controller.layoutmanager.FenetreGestionController.showOverlay;
 
 /**
  * Controller for the DPS deletion confirmation window.
@@ -19,7 +18,7 @@ import static controller.admin.FenetreGestionController.showOverlay;
  * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
-public class FenetreSupprDPSController {
+public class PopupDeleteDpsController {
 
     /**
      * The root pane of the window, used to manage the overlay.
@@ -45,12 +44,12 @@ public class FenetreSupprDPSController {
     /**
      * The controller for managing events, used to update the event list after deletion.
      */
-    private GestionEvenementController gestionEvenementController;
+    private DashboardEventController dashboardEventController;
 
     /**
      * The controller for managing events, used to update the event view after deletion.
      */
-    private EvenementController evenementController;
+    private DisplayUpComingEventController evenementController;
 
     /**
      * The management service for needs, used to handle related data.
@@ -61,13 +60,13 @@ public class FenetreSupprDPSController {
      * Initializes the controller with the necessary data.
      *
      * @param dps The DPS to be deleted.
-     * @param gestionEvenementController The controller for managing events.
+     * @param dashboardEventController The controller for managing events.
      * @param evenementController The controller for managing the event view.
      */
-    public void initializeDPS(DPS dps, GestionEvenementController gestionEvenementController, EvenementController evenementController) {
+    public void initializeDPS(DPS dps, DashboardEventController dashboardEventController, DisplayUpComingEventController evenementController) {
 
         this.dps = dps;
-        this.gestionEvenementController = gestionEvenementController;
+        this.dashboardEventController = dashboardEventController;
         this.evenementController = evenementController;
         showOverlay();
     }
@@ -82,8 +81,8 @@ public class FenetreSupprDPSController {
             this.affectationManagement.removeAffectation(affectation);
         }
         this.dpsManagement.removeDps(this.dps);
-        this.gestionEvenementController.retirerDpsList(dps);
-        this.gestionEvenementController.filtreUpdate();
+        this.dashboardEventController.retirerDpsList(dps);
+        this.dashboardEventController.filtreUpdate();
         this.evenementController.initialize();
         annuleDPS();
     }

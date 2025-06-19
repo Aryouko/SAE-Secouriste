@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane fx:id="fenetreGestion" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.FenetreGestionController" prefWidth="1824" prefHeight="1026">
+<AnchorPane fx:id="fenetreGestion" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.layoutmanager.FenetreGestionController" prefWidth="1824" prefHeight="1026">
     <children>
         <GridPane prefHeight="1026" prefWidth="1824" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"
                   AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">

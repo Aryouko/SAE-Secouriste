@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="gestionCarte" prefHeight="990.0" prefWidth="1444.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;" stylesheets="@../../../css/button.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.both.GestionMapController">
+<AnchorPane fx:id="gestionCarte" prefHeight="990.0" prefWidth="1444.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;" stylesheets="@../../css/button.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.map.GestionMapController">
    <children>
       <GridPane alignment="CENTER" prefHeight="996.0" prefWidth="1438.0" style="-fx-background-radius: 30;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -51,7 +51,7 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="91.0" prefWidth="690.0" spacing="15.0">
                            <children>
-                              <Button fx:id="planningButton" disable="true" mnemonicParsing="false" onAction="#calendarAssignment" prefHeight="60.0" prefWidth="127.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" stylesheets="@../../../css/button.css" text="Planning" textFill="WHITE" visible="false">
+                              <Button fx:id="planningButton" disable="true" mnemonicParsing="false" onAction="#calendarAssignment" prefHeight="60.0" prefWidth="127.0" style="-fx-background-color: #121315; -fx-background-radius: 10;" stylesheets="@../../css/button.css" text="Planning" textFill="WHITE" visible="false">
                                  <font>
                                     <Font size="20.0" />
                                  </font>

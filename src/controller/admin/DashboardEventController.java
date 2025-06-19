@@ -1,5 +1,8 @@
 package controller.admin;
 
+import controller.common.DisplayUpComingEventController;
+import controller.layoutmanager.FenetreGestionController;
+import controller.layoutmanager.FenetreGestionInjectable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -17,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static controller.admin.FenetreGestionController.showOverlay;
+import static controller.layoutmanager.FenetreGestionController.showOverlay;
 
 /**
  * Controller for managing events in the application.
@@ -25,7 +28,7 @@ import static controller.admin.FenetreGestionController.showOverlay;
  * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
-public class GestionEvenementController implements FenetreGestionInjectable {
+public class DashboardEventController implements FenetreGestionInjectable {
 
     /**
      * The tile pane that displays the events.
@@ -74,7 +77,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
     /**
      * The controller for managing individual events.
      */
-    private EvenementController evenementController;
+    private DisplayUpComingEventController evenementController;
 
     /**
      * Management service for DPS events.
@@ -96,7 +99,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
      */
     @FXML
     public void initialize() {
-        System.out.println("GestionEvenementController initialized");
+        System.out.println("DashboardEventController initialized");
         this.sports = new ArrayList<>();
         this.sites = new ArrayList<>();
         this.dpsList = new ArrayList<>();
@@ -371,7 +374,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
      *
      * @param evenementController The EvenementController to be set.
      */
-    public void setEvenementController(EvenementController evenementController) {
+    public void setEvenementController(DisplayUpComingEventController evenementController) {
         this.evenementController = evenementController;
     }
 
@@ -396,7 +399,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
      */
     @FXML
     private void carteLink() {
-        this.fenetreGestionController.loadContent2("/fxml/common/map/DashboardMap.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/map/DashboardMap.fxml");
     }
 
     /**
@@ -408,7 +411,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupAddDps.fxml"));
             Parent overlayContent = loader.load();
-            FenetreAjoutDPSController controller = loader.getController();
+            PopupAddDpsController controller = loader.getController();
             controller.initializeGestionEvenementController(this);
             controller.initializeEvenementController(this.evenementController);
             overlay.getChildren().add(overlayContent);
@@ -446,7 +449,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
             System.out.println(e.getMessage());
         }
         if (!this.besoinManagement.getBesoinByDPS(dps).getCompetences().isEmpty()) {
-            Alert alert = FenetreAjoutDPSController.alertBox();
+            Alert alert = PopupAddDpsController.alertBox();
             alert.showAndWait();
         }
         filtreUpdate();
@@ -462,7 +465,7 @@ public class GestionEvenementController implements FenetreGestionInjectable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupDeleteDps.fxml"));
             Parent overlayContent = loader.load();
 
-            FenetreSupprDPSController controller = loader.getController();
+            PopupDeleteDpsController controller = loader.getController();
             controller.initializeDPS(dps, this, this.evenementController);
 
             StackPane overlayPane = showOverlay();

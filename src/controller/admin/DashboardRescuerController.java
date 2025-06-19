@@ -1,5 +1,7 @@
 package controller.admin;
 
+import controller.layoutmanager.FenetreGestionController;
+import controller.layoutmanager.FenetreGestionInjectable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -16,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static controller.admin.FenetreGestionController.showOverlay;
+import static controller.layoutmanager.FenetreGestionController.showOverlay;
 
 /**
  * Controller for managing rescuers in the administration interface.
@@ -24,7 +26,7 @@ import static controller.admin.FenetreGestionController.showOverlay;
  * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
-public class GestionSecouristeController implements FenetreGestionInjectable {
+public class DashboardRescuerController implements FenetreGestionInjectable {
 
     /**
      * The TilePane that displays the rescuers.
@@ -275,7 +277,7 @@ public class GestionSecouristeController implements FenetreGestionInjectable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupRescuerSetAdmin.fxml"));
             Parent overlayContent = loader.load();
 
-            FenetreSetAdminSecouristeController controller = loader.getController();
+            PopupRescuerSetAdminController controller = loader.getController();
             controller.initializeSetAdminSecouriste(secouriste, this);
 
             StackPane overlayPane = showOverlay();
@@ -298,7 +300,7 @@ public class GestionSecouristeController implements FenetreGestionInjectable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupDeleteRescuer.fxml"));
             Parent overlayContent = loader.load();
 
-            FenetreSupprSecouristeController controller = loader.getController();
+            PopupDeleteRescuerController controller = loader.getController();
             controller.initializeSupprSecouriste(secouriste, this);
 
             StackPane overlayPane = showOverlay();

@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-import static controller.admin.FenetreGestionController.removeOverlay;
-import static controller.admin.FenetreGestionController.showOverlay;
+import static controller.layoutmanager.FenetreGestionController.removeOverlay;
+import static controller.layoutmanager.FenetreGestionController.showOverlay;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
 /**
@@ -94,7 +94,17 @@ public class PopupNotificationFormController {
     @FXML
     public void initialize() {
         showOverlay(); // Show the overlay when the form is initialized ( background dimming )
-        notificationFormAnchorPane.getStylesheets().add(getClass().getResource("/css/errors.css").toExternalForm()); // Load the CSS for error styling
+        try {
+            // Chemin corrigé pour le fichier CSS
+            String cssPath = "/css/error.css"; // Changé de errors.css à error.css
+            if (getClass().getResource(cssPath) != null) {
+                notificationFormAnchorPane.getStylesheets().add(getClass().getResource(cssPath).toExternalForm());
+            } else {
+                System.err.println("Fichier CSS non trouvé: " + cssPath);
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors du chargement du CSS: " + e.getMessage());
+        }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH'h'mm d MMMM", Locale.FRENCH); // Define the date format for the notification timestamp
         String formatted = now.format(formatter);

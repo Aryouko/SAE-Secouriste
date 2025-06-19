@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * Class AffectationDAO that manages the database operations for the Affectation entity.
@@ -224,5 +226,31 @@ public class AffectationDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Compte le nombre d'utilisations de chaque compétence dans les affectations.
+     *
+     * @return Une Map avec le nom de la compétence comme clé et le nombre d'utilisations comme valeur
+     */
+    public Map<String, Integer> countCompetencesUsage() {
+        Map<String, Integer> usageCount = new HashMap<>();
+        String query = "SELECT competence, COUNT(*) as count FROM Affectation GROUP BY competence ORDER BY count DESC";
+
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String competenceIntitule = rs.getString("competence");
+                int count = rs.getInt("count");
+                usageCount.put(competenceIntitule, count);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return usageCount;
     }
 }

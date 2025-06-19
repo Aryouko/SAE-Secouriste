@@ -5,7 +5,7 @@ import javafx.scene.layout.AnchorPane;
 import model.data.persistence.*;
 import model.data.service.*;
 
-import static controller.admin.FenetreGestionController.removeOverlay;
+import static controller.layoutmanager.FenetreGestionController.removeOverlay;
 
 /**
  * Controller for the Set Admin Rescuer window.
@@ -13,7 +13,7 @@ import static controller.admin.FenetreGestionController.removeOverlay;
  * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
-public class FenetreSetAdminSecouristeController {
+public class PopupRescuerSetAdminController {
 
     /**
      * The root pane of the FXML layout, used for managing the UI components.
@@ -59,17 +59,17 @@ public class FenetreSetAdminSecouristeController {
     /**
      * Controller for managing rescuers, used to update the rescuer list after promotion.
      */
-    private GestionSecouristeController gestionSecouristeController;
+    private DashboardRescuerController dashboardRescuerController;
 
     /**
      * Initializes the controller with the rescuer to be promoted and the rescuer management controller.
      *
      * @param secouriste The rescuer to be promoted to administrator.
-     * @param gestionSecouristeController The controller for managing rescuers.
+     * @param dashboardRescuerController The controller for managing rescuers.
      */
-    public void initializeSetAdminSecouriste(Secouriste secouriste, GestionSecouristeController gestionSecouristeController) {
+    public void initializeSetAdminSecouriste(Secouriste secouriste, DashboardRescuerController dashboardRescuerController) {
         this.secouriste = secouriste;
-        this.gestionSecouristeController = gestionSecouristeController;
+        this.dashboardRescuerController = dashboardRescuerController;
     }
 
     /**
@@ -96,8 +96,8 @@ public class FenetreSetAdminSecouristeController {
 
         this.authentificationManagement.changeRole(this.secouristeManagement.getUserBySecouriste(this.secouriste), "administrator");
         this.secouristeManagement.removeSecouriste(this.secouriste);
-        this.gestionSecouristeController.retirerList(secouriste);
-        this.gestionSecouristeController.filtreUpdate();
+        this.dashboardRescuerController.retirerList(secouriste);
+        this.dashboardRescuerController.filtreUpdate();
         annuleAdmin();
     }
 
