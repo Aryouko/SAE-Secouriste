@@ -34,7 +34,7 @@ public class Scenario {
         }
 
         System.out.println("Admin connecté.");
-        long id = this.dpsManagement.numberOfDps();
+        long id = this.dpsManagement.numberOfDps() + 1;
 
         Journee journee = new Journee(10, 10, 10);
         newDps = new DPS(id, this.nomTextField.getText(), this.horaireDeb, this.horaireFin, this.site, this.sport, journee);
@@ -49,7 +49,8 @@ public class Scenario {
         DPSManagement dpsManagement = new DPSManagement();
         DPS nouveauDps = new DPS("NomDPS", "Lieu", "2025-07-01", ); // complète les champs nécessaires
 
-
+        FenetreAjoutDPSController fenetreAjoutDPSController = new FenetreAjoutDPSController();
+        fenetreAjoutDPSController.ajoutDPS();
 
         boolean creation = dpsManagement.addDPS(nouveauDps);
 
