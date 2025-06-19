@@ -10,6 +10,25 @@
 # TO-DO
 
 
+
+
+- Scenario 
+- digramme Scenario
+
+- Test Graphes Thoams
+
+- Diapo / Oral  
+- • Le diagramme de classes a revoir a plusieurs
+- Video a plusieurs 
+
+- JAVADOC Graphes Glen
+- JAVADOC Glen
+- JAVADOC Services Celian
+- JavaDox model Celian 
+
+
+
+
 - Thomas:
   - graphes (tests + rapport)
   - togglebutton pour switch pour choisir la stratégie d'affectation (exhaustive ou gloutonne)
