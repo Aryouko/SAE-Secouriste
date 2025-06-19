@@ -479,12 +479,42 @@ public class DashboardSettingsController implements FenetreGestionInjectable, Me
 
     /**
      * Handles the click event for the "Déconnecter" button.
-     * This method logs out the current user and navigates to the login page.
+     * This method logs out the current user, closes the current window,
+     * and relaunches the application to ensure a clean state.
      */
     @FXML
     private void deconnecterClicked() {
-        getInstanceAuthentificationManagement().logOut(); // Réinitialise l'utilisateur courant
-        UtilsController.linkToPage(fenetreGestionController.getFenetreGestion(), "/fxml/auth/Login.fxml");
+        // Déconnexion de l'utilisateur
+        getInstanceAuthentificationManagement().logOut();
+
+        try {
+            // FClose the current window
+            javafx.stage.Stage stage = (javafx.stage.Stage) fenetreGestionController.getFenetreGestion().getScene().getWindow();
+
+            // Create a new instance of the main application
+            javafx.application.Platform.runLater(() -> {
+                try {
+                    // Lancer une nouvelle instance de l'application
+                    view.MainApp mainApp = new view.MainApp();
+                    mainApp.start(new javafx.stage.Stage());
+
+                    // CLose the current stage
+                    stage.close();
+                } catch (Exception e) {
+                    System.err.println("Erreur lors du redémarrage de l'application : " + e.getMessage());
+                    e.printStackTrace();
+
+                    // If an error occurs, fallback to the login page
+                    UtilsController.linkToPage(fenetreGestionController.getFenetreGestion(), "/fxml/auth/Login.fxml");
+                }
+            });
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la déconnexion : " + e.getMessage());
+            e.printStackTrace();
+
+            // Fallback if error occurs
+            UtilsController.linkToPage(fenetreGestionController.getFenetreGestion(), "/fxml/auth/Login.fxml");
+        }
     }
 
 /**

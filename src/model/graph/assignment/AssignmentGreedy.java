@@ -104,10 +104,12 @@ public class AssignmentGreedy {
      */
     public void assignmentRescuersGreedy(DPS dps){
 
+        // Vérifie que le DPS n'est pas null
         if (dps == null) {
             throw new IllegalArgumentException("L'argument est null");
         }
 
+        // Récupère la liste des compétences nécessaires pour le DPS
         ArrayList<Competence> competencesBesoins = this.besoinManagement.getBesoinByDPS(dps).getCompetences();
         if (competencesBesoins.isEmpty()) {
             throw new IllegalArgumentException("L'argument est null");
@@ -121,9 +123,13 @@ public class AssignmentGreedy {
             throw new IllegalArgumentException("Il n'y a pas de secouristes de disponible");
         }
 
+        // Crée une table croisée secouristes-compétences (1 si le secouriste possède la compétence, 0 sinon)
         ArrayList<ArrayList<Long>> tabSecouComp = tabSecouComp(secouristes);
         try {
+            // Tant qu'il y a encore des compétences nécessaires à pourvoir et des secouristes disponibles
             while (!competencesBesoins.isEmpty() && !tabSecouComp.isEmpty()) {
+
+                // Sélectionne l'indice de la compétence la moins représentée parmi les secouristes
                 int indiceComp = indiceCompetenceSelectionne(tabSecouComp, competencesBesoins);
                 String compIntitule = this.competences.get(indiceComp);
                 Competence competenceSelect = new Competence(compIntitule);
@@ -131,6 +137,7 @@ public class AssignmentGreedy {
                 Secouriste secouristeSelect = SecouristeSelectionne(tabSecouComp, competencesBesoins);
 
                 if (secouristeSelect == null) {
+                    // Aucun secouriste ne possède cette compétence, on la retire de la liste des besoins
                     for (int i = 0; i < competencesBesoins.size(); i++) {
                         if (competencesBesoins.get(i).getIntitule().equals(compIntitule)) {
                             competencesBesoins.remove(i);
@@ -138,13 +145,18 @@ public class AssignmentGreedy {
                         }
                     }
                 } else {
+                    // On ajoute le secouriste sélectionné à la liste d'assignation
                     secouristesAssignement.add(secouristeSelect);
 
+                    // Création d'une affectation avec le secouriste, le DPS et la compétence
                     Affectation affectation = new Affectation(secouristeSelect, dps, competenceSelect);
+
+                    // Vérifie que l'affectation n'existe pas déjà, sinon l'ajoute et met à jour les besoins
                     if (!this.affectationManagement.isExist(affectation)) {
                         this.affectationManagement.addAffectation(affectation);
                         this.besoinManagement.deleteBesoinByDPSAndCompetence(dps, competenceSelect);
                     }
+                    // Met à jour la table des secouristes/compétences et les besoins restants
                     retirerSecouristeComp(secouristeSelect, competencesBesoins, tabSecouComp, competenceSelect);
                 }
             }
