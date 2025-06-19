@@ -7,6 +7,8 @@ import java.io.IOException;
 
 /**
  * UtilsController provides utility methods for displaying alerts and linking to different pages in the application.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
  */
 public class UtilsController {
 
@@ -56,7 +58,4 @@ public class UtilsController {
             showError("Erreur lors du chargement de la page : " + fxmlPath);
         }
     }
-
-
-
 }

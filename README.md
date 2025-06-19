@@ -9,28 +9,22 @@
 
 # TO-DO
 
+- Scenario + diagramme Scenario
 
-
-
-- Scenario 
-- digramme Scenario
-
-- Test Graphes Thoams
+- Exhaustive + Tests Exhaustive + rapport comparaison
 
 - Diapo / Oral  
-- • Le diagramme de classes a revoir a plusieurs
-- Video a plusieurs 
+- Le diagramme de classes a revoir a plusieurs
+- Video a plusieurs
 
 - JAVADOC Graphes Glen
-- JAVADOC Glen
 - JAVADOC Services Celian
-- JavaDox model Celian 
+- JAVADOC Model Celian 
 
 
 
 
 - Thomas:
-  - graphes (tests + rapport)
   - togglebutton pour switch pour choisir la stratégie d'affectation (exhaustive ou gloutonne)
   - Vue mensuelle calendrier ( + keybinds pour le calendrier)
   
@@ -38,8 +32,6 @@
   - font global
   - Pop up settings
   - btn setting à switch
-
-si on a le temps:
   - faire des keybinds pour les controllers
   - rendre évident ce qui est cliquable ou pas avec deso onHover sur les boutons etc
 

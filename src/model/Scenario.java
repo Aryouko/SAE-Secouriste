@@ -1,9 +1,5 @@
-package model.data;
+package model;
 
-import model.data.persistence.DPS;
-import model.data.persistence.Journee;
-import model.data.persistence.Sport;
-import model.data.service.AuthentificationManagement;
 import model.data.service.DPSManagement;
 
 public class Scenario {

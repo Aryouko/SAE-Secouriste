@@ -21,6 +21,8 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
 /**
  * Controller for the popup notification form.
  * This class handles the creation of new notifications.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
  */
 public class PopupNotificationFormController {
 
@@ -28,8 +30,6 @@ public class PopupNotificationFormController {
      * Current date and time, used for the notification timestamp.
      */
     private LocalDateTime now = LocalDateTime.now();
-
-    // Services
 
     /**
      * Instance of AuthentificationManagement to handle user authentication.

@@ -1,12 +1,41 @@
 package model.dao;
 
+/**
+ * DAOFactory class that provides singleton instances of various DAO classes.
+ * This class is responsible for creating and managing the instances of DAOs used in the application.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class DAOFactory {
 
+    /**
+     * Static variables for DAO instances.
+     */
     private static SecouristeDAO secouristeDAO;
+
+    /**
+     * Static variable for AdministrateurDAO instance.
+     */
     private static AdministrateurDAO administrateurDAO;
+
+    /**
+     * Static variables for other DAO instances.
+     */
     private static DPSDAO dpsDAO;
+
+    /**
+     * Static variable for JourneeDAO instance.
+     */
     private static JourneeDAO journeeDAO;
+
+    /**
+     * Static variable for UserDAO instance.
+     */
     private static UserDAO userDAO;
+
+    /**
+     * Static variable for NecessiteDAO instance.
+     */
     public static NecessiteDAO NecessiteDAO;
 
     /**

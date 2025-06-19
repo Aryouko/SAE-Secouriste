@@ -12,6 +12,8 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
  * EnvoiCodeController is responsible for handling the page where users can request a code
  * to recover their password by entering their email address.
  * It provides functionality to send a code to the user's email and navigate to the password recovery page.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
  */
 public class SendCodeController {
 
