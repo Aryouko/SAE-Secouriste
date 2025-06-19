@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import model.utils.Settings;
 
 import java.util.Objects;
 
@@ -24,7 +25,7 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println("[*] Settings useGreedy: " + model.utils.Settings.useGreedy());
+        System.out.println("[*] Settings useGreedy: " + Settings.useGreedy());
 
         launch(args);
     }
