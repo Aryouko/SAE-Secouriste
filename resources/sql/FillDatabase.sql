@@ -19,17 +19,17 @@ ALTER TABLE User AUTO_INCREMENT = 1;
 -- Insertion des vrais sites JO 2030 Alpes françaises
 -- Coordonnées GPS réelles des sites olympiques
 INSERT INTO Site (code, nom, latitude, longitude) VALUES
-                                                      (1, 'La Clusaz - Ski nordique/Biathlon', 45.9044, 6.4231),
-                                                      (2, 'Le Grand-Bornand - Ski nordique/Biathlon', 45.9403, 6.4278),
-                                                      (3, 'Courchevel - Saut à ski', 45.4147, 6.6342),
-                                                      (4, 'Méribel - Ski alpin (Roc de Fer)', 45.3864, 6.5658),
-                                                      (5, 'Val d''Isère - Ski alpin', 45.4487, 6.9792),
-                                                      (6, 'La Plagne - Bobsleigh/Skeleton', 45.5547, 6.6797),
-                                                      (7, 'Serre-Chevalier - Ski alpin', 44.9428, 6.5506),
-                                                      (8, 'Montgenèvre - Ski freestyle', 44.9311, 6.7275),
-                                                      (9, 'Isola 2000 - Snowboard/Ski-cross', 44.1842, 6.9719),
-                                                      (10, 'Nice - Patinage artistique/Hockey', 43.7102, 7.2620),
-                                                      (11, 'Briançon - Half-pipe ski/snowboard', 44.8978, 6.6408);
+                                                      (1, 'La Clusaz', 45.9044, 6.4231),
+                                                      (2, 'Le Grand-Bornand', 45.9403, 6.4278),
+                                                      (3, 'Courchevel', 45.4147, 6.6342),
+                                                      (4, 'Méribel', 45.3864, 6.5658),
+                                                      (5, 'Val d''Isère', 45.4487, 6.9792),
+                                                      (6, 'La Plagne', 45.5547, 6.6797),
+                                                      (7, 'Serre-Chevalier', 44.9428, 6.5506),
+                                                      (8, 'Montgenèvre', 44.9311, 6.7275),
+                                                      (9, 'Isola 2000', 44.1842, 6.9719),
+                                                      (10, 'Nice', 43.7102, 7.2620),
+                                                      (11, 'Briançon', 44.8978, 6.6408);
 
 -- Sports JO d'hiver 2030 (disciplines olympiques réelles)
 INSERT INTO Sport (code, nom) VALUES
@@ -46,7 +46,8 @@ INSERT INTO Sport (code, nom) VALUES
                                   (11, 'Curling'),
                                   (12, 'Bobsleigh'),
                                   (13, 'Skeleton'),
-                                  (14, 'Luge');
+                                  (14, 'Luge'),
+                                  (15, 'Escalade');
 
 -- Journées pour les JO 2030 (du 8 au 24 février)
 INSERT INTO Journee (jour, mois, annee) VALUES (8, 2, 2030);
