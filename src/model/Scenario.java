@@ -1,5 +1,10 @@
 package model;
 
+import model.data.persistence.DPS;
+import model.data.persistence.Journee;
+import model.data.persistence.Site;
+import model.data.persistence.Sport;
+import model.data.service.AuthentificationManagement;
 import model.data.service.DPSManagement;
 
 public class Scenario {
@@ -22,45 +27,47 @@ public class Scenario {
 
 
         // 1. Connexion à l'application en tant qu'admin
-/*
+
         AuthentificationManagement auth = AuthentificationManagement.getInstanceAuthentificationManagement();
-        AuthentificationManagement.LoginResult result = auth.login("admin@mail.com", "motdepasseAdmin");
+        AuthentificationManagement.LoginResult result = auth.login("admin@secouriste.fr", "admin");
         if (result != AuthentificationManagement.LoginResult.SUCCESS || !auth.isAdmin()) {
             System.out.println("Connexion admin échouée !");
+            return;
         }
 
         System.out.println("Admin connecté.");
-        long id = this.dpsManagement.numberOfDps() + 1;
-
-        Journee journee = new Journee(10, 10, 10);
-        newDps = new DPS(id, this.nomTextField.getText(), this.horaireDeb, this.horaireFin, this.site, this.sport, journee);
 
 
-
-
-        insert
-        launchAffectation
 
         // 2. Il accède à la page de gestion des DPS.
+
         DPSManagement dpsManagement = new DPSManagement();
-        DPS nouveauDps = new DPS("NomDPS", "Lieu", "2025-07-01", ); // complète les champs nécessaires
+        System.out.println("Accès à la page de gestion des DPS.");
 
-        FenetreAjoutDPSController fenetreAjoutDPSController = new FenetreAjoutDPSController();
-        fenetreAjoutDPSController.ajoutDPS();
+        // 3. Il clique sur le bouton "Créer un nouveau DPS".
+        // + 4. Il remplit les informations nécessaires (nom, date, lieu, etc.).
 
-        boolean creation = dpsManagement.addDPS(nouveauDps);
+        int dpsId = 1337; // ID fictif pour le DPS, assez important pour ne pas avoir de conflit avec les IDs existants
+        String nomDps = "DPS Test";
+        Site siteScenario = new Site(1, "Site Test", 48.8566f, 2.3522f); // Exemple de site
+        Sport sportScenario = new Sport(1, "Description du sport test");
+        Journee journeeScenario = new Journee(1, 10, 2025);
+        int horaireDepart = 800; // 08:00 AM
+        int horaireFin = 1800; // 06:00 PM
 
+        DPS nouveauDps = new DPS(dpsId, nomDps, horaireDepart, horaireFin, siteScenario, sportScenario, journeeScenario);
+        System.out.println("Création d'un nouveau DPS : " + nouveauDps.getName());
 
+        // 5 . Il enregistre le DPS.
+        dpsManagement.addDps(nouveauDps);
 
-        if (creation) {
-            System.out.println("Nouveau DPS créé : " + nouveauDps.getName());
+        // 6. Il peut voir le nouveau DPS dans la liste des DPS.
+        DPS retrieved = dpsManagement.getDpsById(dpsId);
+        if (retrieved != null) {
+            System.out.println("DPS créé avec succès : " + retrieved.getName() + " de " + retrieved.getHoraireDepart() + " à " + retrieved.getHoraireFin());
         } else {
-            System.out.println("Erreur lors de la création du DPS.");
+            System.out.println("Échec de la création du DPS.");
         }
-
- */
-
-
 
     }
 }
