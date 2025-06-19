@@ -105,7 +105,6 @@ public class AuthentificationManagement {
         this.user = null;
         this.secouriste = null;
 
-
         try {
             User user = userDAO.getUserByLogin(mail);
             if (user == null) {
