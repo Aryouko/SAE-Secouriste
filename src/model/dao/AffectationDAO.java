@@ -13,8 +13,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class AffectationDAO that manages the database operations for the Affectation entity.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class AffectationDAO {
 
+    /**
+     * Inserts a new Affectation into the database.
+     *
+     * @param affectation the Affectation to insert
+     */
     public void insert(Affectation affectation) {
         String query = "INSERT INTO Affectation VALUES (?, ?, ?)";
         try (Connection con = ConnectionBDD.getConnection();
@@ -30,6 +40,13 @@ public class AffectationDAO {
         }
     }
 
+    /**
+     * Checks if a rescuer is assigned to a specific day.
+     *
+     * @param idJournee the ID of the day
+     * @param idSecouriste the ID of the rescuer
+     * @return true if the rescuer is assigned, false otherwise
+     */
     public boolean rescuerThisDay(long idJournee, long idSecouriste) {
         boolean ret = false;
         String query = "SELECT 1 FROM Affectation a JOIN DPS d ON a.DPSAffect = d.id WHERE d.journee = ? AND a.secouristeAffect = ? LIMIT 1";
@@ -54,6 +71,12 @@ public class AffectationDAO {
         return ret;
     }
 
+    /**
+     * Checks if an Affectation already exists in the database.
+     *
+     * @param affectation the Affectation to check
+     * @return true if the Affectation exists, false otherwise
+     */
     public boolean exists(Affectation affectation) {
         String query = "SELECT 1 FROM affectation WHERE secouristeAffect = ? AND DPSAffect = ? AND competenceAffect = ?";
         boolean ret = false;
@@ -74,6 +97,12 @@ public class AffectationDAO {
         return ret;
     }
 
+    /**
+     * Finds all rescuers assigned to a specific DPS.
+     *
+     * @param idDPS the ID of the DPS
+     * @return a list of IDs of rescuers assigned to the DPS
+     */
     public ArrayList<Integer> findIdRescuerByDPS(long idDPS) {
         ArrayList<Integer> idSecouristes = new ArrayList<>();
         String query = "SELECT secouristeAffect FROM Affectation WHERE DPSAffect = ?";
@@ -93,6 +122,12 @@ public class AffectationDAO {
         return idSecouristes;
     }
 
+    /**
+     * Finds all Affectations for a specific rescuer.
+     *
+     * @param idRescuer the ID of the rescuer
+     * @return a list of Affectations for the rescuer
+     */
     public List<Affectation> findByRescuer(long idRescuer) {
         List<Affectation> affectations = new ArrayList<>();
         String query = "SELECT * FROM Affectation WHERE SecouristeAffect = ?";
@@ -129,6 +164,12 @@ public class AffectationDAO {
         return affectations;
     }
 
+/**
+     * Finds all Affectations for a specific DPS.
+     *
+     * @param idDps the ID of the DPS
+     * @return a list of Affectations for the DPS
+     */
     public List<Affectation> findByDPS(long idDps) {
         List<Affectation> affectations = new ArrayList<>();
         String query = "SELECT * FROM Affectation WHERE DpsAffect = ?";
@@ -165,6 +206,11 @@ public class AffectationDAO {
         return affectations;
     }
 
+    /**
+     * Deletes an Affectation from the database.
+     *
+     * @param affectation the Affectation to delete
+     */
     public void delete(Affectation affectation) {
         String query = "DELETE FROM Affectation WHERE SecouristeAffect = ? AND DpsAffect = ? AND CompetenceAffect = ?";
 

@@ -32,18 +32,34 @@ public class Besoin {
         this.dps = dps;
     }
 
+    /**
+     * Get the competences needed for the DPS
+     * @return the list of competences
+     */
     public ArrayList<Competence> getCompetences() {
         return this.competences;
     }
 
+    /**
+     * Set the competences needed for the DPS
+     * @param competences - the list of competences to set
+     */
     public void setCompetences(ArrayList<Competence> competences) {
         this.competences = competences;
     }
 
+    /**
+     * Get the DPS that needs skills
+     * @return the DPS instance
+     */
     public DPS getDps() {
         return this.dps;
     }
 
+    /**
+     * Set the DPS that needs skills
+     * @param dps - the DPS to set
+     */
     public void setDps(DPS dps) {
         this.dps = dps;
     }

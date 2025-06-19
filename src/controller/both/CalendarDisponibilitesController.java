@@ -26,29 +26,92 @@ import java.util.Set;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
+/**
+ * CalendarDisponibilitesController is responsible for managing the calendar view
+ * where users can set their availability for specific dates.
+ * It allows users to select a range of dates and save their availability.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class CalendarDisponibilitesController {
 
+    /**
+     * The AnchorPane that serves as the calendar view.
+     */
     @FXML
     private GridPane calendarGrid;
 
+    /**
+     * The Button to navigate to the next month.
+     */
     @FXML
     private AnchorPane settingsPane;
 
+    /**
+     * The Button to navigate to the previous month.
+     */
     private final DisponibiliteManagement disponibiliteManagement = new DisponibiliteManagement();
+
+    /**
+     * The Secouriste for whom the availability is being managed.
+     */
     private model.data.persistence.Secouriste sec;
+
+    /**
+     * The month and year currently displayed in the calendar.
+     */
     private int mois;
+
+    /**
+     * The year currently displayed in the calendar.
+     */
     private int annee;
+
+    /**
+     * A set of LocalDate objects representing the available dates.
+     */
     private final Set<LocalDate> disponibilites = new HashSet<>();
+
+    /**
+     * A map that associates each Label with its corresponding LocalDate.
+     */
     private final Map<Label, LocalDate> labelDateMap = new HashMap<>();
+
+    /**
+     * A list of Labels that are currently selected.
+     */
     private final List<Label> selectedLabels = new ArrayList<>();
+
+    /**
+     * A temporary set of LocalDate objects used for selection.
+     */
     private final Set<LocalDate> tempSelection = new HashSet<>();
+
+    /**
+     * The start date of the current selection.
+     */
     private LocalDate selectionStart = null;
+
+    /**
+     * The end date of the current selection.
+     */
     private LocalDate selectionEnd = null;
+
+    /**
+     * The Pane that contains the calendar assignment view.
+     */
     @FXML private Pane calendarAssignmentPane;
 
+    /**
+     * The Label that displays the current month and year.
+     */
     @FXML
     private Label jourLabel;
 
+    /**
+     * Initializes the CalendarDisponibilitesController by setting up the calendar view.
+     * This method is called automatically when the FXML file is loaded.
+     */
     @FXML
     private void initialize() {
         LocalDate today = LocalDate.now();
@@ -63,6 +126,10 @@ public class CalendarDisponibilitesController {
         populateCalendar(this.annee, this.mois);
     }
 
+    /**
+     * Handles the button click event to navigate to the next month.
+     * If the current month is December, it moves to January of the next year.
+     */
     private void chargerDisponibilites() {
         disponibilites.clear();
         ArrayList<Disponibilite> dispoList = disponibiliteManagement.getDisponibilites(sec);
@@ -73,6 +140,10 @@ public class CalendarDisponibilitesController {
         }
     }
 
+    /**
+     * Handles the button click event to save the selected availability.
+     * It updates the availability in the database and provides feedback to the user.
+     */
     private void sauvegarderDisponibilites() {
         long idSec = getInstanceAuthentificationManagement().getCurrentUser().getIdUser();
 
@@ -105,6 +176,10 @@ public class CalendarDisponibilitesController {
         System.out.println("Disponibilités sauvegardées : " + disponibilites.size() + " jours");
     }
 
+    /**
+     * Handles the button click event to navigate to the next month.
+     * If the current month is December, it moves to January of the next year.
+     */
     @FXML
     private void moisSuivant() {
         if (this.mois == 12) {
@@ -119,6 +194,10 @@ public class CalendarDisponibilitesController {
         }
     }
 
+    /**
+     * Handles the button click event to navigate to the previous month.
+     * If the current month is January, it moves to December of the previous year.
+     */
     @FXML
     private void moisPrecedent() {
         if (this.mois == 1) {
@@ -133,6 +212,10 @@ public class CalendarDisponibilitesController {
         }
     }
 
+    /**
+     * Handles the button click event to navigate to the calendar assignment view.
+     * It loads the calendar assignment view and displays it in the calendar assignment pane.
+     */
     private void populateCalendar(int annee, int mois) {
         calendarGrid.getChildren().clear();
         labelDateMap.clear();
@@ -195,6 +278,13 @@ public class CalendarDisponibilitesController {
         });
     }
 
+    /**
+     * Applies the appropriate style to a day label based on its date.
+     * It highlights the current day and available dates with different styles.
+     *
+     * @param dayLabel The label representing the day.
+     * @param date     The LocalDate associated with the label.
+     */
     private void applyDayStyle(Label dayLabel, LocalDate date) {
         LocalDate today = LocalDate.now();
         boolean isToday = date.equals(today);
@@ -210,6 +300,12 @@ public class CalendarDisponibilitesController {
         }
     }
 
+    /**
+     * Sets up mouse handlers for the day label to handle selection and deselection.
+     * It allows users to select a range of dates by clicking and dragging.
+     *
+     * @param dayLabel The label representing the day.
+     */
     private void setupMouseHandlers(Label dayLabel) {
         dayLabel.setOnMousePressed(e -> {
             LocalDate date = labelDateMap.get(dayLabel);
@@ -229,6 +325,13 @@ public class CalendarDisponibilitesController {
         });
     }
 
+    /**
+     * Handles the selection of a range of dates.
+     * It checks if the selected period is available and updates the availability accordingly.
+     *
+     * @param start The start date of the selection.
+     * @param end   The end date of the selection.
+     */
     private void traiterSelection(LocalDate start, LocalDate end) {
         Set<LocalDate> periodeSelectionnee = new HashSet<>();
         LocalDate current = start;
@@ -248,6 +351,10 @@ public class CalendarDisponibilitesController {
         sauvegarderDisponibilites();
     }
 
+    /**
+     * Updates the visual representation of the selected dates in the calendar.
+     * It highlights the selected dates and applies styles to them.
+     */
     private void updateSelectionVisuals() {
         updateCalendarDisplay();
         if (selectionStart == null || selectionEnd == null) return;
@@ -274,6 +381,10 @@ public class CalendarDisponibilitesController {
         }
     }
 
+    /**
+     * Updates the calendar display to reflect the current availability.
+     * It applies styles to the labels based on their availability status.
+     */
     private void updateCalendarDisplay() {
         for (Map.Entry<Label, LocalDate> entry : labelDateMap.entrySet()) {
             Label label = entry.getKey();
@@ -282,6 +393,10 @@ public class CalendarDisponibilitesController {
         }
     }
 
+    /**
+     * Clears the temporary selection and resets the selection start and end dates.
+     * It also updates the calendar display to reflect the cleared selection.
+     */
     private void clearTempSelection() {
         tempSelection.clear();
         selectedLabels.clear();

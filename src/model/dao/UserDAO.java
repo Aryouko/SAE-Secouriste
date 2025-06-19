@@ -6,6 +6,13 @@ import java.sql.*;
 
 import static model.utils.PasswordHashing.*;
 
+/**
+ * Class UserDAO that manages the database operations for the User entity.
+ * It provides methods to check login existence, retrieve user by login,
+ * change user password, add a new user, and change user role.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class UserDAO {
 
     /**
@@ -135,6 +142,12 @@ public class UserDAO {
         }
     }
 
+    /**
+     * Changes the role of a user identified by their ID.
+     *
+     * @param idUser the ID of the user whose role is to be changed.
+     * @param role   the new role to set for the user.
+     */
     public void changeRoleById(long idUser, String role) {
 
         String updateQuery = "UPDATE user SET role = ? WHERE idUser = ?";

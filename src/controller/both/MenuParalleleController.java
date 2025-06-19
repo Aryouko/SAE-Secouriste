@@ -10,17 +10,45 @@ import java.io.IOException;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
+/**
+ * MenuParalleleController is responsible for managing the parallel menu in the application.
+ * It handles the display of user profile, calendar, upcoming events, and settings.
+ * This controller is used in both admin and common contexts.
+ *
+ * Authors: C.Brocart, T.Brami-Coatual, L.Carré, G.Potay
+ * Version: 1.0
+ */
 public class MenuParalleleController {
 
+    /**
+     * The FenetreGestionController that manages the overall application window.
+     * This controller is used to load different content into the main application window.
+     */
     private FenetreGestionController fenetreGestionController;
 
+    /**
+     * The EvenementController that manages event-related functionalities.
+     * This controller is used to handle event creation, modification, and display.
+     */
     private EvenementController evenementController;
 
+    /**
+     * Flag to indicate whether the settings menu is currently open.
+     * This is used to toggle the settings view on and off.
+     */
     private boolean isOpenSettings = false;
 
+    /**
+     * The GridPane that serves as the layout for the parallel menu components.
+     * This grid contains various UI elements such as profile display, calendar, and upcoming events.
+     */
     @FXML
     private GridPane composentGrid;
 
+    /**
+     * Initializes the MenuParalleleController by setting up the initial view.
+     * This method is called automatically when the FXML file is loaded.
+     */
     @FXML
     public void initialize() {
         System.out.println("MenuParalleleController initialized");
@@ -29,6 +57,10 @@ public class MenuParalleleController {
         setRow(2, "/fxml/common/DisplayUpComingEvent.fxml");
     }
 
+    /**
+     * Links to the user profile page when the "Profile" button is clicked.
+     * This method loads the user profile view into the main application window.
+     */
     @FXML
     public void linkToSettings() {
         if (!isOpenSettings) {
@@ -60,10 +92,23 @@ public class MenuParalleleController {
         }
     }
 
+    /**
+     * Sets the FenetreGestionController for this MenuParalleleController.
+     * This method is used to inject the main application controller into this controller.
+     *
+     * @param fenetreGestionController The FenetreGestionController to set.
+     */
     public void setFenetreGestionController(FenetreGestionController fenetreGestionController) {
         this.fenetreGestionController = fenetreGestionController;
     }
 
+    /**
+     * Sets a specific row in the GridPane with the given FXML path.
+     * This method loads the FXML file and adds it to the specified row index in the GridPane.
+     *
+     * @param rowIndex The index of the row to set.
+     * @param fxmlPath The path to the FXML file to load for this row.
+     */
     void setRow(int rowIndex, String fxmlPath) {
         try {
             composentGrid.getChildren().removeIf(node ->
@@ -97,10 +142,22 @@ public class MenuParalleleController {
         }
     }
 
+    /**
+     * Gets the FenetreGestionController associated with this MenuParalleleController.
+     * This method is used to retrieve the main application controller.
+     *
+     * @return The FenetreGestionController instance.
+     */
     public EvenementController getEvenementController() {
         return evenementController;
     }
 
+    /**
+     * Checks if the settings menu is currently open.
+     * This method returns the status of the settings menu toggle.
+     *
+     * @return true if the settings menu is open, false otherwise.
+     */
     public boolean isOpenSettings() {
         return isOpenSettings;
     }

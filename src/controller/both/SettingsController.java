@@ -30,39 +30,173 @@ import java.util.*;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
+/**
+ * SettingsController is responsible for managing the settings page of the application.
+ * It allows users to update their profile picture, manage their competencies, and perform administrative actions.
+ * This controller is used in both admin and common contexts.
+ *
+ * Authors: C.Brocart, T.Brami-Coatual, L.Carré, G.Potay
+ * Version: 1.0
+ */
 public class SettingsController implements FenetreGestionInjectable, MenuParalleleInjectable {
 
+    /**
+     * The FenetreGestionController that manages the overall application window.
+     * This controller is used to load different content into the main application window.
+     */
     private FenetreGestionController fenetreGestionController;
 
+    /**
+     * The SecouristeManagement that handles rescuer-related operations.
+     * This management class is used to interact with rescuer data.
+     */
     private final SecouristeManagement secouristeManagement = new SecouristeManagement();
+
+    /**
+     * The AdministrateurManagement that handles administrator-related operations.
+     * This management class is used to interact with administrator data.
+     */
     private final AdministrateurManagement administrateurManagement = new AdministrateurManagement();
+
+    /**
+     * The AdministrateurDAO that provides data access methods for administrators.
+     * This DAO is used to perform CRUD operations on administrator data.
+     */
     private final AdministrateurDAO administrateurDAO = new AdministrateurDAO();
+
+    /**
+     * The Secouriste object representing the current rescuer.
+     * This object is used to display and manage the rescuer's profile.
+     */
     Secouriste sec;
+
+    /**
+     * The Administrateur object representing the current administrator.
+     * This object is used to display and manage the administrator's profile.
+     */
     Administrateur admin;
+
+    /**
+     * A map that defines the dependencies between competencies.
+     * Each CheckBox is associated with a list of CheckBoxes that must be checked if it is checked.
+     */
     private final Map<CheckBox, List<CheckBox>> dependances = new HashMap<>();
+
+    /**
+     * A map that defines the reverse dependencies for competencies.
+     * Each CheckBox is associated with a list of CheckBoxes that depend on it.
+     * This is used to uncheck dependent competencies when a competency is unchecked.
+     */
     private final Map<CheckBox, List<CheckBox>> reverseDependances = new HashMap<>();
+
+    /**
+     * The MenuParalleleController that manages the parallel menu in the application.
+     * This controller is used to switch between different views in the parallel menu.
+     */
     private MenuParalleleController menuParalleleController;
 
+    /**
+     * The AnchorPane that serves as the settings pane.
+     * This pane contains all the UI elements for managing user settings.
+     */
     @FXML private AnchorPane settingsPane;
+
+    /**
+     * The Text that displays the user's name in the settings.
+     * This text is updated based on the current user's profile.
+     */
     @FXML private Text prenomNomParam;
+
+    /**
+     * The Circle that displays the user's profile picture.
+     * This circle is updated when the user uploads a new profile picture.
+     */
     @FXML private Circle pdpParamCircle;
+
+    /**
+     * CheckBox for PSE1 competency
+     */
     @FXML private CheckBox checkPSE1;
+
+    /**
+     * CheckBox for PSE2 competency
+     */
     @FXML private CheckBox checkPSE2;
+
+    /**
+     * CheckBox for CE competency
+     */
     @FXML private CheckBox checkCE;
+
+    /**
+     * CheckBox for CP competency
+     */
     @FXML private CheckBox checkCP;
+
+    /**
+     * CheckBox for CO competency
+     */
     @FXML private CheckBox checkCO;
+
+    /**
+     * CheckBox for SSA competency
+     */
     @FXML private CheckBox checkSSA;
+
+    /**
+     * CheckBox for VPSP competency
+     */
     @FXML private CheckBox checkVPSP;
+
+    /**
+     * CheckBox for PBC competency
+     */
     @FXML private CheckBox checkPBC;
+
+    /**
+     * CheckBox for PBF competency
+     */
     @FXML private CheckBox checkPBF;
+
+    /**
+     * One of the lines that visually separates sections in the settings pane.
+     */
     @FXML private Line line;
+
+    /**
+     * Text for competencies section for rescuers.
+     * This text is hidden for administrators.
+     */
     @FXML private Text compText;
+
+    /**
+     * Text for certifications section for rescuers.
+     * This text is hidden for administrators.
+     */
     @FXML private Text certifText;
+
+    /**
+     * The Pane that serves as the background for the settings pane.
+     * This pane is styled with a gradient background for visual appeal.
+     */
     @FXML private Pane colorPane;
+
+    /**
+     * The ImageView that displays a cross icon for closing the settings pane.
+     * This icon is used to close the settings view.
+     */
     @FXML private ImageView croix;
+
+    /**
+     * A byte array to hold the new profile picture uploaded by the user.
+     * This is used to store the image data before saving it to the database.
+     */
     private byte[] nouvellePhoto;
 
-    // linear-gradient(from 0% 0% to 100% 0%,  #FEB0B0, #A80037)
+    /**
+     * Initializes the SettingsController by setting up the user profile and competencies.
+     * This method is called automatically when the FXML file is loaded.
+     */
     @FXML
     public void initialize() {
         try {
@@ -144,6 +278,12 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
         }
     }
 
+    /**
+     * Retrieves the competencies selected by the user.
+     * This method collects all competencies that are currently checked and returns them as an ArrayList.
+     *
+     * @return An ArrayList of Competence objects representing the selected competencies.
+     */
     private ArrayList<Competence> getSelectedCompetences() {
         ArrayList<Competence> competences = new ArrayList<>();
         if (checkPSE1.isSelected()) competences.add(new Competence("PSE1"));
@@ -158,6 +298,12 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
         return competences;
     }
 
+    /**
+     * Recursively checks all dependent competencies when a competency is checked.
+     * This method ensures that all prerequisites are automatically checked when a competency is selected.
+     *
+     * @param checkBox The CheckBox representing the competency that was checked.
+     */
     private void cocherDependenciesRecursivement(CheckBox checkBox) {
         List<CheckBox> deps = dependances.get(checkBox);
         if (deps != null) {
@@ -170,6 +316,12 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
         }
     }
 
+    /**
+     * Recursively unchecks all superior competencies when a competency is unchecked.
+     * This method ensures that if a prerequisite is unchecked, all competencies that depend on it are also unchecked.
+     *
+     * @param checkBox The CheckBox representing the competency that was unchecked.
+     */
     private void decocherSuperieursRecursivement(CheckBox checkBox) {
         List<CheckBox> superieurs = reverseDependances.get(checkBox);
         if (superieurs != null) {
@@ -185,6 +337,11 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
         }
     }
 
+    /**
+     * Handles the import of a new profile picture.
+     * This method opens a file chooser dialog to select an image file and updates the profile picture in the UI.
+     * The selected image is stored in the nouvellePhoto byte array for later saving to the database.
+     */
     @FXML
     private void importerPdp() {
         FileChooser fileChooser = new FileChooser();
@@ -216,6 +373,11 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
         }
     }
 
+    /**
+     * Handles the click event for the "Enregistrer" button.
+     * This method saves the new profile picture and updates the competencies for the current user.
+     * It also navigates back to the profile display page after saving.
+     */
     @FXML
     private void enregistrerClicked() {
         if(getInstanceAuthentificationManagement().isAdmin()){
@@ -248,12 +410,20 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
         }
     }
 
+    /**
+     * Handles the click event for the "Annuler" button.
+     * This method resets the settings page to its initial state without saving any changes.
+     */
     @FXML
     private void annulerClicked() {
         initialize();
     }
 
 
+    /**
+     * Handles the click event for the "Fermer" button.
+     * This method navigates back to the dashboard calendar assignment page.
+     */
     @FXML
     private void fermerClicked() {
 
@@ -268,6 +438,11 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
         }
     }
 
+    /**
+     * Handles the click event for the "Supprimer" button.
+     * This method removes the current user (either admin or rescuer) and navigates to the login page.
+     * If the user is an admin, it removes the administrator; otherwise, it removes the rescuer.
+     */
     @FXML
     private void supprimerClicked() {
         if(getInstanceAuthentificationManagement().isAdmin()){
@@ -285,16 +460,32 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
         }
     }
 
+    /**
+     * Handles the click event for the "Déconnecter" button.
+     * This method logs out the current user and navigates to the login page.
+     */
     @FXML
     private void deconnecterClicked() {
         getInstanceAuthentificationManagement().logOut(); // Réinitialise l'utilisateur courant
         UtilsController.linkToPage(fenetreGestionController.getFenetreGestion(), "/fxml/auth/Login.fxml");
     }
 
+/**
+     * Sets the FenetreGestionController for this SettingsController.
+     * This method is used to inject the main application controller into this controller.
+     *
+     * @param fenetreGestionController The FenetreGestionController to set.
+     */
     public void setFenetreGestionController(FenetreGestionController fenetreGestionController) {
         this.fenetreGestionController = fenetreGestionController;
     }
 
+    /**
+     * Sets the MenuParalleleController for this SettingsController.
+     * This method is used to inject the parallel menu controller into this controller.
+     *
+     * @param menuParalleleController The MenuParalleleController to set.
+     */
     public void setMenuParalleleController(MenuParalleleController menuParalleleController) {
         this.menuParalleleController = menuParalleleController;
     }
