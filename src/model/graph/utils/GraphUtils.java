@@ -5,22 +5,15 @@ public class GraphUtils {
 
 
     public static boolean isOriented(int[][] matrix) {
-        int indexL = 0 ;
-        for (int[] line : matrix) {
-
-            int indexC = 0;
-            for (int column : line) {
-
-                if (column == 1 ) {
-                    if ( matrix[indexC][indexL] == 1 ) {
-                        return false ;
-                    }
+        int n = matrix.length;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (matrix[i][j] != matrix[j][i]) {
+                    return true; // Il existe au moins une arête non symétrique, donc orienté
                 }
-                indexC++;
             }
-            indexL++;
         }
-        return true;
+        return false;
     }
 
 
