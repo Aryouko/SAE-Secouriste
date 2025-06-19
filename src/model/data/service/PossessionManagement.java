@@ -9,7 +9,7 @@ import model.data.persistence.Secouriste;
  * This class manages possessions.
  * It provides methods to retrieve, add, and remove possessions for rescuers.
  *
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class PossessionManagement {

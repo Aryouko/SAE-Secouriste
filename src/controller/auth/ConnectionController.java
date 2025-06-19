@@ -14,7 +14,7 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
 /**
  * ConnexionController is responsible for handling the login page of the application.
  * It provides functionality to log in, navigate to the registration page, and recover forgotten passwords.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class ConnectionController {

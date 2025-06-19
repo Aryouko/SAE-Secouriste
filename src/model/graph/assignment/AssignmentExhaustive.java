@@ -10,6 +10,8 @@ import java.util.*;
 /**
  * Classe AssignmentExhaustive - Cette classe réalise une affectation exhaustive des secouristes
  * aux compétences demandées dans un DPS donné, en tenant compte des compétences supérieures.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
+ * @version 1.0
  */
 public class AssignmentExhaustive {
 

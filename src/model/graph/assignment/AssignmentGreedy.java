@@ -18,20 +18,41 @@ import java.util.List;
  * @author C.Brocart, T.Brami-Coatual, L.Carré, G.Potay
  * @version 1.0
  */
-public class   AssignmentGreedy {
+public class AssignmentGreedy {
 
+    /**
+     * DAO for managing competencies.
+     */
     private final CompetenceDAO competenceDAO;
 
+    /**
+     * List of competencies.
+     */
     private final ArrayList<String> competences;
 
+    /**
+     * Management services for needs, assignments, rescuers, days, and possessions.
+     */
     private final BesoinManagement besoinManagement;
 
+    /**
+     * Management service for assignments.
+     */
     private final AffectationManagement affectationManagement;
 
+    /**
+     * Management service for rescuers.
+     */
     private final SecouristeManagement secouristeManagement;
 
+    /**
+     * Management service for days.
+     */
     private final JourneeManagement journeeManagement;
 
+    /**
+     * Management service for possessions.
+     */
     private final PossessionManagement possessionManagement;
 
 

@@ -17,7 +17,7 @@ import static model.utils.PasswordHashing.verifyPassword;
 /**
  * AuthentificationManagement class
  * This class manages the authentication of users, including registration, login, password recovery, and rescuer creation.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class AuthentificationManagement {

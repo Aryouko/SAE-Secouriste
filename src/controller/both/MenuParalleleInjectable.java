@@ -3,7 +3,7 @@ package controller.both;
 /**
  * Interface for controllers that need to inject a MenuParalleleController instance.
  * This is used to allow different controllers to set their own MenuParalleleController.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public interface MenuParalleleInjectable {

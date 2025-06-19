@@ -10,7 +10,7 @@ import static model.utils.PasswordHashing.*;
  * Class UserDAO that manages the database operations for the User entity.
  * It provides methods to check login existence, retrieve user by login,
  * change user password, add a new user, and change user role.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class UserDAO {

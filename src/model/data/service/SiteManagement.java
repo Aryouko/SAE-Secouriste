@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * SiteManagement class
  * This class manages the operations related to Site.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class SiteManagement {

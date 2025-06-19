@@ -13,7 +13,7 @@ import model.data.persistence.Sport;
  * DPSManagement class
  * This class manages the operations related to DPS (Emergency Preparedness System).
  * It provides methods to add, retrieve, update, and delete DPS records.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class DPSManagement {

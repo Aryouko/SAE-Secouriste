@@ -11,7 +11,7 @@ import javafx.scene.layout.GridPane;
  * CalendarController is responsible for managing the calendar view in the application.
  * It allows users to navigate through months and displays the days of the selected month.
  * The current day is highlighted in the calendar.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class CalendarController {

@@ -22,7 +22,7 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
  * ProfilController is responsible for managing the user profile view.
  * It displays the user's name, role, and profile picture, and allows toggling between notifications and calendar views.
  * It implements MenuParalleleInjectable to interact with the parallel menu controller.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class ProfilController implements MenuParalleleInjectable {

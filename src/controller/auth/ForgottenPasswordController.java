@@ -12,7 +12,7 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
 /**
  * MotDePasseOublieController is responsible for handling the page where users can change their forgotten password.
  * It provides functionality to validate the code sent to the user's email and change the password accordingly.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class ForgottenPasswordController {

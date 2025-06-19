@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * This class stores the number of someone that we need for DPS
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
 */
 public class Besoin {

@@ -21,7 +21,7 @@ import static controller.admin.FenetreGestionController.showOverlay;
 /**
  * Controller for managing rescuers in the administration interface.
  * This class handles the display and management of rescuers, including their certifications and group assignments.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class GestionSecouristeController implements FenetreGestionInjectable {
