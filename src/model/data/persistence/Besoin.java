@@ -12,12 +12,12 @@ public class Besoin {
     /**
      * Private variable containing the dps
      */
-    DPS dps;
+    private DPS dps;
 
     /**
      * Private variable containing the competences
      */
-    ArrayList<Competence> competences;
+    private ArrayList<Competence> competences;
 
     /**
      * Constructor of Besoin class

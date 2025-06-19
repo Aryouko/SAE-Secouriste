@@ -30,9 +30,6 @@ public class GestionSecouristeController implements FenetreGestionInjectable {
     private ComboBox<String> certComboBox;
 
     @FXML
-    private ComboBox<String> attCertComboBox;
-
-    @FXML
     private AnchorPane gestionSecouriste;
 
     private ArrayList<String> groupes;
@@ -255,13 +252,10 @@ public class GestionSecouristeController implements FenetreGestionInjectable {
     private void comboBoxInitialize() {
         this.grpComboBox.getItems().add("Groupe d'affectation");
         this.certComboBox.getItems().add("Certification");
-        this.attCertComboBox.getItems().add("Certification en attente");
         this.grpComboBox.getSelectionModel().select("Groupe d'affectation");
         this.certComboBox.getSelectionModel().select("Certification");
-        this.attCertComboBox.getSelectionModel().select("Certification en attente");
         this.grpComboBox.getItems().addAll(this.groupes);
         this.certComboBox.getItems().addAll(this.certifications);
-        this.attCertComboBox.getItems().addAll(this.attCertifications);
     }
 
     @FXML

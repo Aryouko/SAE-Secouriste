@@ -335,6 +335,20 @@ public class GestionEvenementController implements FenetreGestionInjectable {
         }
     }
 
+    @FXML
+    private void relationCompetence() {
+    StackPane overlay = showOverlay();
+        try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupRelation.fxml"));
+        Parent overlayContent = loader.load();
+        overlay.getChildren().add(overlayContent);
+        StackPane.setAlignment(overlayContent, javafx.geometry.Pos.CENTER);
+    } catch (IOException e) {
+        System.err.println(e.getMessage());
+        e.printStackTrace();
+    }
+}
+
     private void majAffect(DPS dps) {
         try {
             this.affectationManagement.launchAffectation(dps);
