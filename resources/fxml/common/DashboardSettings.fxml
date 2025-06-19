@@ -123,7 +123,7 @@
       <Line endX="1260.0" endY="520.0" startX="166.0" startY="520.0" />
       <Line fx:id="line" endX="1260.0" endY="700.0" startX="166.0" startY="700.0" />
       <Line endX="1260.0" endY="900.0" startX="166.0" startY="900.0" />
-      <CheckBox fx:id="greedyCheckBox" layoutX="168.0" layoutY="554.0" mnemonicParsing="false" onAction="#greedyCheckBoxToggled" stylesheets="@../../css/button.css" text="use Greedy algorithm for assignment" visible="false">
+      <CheckBox fx:id="greedyCheckBox" layoutX="168.0" layoutY="554.0" mnemonicParsing="false" onAction="#greedyCheckBoxToggled" stylesheets="@../../css/button.css" text="Utiliser l'algorithme d'affectation glouton pour l'affectation" visible="false">
          <font>
             <Font name="Poppins Regular" size="14.0" />
          </font></CheckBox>
