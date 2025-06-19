@@ -7,7 +7,11 @@ package model.graph.utils;
  */
 public class GraphUtils {
 
-
+    /**
+     * It checks if the graph is oriented or not
+     * @param matrix - the adjacency matrix given
+     * @return true if the graph is oriented, false otherwise
+     */
     public static boolean isOriented(int[][] matrix) {
         int n = matrix.length;
         for (int i = 0; i < n; i++) {
@@ -19,7 +23,6 @@ public class GraphUtils {
         }
         return false;
     }
-
 
     /**
      * It checks if e cycle is detected during the DFS
