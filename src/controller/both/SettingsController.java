@@ -233,6 +233,12 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
                 certifText.setVisible(false);
 
                 greedyCheckBox.setVisible(true);
+
+                if (model.utils.Settings.useGreedy()) {
+                    greedyCheckBox.setSelected(true);
+                } else {
+                    greedyCheckBox.setSelected(false);
+                }
             } else {
                 prenomNomParam.setText(sec.getPrenom() + " " + sec.getNom());
                 if (sec.getPhoto() != null) {
