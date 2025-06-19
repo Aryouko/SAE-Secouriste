@@ -396,8 +396,8 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
      */
     @FXML
     private void calendarViewChoiceBoxChanged(ActionEvent event) {
-        String selected = calendarViewChoiceBox.getValue();
-        System.out.println("Selected: " + selected);
+        // String selected = calendarViewChoiceBox.getValue();
+        // System.out.println("Selected: " + selected);
     }
 
     /**
