@@ -38,7 +38,6 @@
   - font global
   - Pop up settings
   - btn setting à switch
-  - Pb switch entre admin puis secouriste
 
 si on a le temps:
   - faire des keybinds pour les controllers
