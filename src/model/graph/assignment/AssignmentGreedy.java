@@ -20,19 +20,61 @@ import java.util.List;
  */
 public class   AssignmentGreedy {
 
-    private final CompetenceDAO competenceDAO = new CompetenceDAO() ;
+    private final CompetenceDAO competenceDAO;
 
-    private final ArrayList<String> competences = competenceDAO.findAllIntitule();
+    private final ArrayList<String> competences;
 
-    private final BesoinManagement besoinManagement = new BesoinManagement();
+    private final BesoinManagement besoinManagement;
 
-    private final AffectationManagement affectationManagement = new AffectationManagement();
+    private final AffectationManagement affectationManagement;
 
-    private final SecouristeManagement secouristeManagement = new SecouristeManagement();
+    private final SecouristeManagement secouristeManagement;
 
-    private final JourneeManagement journeeManagement = new JourneeManagement();
+    private final JourneeManagement journeeManagement;
 
-    private final PossessionManagement possessionManagement = new PossessionManagement();
+    private final PossessionManagement possessionManagement;
+
+
+    /**
+     * Regular constructor for the application
+     */
+    public AssignmentGreedy() {
+
+        this.competenceDAO = new CompetenceDAO();
+
+        this.competences = competenceDAO.findAllIntitule();
+        this.besoinManagement = new BesoinManagement();
+        this.affectationManagement = new AffectationManagement();
+        this.secouristeManagement = new SecouristeManagement();
+        this.journeeManagement = new JourneeManagement();
+        this.possessionManagement = new PossessionManagement();
+    }
+
+    /**
+     * Constructor for testing purposes.
+     *
+     * @param competenceDAO - a CompetenceDAO instance
+     */
+    public AssignmentGreedy(CompetenceDAO competenceDAO, ArrayList<String> competences,
+                            BesoinManagement besoinManagement, AffectationManagement affectationManagement,
+                            SecouristeManagement secouristeManagement, JourneeManagement journeeManagement,
+                            PossessionManagement possessionManagement) {
+        if (competenceDAO == null || competences == null || besoinManagement == null ||
+            affectationManagement == null || secouristeManagement == null || journeeManagement == null ||
+            possessionManagement == null) {
+            throw new IllegalArgumentException("Un des arguments est null");
+        }
+
+        this.competenceDAO = competenceDAO;
+        this.competences = competences;
+        this.besoinManagement = besoinManagement;
+        this.affectationManagement = affectationManagement;
+        this.secouristeManagement = secouristeManagement;
+        this.journeeManagement = journeeManagement;
+        this.possessionManagement = possessionManagement;
+
+
+    }
 
     /**
      * Assigns rescuers to a DPS (First Aid Post) in the most optimal way.
