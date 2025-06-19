@@ -112,21 +112,41 @@ public class AffectationManagement {
                     competencesAffectees.add(affectation.getCompetenceAffect());
                 }
 
+                // Compter les occurrences de chaque compétence dans la liste originale
+                // et dans la liste des compétences affectées
+                java.util.Map<String, Integer> compteurOriginal = new java.util.HashMap<>();
+                java.util.Map<String, Integer> compteurAffectees = new java.util.HashMap<>();
+
+                // Compter les compétences originales
+                for (Competence comp : competencesOriginal) {
+                    String intitule = comp.getIntitule();
+                    compteurOriginal.put(intitule, compteurOriginal.getOrDefault(intitule, 0) + 1);
+                }
+
+                // Compter les compétences affectées
+                for (Competence comp : competencesAffectees) {
+                    String intitule = comp.getIntitule();
+                    compteurAffectees.put(intitule, compteurAffectees.getOrDefault(intitule, 0) + 1);
+                }
+
+                // Conserver uniquement les compétences qui n'ont pas toutes été affectées
                 ArrayList<Competence> competencesRestantes = new ArrayList<>();
                 for (Competence comp : competencesOriginal) {
-                    boolean estAffectee = false;
-                    for (Competence affectee : competencesAffectees) {
-                        if (comp.getIntitule().equals(affectee.getIntitule())) {
-                            estAffectee = true;
-                            break;
-                        }
-                    }
-                    if (!estAffectee) {
+                    String intitule = comp.getIntitule();
+                    int nbOriginal = compteurOriginal.getOrDefault(intitule, 0);
+                    int nbAffectees = compteurAffectees.getOrDefault(intitule, 0);
+
+                    // Si le nombre d'affectations est inférieur au nombre demandé,
+                    // ajouter autant de compétences que nécessaire
+                    if (nbAffectees < nbOriginal) {
                         competencesRestantes.add(comp);
+                        // Incrémenter le compteur d'affectations pour ne pas ajouter
+                        // cette compétence plusieurs fois
+                        compteurAffectees.put(intitule, compteurAffectees.getOrDefault(intitule, 0) + 1);
                     }
                 }
 
-                // Mettre à jour le besoin avec uniquement les compétences non affectées
+                // Mettre à jour le besoin avec uniquement les compétences non affectées ou partiellement affectées
                 besoin.setCompetences(competencesRestantes);
                 besoinManagement.updateBesoin(besoin);
             }
