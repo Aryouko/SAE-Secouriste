@@ -52,7 +52,6 @@ public class AffectationDAO {
     public boolean rescuerThisDay(long idJournee, long idSecouriste) {
         boolean ret = false;
         String query = "SELECT 1 FROM Affectation a JOIN DPS d ON a.DPSAffect = d.id WHERE d.journee = ? AND a.secouristeAffect = ? LIMIT 1";
-        System.out.println("Query check: journee=" + idJournee + ", secouriste=" + idSecouriste);
 
         try (Connection con = ConnectionBDD.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
@@ -69,7 +68,6 @@ public class AffectationDAO {
             e.printStackTrace();
             ret = true;
         }
-        System.out.println("Return : " + ret);
         return ret;
     }
 
