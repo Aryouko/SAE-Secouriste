@@ -18,28 +18,65 @@ import java.io.ByteArrayInputStream;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
+/**
+ * ProfilController is responsible for managing the user profile view.
+ * It displays the user's name, role, and profile picture, and allows toggling between notifications and calendar views.
+ * It implements MenuParalleleInjectable to interact with the parallel menu controller.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class ProfilController implements MenuParalleleInjectable {
 
+    /**
+     * The Circle that displays the user's profile picture.
+     */
     @FXML
     Circle myCircle;
 
+    /**
+     * The Label that displays the user's name.
+     */
     @FXML
     Label nomLabel;
 
+    /**
+     * The Label that indicates whether the user is an administrator or a rescuer.
+     */
     @FXML
     Label adminSecourLabel;
 
+    /**
+     * The Button that toggles between notifications and calendar views.
+     */
     @FXML
     Button notifBouton;
 
+    /**
+     * The Button that allows the user to switch to the calendar view.
+     */
     private AdministrateurManagement administrateurManagement = new AdministrateurManagement();
 
+    /**
+     * The SecouristeManagement that handles rescuer-related operations.
+     */
     private SecouristeManagement secouristeManagement = new SecouristeManagement();
 
+    /**
+     * The MenuParalleleController that manages the parallel menu in the application.
+     * This controller is used to switch between different views in the parallel menu.
+     */
     private MenuParalleleController menuParalleleController;
 
+    /**
+     * Flag to indicate whether the notifications view is currently displayed.
+     * This is used to toggle between notifications and calendar views.
+     */
     private boolean isNotif = false ;
 
+    /**
+     * Initializes the ProfilController by setting up the user profile view.
+     * This method is called automatically when the FXML file is loaded.
+     */
     @FXML
     public void initialize() {
         AuthentificationManagement auth = getInstanceAuthentificationManagement();
@@ -80,7 +117,9 @@ public class ProfilController implements MenuParalleleInjectable {
         }
     }
 
-
+    /**
+     * Switches between the notifications view and the calendar view.
+     */
     @FXML
     private void switchNotifCalendar() {
         if (menuParalleleController != null) {
@@ -98,6 +137,12 @@ public class ProfilController implements MenuParalleleInjectable {
         }
     }
 
+    /**
+     * Sets the MenuParalleleController for this ProfilController.
+     * This method is used to inject the parallel menu controller into this controller.
+     *
+     * @param controller The MenuParalleleController to set.
+     */
     public void setMenuParalleleController(MenuParalleleController controller) {
         this.menuParalleleController = controller;
     }

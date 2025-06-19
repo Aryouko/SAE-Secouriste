@@ -14,6 +14,12 @@ import static model.dao.DAOFactory.getSecouristeDAO;
 import static model.utils.PasswordHashing.hashPassword;
 import static model.utils.PasswordHashing.verifyPassword;
 
+/**
+ * AuthentificationManagement class
+ * This class manages the authentication of users, including registration, login, password recovery, and rescuer creation.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class AuthentificationManagement {
 
     /**
@@ -49,6 +55,10 @@ public class AuthentificationManagement {
         this.userDAO = DAOFactory.getUserDAO();
     }
 
+    /**
+     * Returns the singleton instance of AuthentificationManagement.
+     * @return the instance of AuthentificationManagement
+     */
     public static AuthentificationManagement getInstanceAuthentificationManagement() { return instance; }
 
     /**
@@ -75,6 +85,11 @@ public class AuthentificationManagement {
         return didRegistrationWorked;
     }
 
+    /**
+     * Checks if the current user is an administrator.
+     *
+     * @return true if the current user is an administrator, false otherwise.
+     */
     public boolean isAdmin() {
         if (this.user == null) {
             return false;
@@ -175,6 +190,19 @@ public class AuthentificationManagement {
         return false;
     }
 
+    /**
+     * Creates a rescuer with the provided details.
+     * The rescuer is created only if there is no existing rescuer with the same ID.
+     *
+     * @param id The ID of the rescuer.
+     * @param nom The name of the rescuer.
+     * @param prenom The first name of the rescuer.
+     * @param dateNaissance The birth date of the rescuer.
+     * @param tel The phone number of the rescuer.
+     * @param adresse The address of the rescuer.
+     * @param photo The photo of the rescuer as a byte array.
+     * @return boolean indicating success or failure of the creation.
+     */
     public boolean createRescuer(long id, String nom, String prenom, String dateNaissance, String tel, String adresse, byte[] photo) {
 
         SecouristeDAO dao = DAOFactory.getSecouristeDAO();
@@ -193,6 +221,12 @@ public class AuthentificationManagement {
         return ok;
     }
 
+    /**
+     * Checks if the current rescuer is created.
+     * A rescuer is considered created if their name is not null and not empty.
+     *
+     * @return boolean indicating whether the rescuer is created or not.
+     */
     public boolean SecouristeIsCreated() {
         User currentUser = getInstanceAuthentificationManagement().getCurrentUser();
         if (currentUser == null) {
@@ -225,10 +259,10 @@ public class AuthentificationManagement {
         this.secouriste = null;
     }
 
-
-
-
-
+    /**
+     * Returns the name of the current user.
+     * @return the name of the current user, or a message if not connected.
+     */
     public String getCurrentUserName() {
         if (user == null) {
             return "Vous n'êtes pas connecté";
@@ -248,6 +282,13 @@ public class AuthentificationManagement {
         return "";
     }
 
+    /**
+     * Changes the role of the current user.
+     * This method updates the user's role in the database and sets it in the current user object.
+     *
+     * @param currentUser The user whose role is to be changed.
+     * @param role The new role to be assigned to the user.
+     */
     public void changeRole(User currentUser, String role) {
         currentUser.setRole(role);
         this.userDAO.changeRoleById(currentUser.getIdUser(), role);

@@ -12,13 +12,31 @@ import java.util.Set;
 
 import static model.utils.FetchDatabaseCredentials.*;
 
+/**
+ * MapController is responsible for managing the map view in the application.
+ * It loads a local HTML file containing a map and injects markers based on locations fetched from a database.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class MapController {
 
+    /**
+     * The WebView that displays the map.
+     * This WebView will load a local HTML file containing the map.
+     */
     @FXML
     private WebView mapWebView;
 
+    /**
+     * The WebEngine that allows interaction with the WebView.
+     * It is used to execute JavaScript and manipulate the map.
+     */
     private WebEngine webEngine;
 
+    /**
+     * Initializes the MapController by setting up the WebView and loading the map.
+     * This method is called automatically when the FXML file is loaded.
+     */
     public void initialize() {
         webEngine = mapWebView.getEngine();
         // Load your local map.html file from resources
@@ -33,6 +51,10 @@ public class MapController {
         });
     }
 
+    /**
+     * Loads locations from the database and adds markers to the map.
+     * It fetches locations, converts them to a JSON string, and calls a JavaScript function to add markers.
+     */
     private void loadLocationsAndAddMarkers() {
         ArrayList<Location> locations = fetchLocationsFromDB();
 
@@ -52,6 +74,12 @@ public class MapController {
         // webEngine.executeScript("focusOnByName('Eiffel Tower')"); // Example to focus on a specific marker
     }
 
+    /**
+     * Fetches locations from the database and returns them as an ArrayList of Location objects.
+     * Each location contains latitude, longitude, and name.
+     *
+     * @return ArrayList of Location objects fetched from the database.
+     */
     private ArrayList<Location> fetchLocationsFromDB() {
         ArrayList<Location> locations = new ArrayList<>();
 
@@ -92,6 +120,10 @@ public class MapController {
         return locations;
     }
 
+    /**
+     * Represents a location with latitude, longitude, and name.
+     * This class is used to store the data fetched from the database for each marker on the map.
+     */
     private static class Location {
         double lat, lng;
         String name;

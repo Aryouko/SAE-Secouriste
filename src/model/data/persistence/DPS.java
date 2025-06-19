@@ -176,6 +176,11 @@ public class DPS {
         this.journee = journee;
     }
 
+    /**
+     * Override of the equals method to compare DPS based on their id
+     * @param o the object to compare with
+     * @return true if the DPS are equal, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
