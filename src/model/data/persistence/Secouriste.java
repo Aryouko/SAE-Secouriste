@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 
 /**
  * Secouriste class
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
  */
 public class Secouriste {
     /**
@@ -141,14 +143,26 @@ public class Secouriste {
         this.adresse = adresse;
     }
 
+    /**
+     * Get the photo of the secouriste
+     * @return the photo as a byte array
+     */
     public byte[] getPhoto() {
         return photo;
     }
 
+    /**
+     * Set the photo of the secouriste
+     * @param photo the photo as a byte array
+     */
     public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
 
+    /**
+     * Get the photo as an Image object
+     * @return the photo as an Image
+     */
     public Image getPhotoAsImage() {
         return new Image(new ByteArrayInputStream(photo));
     }

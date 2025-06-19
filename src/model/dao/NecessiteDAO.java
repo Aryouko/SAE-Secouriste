@@ -7,6 +7,12 @@ import model.data.persistence.Necessite;
 
 import static model.dao.ConnectionBDD.getConnection;
 
+/**
+ * Class NecessiteDAO that manages the database operations for the Necessite entity.
+ * It provides methods to retrieve, insert, delete, and check the existence of Necessite objects.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class NecessiteDAO {
 
     /**
@@ -33,6 +39,11 @@ public class NecessiteDAO {
         return listSkillNeeded;
     }
 
+    /**
+     * This method retrieves all Necessite objects that match the given Competence.
+     *
+     * @param necessite the Necessite object containing the Competence to search for
+     */
     public void deleteNecessite(Necessite necessite) {
         String query = "DELETE FROM Necessite WHERE COMP1 = ? AND COMP2 = ?";
         try (Connection con = ConnectionBDD.getConnection();
@@ -46,6 +57,12 @@ public class NecessiteDAO {
         }
     }
 
+    /**
+     * This method checks if a Necessite object already exists in the database.
+     *
+     * @param necessite the Necessite object to check for existence
+     * @return boolean true if the Necessite exists, false otherwise
+     */
     public boolean isCreate(Necessite necessite) {
         String query = "SELECT 1 FROM Necessite WHERE COMP1 = ? AND COMP2 = ?";
         boolean ret = false;
@@ -64,6 +81,11 @@ public class NecessiteDAO {
         return ret;
     }
 
+    /**
+     * This method inserts a new Necessite object into the database.
+     *
+     * @param newNecessite the Necessite object to be inserted
+     */
     public void insertNecessite(Necessite newNecessite) {
         String query = "INSERT INTO Necessite (comp1, comp2) VALUES (?, ?)";
         try (Connection con = ConnectionBDD.getConnection();

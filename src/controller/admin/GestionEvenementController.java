@@ -19,41 +19,81 @@ import java.util.List;
 
 import static controller.admin.FenetreGestionController.showOverlay;
 
+/**
+ * Controller for managing events in the application.
+ * This controller handles the display and management of DPS (Données de Prise en Secours) events.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class GestionEvenementController implements FenetreGestionInjectable {
 
+    /**
+     * The tile pane that displays the events.
+     */
     @FXML
     private TilePane evenementTile;
 
+    /**
+     * The combo box for selecting sites.
+     */
     @FXML
     private ComboBox<String> sitesComboBox;
 
+    /**
+     * The combo box for selecting sports.
+     */
     @FXML
     private ComboBox<String> sportsComboBox;
 
+    /**
+     * The anchor pane that contains the event management UI.
+     */
     @FXML
     private AnchorPane gestionEvenement;
 
-
-
-
-
-
+    /**
+     * List of sports associated with the events.
+     */
     private ArrayList<String> sports;
 
+    /**
+     * List of sites associated with the events.
+     */
     private ArrayList<String> sites;
 
+    /**
+     * List of DPS events to be displayed.
+     */
     private List<DPS> dpsList;
 
+    /**
+     * The controller for managing the main application window.
+     */
     private FenetreGestionController fenetreGestionController;
 
+    /**
+     * The controller for managing individual events.
+     */
     private EvenementController evenementController;
 
+    /**
+     * Management service for DPS events.
+     */
     private final DPSManagement dpsManagement = new DPSManagement();
 
+    /**
+     * Management service for affectations related to DPS events.
+     */
     private final AffectationManagement affectationManagement = new AffectationManagement();
 
+    /**
+     * Management service for needs related to DPS events.
+     */
     private final BesoinManagement besoinManagement = new BesoinManagement();
 
+    /**
+     * Initializes the controller and sets up the UI components.
+     */
     @FXML
     public void initialize() {
         System.out.println("GestionEvenementController initialized");
@@ -72,6 +112,11 @@ public class GestionEvenementController implements FenetreGestionInjectable {
         comboBoxInitialize();
     }
 
+    /**
+     * Initializes the tile pane with the list of DPS events.
+     *
+     * @param listDPS The list of DPS events to be displayed.
+     */
     private void tileInitialize(List<DPS> listDPS) {
 
         String cssPath = getClass().getResource("/css/button.css").toExternalForm();
@@ -227,6 +272,9 @@ public class GestionEvenementController implements FenetreGestionInjectable {
         }
     }
 
+    /**
+     * Initializes the combo boxes for filtering events by site and sport.
+     */
     public void comboBoxInitialize() {
         this.sitesComboBox.getItems().add("Site");
         this.sportsComboBox.getItems().add("Sport");
@@ -236,6 +284,10 @@ public class GestionEvenementController implements FenetreGestionInjectable {
         this.sportsComboBox.getItems().addAll(this.sports);
     }
 
+    /**
+     * Updates the displayed events based on the selected filters in the combo boxes.
+     * Clears the current tile pane and repopulates it with filtered DPS events.
+     */
     @FXML
     public void filtreUpdate() {
         this.evenementTile.getChildren().clear();
@@ -251,6 +303,11 @@ public class GestionEvenementController implements FenetreGestionInjectable {
         tileInitialize(listDPS);
     }
 
+    /**
+     * Adds a new DPS event to the list and updates the combo boxes if necessary.
+     *
+     * @param dps The DPS event to be added.
+     */
     public void ajouterDpsList(DPS dps) {
         if (!this.sports.contains(dps.getSport().getNom())) {
             this.sports.add(dps.getSport().getNom());
@@ -263,6 +320,11 @@ public class GestionEvenementController implements FenetreGestionInjectable {
         }
     }
 
+    /**
+     * Removes a DPS event from the list and updates the combo boxes if necessary.
+     *
+     * @param dps The DPS event to be removed.
+     */
     public void retirerDpsList(DPS dps) {
         boolean autresSportExistent = false;
         for (DPS autreDps : this.dpsManagement.getDps()) {
@@ -295,29 +357,51 @@ public class GestionEvenementController implements FenetreGestionInjectable {
         }
     }
 
+    /**
+     * Sets the FenetreGestionController for this controller.
+     *
+     * @param fenetreGestionController The FenetreGestionController to be set.
+     */
     public void setFenetreGestionController(FenetreGestionController fenetreGestionController) {
         this.fenetreGestionController = fenetreGestionController;
     }
 
+    /**
+     * Sets the EvenementController for this controller.
+     *
+     * @param evenementController The EvenementController to be set.
+     */
     public void setEvenementController(EvenementController evenementController) {
         this.evenementController = evenementController;
     }
 
+    /**
+     * Handles the action of opening the rescuer management window.
+     */
     @FXML
     public void GestionSecouristeButton() {
         this.fenetreGestionController.loadContent2("/fxml/admin/DashboardRescuer.fxml");
     }
 
+    /**
+     * Handles the action of opening the DPS management window.
+     */
     @FXML
     private void calendarAssignment() {
         this.fenetreGestionController.loadContent2("/fxml/common/DashboardCalendarAssignment.fxml");
     }
 
+    /**
+     * Handles the action of opening the map management window.
+     */
     @FXML
     private void carteLink() {
         this.fenetreGestionController.loadContent2("/fxml/common/map/DashboardMap.fxml");
     }
 
+    /**
+     * Handles the action of opening the DPS creation popup.
+     */
     @FXML
     public void CreationDPSButton() {
         StackPane overlay = showOverlay();
@@ -335,20 +419,26 @@ public class GestionEvenementController implements FenetreGestionInjectable {
         }
     }
 
+    /**
+     * Handles the action of opening the relation competence popup.
+     */
     @FXML
     private void relationCompetence() {
-    StackPane overlay = showOverlay();
-        try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupRelation.fxml"));
-        Parent overlayContent = loader.load();
-        overlay.getChildren().add(overlayContent);
-        StackPane.setAlignment(overlayContent, javafx.geometry.Pos.CENTER);
-    } catch (IOException e) {
-        System.err.println(e.getMessage());
-        e.printStackTrace();
+        StackPane overlay = showOverlay();
+            try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupRelation.fxml"));
+            Parent overlayContent = loader.load();
+            overlay.getChildren().add(overlayContent);
+            StackPane.setAlignment(overlayContent, javafx.geometry.Pos.CENTER);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
-}
 
+    /**
+     * Handles the action of opening the DPS management window.
+     */
     private void majAffect(DPS dps) {
         try {
             this.affectationManagement.launchAffectation(dps);
@@ -362,6 +452,11 @@ public class GestionEvenementController implements FenetreGestionInjectable {
         filtreUpdate();
     }
 
+    /**
+     * Opens a confirmation popup to delete a DPS event.
+     *
+     * @param dps The DPS event to be deleted.
+     */
     private void supprDps(DPS dps) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupDeleteDps.fxml"));
@@ -379,6 +474,11 @@ public class GestionEvenementController implements FenetreGestionInjectable {
         }
     }
 
+    /**
+     * Opens a popup to modify the assignment of a DPS event.
+     *
+     * @param dps The DPS event to be modified.
+     */
     private void modifAffect(DPS dps) {
         StackPane overlay = showOverlay();
         try {

@@ -7,16 +7,41 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
+/**
+ * CalendarController is responsible for managing the calendar view in the application.
+ * It allows users to navigate through months and displays the days of the selected month.
+ * The current day is highlighted in the calendar.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class CalendarController {
 
+    /**
+     * The GridPane that serves as the calendar layout.
+     */
     @FXML
     private GridPane calendarGrid;
+
+    /**
+     * The Label that displays the current month and year.
+     */
     @FXML
     private Label jourLabel;
 
+    /**
+     * The month and year currently displayed in the calendar.
+     */
     private int mois;
+
+    /**
+     * The year currently displayed in the calendar.
+     */
     private int annee;
 
+    /**
+     * Initializes the CalendarController by setting up the calendar view.
+     * This method is called automatically when the FXML file is loaded.
+     */
     @FXML
     public void initialize() {
         LocalDate today = LocalDate.now();
@@ -25,6 +50,10 @@ public class CalendarController {
         populateCalendar(this.annee, mois);
     }
 
+    /**
+     * Handles the button click event to navigate to the next month.
+     * If the current month is December, it moves to January of the next year.
+     */
     @FXML
     private void moisSuivant() {
         LocalDate today = LocalDate.now();
@@ -40,6 +69,10 @@ public class CalendarController {
         }
     }
 
+    /**
+     * Handles the button click event to navigate to the previous month.
+     * If the current month is January, it moves to December of the previous year.
+     */
     @FXML
     private void moisPrecedent() {
         LocalDate today = LocalDate.now();
@@ -55,6 +88,13 @@ public class CalendarController {
         }
     }
 
+    /**
+     * Populates the calendar grid with the days of the specified month and year.
+     * It highlights the current day if it falls within the displayed month and year.
+     *
+     * @param year  The year to display in the calendar.
+     * @param month The month to display in the calendar (1 = January, ..., 12 = December).
+     */
     public void populateCalendar(int year, int month) {
 
         String[] months = { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };

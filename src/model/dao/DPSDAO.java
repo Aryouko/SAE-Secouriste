@@ -9,8 +9,18 @@ import model.data.persistence.Site;
 import model.data.persistence.Sport;
 import model.data.persistence.Journee;
 
+/**
+ * Class DPSDAO that manages the database operations for the DPS entity.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class DPSDAO {
 
+    /**
+     * Inserts a new DPS into the database, creating a new Journee if it does not exist.
+     *
+     * @param dps the DPS to insert
+     */
     public void insert(DPS dps) {
         String checkJourneeQuery = "SELECT id FROM Journee WHERE jour = ? AND mois = ? AND annee = ?";
         String insertJourneeQuery = "INSERT INTO Journee (jour, mois, annee) VALUES (?, ?, ?)";
@@ -72,7 +82,11 @@ public class DPSDAO {
         }
     }
 
-
+    /**
+     * Finds all DPS records in the database.
+     *
+     * @return a list of all DPS records
+     */
     public ArrayList<DPS> findAll () {
         ArrayList<DPS> dpsList = new ArrayList<>();
         try (Connection con = ConnectionBDD.getConnection();
@@ -113,6 +127,12 @@ public class DPSDAO {
         return dpsList;
     }
 
+    /**
+     * Finds a DPS by its ID.
+     *
+     * @param idDps the ID of the DPS to find
+     * @return the DPS with the specified ID, or null if not found
+     */
     public DPS findById(long idDps) {
         DPS ret = null;
         String query = "SELECT d.ID, d.NAME, d.HORAIRE_DEPART, d.HORAIRE_FIN, j.JOUR, j.MOIS, j.ANNEE, s.CODE AS SITE_CODE, s.NOM AS SITE_NOM, s.LONGITUDE AS SITE_LON, s.LATITUDE AS SITE_LAT, sp.CODE AS SPORT_CODE, sp.NOM AS SPORT_NOM FROM DPS d JOIN Site s ON d.SITE = s.CODE JOIN Sport sp ON d.SPORT = sp.CODE JOIN Journee j ON j.ID = d.JOURNEE WHERE d.ID = ?";
@@ -153,6 +173,11 @@ public class DPSDAO {
         return ret;
     }
 
+    /**
+     * Finds all DPS names in the database.
+     *
+     * @return a list of all DPS names
+     */
     public ArrayList<String> findDPSName() {
         ArrayList<String> dpsNames = new ArrayList<>();
         String query = "SELECT NAME FROM DPS";
@@ -168,6 +193,12 @@ public class DPSDAO {
         return dpsNames;
     }
 
+    /**
+     * Finds a DPS by its name.
+     *
+     * @param name the name of the DPS to find
+     * @return the DPS with the specified name, or null if not found
+     */
     public DPS findByName(String name) {
         DPS ret = null;
         String query = "SELECT d.ID, d.NAME, d.HORAIRE_DEPART, d.HORAIRE_FIN, j.JOUR, j.MOIS, j.ANNEE, s.CODE AS SITE_CODE, s.NOM AS SITE_NOM, s.LONGITUDE AS SITE_LON, s.LATITUDE AS SITE_LAT, sp.CODE AS SPORT_CODE, sp.NOM AS SPORT_NOM FROM DPS d JOIN Site s ON d.SITE = s.CODE JOIN Sport sp ON d.SPORT = sp.CODE JOIN Journee j ON j.ID = d.JOURNEE WHERE d.NAME = ?";
@@ -204,6 +235,11 @@ public class DPSDAO {
         return ret;
     }
 
+    /**
+     * Deletes a DPS by its ID.
+     *
+     * @param idDps the ID of the DPS to delete
+     */
     public void deleteByIdDPS(long idDps) {
         String query = "DELETE FROM DPS WHERE ID = ?";
         try (Connection con = ConnectionBDD.getConnection();
@@ -215,6 +251,12 @@ public class DPSDAO {
         }
     }
 
+    /**
+     * Finds all DPS records for a specific day.
+     *
+     * @param idDay the ID of the day to find DPS records for
+     * @return a list of DPS records for the specified day
+     */
     public ArrayList<DPS> findByDay(long idDay) {
         ArrayList<DPS> dpsList = new ArrayList<>();
         String query = "SELECT d.ID, d.NAME, d.HORAIRE_DEPART, d.HORAIRE_FIN, j.JOUR, j.MOIS, j.ANNEE, s.CODE AS SITE_CODE, s.NOM AS SITE_NOM, s.LONGITUDE AS SITE_LON, s.LATITUDE AS SITE_LAT, sp.CODE AS SPORT_CODE, sp.NOM AS SPORT_NOM FROM DPS d JOIN Site s ON d.SITE = s.CODE JOIN Sport sp ON d.SPORT = sp.CODE JOIN Journee j ON j.ID = d.JOURNEE WHERE d.JOURNEE = ?";
@@ -259,6 +301,12 @@ public class DPSDAO {
         return dpsList;
     }
 
+    /**
+     * Updates an existing DPS in the database.
+     * If the associated Journee does not exist, it will be created.
+     *
+     * @param dps the DPS to update
+     */
     public void updateDps(DPS dps) {
         String updateQuery = "UPDATE DPS SET NAME = ?, HORAIRE_DEPART = ?, HORAIRE_FIN = ?, SITE = ?, SPORT = ?, JOURNEE = ? WHERE ID = ?";
         String checkJourneeQuery = "SELECT id FROM Journee WHERE jour = ? AND mois = ? AND annee = ?";

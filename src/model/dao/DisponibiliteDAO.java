@@ -10,8 +10,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Class DisponibiliteDAO that manages the database operations for the Disponibilite entity.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class DisponibiliteDAO {
 
+    /**
+     * Finds all Disponibilite records for a given Secouriste.
+     * @param secouriste the Secouriste for whom to find Disponibilite records
+     * @return an ArrayList of Disponibilite objects associated with the given Secouriste
+     */
     public ArrayList<Disponibilite> findById(Secouriste secouriste) {
         ArrayList<Disponibilite> disponibilites = new ArrayList<>();
         long id = secouriste.getIdSecouriste();
@@ -30,6 +40,12 @@ public class DisponibiliteDAO {
         return disponibilites;
     }
 
+    /**
+     * Deletes Disponibilite records by the specified date.
+     * @param jour the day of the month
+     * @param mois the month
+     * @param annee the year
+     */
     public void deleteByJour(int jour, int mois, int annee) {
         String query = "DELETE FROM Disponibilite WHERE jour = ? AND mois = ? AND annee = ?";
         try (Connection con = ConnectionBDD.getConnection();
@@ -46,6 +62,11 @@ public class DisponibiliteDAO {
         }
     }
 
+    /**
+     * Deletes a specific Disponibilite record by Secouriste ID and Journee ID.
+     * @param idSecouriste the ID of the Secouriste
+     * @param idJournee the ID of the Journee
+     */
     public void deleteDisponibilite(long idSecouriste, long idJournee) {
         String query = "DELETE FROM Disponibilite WHERE secouristeDisp = ? AND journeeDisp = ?";
         try (Connection con = ConnectionBDD.getConnection();
@@ -61,6 +82,10 @@ public class DisponibiliteDAO {
         }
     }
 
+    /**
+     * Deletes all Disponibilite records for a given Secouriste.
+     * @param idSecouriste the ID of the Secouriste
+     */
     public void deleteAllDisponibilites(long idSecouriste) {
         String query = "DELETE FROM Disponibilite WHERE secouristeDisp = ?";
         try (Connection con = ConnectionBDD.getConnection();
@@ -74,6 +99,11 @@ public class DisponibiliteDAO {
         }
     }
 
+    /**
+     * Inserts a new Disponibilite record into the database.
+     * @param idSecouriste the ID of the Secouriste
+     * @param idJournee the ID of the Journee
+     */
     public void insert(long idSecouriste, long idJournee) {
         String insertDisponibilite = "INSERT INTO Disponibilite (secouristeDisp, journeeDisp) VALUES (?, ?)";
         try (Connection con = ConnectionBDD.getConnection();

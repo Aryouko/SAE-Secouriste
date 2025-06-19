@@ -81,6 +81,10 @@ public class Journee {
         this.annee = annee;
     }
 
+    /**
+     * Override toString method to return the date in a readable format
+     * @return the date as a string in the format "day month year"
+     */
     @Override
     public String toString() {
         String[] months = { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };

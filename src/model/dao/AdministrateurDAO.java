@@ -12,8 +12,18 @@ import java.util.List;
 
 import static model.dao.ConnectionBDD.getConnection;
 
+/**
+ * Class AdministrateurDAO that manages the database operations for the Administrateur entity.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class AdministrateurDAO {
 
+    /**
+     * Inserts a new Administrateur into the database.
+     *
+     * @param administrateur the Administrateur to insert
+     */
     public void insert(Administrateur administrateur) {
         String query = "INSERT INTO Administrateur (idAdministrateur, nom, prenom, date_naissance, adresse, tel) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection con = ConnectionBDD.getConnection();
@@ -33,6 +43,9 @@ public class AdministrateurDAO {
         }
     }
 
+    /**
+     * Finds all Administrateurs in the database.
+     */
     public List<Administrateur> findAll() {
         List<Administrateur> administrateurs = new ArrayList<>();
 
@@ -88,6 +101,12 @@ public class AdministrateurDAO {
         return null;
     }
 
+    /**
+     * Inserts a photo for an existing Administrateur.
+     * @param idAdministrateur the ID of the Administrateur
+     * @param photoBytes the byte array representing the photo
+     * @return true if the photo was successfully inserted, false otherwise
+     */
     public boolean insererPhoto(long idAdministrateur, byte[] photoBytes) {
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement("UPDATE Administrateur SET photo = ? WHERE idAdministrateur = ?")) {
@@ -131,6 +150,11 @@ public class AdministrateurDAO {
         return null;
     }
 
+    /**
+     * Delete a specific Administrateur from the database.
+     *
+     * @param administrateur the Administrateur to delete
+     */
     public void delete(Administrateur administrateur) {
         System.out.println("ID à supprimer : " + administrateur.getIdAdministrateur());
         String query = "DELETE FROM Secouriste WHERE idAdministrateur = ?";

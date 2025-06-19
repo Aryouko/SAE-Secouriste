@@ -1,6 +1,5 @@
 package model.dao;
 
-
 import model.data.persistence.Site;
 import model.data.persistence.Sport;
 
@@ -8,8 +7,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class SiteDAO that manages the database operations for the Site entity.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class SiteDAO {
 
+    /**
+     * Inserts a new Site into the database.
+     *
+     * @return the ID of the inserted Site
+     */
     public List<Site> findAll() {
         List<Site> sites = new ArrayList<>();
 
@@ -32,6 +41,11 @@ public class SiteDAO {
         return sites;
     }
 
+    /**
+     * Finds a Site by its name.
+     * @param siteName the name of the site to search for
+     * @return a Site object if found, otherwise null
+     */
     public Site findByName(String siteName) {
         Site ret = null;
         String query = "SELECT * FROM Site WHERE NOM = ? ";
@@ -51,6 +65,11 @@ public class SiteDAO {
         return ret;
     }
 
+    /**
+     * Finds a Site by its ID.
+     * @param id the ID of the site to search for
+     * @return a Site object if found, otherwise null
+     */
     public Site findById(long id) {
         Site ret = null;
         String query = "SELECT * FROM Site WHERE ID = ? ";
