@@ -144,9 +144,11 @@ public class PopupRelationController {
             this.necessiteManagement.addNecessite(newNecessite);
             GraphUtils graphUtils = new GraphUtils();
             MatrixUtils matrixUtils = new MatrixUtils();
-            if (graphUtils.isDAG(matrixUtils.createAdjacencyMatrix(matrixUtils.createSkillDependencyMap(this.necessiteManagement.getNecessites())))) {
+            if (!graphUtils.isDAG(matrixUtils.createAdjacencyMatrix( matrixUtils.createSkillDependencyMap(this.competenceManagement.getCompetences(), this.necessiteManagement.getNecessites())))) {
                 this.necessiteManagement.removeNecessite(newNecessite);
                 this.infosLabel.setText("Vous essayez de créer un cycle");
+            } else {
+                this.infosLabel.setText("Relation ajoutée avec succès");
             }
         }
         initializeVBox();

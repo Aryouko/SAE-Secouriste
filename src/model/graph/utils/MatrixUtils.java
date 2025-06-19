@@ -76,39 +76,38 @@ public class MatrixUtils {
 
 ////// METHODE DE MATRICE  ADJACENTE //////////
 
-    // Associe chaque compétence à un entier unique
-    private final Map<Competence, Integer> MapSkillToHisInt = new HashMap<>();
+    // Associe chaque intitulé de compétence (String) à un entier unique
+    private final Map<String, Integer> MapSkillToHisInt = new HashMap<>();
 
 
     /**
      * createSkillDependencyMap
      *
-     * @param elements
-     * @return
+     * @param elements a list of Necessite elements that define the dependencies between competences
+     * @return A map where each key is an integer representing a competence and the value is a list of integers representing the competences that depend on it
      */
-    public Map<Integer, List<Integer>> createSkillDependencyMap(List<Necessite> elements) {
+    public Map<Integer, List<Integer>> createSkillDependencyMap(List<String> competences, List<Necessite> elements) {
+        // Réinitialise la map à chaque appel pour éviter les doublons ou incohérences
+        MapSkillToHisInt.clear();
         Map<Integer, List<Integer>> skillDependencies = new HashMap<>();
         int index = 0;
 
-        for (Necessite n : elements) {
-            Competence c1 = n.getComp1();
-            Competence c2 = n.getComp2();
-
-            if (!MapSkillToHisInt.containsKey(c1)) {
-                MapSkillToHisInt.put(c1, index++);
-            }
-            if (!MapSkillToHisInt.containsKey(c2)) {
-                MapSkillToHisInt.put(c2, index++);
+        // D'abord, indexer toutes les compétences (par leur intitulé)
+        for (String intitule : competences) {
+            if (!MapSkillToHisInt.containsKey(intitule)) {
+                MapSkillToHisInt.put(intitule, index++);
             }
         }
 
+        // Ensuite, remplir la map des dépendances
         for (Necessite n : elements) {
-            int from = MapSkillToHisInt.get(n.getComp1());
-            int to = MapSkillToHisInt.get(n.getComp2());
-
-            // computeIfAbsent is a function from Map that is very usefully, It verifies if a key is present in the map, if not the function is call and create new ArrayList.
-            // the function return the values associate to the key. So if i call the .add after its going to add vertex link to the main vertex.
-            skillDependencies.computeIfAbsent(from, k -> new ArrayList<>()).add(to);
+            String fromIntitule = n.getComp1().getIntitule();
+            String toIntitule = n.getComp2().getIntitule();
+            Integer from = MapSkillToHisInt.get(fromIntitule);
+            Integer to = MapSkillToHisInt.get(toIntitule);
+            if (from != null && to != null) {
+                skillDependencies.computeIfAbsent(from, k -> new ArrayList<>()).add(to);
+            }
         }
         return skillDependencies;
     }
@@ -125,7 +124,6 @@ public class MatrixUtils {
         int n = MapSkillToHisInt.size();
         int[][] matrix = new int[n][n];
 
-        // Flemme d'écrire la suite en Anglais :
         // ForEach renvoie type BiConsumer : En gros, on interagit avec une methode sur une deux arguments (par exemple key, values). c'est une boucle forEach pour un dico
         skillDependencies.forEach((key, values) -> {
             for (int val : values) {
@@ -148,7 +146,7 @@ public class MatrixUtils {
         return text ;
     }
 
-    public Map<Competence, Integer> getMapSkillToHisInt() {
+    public Map<String, Integer> getMapSkillToHisInt() {
         return this.MapSkillToHisInt ;
     }
 }
