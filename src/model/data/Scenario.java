@@ -1,10 +1,15 @@
 package model.data;
 
 import model.data.persistence.DPS;
+import model.data.persistence.Journee;
+import model.data.persistence.Sport;
 import model.data.service.AuthentificationManagement;
 import model.data.service.DPSManagement;
 
 public class Scenario {
+
+    private static final DPSManagement dpsManagement = new DPSManagement();
+
 
     public static void main(String[] args) {
 
@@ -21,32 +26,44 @@ public class Scenario {
 
 
         // 1. Connexion à l'application en tant qu'admin
-        /*
-            AuthentificationManagement auth = AuthentificationManagement.getInstanceAuthentificationManagement();
-            AuthentificationManagement.LoginResult result = auth.login("admin@mail.com", "motdepasseAdmin");
-            if (result != AuthentificationManagement.LoginResult.SUCCESS || !auth.isAdmin()) {
-                System.out.println("Connexion admin échouée !");
-                return;
-            }
-            System.out.println("Admin connecté.");
+/*
+        AuthentificationManagement auth = AuthentificationManagement.getInstanceAuthentificationManagement();
+        AuthentificationManagement.LoginResult result = auth.login("admin@mail.com", "motdepasseAdmin");
+        if (result != AuthentificationManagement.LoginResult.SUCCESS || !auth.isAdmin()) {
+            System.out.println("Connexion admin échouée !");
+        }
 
-            // 2. Création d'un nouveau DPS
-            DPSManagement dpsManagement = new DPSManagement();
-            DPS nouveauDps = new DPS("NomDPS", "Lieu", "2025-07-01", ...); // complète les champs nécessaires
+        System.out.println("Admin connecté.");
+        long id = this.dpsManagement.numberOfDps();
 
-
-            launchAffectation
-            boolean creation = dpsManagement.addDPS(nouveauDps);
+        Journee journee = new Journee(10, 10, 10);
+        newDps = new DPS(id, this.nomTextField.getText(), this.horaireDeb, this.horaireFin, this.site, this.sport, journee);
 
 
 
-            if (creation) {
-                System.out.println("Nouveau DPS créé : " + nouveauDps.getName());
-            } else {
-                System.out.println("Erreur lors de la création du DPS.");
-            }
+
+        insert
+        launchAffectation
+
+        // 2. Il accède à la page de gestion des DPS.
+        DPSManagement dpsManagement = new DPSManagement();
+        DPS nouveauDps = new DPS("NomDPS", "Lieu", "2025-07-01", ); // complète les champs nécessaires
 
 
-         */
+
+        boolean creation = dpsManagement.addDPS(nouveauDps);
+
+
+
+        if (creation) {
+            System.out.println("Nouveau DPS créé : " + nouveauDps.getName());
+        } else {
+            System.out.println("Erreur lors de la création du DPS.");
+        }
+
+ */
+
+
+
     }
 }
