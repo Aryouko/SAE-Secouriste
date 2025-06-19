@@ -67,13 +67,13 @@ public class MenuParalleleController {
             isOpenSettings = true;
             if (getInstanceAuthentificationManagement().isAdmin()) {
 
-                fenetreGestionController.loadContent2("/fxml/common/SettingsTemp.fxml");
+                fenetreGestionController.loadContent2("/fxml/common/Settings.fxml");
                 setRow(0, "/fxml/common/DisplayProfil.fxml");
                 setRow(1, "/fxml/common/DisplayCalendar.fxml");
                 setRow(2, "/fxml/common/DisplayUpComingEvent.fxml");
             } else {
 
-                fenetreGestionController.loadContent2("/fxml/common/SettingsTemp.fxml");
+                fenetreGestionController.loadContent2("/fxml/common/Settings.fxml");
                 setRow(1, "/fxml/common/DisplayCalendarDisponibilites.fxml");
                 setRow(2, null);
             }
