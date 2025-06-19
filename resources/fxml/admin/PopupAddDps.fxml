@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane  fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 35; -fx-border-width: 3; -fx-border-radius: 35;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.FenetreAjoutDPSController">
+<AnchorPane  fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 35; -fx-border-width: 3; -fx-border-radius: 35;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.PopupAddDpsController">
    <children>
       <Label layoutX="25.0" layoutY="21.0" prefHeight="47.0" prefWidth="324.0" stylesheets="@../../css/main.css" text="Création d'un DPS">
          <font>

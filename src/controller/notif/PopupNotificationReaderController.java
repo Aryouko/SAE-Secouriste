@@ -9,8 +9,8 @@ import model.data.persistence.Notification;
 import model.data.service.AdministrateurManagement;
 import model.data.service.DPSManagement;
 
-import static controller.admin.FenetreGestionController.removeOverlay;
-import static controller.admin.FenetreGestionController.showOverlay;
+import static controller.layoutmanager.FenetreGestionController.removeOverlay;
+import static controller.layoutmanager.FenetreGestionController.showOverlay;
 
 /**
  * Controller for the popup notification reader.

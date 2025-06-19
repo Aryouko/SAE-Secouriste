@@ -17,7 +17,7 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
  * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
-public class ConnectionController {
+public class LoginController {
 
     /**
      * The AnchorPane that serves as the login page.
@@ -69,7 +69,7 @@ public class ConnectionController {
     @FXML
     public void quickLogin() {
         // Takes the last email and password from the preferences
-        java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(ConnectionController.class);
+        java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(LoginController.class);
         String lastEmail = prefs.get("lastEmail", "");
         String lastPW = prefs.get("lastPW", "");
 
@@ -109,7 +109,7 @@ public class ConnectionController {
             // Check the result of the login attempt
             if (result == SUCCESS) {
                 // Save the email and password in preferences for quick login next time
-                java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(ConnectionController.class);
+                java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(LoginController.class);
                 prefs.put("lastEmail", mailTextField.getText());
                 prefs.put("lastPW", passwordPasswordField.getText());
 
@@ -119,7 +119,7 @@ public class ConnectionController {
             // This result indicate that the rescuer didn't complete the registration form yet after the creation of the account
             } else if (result == INVALID_RESCUER) {
                 //
-                java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(ConnectionController.class);
+                java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(LoginController.class);
                 prefs.put("lastEmail", mailTextField.getText());
                 prefs.put("lastPW", passwordPasswordField.getText());
 

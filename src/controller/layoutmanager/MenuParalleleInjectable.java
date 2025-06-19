@@ -1,4 +1,4 @@
-package controller.both;
+package controller.layoutmanager;
 
 /**
  * Interface for controllers that need to inject a MenuParalleleController instance.

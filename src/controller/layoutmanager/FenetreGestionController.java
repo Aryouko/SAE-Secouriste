@@ -1,7 +1,6 @@
-package controller.admin;
+package controller.layoutmanager;
 
-import controller.both.MenuParalleleController;
-import controller.both.MenuParalleleInjectable;
+import controller.admin.DashboardEventController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -98,8 +97,8 @@ public class FenetreGestionController {
                 menuParalleleInjectable.setMenuParalleleController(this.menuParalleleController);
             }
 
-            if (controller instanceof GestionEvenementController gestionEvenementController) {
-                gestionEvenementController.setEvenementController(this.menuParalleleController.getEvenementController());
+            if (controller instanceof DashboardEventController dashboardEventController) {
+                dashboardEventController.setEvenementController(this.menuParalleleController.getEvenementController());
             }
 
         } catch (Exception e) {

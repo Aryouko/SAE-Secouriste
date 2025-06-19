@@ -1,23 +1,17 @@
 package controller.admin;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.StageStyle;
 import model.data.persistence.*;
 import model.data.service.*;
 import model.graph.utils.GraphUtils;
 import model.graph.utils.MatrixUtils;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
-import static controller.admin.FenetreGestionController.removeOverlay;
+import static controller.layoutmanager.FenetreGestionController.removeOverlay;
 
 /**
  * Controller class for the DPS Addition Window.

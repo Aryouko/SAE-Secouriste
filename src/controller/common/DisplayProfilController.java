@@ -1,5 +1,7 @@
-package controller.both;
+package controller.common;
 
+import controller.layoutmanager.MenuParalleleController;
+import controller.layoutmanager.MenuParalleleInjectable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,13 +21,13 @@ import java.io.ByteArrayInputStream;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
 /**
- * ProfilController is responsible for managing the user profile view.
+ * DisplayProfilController is responsible for managing the user profile view.
  * It displays the user's name, role, and profile picture, and allows toggling between notifications and calendar views.
  * It implements MenuParalleleInjectable to interact with the parallel menu controller.
  * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
-public class ProfilController implements MenuParalleleInjectable {
+public class DisplayProfilController implements MenuParalleleInjectable {
 
     /**
      * The Circle that displays the user's profile picture.
@@ -74,7 +76,7 @@ public class ProfilController implements MenuParalleleInjectable {
     private boolean isNotif = false ;
 
     /**
-     * Initializes the ProfilController by setting up the user profile view.
+     * Initializes the DisplayProfilController by setting up the user profile view.
      * This method is called automatically when the FXML file is loaded.
      */
     @FXML
@@ -138,7 +140,7 @@ public class ProfilController implements MenuParalleleInjectable {
     }
 
     /**
-     * Sets the MenuParalleleController for this ProfilController.
+     * Sets the MenuParalleleController for this DisplayProfilController.
      * This method is used to inject the parallel menu controller into this controller.
      *
      * @param controller The MenuParalleleController to set.

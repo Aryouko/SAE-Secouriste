@@ -1,7 +1,6 @@
-package controller.both;
+package controller.layoutmanager;
 
-import controller.admin.EvenementController;
-import controller.admin.FenetreGestionController;
+import controller.common.DisplayUpComingEventController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -30,7 +29,7 @@ public class MenuParalleleController {
      * The EvenementController that manages event-related functionalities.
      * This controller is used to handle event creation, modification, and display.
      */
-    private EvenementController evenementController;
+    private DisplayUpComingEventController evenementController;
 
     /**
      * Flag to indicate whether the settings menu is currently open.
@@ -67,13 +66,13 @@ public class MenuParalleleController {
             isOpenSettings = true;
             if (getInstanceAuthentificationManagement().isAdmin()) {
 
-                fenetreGestionController.loadContent2("/fxml/common/Settings.fxml");
+                fenetreGestionController.loadContent2("/fxml/common/DashboardSettings.fxml");
                 setRow(0, "/fxml/common/DisplayProfil.fxml");
                 setRow(1, "/fxml/common/DisplayCalendar.fxml");
                 setRow(2, "/fxml/common/DisplayUpComingEvent.fxml");
             } else {
 
-                fenetreGestionController.loadContent2("/fxml/common/Settings.fxml");
+                fenetreGestionController.loadContent2("/fxml/common/DashboardSettings.fxml");
                 setRow(1, "/fxml/common/DisplayCalendarDisponibilites.fxml");
                 setRow(2, null);
             }
@@ -109,7 +108,7 @@ public class MenuParalleleController {
      * @param rowIndex The index of the row to set.
      * @param fxmlPath The path to the FXML file to load for this row.
      */
-    void setRow(int rowIndex, String fxmlPath) {
+    public void setRow(int rowIndex, String fxmlPath) {
         try {
             composentGrid.getChildren().removeIf(node ->
                     GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) == rowIndex
@@ -127,8 +126,8 @@ public class MenuParalleleController {
                     injectable.setMenuParalleleController(this);
                 }
 
-                if (controller instanceof EvenementController) {
-                    this.evenementController = (EvenementController) controller;
+                if (controller instanceof DisplayUpComingEventController) {
+                    this.evenementController = (DisplayUpComingEventController) controller;
                 }
 
                 composentGrid.add(node, 0, rowIndex);
@@ -148,7 +147,7 @@ public class MenuParalleleController {
      *
      * @return The FenetreGestionController instance.
      */
-    public EvenementController getEvenementController() {
+    public DisplayUpComingEventController getEvenementController() {
         return evenementController;
     }
 

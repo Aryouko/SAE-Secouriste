@@ -48,9 +48,12 @@ public class Scenario {
         // + 4. Il remplit les informations nécessaires (nom, date, lieu, etc.).
 
         int dpsId = 1337; // ID fictif pour le DPS, assez important pour ne pas avoir de conflit avec les IDs existants
-        String nomDps = "DPS Test";
-        Site siteScenario = new Site(1, "Site Test", 48.8566f, 2.3522f); // Exemple de site
-        Sport sportScenario = new Sport(1, "Description du sport test");
+        // La gestion se fait normalement par dans le controller, mais pour le scénario, on utilise un ID fixe.
+        String nomDps = "DPS Test"; // Nom du DPS à créer
+
+        // Création d'un site et d'un sport pour le DPS, même problème que pour l'ID du DPS, on utilise des IDs fictifs.
+        Site siteScenario = new Site(1000, "Site Test", 48.8566f, 2.3522f); // Exemple de site
+        Sport sportScenario = new Sport(1000, "Description du sport test");
         Journee journeeScenario = new Journee(1, 10, 2025);
         int horaireDepart = 800; // 08:00 AM
         int horaireFin = 1800; // 06:00 PM

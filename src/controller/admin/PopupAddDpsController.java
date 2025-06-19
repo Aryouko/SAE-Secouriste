@@ -1,5 +1,6 @@
 package controller.admin;
 
+import controller.common.DisplayUpComingEventController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,7 +13,7 @@ import model.data.service.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static controller.admin.FenetreGestionController.removeOverlay;
+import static controller.layoutmanager.FenetreGestionController.removeOverlay;
 
 /**
  * Controller class for the DPS Addition Window.
@@ -22,7 +23,7 @@ import static controller.admin.FenetreGestionController.removeOverlay;
  * Authors: C.Brocart, T.Brami-Coatual, L.Carré, G.Potay
  * Version: 1.0
  */
-public class FenetreAjoutDPSController {
+public class PopupAddDpsController {
 
 
     /**
@@ -172,12 +173,12 @@ public class FenetreAjoutDPSController {
     /**
      * Reference to the event management controller (not injected here).
      */
-    private GestionEvenementController gestionEvenementController;
+    private DashboardEventController dashboardEventController;
 
     /**
      * Reference to the main event controller (not injected here).
      */
-    private EvenementController evenementController;
+    private DisplayUpComingEventController evenementController;
 
     /**
      * Service managing sports data.
@@ -363,7 +364,7 @@ public class FenetreAjoutDPSController {
         this.moisComboBox.getSelectionModel().select(this.months[this.date.getMonthValue() - 1]);
 
         int currentYear = LocalDate.now().getYear();
-        for (int i = currentYear; i <= currentYear + 2; i++) {
+        for (int i = currentYear; i <= currentYear + 6; i++) {
             this.anneeComboBox.getItems().add(i);
         }
 
@@ -524,8 +525,8 @@ public class FenetreAjoutDPSController {
                 if (!this.besoinManagement.getBesoinByDPS(dps).getCompetences().isEmpty()) {
                     alert.showAndWait();
                 }
-                this.gestionEvenementController.ajouterDpsList(dps);
-                this.gestionEvenementController.filtreUpdate();
+                this.dashboardEventController.ajouterDpsList(dps);
+                this.dashboardEventController.filtreUpdate();
                 this.evenementController.initialize();
                 annuleDPS();
             }
@@ -591,10 +592,10 @@ public class FenetreAjoutDPSController {
     /**
      * Initializes the controller used to manage event-related DPS actions.
      *
-     * @param gestionEvenementController the controller managing event operations
+     * @param dashboardEventController the controller managing event operations
      */
-    public void initializeGestionEvenementController(GestionEvenementController gestionEvenementController) {
-        this.gestionEvenementController = gestionEvenementController;
+    public void initializeGestionEvenementController(DashboardEventController dashboardEventController) {
+        this.dashboardEventController = dashboardEventController;
     }
 
     /**
@@ -602,7 +603,7 @@ public class FenetreAjoutDPSController {
      *
      * @param evenementController the main event controller
      */
-    public void initializeEvenementController(EvenementController evenementController) {
+    public void initializeEvenementController(DisplayUpComingEventController evenementController) {
         this.evenementController = evenementController;
     }
 }

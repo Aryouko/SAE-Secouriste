@@ -1,9 +1,6 @@
-package controller.both;
+package controller.common;
 
-import controller.admin.EvenementController;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Label;
@@ -15,7 +12,6 @@ import model.data.persistence.Journee;
 import model.data.service.SecouristeManagement;
 import model.data.service.DisponibiliteManagement;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,13 +23,13 @@ import java.util.Set;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
 /**
- * CalendarDisponibilitesController is responsible for managing the calendar view
+ * DisplayCalendarDisponibilitesController is responsible for managing the calendar view
  * where users can set their availability for specific dates.
  * It allows users to select a range of dates and save their availability.
  * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
-public class CalendarDisponibilitesController {
+public class DisplayCalendarDisponibilitesController {
 
     /**
      * The AnchorPane that serves as the calendar view.
@@ -109,7 +105,7 @@ public class CalendarDisponibilitesController {
     private Label jourLabel;
 
     /**
-     * Initializes the CalendarDisponibilitesController by setting up the calendar view.
+     * Initializes the DisplayCalendarDisponibilitesController by setting up the calendar view.
      * This method is called automatically when the FXML file is loaded.
      */
     @FXML

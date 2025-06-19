@@ -1,19 +1,17 @@
-package controller.both;
+package controller.common;
 
-import controller.admin.FenetreGestionController;
-import controller.admin.FenetreGestionInjectable;
+import controller.layoutmanager.FenetreGestionController;
+import controller.layoutmanager.FenetreGestionInjectable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.scene.control.Label;
 import model.data.persistence.Affectation;
 import model.data.persistence.DPS;
-import model.data.persistence.Secouriste;
 import model.data.service.*;
 
 import java.time.LocalDate;
@@ -33,7 +31,7 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
  * @author C.Brocart, T.Brami-Coatual, L.Carré, G.Potay
  * @version 1.0
  */
-public class CalendarAssignmentController implements FenetreGestionInjectable  {
+public class DashboardCalendarAssignmentController implements FenetreGestionInjectable  {
 
     /** Pane displaying the calendar grid and events */
     @FXML
@@ -367,7 +365,7 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
      */
     @FXML
     private void showPlan() {
-        this.fenetreGestionController.loadContent2("/fxml/common/map/DashboardMap.fxml");
+        this.fenetreGestionController.loadContent2("/fxml/map/DashboardMap.fxml");
     }
 
 

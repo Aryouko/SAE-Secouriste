@@ -1,4 +1,4 @@
-package controller.admin;
+package controller.layoutmanager;
 
 /**
  * This interface is used to inject the FenetreGestionController into classes that need to interact

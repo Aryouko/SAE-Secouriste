@@ -1,12 +1,13 @@
-package controller.both;
+package controller.common;
 
 import controller.UtilsController;
-import controller.admin.FenetreGestionController;
-import controller.admin.FenetreGestionInjectable;
+import controller.layoutmanager.FenetreGestionController;
+import controller.layoutmanager.FenetreGestionInjectable;
+import controller.layoutmanager.MenuParalleleController;
+import controller.layoutmanager.MenuParalleleInjectable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -33,14 +34,14 @@ import java.util.*;
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
 /**
- * SettingsController is responsible for managing the settings page of the application.
+ * DashboardSettingsController is responsible for managing the settings page of the application.
  * It allows users to update their profile picture, manage their competencies, and perform administrative actions.
  * This controller is used in both admin and common contexts.
  *
  * Authors: C.Brocart, T.Brami-Coatual, L.Carré, G.Potay
  * Version: 1.0
  */
-public class SettingsController implements FenetreGestionInjectable, MenuParalleleInjectable {
+public class DashboardSettingsController implements FenetreGestionInjectable, MenuParalleleInjectable {
 
     /**
      * The FenetreGestionController that manages the overall application window.
@@ -202,7 +203,7 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
     @FXML private CheckBox greedyCheckBox;
 
     /**
-     * Initializes the SettingsController by setting up the user profile and competencies.
+     * Initializes the DashboardSettingsController by setting up the user profile and competencies.
      * This method is called automatically when the FXML file is loaded.
      */
     @FXML
@@ -487,7 +488,7 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
     }
 
 /**
-     * Sets the FenetreGestionController for this SettingsController.
+     * Sets the FenetreGestionController for this DashboardSettingsController.
      * This method is used to inject the main application controller into this controller.
      *
      * @param fenetreGestionController The FenetreGestionController to set.
@@ -497,7 +498,7 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
     }
 
     /**
-     * Sets the MenuParalleleController for this SettingsController.
+     * Sets the MenuParalleleController for this DashboardSettingsController.
      * This method is used to inject the parallel menu controller into this controller.
      *
      * @param menuParalleleController The MenuParalleleController to set.

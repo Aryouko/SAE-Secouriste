@@ -1,4 +1,4 @@
-package controller.both;
+package controller.map;
 
 import javafx.fxml.FXML;
 import javafx.scene.web.WebEngine;

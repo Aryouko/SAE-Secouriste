@@ -1,4 +1,4 @@
-package controller.admin;
+package controller.common;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -16,7 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.data.persistence.Affectation;
 import model.data.service.AffectationManagement;
-import model.data.service.AuthentificationManagement;
 import model.data.service.DPSManagement;
 import model.data.persistence.DPS;
 import model.data.service.SecouristeManagement;
@@ -31,7 +30,7 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
  * @author C.Brocart, T.Brami-Coatual, L.Carré, G.Potay
  * @version 1.0
  */
-public class EvenementController {
+public class DisplayUpComingEventController {
 
     /** VBox container where event entries are displayed */
     @FXML
