@@ -10,7 +10,7 @@ public class Possession {
     /**
      * The possession's identifier.
      */
-    public ArrayList<Competence> competencesSec ; // journeeDisp
+    private ArrayList<Competence> competencesSec ; // journeeDisp
     private Secouriste secouriste; // secouristeDisp
 
     /**
