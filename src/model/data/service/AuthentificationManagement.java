@@ -250,13 +250,24 @@ public class AuthentificationManagement {
 
 
     /**
-     * Get the current rescuer loaded
-     *
-     * @return the rescuer
+     * Disconnects the current user and clears login information
      */
     public void logOut() {
+        // Clear user and secouriste objects
         this.user = null;
         this.secouriste = null;
+
+        // Clear preferences to avoid reconnection issues
+        try {
+            java.util.prefs.Preferences prefs = java.util.prefs.Preferences.userNodeForPackage(controller.auth.LoginController.class);
+            // Instead of removing completely, we can set them to empty strings
+            // This avoids potential permission issues on some systems
+            prefs.put("lastEmail", "");
+            prefs.put("lastPW", "");
+            prefs.flush(); // Make sure changes are saved immediately
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la suppression des préférences : " + e.getMessage());
+        }
     }
 
     /**
