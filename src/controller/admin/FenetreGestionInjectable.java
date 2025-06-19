@@ -3,7 +3,7 @@ package controller.admin;
 /**
  * This interface is used to inject the FenetreGestionController into classes that need to interact
  * with the main window controller FenetreGestionController.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public interface FenetreGestionInjectable {

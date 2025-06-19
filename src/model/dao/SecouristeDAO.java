@@ -15,7 +15,7 @@ import static model.dao.ConnectionBDD.getConnection;
 
 /**
  * Class SecouristeDAO that manages the database operations for the Secouriste entity.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class SecouristeDAO {

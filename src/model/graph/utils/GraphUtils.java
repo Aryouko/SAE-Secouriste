@@ -1,6 +1,10 @@
 package model.graph.utils;
 
-
+/**
+ * Classe GraphUtils - this class provides utility methods for working with graphs,
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
+ * @version 1.0
+ */
 public class GraphUtils {
 
 

@@ -15,7 +15,7 @@ import static model.utils.FetchDatabaseCredentials.*;
 /**
  * MapController is responsible for managing the map view in the application.
  * It loads a local HTML file containing a map and injects markers based on locations fetched from a database.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class MapController {

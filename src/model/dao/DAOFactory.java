@@ -3,7 +3,7 @@ package model.dao;
 /**
  * DAOFactory class that provides singleton instances of various DAO classes.
  * This class is responsible for creating and managing the instances of DAOs used in the application.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class DAOFactory {

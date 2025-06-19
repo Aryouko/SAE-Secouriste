@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  * This class manages notifications in the system.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class NotificationManagement {

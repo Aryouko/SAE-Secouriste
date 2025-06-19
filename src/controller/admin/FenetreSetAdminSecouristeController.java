@@ -10,7 +10,7 @@ import static controller.admin.FenetreGestionController.removeOverlay;
 /**
  * Controller for the Set Admin Rescuer window.
  * This controller handles the logic for promoting a rescuer to an administrator.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class FenetreSetAdminSecouristeController {

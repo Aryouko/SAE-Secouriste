@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * DisponibiliteManagement class
  * This class manages the operations related to Disponibilite.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class DisponibiliteManagement {
