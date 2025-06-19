@@ -8,10 +8,10 @@ public class Site {
     /**
      * Informations du site : code, nom et coordonnées géographiques.
      */
-    long code;       // Code du site
-    String nom;        // Nom du site
-    float longitude;   // Longitude du site
-    float latitude;    // Latitude du site
+    private long code;       // Code du site
+    private String nom;        // Nom du site
+    private float longitude;   // Longitude du site
+    private float latitude;    // Latitude du site
 
     /**
      * Constructor of Site

@@ -30,12 +30,12 @@ public class AssignmentGreedyForTest {
 
     DPS dps;
 
-    /**
-     * Assigns rescuers to a DPS (First Aid Post) in the most optimal way.
-     *
-     * @param dps - a DPS (First Aid Post)
-     */
-    public ArrayList<Secouriste> assignmentRescuersGreedy(ArrayList<String> competencesAll, ArrayList<Secouriste> secouristes, ArrayList<Disponibilite> disponibilites, ArrayList<String> competences, ArrayList<Possession> possessions, ArrayList<Affectation> affectations, Besoin besoin, DPS dps){
+
+    // Constructeur pour les tests unitaires
+    public AssignmentGreedyForTest(ArrayList<String> competencesAll, ArrayList<Secouriste> secouristes,
+                                 ArrayList<Disponibilite> disponibilites, ArrayList<String> competences,
+                                 ArrayList<Possession> possessions, ArrayList<Affectation> affectations,
+                                 Besoin besoin) {
         this.competencesAll = competencesAll;
         this.secouristes = secouristes;
         this.disponibilites = disponibilites;
@@ -43,7 +43,14 @@ public class AssignmentGreedyForTest {
         this.possessions = possessions;
         this.affectations = affectations;
         this.besoin = besoin;
-        this.dps = dps;
+    }
+
+    /**
+     * Assigns rescuers to a DPS (First Aid Post) in the most optimal way.
+     *
+     * @param dps - a DPS (First Aid Post)
+     */
+    public ArrayList<Secouriste> assignmentRescuersGreedy(DPS dps){
 
         if (dps == null) {
             throw new IllegalArgumentException("L'argument est null");
