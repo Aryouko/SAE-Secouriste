@@ -7,13 +7,13 @@ public class Notification {
     /**
      * the title of the notification
      */
-    public String title;
-    public String message;
-    public String date;
-    public long sender;
-    public long recipient;
-    public long idDps;
-    public boolean getIsViewed;
+    private String title;
+    private String message;
+    private String date;
+    private long sender;
+    private long recipient;
+    private long idDps;
+    private boolean getIsViewed;
 
     public Notification(String title, String message, String date, long sender, long recipient, long idDps, boolean isViewed) {
         this.title = title;
