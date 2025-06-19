@@ -8,6 +8,8 @@ import java.io.InputStream;
 
 /**
  * Secouriste class
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
  */
 public class Administrateur {
     /**
@@ -139,14 +141,29 @@ public class Administrateur {
         this.adresse = adresse;
     }
 
+    /**
+     * Getter of Photo
+     *
+     * @return the photo of the secouriste
+     */
     public byte[] getPhoto() {
         return photo;
     }
 
+    /**
+     * Setter of Photo
+     *
+     * @param photo the photo of the secouriste to set
+     */
     public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
 
+    /**
+     * Returns the photo as an Image object.
+     *
+     * @return the photo as an Image
+     */
     public Image getPhotoAsImage() {
         return new Image(new ByteArrayInputStream(photo));
     }

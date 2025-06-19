@@ -656,6 +656,12 @@ public class PopupUpdateDpsController {
         this.evenementController = evenementController;
     }
 
+    /**
+     * Initializes the DPS update with the given DPS object.
+     * This method is called to set up the controller with an existing DPS for modification.
+     *
+     * @param dps the DPS object to be updated
+     */
     public void initializeDpsUpdate(DPS dps) {
         this.dps = dps;
     }

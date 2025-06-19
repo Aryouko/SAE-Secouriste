@@ -54,6 +54,9 @@ public class PopupRelationController {
     @FXML
     private ComboBox<String> comboBoxComp2;
 
+    /**
+     * Button to confirm the addition of a new DPS.
+     */
     @FXML
     private VBox vBox;
 
@@ -61,7 +64,6 @@ public class PopupRelationController {
      * Service managing necessite data.
      */
     private final NecessiteManagement necessiteManagement = new NecessiteManagement();
-
 
     /**
      * Service managing competencies data.
@@ -82,6 +84,10 @@ public class PopupRelationController {
         initializeVBox();
     }
 
+    /**
+     * Handles the action when the "Ajouter" button is clicked.
+     * Validates the input and adds a new necessite relation if valid.
+     */
     private void initializeVBox() {
         vBox.getChildren().clear();
 
@@ -134,7 +140,7 @@ public class PopupRelationController {
     }
 
     /**
-     *
+     * Handles the action when the "Ajouter" button is clicked.
      */
     public void ajoutRelation() {
         Necessite newNecessite = new Necessite(new Competence(comboBoxComp1.getSelectionModel().getSelectedItem()), new Competence(comboBoxComp2.getSelectionModel().getSelectedItem()));

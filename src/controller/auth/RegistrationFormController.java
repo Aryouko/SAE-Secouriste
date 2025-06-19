@@ -10,6 +10,8 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
 /**
  * RegistrationFormController is responsible for handling the registration form page.
  * It provides functionality to validate user input and create a rescuer profile.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
  */
 public class RegistrationFormController {
 
