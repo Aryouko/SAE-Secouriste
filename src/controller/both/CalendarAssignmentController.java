@@ -69,7 +69,7 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
      * ChoiceBox for selecting the view type.
      */
     @FXML
-    private ComboBox<String> calendarViewChoiceBox;
+    private Label semaineLabel;
 
     @FXML
     private Button todayButton;
@@ -113,8 +113,7 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
         drawLines();
         drawDPS();
 
-        this.calendarViewChoiceBox.setValue("Semaine (S)");
-        this.calendarViewChoiceBox.getItems().addAll("Semaine (S)", "Mois (M)");
+        this.semaineLabel.setText("Cette semaine");
     }
 
 
@@ -322,17 +321,15 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
      * Refreshes the calendar display tiles: updates week label, grid, lines, and events.
      */
     public void refreshTile() {
-        /*
         if (LocalDate.now().equals(this.date)) {
-            calendarViewChoiceBox.setValue("Cette semaine");
+            semaineLabel.setText("Cette semaine");
         } else if (LocalDate.now().equals(this.date.minusDays(7))) {
-            calendarViewChoiceBox.setValue("Semaine prochaine");
+            semaineLabel.setText("Semaine prochaine");
         } else if (LocalDate.now().equals(this.date.plusDays(7))) {
-            calendarViewChoiceBox.setValue("Semaine précédente");
+            semaineLabel.setText("Semaine précédente");
         } else {
-            calendarViewChoiceBox.setValue("Autre semaine");
+            semaineLabel.setText("Autre semaine");
         }
-        */
 
         this.calendarPane.getChildren().clear();
         setGridPaneWeek();
@@ -374,24 +371,7 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
      */
     public void TodayButtonClicked(ActionEvent actionEvent) {
         this.date = LocalDate.now();
-        /*
-        if (LocalDate.now().equals(this.date)) {
-            calendarViewChoiceBox.setValue("Cette semaine");
-        } else if (LocalDate.now().equals(this.date.minusDays(7))) {
-            calendarViewChoiceBox.setValue("Semaine prochaine");
-        } else if (LocalDate.now().equals(this.date.plusDays(7))) {
-            calendarViewChoiceBox.setValue("Semaine précédente");
-        } else {
-            calendarViewChoiceBox.setValue("Autre semaine");
-        }*/
         refreshTile();
-    }
-
-
-    @FXML
-    private void calendarViewChoiceBoxChanged(ActionEvent event) {
-        String selected = calendarViewChoiceBox.getValue();
-        System.out.println("Selected: " + selected);
     }
 
 
