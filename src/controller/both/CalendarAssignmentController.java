@@ -373,7 +373,8 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
      * @param actionEvent The ActionEvent triggered by the button click.
      */
     public void TodayButtonClicked(ActionEvent actionEvent) {
-        /*this.date = LocalDate.now();
+        this.date = LocalDate.now();
+        /*
         if (LocalDate.now().equals(this.date)) {
             calendarViewChoiceBox.setValue("Cette semaine");
         } else if (LocalDate.now().equals(this.date.minusDays(7))) {

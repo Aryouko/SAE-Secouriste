@@ -71,8 +71,6 @@ public class SettingsController implements FenetreGestionInjectable, MenuParalle
             if(getInstanceAuthentificationManagement().isAdmin()){
                 // Appliquer le fond dégradé pour l'admin
                 colorPane.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 0%,  #BFB0FE, #3636E1); -fx-background-radius:  30 30 0 0;");
-                croix.setImage(new Image("../../images/CercleCroixBleue.png"));
-
 
                 prenomNomParam.setText(admin.getPrenom() + " " + admin.getNom());
                 if (admin.getPhoto() != null) {
