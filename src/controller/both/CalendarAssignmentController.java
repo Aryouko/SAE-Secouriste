@@ -66,14 +66,20 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
     private Label dateLabel;
 
     /**
-     * ChoiceBox for selecting the view type.
+     * Label semaineLabel
      */
     @FXML
     private Label semaineLabel;
 
+    /**
+     * Burron today
+     */
     @FXML
     private Button todayButton;
 
+    /**
+     * ScrollPane scrollPane
+     */
     @FXML
     private ScrollPane scrollPane;
 
@@ -84,9 +90,11 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
     @FXML
     private Button gestionButton;
 
+    /** Button to open the planning interface, visible for non-admin users */
     @FXML
     private Button planButton;
 
+    /** Button to export the user's assignments to a CSV file */
     @FXML
     private Button exportButton;
 
@@ -374,7 +382,28 @@ public class CalendarAssignmentController implements FenetreGestionInjectable  {
         refreshTile();
     }
 
+    /**
+     * Handles the action when the calendar view choice box is changed.
+     * This method updates the calendar display based on the selected view type.
+     *
+     * @param event The ActionEvent triggered by the choice box selection.
+     */
+    /**
+     * Handles the action when the calendar view choice box is changed.
+     * This method updates the calendar display based on the selected view type.
+     *
+     * @param event The ActionEvent triggered by the choice box selection.
+     */
+    @FXML
+    private void calendarViewChoiceBoxChanged(ActionEvent event) {
+        String selected = calendarViewChoiceBox.getValue();
+        System.out.println("Selected: " + selected);
+    }
 
+    /**
+     * Exports the current user's assignments to a CSV file.
+     * This method is triggered when the export button is clicked.
+     */
     @FXML
     private void exportButtonClicked() {
         affectationManagement.exportYourAffectationToCSV(getInstanceAuthentificationManagement().getCurrentUser().getIdUser());

@@ -18,36 +18,82 @@ import java.util.List;
 
 import static controller.admin.FenetreGestionController.showOverlay;
 
+/**
+ * Controller for managing rescuers in the administration interface.
+ * This class handles the display and management of rescuers, including their certifications and group assignments.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class GestionSecouristeController implements FenetreGestionInjectable {
 
+    /**
+     * The TilePane that displays the rescuers.
+     */
     @FXML
     private TilePane evenementTile;
 
+    /**
+     * The ComboBox for selecting groups of rescuers.
+     */
     @FXML
     private ComboBox<String> grpComboBox;
 
+    /**
+     * The ComboBox for selecting certifications of rescuers.
+     */
     @FXML
     private ComboBox<String> certComboBox;
 
+    /**
+     * The AnchorPane that contains the rescuer management interface.
+     */
     @FXML
     private AnchorPane gestionSecouriste;
 
+    /**
+     * List of groups that rescuers can belong to.
+     */
     private ArrayList<String> groupes;
 
+    /**
+     * List of certifications that rescuers can have.
+     */
     private ArrayList<String> certifications;
 
+    /**
+     * List of certifications that rescuers are currently attending.
+     */
     private ArrayList<String> attCertifications;
 
+    /**
+     * List of rescuers currently managed in the interface.
+     */
     private List<Secouriste> secouristeList;
 
+    /**
+     * Reference to the FenetreGestionController for managing the overall administration interface.
+     */
     private FenetreGestionController fenetreGestionController;
 
+    /**
+     * Management service for rescuers.
+     */
     private final SecouristeManagement secouristeManagement = new SecouristeManagement();
 
+    /**
+     * Management service for possessions of rescuers.
+     */
     private final PossessionManagement possessionManagement = new PossessionManagement();
 
+    /**
+     * Management service for assignments of rescuers to groups.
+     */
     private final AffectationManagement affectationManagement = new AffectationManagement();
 
+    /**
+     * Initializes the controller and sets up the rescuers' management interface.
+     * This method is called automatically by JavaFX when the FXML file is loaded.
+     */
     @FXML
     public void initialize() {
 
@@ -66,6 +112,12 @@ public class GestionSecouristeController implements FenetreGestionInjectable {
         comboBoxInitialize();
     }
 
+    /**
+     * Initializes the rescuers' tiles with the provided list of rescuers.
+     * This method creates a visual representation of each rescuer, including their certifications and group assignments.
+     *
+     * @param listSecouristes The list of rescuers to be displayed in the interface.
+     */
     private void tileInitialize(List<Secouriste> listSecouristes) {
         if (listSecouristes != null) {
             for (Secouriste secouriste : listSecouristes) {
@@ -212,6 +264,12 @@ public class GestionSecouristeController implements FenetreGestionInjectable {
         }
     }
 
+    /**
+     * Sets a rescuer as an administrator.
+     * This method opens a popup to confirm the action and updates the rescuer's status accordingly.
+     *
+     * @param secouriste The rescuer to be set as an administrator.
+     */
     private void setAdminSecouriste(Secouriste secouriste) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupRescuerSetAdmin.fxml"));
@@ -229,6 +287,12 @@ public class GestionSecouristeController implements FenetreGestionInjectable {
         }
     }
 
+    /**
+     * Opens a popup to confirm the deletion of a rescuer.
+     * This method allows the administrator to remove a rescuer from the system.
+     *
+     * @param secouriste The rescuer to be deleted.
+     */
     private void supprSecouriste(Secouriste secouriste) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/PopupDeleteRescuer.fxml"));
@@ -246,9 +310,19 @@ public class GestionSecouristeController implements FenetreGestionInjectable {
         }
     }
 
+    /**
+     * Sets a rescuer as an administrator.
+     * This method is a placeholder for the actual implementation of setting a rescuer as an admin.
+     *
+     * @param secouriste The rescuer to be set as an administrator.
+     */
     private void setAdmin(Secouriste secouriste) {
     }
 
+    /**
+     * Initializes the ComboBoxes for selecting groups and certifications.
+     * This method populates the ComboBoxes with available groups and certifications.
+     */
     private void comboBoxInitialize() {
         this.grpComboBox.getItems().add("Groupe d'affectation");
         this.certComboBox.getItems().add("Certification");
@@ -258,6 +332,10 @@ public class GestionSecouristeController implements FenetreGestionInjectable {
         this.certComboBox.getItems().addAll(this.certifications);
     }
 
+    /**
+     * Updates the displayed rescuers based on the selected filters in the ComboBoxes.
+     * This method filters the list of rescuers based on their certifications and group assignments.
+     */
     @FXML
     public void filtreUpdate() {
         this.evenementTile.getChildren().clear();
@@ -295,15 +373,29 @@ public class GestionSecouristeController implements FenetreGestionInjectable {
         tileInitialize(listSecouriste);
     }
 
+    /**
+     * Sets the FenetreGestionController for this controller.
+     * This method is used to inject the main administration controller into this controller.
+     *
+     * @param fenetreGestionController The FenetreGestionController to be set.
+     */
     public void setFenetreGestionController(FenetreGestionController fenetreGestionController) {
         this.fenetreGestionController = fenetreGestionController;
     }
 
+    /**
+     * Loads the event management interface.
+     * This method is called when the "Gestion Evenement" button is clicked.
+     */
     @FXML
     public void GestionEvenementButton() {
         this.fenetreGestionController.loadContent2("/fxml/admin/DashboardEvent.fxml");
     }
 
+    /**
+     * Removes a rescuer from the list of managed rescuers.
+     * @param secouriste
+     */
     public void retirerList(Secouriste secouriste) {
         this.secouristeList.remove(secouriste);
     }

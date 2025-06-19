@@ -13,8 +13,18 @@ import model.data.persistence.User;
 
 import static model.dao.ConnectionBDD.getConnection;
 
+/**
+ * Class SecouristeDAO that manages the database operations for the Secouriste entity.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class SecouristeDAO {
 
+    /**
+     * findAll retourne tous les secouristes
+     *
+     * @return une liste de secouristes
+     */
     public List<Secouriste> findAll() {
         List<Secouriste> secouristes = new ArrayList<>();
 
@@ -198,6 +208,11 @@ public class SecouristeDAO {
         return null;
     }
 
+    /**
+     * Deletes a Secouriste from the database.
+     *
+     * @param secouriste the Secouriste to delete
+     */
     public void delete(Secouriste secouriste) {
         System.out.println("ID à supprimer : " + secouriste.getIdSecouriste());
         String query = "DELETE FROM Secouriste WHERE idSecouriste = ?";
@@ -211,6 +226,12 @@ public class SecouristeDAO {
         }
     }
 
+    /**
+     * Finds the User associated with a Secouriste.
+     *
+     * @param secouriste the Secouriste to search for
+     * @return the User associated with the Secouriste, or null if not found
+     */
     public User findUserBySecouriste(Secouriste secouriste) {
         String query = "SELECT * FROM Secouriste JOIN User ON idUser = idSecouriste WHERE idSecouriste = ?";
         try (Connection con = getConnection();

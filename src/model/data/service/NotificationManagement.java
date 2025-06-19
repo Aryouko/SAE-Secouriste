@@ -8,6 +8,11 @@ import model.data.persistence.Notification;
 
 import java.util.ArrayList;
 
+/**
+ * This class manages notifications in the system.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class NotificationManagement {
 
     /**
@@ -92,7 +97,10 @@ public class NotificationManagement {
         System.out.println("Notification created for recipient: " + sender);
     }
 
-
+    /**
+     * Deletes a notification by its ID.
+     * @param Notification the Notification instance to be deleted
+     */
     public void deleteNotification(Notification Notification) {
         notificationDAO.delete(Notification);
     }

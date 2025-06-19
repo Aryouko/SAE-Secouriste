@@ -14,6 +14,10 @@ public class Competence {
      */
     private String intitule;
 
+    /**
+     * Constructor of Competence class
+     * @param intitule the name of competence
+     */
     public Competence(String intitule) {
         this.intitule = intitule;
     }
@@ -34,6 +38,11 @@ public class Competence {
         this.intitule = intitule;
     }
 
+    /**
+     * Override equals method to compare competences based on their name
+     * @param o the object to compare with
+     * @return true if competences are equal, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

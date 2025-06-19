@@ -7,8 +7,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class JourneeDAO that manages the database operations for the Journee entity.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
+ */
 public class JourneeDAO {
 
+    /**
+     * Inserts a new Journee into the database.
+     *
+     * @param journee the Journee to insert
+     */
     public void insert(Journee journee) {
         String query = "INSERT INTO Journee (jour, mois, annee) VALUES (?, ?, ?)";
         try (Connection con = ConnectionBDD.getConnection();
@@ -24,6 +34,14 @@ public class JourneeDAO {
         }
     }
 
+    /**
+     * Finds the ID of a Journee by its date.
+     *
+     * @param jour the day of the Journee
+     * @param mois the month of the Journee
+     * @param annee the year of the Journee
+     * @return the ID of the Journee, or -1 if not found
+     */
     public long findIdByJour(int jour, int mois, int annee) {
         String query = "SELECT id FROM Journee WHERE jour = ? AND mois = ? AND annee = ?";
         long ret = -1;

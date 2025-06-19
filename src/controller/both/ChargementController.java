@@ -9,6 +9,8 @@ import static controller.UtilsController.linkToPage;
 /**
  * ChargementController is responsible for handling the loading screen of the application.
  * It displays a loading screen for a few seconds before transitioning to the login page.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @version 1.0
  */
 public class ChargementController {
 
