@@ -214,7 +214,7 @@ public class TestAssignmentGreedy {
     void testPerformances() {
         System.out.println("********** Tests de Performance **********");
 
-        int[] tailleDonnees = {5, 10, 20, 50, 100};
+        int[] tailleDonnees = {5, 8, 9, 10, 20, 50, 100};
 
         for (int taille : tailleDonnees) {
             System.out.println("=== Test performance avec " + taille + " secouristes ===");
