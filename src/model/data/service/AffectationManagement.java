@@ -15,7 +15,7 @@ import static model.utils.Settings.useGreedy;
 
 /**
  * Class allow to collect all affectation
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class AffectationManagement {

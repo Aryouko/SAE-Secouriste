@@ -1,9 +1,17 @@
 package model.graph.utils;
 
-
+/**
+ * Classe GraphUtils - this class provides utility methods for working with graphs,
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
+ * @version 1.0
+ */
 public class GraphUtils {
 
-
+    /**
+     * It checks if the graph is oriented or not
+     * @param matrix - the adjacency matrix given
+     * @return true if the graph is oriented, false otherwise
+     */
     public static boolean isOriented(int[][] matrix) {
         int n = matrix.length;
         for (int i = 0; i < n; i++) {
@@ -15,7 +23,6 @@ public class GraphUtils {
         }
         return false;
     }
-
 
     /**
      * It checks if e cycle is detected during the DFS

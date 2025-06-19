@@ -12,7 +12,7 @@ import static model.dao.ConnectionBDD.getConnection;
 
 /**
  * Class CompetenceDAO that manages the database operations for the Competence entity.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class CompetenceDAO {

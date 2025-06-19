@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * SportManagement class
  * This class manages the operations related to Sport.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class SportManagement {

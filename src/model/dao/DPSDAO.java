@@ -11,7 +11,7 @@ import model.data.persistence.Journee;
 
 /**
  * Class DPSDAO that manages the database operations for the DPS entity.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class DPSDAO {

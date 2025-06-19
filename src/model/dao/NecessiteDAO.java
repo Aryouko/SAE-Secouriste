@@ -10,7 +10,7 @@ import static model.dao.ConnectionBDD.getConnection;
 /**
  * Class NecessiteDAO that manages the database operations for the Necessite entity.
  * It provides methods to retrieve, insert, delete, and check the existence of Necessite objects.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class NecessiteDAO {

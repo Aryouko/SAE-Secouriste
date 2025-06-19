@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * This class manages the operations related to Necessite.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class NecessiteManagement {

@@ -12,6 +12,8 @@ import java.util.*;
  * related to skill dependencies in a graph structure.
  * It includes methods to create a skill dependency map, an adjacency matrix,
  * and to build superior dependencies for each competence.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
+ * @version 1.0
  */
 public class MatrixUtils {
 
@@ -133,7 +135,11 @@ public class MatrixUtils {
         return matrix;
     }
 
-
+    /**
+     * Convert a matrix to a string representation
+     * @param matrix the matrix to convert
+     * @return a string representation of the matrix
+     */
     public String MatrixToString(int[][] matrix) {
         String text = "";
         for (int[] line : matrix) {
@@ -146,6 +152,10 @@ public class MatrixUtils {
         return text ;
     }
 
+    /**
+     * Get the map that associates each skill with its integer representation
+     * @return a map where the key is the skill's name and the value is its integer representation
+     */
     public Map<String, Integer> getMapSkillToHisInt() {
         return this.MapSkillToHisInt ;
     }

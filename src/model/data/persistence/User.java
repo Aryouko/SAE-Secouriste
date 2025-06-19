@@ -5,7 +5,7 @@ package model.data.persistence;
  * This class represents a user in the system.
  * It contains the user's id, login, password, and role.
  *
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class User {

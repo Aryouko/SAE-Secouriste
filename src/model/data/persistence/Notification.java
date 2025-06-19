@@ -6,7 +6,7 @@ import java.util.Date;
  * This class represents a notification in the system.
  * It contains details such as title, message, date, sender, recipient, and whether it has been viewed.
  *
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class Notification {

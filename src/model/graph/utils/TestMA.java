@@ -6,6 +6,12 @@ import model.data.service.CompetenceManagement;
 
 import java.util.List;
 
+/**
+ * TestMA - This class serves as a placeholder for testing matrix-related functionalities.
+ * It can be used to implement test cases for matrix operations, particularly those related to skill dependencies.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
+ * @version 1.0
+ */
 public class TestMA {
 
     public static void main(String[] args) {

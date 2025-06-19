@@ -9,7 +9,7 @@ import static model.utils.FetchDatabaseCredentials.*;
 /**
  * Class ConnectionBDD that manages the connection to the database.
  * It uses credentials fetched from a utility class to establish the connection.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class ConnectionBDD {
