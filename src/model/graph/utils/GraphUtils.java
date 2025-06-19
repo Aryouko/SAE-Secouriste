@@ -28,7 +28,6 @@ public class GraphUtils {
     public static boolean cycleDetected(int[][] adjMatrix, int v, boolean[] visited, boolean[] inProcess) {
         visited[v] = true;
         inProcess[v] = true;
-
         for (int i = 0; i < adjMatrix.length; i++) {
             if (adjMatrix[v][i] == 1) {
                 if (!visited[i]) {
@@ -42,6 +41,7 @@ public class GraphUtils {
         inProcess[v] = false;
         return false;
     }
+
 
 
 
@@ -76,8 +76,7 @@ public class GraphUtils {
      * @return true if the graph is a DAG, false otherwise
      */
     public boolean isDAG(int[][] adjMatrix){
-
-        if (!isOriented(adjMatrix)) {
+        if (!isOriented(adjMatrix) || !adjMatrixValid(adjMatrix)) {
             return false;
         }
 

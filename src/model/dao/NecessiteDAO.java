@@ -32,4 +32,48 @@ public class NecessiteDAO {
         }
         return listSkillNeeded;
     }
+
+    public void deleteNecessite(Necessite necessite) {
+        String query = "DELETE FROM Necessite WHERE COMP1 = ? AND COMP2 = ?";
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setString(1, necessite.getComp1().getIntitule());
+            stmt.setString(2, necessite.getComp2().getIntitule());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean isCreate(Necessite necessite) {
+        String query = "SELECT 1 FROM Necessite WHERE COMP1 = ? AND COMP2 = ?";
+        boolean ret = false;
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setString(1, necessite.getComp1().getIntitule());
+            stmt.setString(2, necessite.getComp2().getIntitule());
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                ret = true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return ret;
+    }
+
+    public void insertNecessite(Necessite newNecessite) {
+        String query = "INSERT INTO Necessite (comp1, comp2) VALUES (?, ?)";
+        try (Connection con = ConnectionBDD.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setString(1, newNecessite.getComp1().getIntitule());
+            stmt.setString(2, newNecessite.getComp2().getIntitule());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
