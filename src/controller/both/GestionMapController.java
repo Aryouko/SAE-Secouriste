@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.shape.Rectangle;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
 
@@ -18,6 +19,9 @@ public class GestionMapController implements FenetreGestionInjectable {
 
     @FXML
     private AnchorPane gestionCarte;
+
+    @FXML
+    private AnchorPane carteAnchorPane;
 
     @FXML
     private Button planningButton;
@@ -41,11 +45,15 @@ public class GestionMapController implements FenetreGestionInjectable {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/common/map/Map.fxml"));
             AnchorPane page = loader.load();
-            carteFlowPane.getChildren().setAll(page);
+            carteAnchorPane.getChildren().setAll(page);
 
-            // Forcer la carte à prendre toute la taille du FlowPane
-            page.prefWidthProperty().bind(carteFlowPane.widthProperty());
-            page.prefHeightProperty().bind(carteFlowPane.heightProperty());
+            Rectangle clip = new Rectangle();
+            clip.setArcWidth(60);
+            clip.setArcHeight(60);
+            clip.widthProperty().bind(page.widthProperty());
+            clip.heightProperty().bind(page.heightProperty());
+
+            page.setClip(clip);
         } catch(Exception e) {
             System.out.print(e.getMessage());
         }
