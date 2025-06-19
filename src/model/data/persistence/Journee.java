@@ -86,4 +86,30 @@ public class Journee {
         String[] months = { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
         return this.jour + " " + months[this.mois - 1] + " " + this.annee;
     }
+
+
+
+// For the exhaustive assignment algorithm, we need to override equals and hashCode
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Journee journee = (Journee) o;
+
+        // On compare tous les attributs pertinents
+        return jour == journee.jour &&
+               mois == journee.mois &&
+               annee == journee.annee;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + jour;
+        result = 31 * result + mois;
+        result = 31 * result + annee;
+        return result;
+    }
 }
