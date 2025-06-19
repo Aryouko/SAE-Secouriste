@@ -32,6 +32,8 @@ public class AssignmentExhaustive {
      */
     private Map<Competence, List<Competence>> dependencies = new HashMap<>();
 
+
+
     /**
      * Initialise les dépendances entre compétences (compétences "supérieures" pour chaque compétence).
      */
@@ -41,6 +43,7 @@ public class AssignmentExhaustive {
         List<Necessite> necessites = necessiteDAO.findAll();
         dependencies = matrixUtils.buildAllSuperiorDependencies(competencesBesoins, necessites);
     }
+
 
     /**
      * Constructeur AssignmentExhaustive qui effectue l'affectation des secouristes aux compétences du DPS.
