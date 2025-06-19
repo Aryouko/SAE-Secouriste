@@ -110,7 +110,6 @@ public class MatrixUtils {
             // the function return the values associate to the key. So if i call the .add after its going to add vertex link to the main vertex.
             skillDependencies.computeIfAbsent(from, k -> new ArrayList<>()).add(to);
         }
-
         return skillDependencies;
     }
 

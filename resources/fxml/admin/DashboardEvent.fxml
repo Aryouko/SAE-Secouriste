@@ -110,22 +110,52 @@
                         <ColumnConstraints />
                      </columnConstraints>
                   </GridPane>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="654.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#CreationDPSButton" style="-fx-background-color: #121315; -fx-background-radius: 10;" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#relationCompetence" style="-fx-background-color: #121315; -fx-background-radius: 10;" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
                            <graphic>
                               <GridPane prefHeight="9.0" prefWidth="202.0">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.666748046875" minWidth="10.0" prefWidth="156.3333740234375" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.333251953125" minWidth="10.0" prefWidth="44.6666259765625" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.60000000000002" minWidth="10.0" prefWidth="201.60000000000002" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.333251953125" minWidth="0.0" prefWidth="0.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
+                                 <children>
+                                    <Label prefHeight="26.0" prefWidth="187.0" stylesheets="@../../css/button.css" text="Relation des compétences" textFill="WHITE" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="35.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#CreationDPSButton" style="-fx-background-color: #121315; -fx-background-radius: 10;" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <graphic>
+                              <GridPane prefHeight="9.0" prefWidth="202.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.666748046875" minWidth="10.0" prefWidth="156.3333740234375" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.333251953125" minWidth="10.0" prefWidth="44.6666259765625" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
                                  <children>
                                     <Label prefHeight="25.0" prefWidth="148.0" stylesheets="@../../css/button.css" text="Créer un évènement" textFill="WHITE" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                        <font>
@@ -144,7 +174,7 @@
                               </GridPane>
                            </graphic>
                            <HBox.margin>
-                              <Insets right="35.0" />
+                              <Insets right="25.0" />
                            </HBox.margin>
                         </Button>
                      </children>
