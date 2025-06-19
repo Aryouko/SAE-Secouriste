@@ -20,6 +20,8 @@ import model.data.service.NotificationManagement;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.SVGPath;
 
 /**
  * Controller for displaying notifications in the application.
@@ -120,6 +122,20 @@ public class DisplayNotificationController {
             circle.setRadius(20);
             circle.setFill(javafx.scene.paint.Color.web("#4A4AE4"));
 
+// Créer le SVG pour la croix
+            SVGPath crossPath = new SVGPath();
+            crossPath.setContent("M17.7072 0.388064C17.3167 -0.00240158 16.6836 -0.00240158 16.2932 0.388064L8.99999 7.68125L1.70683 0.388064C1.31637 -0.00240158 0.683306 -0.00240158 0.29285 0.388064C-0.0976166 0.77852 -0.0976166 1.41159 0.29285 1.80204L7.58602 9.09522L0.29287 16.3883C-0.0975966 16.7789 -0.0975966 17.4119 0.29287 17.8024C0.683326 18.1928 1.31639 18.1928 1.70685 17.8024L8.99999 10.5092L16.2932 17.8024C16.6836 18.1928 17.3167 18.1928 17.7072 17.8024C18.0976 17.4119 18.0976 16.7789 17.7072 16.3884L10.414 9.09522L17.7072 1.80204C18.0976 1.41159 18.0976 0.77852 17.7072 0.388064Z");
+            crossPath.setFill(javafx.scene.paint.Color.WHITE);
+            crossPath.setScaleX(0.5);
+            crossPath.setScaleY(0.5);
+
+// Créer le StackPane pour superposer les éléments
+            StackPane stackPane = new StackPane();
+            stackPane.getChildren().addAll(circle, crossPath);
+
+// Ajouter le StackPane au GridPane à la place du cercle
+
+
 
 
             GridPane pane = new GridPane(); // Create a GridPane to hold the notification elements
@@ -136,6 +152,7 @@ public class DisplayNotificationController {
             subPane.add(infosLabel, 0, 1);
             pane.add(subPane,0,0);
             pane.add(circle,1,0);
+            pane.add(stackPane, 1, 0);
 
             pane.setPrefHeight(60);
             pane.setMaxHeight(60);
@@ -197,6 +214,8 @@ public class DisplayNotificationController {
                 notificationManagement.deleteNotification(notification);
                 VBoxlistNotification.getChildren().remove(pane);
                 event.consume(); // Prevent further propagation of the event
+
+
             });
             list.add(pane); // Add the pane to the list of GridPanes
         }
@@ -210,8 +229,12 @@ public class DisplayNotificationController {
      * @throws IOException If there is an error loading the FXML file for the popup form.
      */
     public void openForm() throws IOException {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/notif/PopupNotificationForm.fxml"));
         Parent root = loader.load();
+
+        PopupNotificationFormController controller = loader.getController();
+        controller.setDisplayNotificationController(this);
 
         Stage popupStage = new Stage();
         popupStage.initStyle(StageStyle.TRANSPARENT);
@@ -219,6 +242,5 @@ public class DisplayNotificationController {
         scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
         popupStage.setScene(scene);
         popupStage.initModality(Modality.APPLICATION_MODAL);
-        popupStage.showAndWait();
-    }
+        popupStage.showAndWait();}
 }
