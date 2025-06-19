@@ -1,12 +1,12 @@
 package model.data.service;
 import model.dao.AffectationDAO;
-import model.data.persistence.Affectation;
-import model.data.persistence.DPS;
-import model.data.persistence.Secouriste;
+import model.dao.CompetenceDAO;
+import model.data.persistence.*;
 import model.graph.assignment.AssignmentExhaustive;
 import model.graph.assignment.AssignmentGreedy;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static model.data.service.AuthentificationManagement.getInstanceAuthentificationManagement;
@@ -24,6 +24,8 @@ public class AffectationManagement {
      * Singleton instance of AffectationManagement.
      */
     private final AffectationDAO affectationDAO = new AffectationDAO();
+
+
 
 
     /**
@@ -85,16 +87,51 @@ public class AffectationManagement {
     }
 
     /**
-     * Launches a greedy assignment of rescuers to a DPS.
-     * This method uses a greedy algorithm to assign rescuers based on their competencies.
+     * Launches a greedy or exhaustive assignment of rescuers to a DPS.
      *
      * @param dps The DPS for which the assignment is to be made.
      */
     public void launchAffectation(DPS dps) {
-        if (useGreedy()) {
-            new AssignmentGreedy().assignmentRescuersGreedy(dps);
-        } else {
-            new AssignmentExhaustive().assignmentRescuersExhaustive(dps);
+        BesoinManagement besoinManagement = new BesoinManagement();
+        Besoin besoin = besoinManagement.getBesoinByDPS(dps);
+        List<Competence> competencesOriginal = besoin != null ? new ArrayList<>(besoin.getCompetences()) : new ArrayList<>();
+
+        try {
+            if (useGreedy()) {
+                new AssignmentGreedy().assignmentRescuersGreedy(dps);
+            } else {
+                new AssignmentExhaustive(dps);
+            }
+
+            // Met à jour le besoin en retirant les compétences qui ont été affectées avec succès
+            if (besoin != null) {
+                List<Affectation> affectations = this.affectationDAO.findByDPS(dps.getId());
+                List<Competence> competencesAffectees = new ArrayList<>();
+
+                for (Affectation affectation : affectations) {
+                    competencesAffectees.add(affectation.getCompetenceAffect());
+                }
+
+                ArrayList<Competence> competencesRestantes = new ArrayList<>();
+                for (Competence comp : competencesOriginal) {
+                    boolean estAffectee = false;
+                    for (Competence affectee : competencesAffectees) {
+                        if (comp.getIntitule().equals(affectee.getIntitule())) {
+                            estAffectee = true;
+                            break;
+                        }
+                    }
+                    if (!estAffectee) {
+                        competencesRestantes.add(comp);
+                    }
+                }
+
+                // Mettre à jour le besoin avec uniquement les compétences non affectées
+                besoin.setCompetences(competencesRestantes);
+                besoinManagement.updateBesoin(besoin);
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de l'affectation : " + e.getMessage());
         }
     }
 
