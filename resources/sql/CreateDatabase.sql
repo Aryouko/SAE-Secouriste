@@ -165,16 +165,3 @@ CREATE TABLE Notification (
     CONSTRAINT fk_Notification_Recipient FOREIGN KEY (recipient) REFERENCES User(idUser),
     CONSTRAINT fk_Notification_idDPS FOREIGN KEY (idDPS) REFERENCES DPS(id)
 );
-
--- Table des certificats (liée aux secouristes et aux compétences)
-CREATE TABLE Certificat (
-    id INT AUTO_INCREMENT,
-    idSecouriste INT NOT NULL,
-    type_certif VARCHAR(64) NOT NULL,
-    chemin_fichier TEXT NOT NULL,
-    date_ajout TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT pk_Certificat PRIMARY KEY (id),
-    CONSTRAINT fk_Certificat_Secouriste FOREIGN KEY (idSecouriste) REFERENCES Secouriste(idSecouriste),
-    CONSTRAINT fk_Certificat_Competence FOREIGN KEY (type_certif) REFERENCES Competence(intitule)
-);

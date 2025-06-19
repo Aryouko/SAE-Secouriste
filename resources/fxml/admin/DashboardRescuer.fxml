@@ -81,11 +81,6 @@
                               <Insets left="10.0" right="10.0" />
                            </GridPane.margin>
                         </ComboBox>
-                        <ComboBox fx:id="attCertComboBox" onAction="#filtreUpdate" prefHeight="30.0" prefWidth="180.0" promptText="Certification en attente" style="-fx-background-color: #EBF0F6; -fx-background-radius: 5;" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </ComboBox>
                      </children>
                   </GridPane>
                </children>
