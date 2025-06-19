@@ -46,6 +46,8 @@ public class PopupNotificationFormController {
      */
     private final NotificationManagement notificationManagement = new NotificationManagement();
 
+    private DisplayNotificationController displayNotificationController;
+
     /**
      * FXML elements for the notification form.
      */
@@ -165,6 +167,7 @@ public class PopupNotificationFormController {
 
 
         closeNotificationForm();
+
     }
 
 
@@ -176,5 +179,11 @@ public class PopupNotificationFormController {
         removeOverlay();
         Stage stage = (Stage) closeButtonNotificationForm.getScene().getWindow();
         stage.close();
+        displayNotificationController.initialize();
+    }
+
+
+    public void setDisplayNotificationController(DisplayNotificationController displayNotificationController) {
+        this.displayNotificationController = displayNotificationController;
     }
 }
