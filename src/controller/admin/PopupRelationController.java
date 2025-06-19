@@ -62,7 +62,6 @@ public class PopupRelationController {
      */
     private final NecessiteManagement necessiteManagement = new NecessiteManagement();
 
-
     /**
      * Service managing competencies data.
      */
