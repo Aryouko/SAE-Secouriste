@@ -221,12 +221,7 @@ public class PopupUpdateDpsController {
 
         this.nomTextField.setText(this.dps.getName());
 
-        LocalDate today = LocalDate.now();
-        if (LocalDate.of(this.dps.getJournee().getAnnee(), this.dps.getJournee().getMois(), this.dps.getJournee().getJour()).isBefore(today.plusDays(7))) {
-            this.date = LocalDate.of(this.dps.getJournee().getAnnee(), this.dps.getJournee().getMois(), this.dps.getJournee().getJour());
-        } else {
-            this.date = today.plusDays(7);
-        }
+        this.date = LocalDate.of(this.dps.getJournee().getAnnee(), this.dps.getJournee().getMois(), this.dps.getJournee().getJour());
 
         this.infosLabel.setWrapText(true);
         this.infosLabel.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
@@ -363,13 +358,19 @@ public class PopupUpdateDpsController {
         LocalDate todayLimit = LocalDate.now().plusDays(7);
 
         for (int i = 1; i <= this.date.lengthOfMonth(); i++) {
-            if (!(this.date.getMonthValue() == todayLimit.getMonthValue() && this.date.getYear() == todayLimit.getYear() && i < todayLimit.getDayOfMonth())) {
+            if (!(this.date.getMonthValue() == todayLimit.getMonthValue() && this.date.getYear() == todayLimit.getYear() && i < todayLimit.getDayOfMonth() && i < this.date.getDayOfMonth())) {
                 this.jourComboBox.getItems().add(i);
             }
         }
 
-        if (this.jourComboBox.getItems().contains(this.date.getDayOfMonth())) {
+        if (this.jourComboBox.getItems().contains(this.date.getDayOfMonth()) && this.date.getMonthValue() != todayLimit.getMonthValue()) {
             this.jourComboBox.getSelectionModel().select((Integer) this.date.getDayOfMonth());
+        } else {
+            if (this.dps.getJournee().getMois() == todayLimit.getMonthValue()) {
+                this.jourComboBox.getSelectionModel().select((Integer) this.date.getDayOfMonth());
+            } else {
+                this.jourComboBox.getSelectionModel().select((Integer) todayLimit.getDayOfMonth());
+            }
         }
 
         for (int i = 1; i <= 12; i++) {
