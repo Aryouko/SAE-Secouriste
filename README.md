@@ -11,7 +11,7 @@
 
 - Scenario + diagramme Scenario
 
-- Exhaustive + Tests Exhaustive + rapport comparaison
+- Tests Exhaustive + rapport comparaison
 
 - Diapo / Oral  
 - Le diagramme de classes a revoir a plusieurs
@@ -22,10 +22,7 @@
 - JAVADOC Model Celian 
 
 
-
-
 - Thomas:
-  - togglebutton pour switch pour choisir la stratégie d'affectation (exhaustive ou gloutonne)
   - Vue mensuelle calendrier ( + keybinds pour le calendrier)
   
 - le bouffon du grp qui veut s'y coller:
