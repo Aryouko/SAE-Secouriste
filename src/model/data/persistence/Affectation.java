@@ -5,7 +5,7 @@ import model.data.persistence.DPS;
 import model.data.persistence.Competence;
 /**
  * This class link class Secouriste, DPS and Competence.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
 */
 public class Affectation {

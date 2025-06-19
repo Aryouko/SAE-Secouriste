@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * Class AffectationDAO that manages the database operations for the Affectation entity.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class AffectationDAO {

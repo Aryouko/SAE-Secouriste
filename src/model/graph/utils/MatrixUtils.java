@@ -12,6 +12,8 @@ import java.util.*;
  * related to skill dependencies in a graph structure.
  * It includes methods to create a skill dependency map, an adjacency matrix,
  * and to build superior dependencies for each competence.
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
+ * @version 1.0
  */
 public class MatrixUtils {
 

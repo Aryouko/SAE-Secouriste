@@ -22,7 +22,7 @@ import static controller.admin.FenetreGestionController.showOverlay;
 /**
  * Controller for managing events in the application.
  * This controller handles the display and management of DPS (Données de Prise en Secours) events.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class GestionEvenementController implements FenetreGestionInjectable {

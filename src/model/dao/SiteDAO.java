@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Class SiteDAO that manages the database operations for the Site entity.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class SiteDAO {

@@ -12,7 +12,7 @@ import static controller.admin.FenetreGestionController.showOverlay;
 /**
  * Controller for the rescuer deletion confirmation window.
  * This controller handles the deletion of a rescuer and its associated data.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class FenetreSupprSecouristeController {

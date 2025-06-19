@@ -16,7 +16,7 @@ import static controller.admin.FenetreGestionController.showOverlay;
 /**
  * Controller for the DPS deletion confirmation window.
  * This controller handles the deletion of a DPS and its associated data.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class FenetreSupprDPSController {

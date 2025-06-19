@@ -30,7 +30,7 @@ import static model.data.service.AuthentificationManagement.getInstanceAuthentif
  * CalendarDisponibilitesController is responsible for managing the calendar view
  * where users can set their availability for specific dates.
  * It allows users to select a range of dates and save their availability.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class CalendarDisponibilitesController {

@@ -26,7 +26,7 @@ import java.util.List;
  * This class handles the initialization of the notification view,
  * loading notifications for the current user, and providing functionality
  * to open a form for creating new notifications.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class DisplayNotificationController {

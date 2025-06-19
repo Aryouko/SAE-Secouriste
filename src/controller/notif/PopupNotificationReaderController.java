@@ -15,7 +15,7 @@ import static controller.admin.FenetreGestionController.showOverlay;
 /**
  * Controller for the popup notification reader.
  * This class handles the display of a notification's details.
- * @author L. Carré, G. Potay, C. Brocart, T.Brami--Coatual
+ * @author L. Carré, G. Potay, C. Brocart, T.Brami-Coatual
  * @version 1.0
  */
 public class PopupNotificationReaderController {
